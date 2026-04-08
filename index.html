@@ -36,8 +36,12 @@
   .view-btn{font-family:'DM Mono',monospace;font-size:16px;padding:4px 8px;border:1px solid var(--border);border-radius:4px;background:var(--surface);color:var(--muted);cursor:pointer;line-height:1;}
   .view-btn.active{background:var(--accent);color:#fff;border-color:var(--accent);}
   .count{color:var(--muted);font-size:11px;white-space:nowrap;}
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:1px;background:var(--border);}
-  .card{background:var(--surface);padding:16px;display:flex;flex-direction:column;gap:8px;cursor:pointer;transition:background 0.1s;position:relative;}
+  .export-btn{font-family:'DM Mono',monospace;font-size:11px;padding:5px 10px;border:1px solid var(--border);border-radius:4px;background:var(--surface);color:var(--muted);cursor:pointer;}
+  .export-btn:hover{border-color:var(--accent);color:var(--accent);}
+
+  /* ── Grid ── */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1px;background:var(--border);}
+  .card{background:var(--surface);padding:14px;display:flex;flex-direction:column;gap:7px;cursor:pointer;transition:background 0.1s;}
   .card:hover{background:#fafaf7;}
   .emblem-wrap{height:90px;display:flex;align-items:center;justify-content:center;background:var(--bg);border-radius:4px;overflow:hidden;}
   .emblem-wrap img{max-height:80px;max-width:100%;object-fit:contain;}
@@ -45,15 +49,18 @@
   .card-name{font-family:'Fraunces',serif;font-weight:300;font-size:13px;line-height:1.3;}
   .card-name-he{font-size:10px;color:var(--muted);direction:rtl;text-align:right;}
   .card-meta{font-size:10px;color:var(--muted);}
-  .card-tags{display:flex;flex-wrap:wrap;gap:3px;margin-top:2px;}
-  .list-view{background:var(--surface);}
-  .list-header{display:grid;grid-template-columns:60px 1fr 130px 100px 180px;gap:12px;padding:10px 20px;background:var(--bg);border-bottom:2px solid var(--border);font-size:10px;text-transform:uppercase;letter-spacing:0.5px;color:var(--muted);}
-  .list-row{display:grid;grid-template-columns:60px 1fr 130px 100px 180px;gap:12px;padding:10px 20px;border-bottom:1px solid var(--border);align-items:center;cursor:pointer;transition:background 0.1s;}
-  .list-row:hover{background:#fafaf7;}
-  .list-thumb{width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:var(--bg);border-radius:3px;overflow:hidden;}
-  .list-thumb img{max-width:44px;max-height:44px;object-fit:contain;}
-  .list-name{font-family:'Fraunces',serif;font-weight:300;font-size:14px;}
-  .list-tags{display:flex;flex-wrap:wrap;gap:3px;}
+  .card-tags{display:flex;flex-wrap:wrap;gap:3px;}
+
+  /* ── Inline annotation ticks ── */
+  .card-ticks{display:flex;gap:6px;padding-top:6px;border-top:1px solid var(--border);margin-top:2px;}
+  .tick{display:flex;align-items:center;gap:4px;font-size:10px;color:var(--muted);cursor:pointer;user-select:none;padding:2px 4px;border-radius:3px;transition:background 0.1s;}
+  .tick:hover{background:var(--bg);}
+  .tick input{width:12px;height:12px;cursor:pointer;margin:0;flex-shrink:0;}
+  .tick.active-wrong{color:var(--wrong);font-weight:500;}
+  .tick.active-accuracy{color:var(--accuracy);font-weight:500;}
+  .tick.active-small{color:var(--small);font-weight:500;}
+
+  /* ── Badges ── */
   .badge{display:inline-block;font-size:10px;padding:2px 6px;border-radius:3px;font-weight:500;letter-spacing:0.2px;white-space:nowrap;}
   .badge-found-svg{background:var(--svg-bg);color:var(--svg);}
   .badge-found-png{background:var(--png-bg);color:var(--png);}
@@ -71,13 +78,28 @@
   .badge-local{background:#f0fdf4;color:#15803d;}
   .badge-regional{background:#fdf4ff;color:#7e22ce;}
 
-  /* Modal */
+  /* ── List view ── */
+  .list-view{background:var(--surface);}
+  .list-header{display:grid;grid-template-columns:60px 1fr 130px 100px 200px 130px;gap:12px;padding:10px 20px;background:var(--bg);border-bottom:2px solid var(--border);font-size:10px;text-transform:uppercase;letter-spacing:0.5px;color:var(--muted);}
+  .list-row{display:grid;grid-template-columns:60px 1fr 130px 100px 200px 130px;gap:12px;padding:10px 20px;border-bottom:1px solid var(--border);align-items:center;cursor:pointer;transition:background 0.1s;}
+  .list-row:hover{background:#fafaf7;}
+  .list-thumb{width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:var(--bg);border-radius:3px;overflow:hidden;}
+  .list-thumb img{max-width:44px;max-height:44px;object-fit:contain;}
+  .list-name{font-family:'Fraunces',serif;font-weight:300;font-size:14px;}
+  .list-tags{display:flex;flex-wrap:wrap;gap:3px;}
+  .list-ticks{display:flex;gap:4px;}
+  .list-tick{font-size:10px;padding:2px 6px;border-radius:3px;border:1px solid var(--border);cursor:pointer;white-space:nowrap;background:var(--surface);color:var(--muted);}
+  .list-tick.on-wrong{background:var(--wrong-bg);color:var(--wrong);border-color:var(--wrong);}
+  .list-tick.on-accuracy{background:var(--accuracy-bg);color:var(--accuracy);border-color:var(--accuracy);}
+  .list-tick.on-small{background:var(--small-bg);color:var(--small);border-color:var(--small);}
+
+  /* ── Modal ── */
   .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:100;align-items:center;justify-content:center;padding:24px;}
   .modal-overlay.open{display:flex;}
-  .modal{background:var(--surface);border-radius:8px;max-width:580px;width:100%;max-height:90vh;overflow-y:auto;padding:32px;position:relative;}
+  .modal{background:var(--surface);border-radius:8px;max-width:560px;width:100%;max-height:90vh;overflow-y:auto;padding:32px;position:relative;}
   .modal-close{position:absolute;top:16px;right:16px;background:none;border:none;font-size:20px;cursor:pointer;color:var(--muted);line-height:1;}
   .modal-emblem{text-align:center;padding:24px;background:var(--bg);border-radius:6px;margin-bottom:20px;}
-  .modal-emblem img{max-height:180px;max-width:100%;object-fit:contain;}
+  .modal-emblem img{max-height:200px;max-width:100%;object-fit:contain;}
   .modal h2{font-family:'Fraunces',serif;font-weight:300;font-size:22px;margin-bottom:4px;}
   .modal-he{direction:rtl;color:var(--muted);margin-bottom:16px;font-size:14px;}
   .modal-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:20px;}
@@ -86,33 +108,25 @@
   .modal-value{word-break:break-all;}
   .modal-value a{color:var(--accent);text-decoration:none;}
   .modal-value a:hover{text-decoration:underline;}
-  .modal-notes{margin-top:20px;padding:12px;background:var(--wrong-bg);border-radius:4px;border-left:3px solid var(--wrong);font-size:12px;color:var(--wrong);}
-
-  /* Annotation checkboxes in modal */
-  .modal-annotations{margin-top:24px;padding-top:20px;border-top:1px solid var(--border);}
-  .modal-annotations h4{font-size:11px;text-transform:uppercase;letter-spacing:0.5px;color:var(--muted);margin-bottom:12px;}
-  .annotation-checks{display:flex;flex-direction:column;gap:10px;}
-  .annotation-check{display:flex;align-items:center;gap:10px;cursor:pointer;font-size:12px;}
-  .annotation-check input[type="checkbox"]{width:15px;height:15px;cursor:pointer;accent-color:var(--accent);}
-  .annotation-check label{cursor:pointer;}
-
-  /* Annotated card indicator */
-  .card-annotated-dot{position:absolute;top:8px;right:8px;width:7px;height:7px;border-radius:50%;background:var(--accent);opacity:0.6;}
+  .modal-note-area{margin-top:20px;}
+  .modal-note-area label{font-size:11px;color:var(--muted);display:block;margin-bottom:6px;}
+  .modal-note-area textarea{width:100%;font-family:'DM Mono',monospace;font-size:12px;padding:8px;border:1px solid var(--border);border-radius:4px;resize:vertical;min-height:60px;outline:none;color:var(--text);}
+  .modal-note-area textarea:focus{border-color:var(--accent);}
+  .note-save-btn{margin-top:8px;font-family:'DM Mono',monospace;font-size:11px;padding:5px 12px;background:var(--accent);color:#fff;border:none;border-radius:4px;cursor:pointer;}
+  .note-saved{margin-left:10px;font-size:11px;color:var(--muted);}
 
   .empty{padding:80px;text-align:center;color:var(--muted);background:var(--surface);}
   .loading{padding:80px;text-align:center;color:var(--muted);}
-
-  /* Export button */
-  .export-btn{font-family:'DM Mono',monospace;font-size:11px;padding:5px 10px;border:1px solid var(--border);border-radius:4px;background:var(--surface);color:var(--muted);cursor:pointer;margin-left:auto;}
-  .export-btn:hover{border-color:var(--accent);color:var(--accent);}
 </style>
 </head>
 <body>
+
 <header>
   <h1>Israeli Municipal <em>Emblems</em></h1>
   <p>Encyclopedia / index of coats of arms for all ~250 Israeli municipalities</p>
   <div class="stats" id="stats"></div>
 </header>
+
 <div class="controls">
   <div class="controls-row">
     <input type="text" id="search" placeholder="Search by name, district, type…">
@@ -125,10 +139,10 @@
       <option value="district">District</option>
     </select>
     <span class="count" id="count"></span>
-    <button class="export-btn" id="export-btn" title="Export annotations as CSV">⬇ Export annotations</button>
+    <button class="export-btn" id="export-btn">⬇ Export annotations</button>
     <div class="view-toggle">
-      <button class="view-btn active" id="btn-grid" title="Grid view">⊞</button>
-      <button class="view-btn" id="btn-list" title="List view">☰</button>
+      <button class="view-btn active" id="btn-grid">⊞</button>
+      <button class="view-btn" id="btn-list">☰</button>
     </div>
   </div>
   <div class="controls-row">
@@ -144,10 +158,10 @@
   <div class="controls-row">
     <span class="controls-label">Flags:</span>
     <div class="btn-group">
+      <button class="filter-btn" data-group="flag" data-value="wrong-manual">⚠️ Marked wrong</button>
       <button class="filter-btn" data-group="flag" data-value="needs-accuracy">🔍 Needs accuracy</button>
-      <button class="filter-btn" data-group="flag" data-value="small-file">📐 Small file</button>
-      <button class="filter-btn" data-group="flag" data-value="wrong-file-manual">⚠️ Marked wrong</button>
-      <button class="filter-btn" data-group="flag" data-value="annotated">✏️ Annotated</button>
+      <button class="filter-btn" data-group="flag" data-value="small-file">📐 Small</button>
+      <button class="filter-btn" data-group="flag" data-value="annotated">✏️ Has notes</button>
     </div>
     <span class="controls-label" style="margin-left:12px">Type:</span>
     <div class="btn-group">
@@ -164,49 +178,52 @@
     </div>
   </div>
 </div>
-<div id="main-content"><div class="loading">Loading municipalities…</div></div>
+
+<div id="main-content"><div class="loading">Loading…</div></div>
+
 <div class="modal-overlay" id="modal-overlay">
   <div class="modal">
     <button class="modal-close" id="modal-close">✕</button>
     <div id="modal-content"></div>
   </div>
 </div>
+
 <script>
-const GITHUB_USER='itai-raveh',GITHUB_REPO='israel-emblems',BRANCH='main';
+const GITHUB_USER='itai-raveh', GITHUB_REPO='israel-emblems', BRANCH='main';
 const RAW=`https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/${BRANCH}`;
 const CSV_URL=`${RAW}/data/municipalities.csv`;
-const STORAGE_KEY='israel-emblems-annotations';
+const STORAGE_KEY='israel-emblems-v2';
 
 const STATUS_OVERRIDES={'rosh-pina':'found-svg','kiryat-tivon':'found-svg'};
 
-// ── Annotations (localStorage) ────────────────────────────────────────────────
-// Structure: { [id]: { wrongFile: bool, needsAccuracy: bool, smallFile: bool, note: string } }
-function loadAnnotations(){
-  try{ return JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}'); }
-  catch{ return {}; }
-}
-function saveAnnotations(ann){ localStorage.setItem(STORAGE_KEY,JSON.stringify(ann)); }
-let ANNOTATIONS=loadAnnotations();
+// ── localStorage annotations ──────────────────────────────────────────────────
+// { id: { wrong: bool, accuracy: bool, small: bool, note: string } }
+function loadAnn(){ try{ return JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}'); } catch{ return {}; } }
+function saveAnn(a){ localStorage.setItem(STORAGE_KEY, JSON.stringify(a)); }
+let ANN = loadAnn();
 
-function getAnn(id){ return ANNOTATIONS[id]||{}; }
-function setAnn(id,key,val){
-  if(!ANNOTATIONS[id])ANNOTATIONS[id]={};
-  ANNOTATIONS[id][key]=val;
-  // Clean up empty entries
-  if(!Object.values(ANNOTATIONS[id]).some(v=>v))delete ANNOTATIONS[id];
-  saveAnnotations(ANNOTATIONS);
+function getA(id){ return ANN[id] || {}; }
+function setA(id, key, val){
+  if(!ANN[id]) ANN[id]={};
+  if(val===''||val===false||val===null){
+    delete ANN[id][key];
+  } else {
+    ANN[id][key]=val;
+  }
+  if(!Object.keys(ANN[id]).length) delete ANN[id];
+  saveAnn(ANN);
 }
 
-// ── CSV parser ─────────────────────────────────────────────────────────────────
+// ── CSV ───────────────────────────────────────────────────────────────────────
 function parseCSV(text){
-  if(text.charCodeAt(0)===0xFEFF)text=text.slice(1);
+  if(text.charCodeAt(0)===0xFEFF) text=text.slice(1);
   const lines=text.split('\n').filter(l=>l.trim());
   const headers=lines[0].split(',');
   return lines.slice(1).map(line=>{
-    const vals=[];let cur='',inQ=false;
+    const vals=[]; let cur='', inQ=false;
     for(const ch of line){
-      if(ch==='"')inQ=!inQ;
-      else if(ch===','&&!inQ){vals.push(cur);cur='';}
+      if(ch==='"') inQ=!inQ;
+      else if(ch===','&&!inQ){ vals.push(cur); cur=''; }
       else cur+=ch;
     }
     vals.push(cur);
@@ -216,48 +233,51 @@ function parseCSV(text){
   }).filter(r=>r.id);
 }
 
-function imageUrl(muni,allFiles){
-  const prefix=muni.id+'__';
-  const svgFile=allFiles.svg.find(f=>f.startsWith(prefix));
-  if(svgFile)return{url:`${RAW}/emblems/svg/${encodeURIComponent(svgFile)}`,type:'svg'};
-  const pngFile=allFiles.png.find(f=>f.startsWith(prefix));
-  if(pngFile)return{url:`${RAW}/emblems/png/${encodeURIComponent(pngFile)}`,type:'png'};
+function imgUrl(muni, allFiles){
+  const p=muni.id+'__';
+  const s=allFiles.svg.find(f=>f.startsWith(p));
+  if(s) return {url:`${RAW}/emblems/svg/${encodeURIComponent(s)}`,type:'svg'};
+  const n=allFiles.png.find(f=>f.startsWith(p));
+  if(n) return {url:`${RAW}/emblems/png/${encodeURIComponent(n)}`,type:'png'};
   return null;
 }
 
-function enrich(data,allFiles){
+function enrich(data, allFiles){
   return data.map(m=>{
-    if(STATUS_OVERRIDES[m.id])m.status=STATUS_OVERRIDES[m.id];
-    m._img=imageUrl(m,allFiles);
-    const w=parseFloat(m.width_px)||0,h=parseFloat(m.height_px)||0;
-    m._smallFileAuto=(m.format==='PNG'||m.status==='found-png')&&w>0&&w<150&&h<150;
+    if(STATUS_OVERRIDES[m.id]) m.status=STATUS_OVERRIDES[m.id];
+    m._img=imgUrl(m, allFiles);
+    const w=parseFloat(m.width_px)||0, h=parseFloat(m.height_px)||0;
+    m._autoSmall=(m.format==='PNG'||m.status==='found-png')&&w>0&&w<150&&h<150;
     return m;
   });
 }
 
-// ── Dynamic annotation flags (merged with stored) ─────────────────────────────
-function getFlags(m){
-  const ann=getAnn(m.id);
-  return{
-    wrongFile:  !!ann.wrongFile,
-    needsAccuracy: !!ann.needsAccuracy,
-    smallFile:  m._smallFileAuto||!!ann.smallFile,
-    hasNote:    !!(ann.note&&ann.note.trim()),
-    isAnnotated:Object.keys(getAnn(m.id)).length>0,
+// ── Effective status (annotations can override) ───────────────────────────────
+function effStatus(m){
+  const a=getA(m.id);
+  if(a.wrong) return 'wrong-file';
+  return m.status;
+}
+
+function effFlags(m){
+  const a=getA(m.id);
+  return {
+    wrong:    !!a.wrong,
+    accuracy: !!a.accuracy,
+    small:    m._autoSmall||!!a.small,
+    hasNote:  !!(a.note&&a.note.trim()),
   };
 }
 
 // ── Badges ────────────────────────────────────────────────────────────────────
-const STATUS_LABELS={'found-svg':'✅ SVG','found-png':'🟡 PNG','wrong-file':'⚠️ Wrong','not-found':'❌ Missing','not-yet':'⬜ Not yet','error':'🔴 Error'};
-function sBadge(status){const cls=(status||'error').replace(/[^a-z-]/g,'');return`<span class="badge badge-${cls}">${STATUS_LABELS[status]||status}</span>`;}
-function cBadge(culture){if(!culture)return'';return`<span class="badge badge-${culture.toLowerCase()}">${culture}</span>`;}
-function tBadge(type){if(!type)return'';return`<span class="badge badge-${type.toLowerCase()}">${type}</span>`;}
-function xBadges(m){
-  const f=getFlags(m);
-  let o='';
-  if(f.wrongFile)   o+=`<span class="badge badge-wrong-file">⚠️ Wrong</span>`;
-  if(f.needsAccuracy)o+=`<span class="badge badge-needs-accuracy">🔍 Needs accuracy</span>`;
-  if(f.smallFile)   o+=`<span class="badge badge-small-file">📐 Small</span>`;
+const SL={'found-svg':'✅ SVG','found-png':'🟡 PNG','wrong-file':'⚠️ Wrong','not-found':'❌ Missing','not-yet':'⬜ Not yet','error':'🔴 Error'};
+function sb(status){ const c=(status||'error').replace(/[^a-z-]/g,''); return `<span class="badge badge-${c}">${SL[status]||status}</span>`; }
+function cb(culture){ if(!culture)return''; return `<span class="badge badge-${culture.toLowerCase()}">${culture}</span>`; }
+function tb(type){ if(!type)return''; return `<span class="badge badge-${type.toLowerCase()}">${type}</span>`; }
+function xb(m){
+  const f=effFlags(m); let o='';
+  if(f.accuracy) o+=`<span class="badge badge-needs-accuracy">🔍 Accuracy</span>`;
+  if(f.small)    o+=`<span class="badge badge-small-file">📐 Small</span>`;
   return o;
 }
 
@@ -265,107 +285,162 @@ function xBadges(m){
 const state={view:'grid',sort:'name',search:'',filters:{status:new Set(),flag:new Set(),type:new Set(),culture:new Set()}};
 let DATA=[];
 
-function applyFilters(data){
+function matches(m){
   const q=state.search.toLowerCase();
-  const{status,flag,type,culture}=state.filters;
-  return data.filter(m=>{
-    if(q&&![m.id,m.name_en,m.name_he,m.district,m.type,m.culture].some(v=>(v||'').toLowerCase().includes(q)))return false;
-    if(status.size&&!status.has(m.status))return false;
-    if(type.size&&!type.has((m.type||'').toLowerCase()))return false;
-    if(culture.size&&!culture.has((m.culture||'').toLowerCase()))return false;
-    if(flag.size){
-      const f=getFlags(m);
-      if(flag.has('needs-accuracy')&&!f.needsAccuracy)return false;
-      if(flag.has('small-file')&&!f.smallFile)return false;
-      if(flag.has('wrong-file-manual')&&!f.wrongFile)return false;
-      if(flag.has('annotated')&&!f.isAnnotated)return false;
-    }
-    return true;
-  });
+  const {status,flag,type,culture}=state.filters;
+  const es=effStatus(m);
+  const f=effFlags(m);
+  if(q&&![m.id,m.name_en,m.name_he,m.district,m.type,m.culture].some(v=>(v||'').toLowerCase().includes(q))) return false;
+  if(status.size&&!status.has(es)) return false;
+  if(type.size&&!type.has((m.type||'').toLowerCase())) return false;
+  if(culture.size&&!culture.has((m.culture||'').toLowerCase())) return false;
+  if(flag.has('wrong-manual')&&!f.wrong) return false;
+  if(flag.has('needs-accuracy')&&!f.accuracy) return false;
+  if(flag.has('small-file')&&!f.small) return false;
+  if(flag.has('annotated')&&!f.hasNote) return false;
+  return true;
 }
 
-function applySort(data){
-  return[...data].sort((a,b)=>{
+function sorted(data){
+  return [...data].sort((a,b)=>{
     switch(state.sort){
-      case'name':return(a.name_en||'').localeCompare(b.name_en||'');
-      case'name-desc':return(b.name_en||'').localeCompare(a.name_en||'');
-      case'status':return(a.status||'').localeCompare(b.status||'');
-      case'type':return(a.type||'').localeCompare(b.type||'');
-      case'district':return(a.district||'').localeCompare(b.district||'');
-      default:return 0;
+      case'name': return(a.name_en||'').localeCompare(b.name_en||'');
+      case'name-desc': return(b.name_en||'').localeCompare(a.name_en||'');
+      case'status': return effStatus(a).localeCompare(effStatus(b));
+      case'type': return(a.type||'').localeCompare(b.type||'');
+      case'district': return(a.district||'').localeCompare(b.district||'');
+      default: return 0;
     }
   });
 }
 
-function imgHTML(m,size=80){
-  if(!m._img)return`<span class="no-image">◻</span>`;
-  return`<img src="${m._img.url}" alt="${m.name_en}" loading="lazy" style="max-height:${size}px;max-width:100%;object-fit:contain" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="no-image" style="display:none">◻</span>`;
+// ── Image HTML ────────────────────────────────────────────────────────────────
+function ih(m, size=80){
+  if(!m._img) return `<span class="no-image">◻</span>`;
+  return `<img src="${m._img.url}" alt="${m.name_en}" loading="lazy"
+    style="max-height:${size}px;max-width:100%;object-fit:contain"
+    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+    <span class="no-image" style="display:none">◻</span>`;
 }
 
+// ── Card HTML ─────────────────────────────────────────────────────────────────
 function cardHTML(m){
-  const f=getFlags(m);
-  const dot=f.isAnnotated?`<div class="card-annotated-dot" title="Annotated"></div>`:'';
-  return`<div class="card" data-id="${m.id}">
-    ${dot}
-    <div class="emblem-wrap">${imgHTML(m,80)}</div>
-    <div><div class="card-name">${m.name_en}</div><div class="card-name-he">${m.name_he}</div></div>
+  const f=effFlags(m), es=effStatus(m);
+  const a=getA(m.id);
+  return `<div class="card" data-id="${m.id}" data-clickable="1">
+    <div class="emblem-wrap">${ih(m,80)}</div>
+    <div>
+      <div class="card-name">${m.name_en}</div>
+      <div class="card-name-he">${m.name_he}</div>
+    </div>
     <div class="card-meta">${m.district}</div>
-    <div class="card-tags">${sBadge(m.status)}${tBadge(m.type)}${cBadge(m.culture)}${xBadges(m)}</div>
+    <div class="card-tags">
+      ${sb(es)}${tb(m.type)}${cb(m.culture)}${xb(m)}
+    </div>
+    <div class="card-ticks" data-stop="1">
+      <label class="tick${f.wrong?' active-wrong':''}" title="Mark as wrong file">
+        <input type="checkbox" data-ann="wrong" data-id="${m.id}" ${a.wrong?'checked':''}>
+        Wrong
+      </label>
+      <label class="tick${f.accuracy?' active-accuracy':''}" title="Needs accuracy">
+        <input type="checkbox" data-ann="accuracy" data-id="${m.id}" ${a.accuracy?'checked':''}>
+        Accuracy
+      </label>
+      <label class="tick${f.small&&a.small?' active-small':''}" title="Small file">
+        <input type="checkbox" data-ann="small" data-id="${m.id}" ${a.small?'checked':''}>
+        Small
+      </label>
+    </div>
   </div>`;
 }
 
-function listRowHTML(m){
-  return`<div class="list-row" data-id="${m.id}">
-    <div class="list-thumb">${imgHTML(m,44)}</div>
+// ── List row HTML ─────────────────────────────────────────────────────────────
+function listHTML(m){
+  const f=effFlags(m), es=effStatus(m);
+  const a=getA(m.id);
+  return `<div class="list-row" data-id="${m.id}" data-clickable="1">
+    <div class="list-thumb">${ih(m,44)}</div>
     <div><div class="list-name">${m.name_en}</div><div class="card-meta">${m.district}</div></div>
     <div style="direction:rtl;font-size:12px;color:var(--muted)">${m.name_he}</div>
-    <div>${tBadge(m.type)}</div>
-    <div class="list-tags">${sBadge(m.status)}${cBadge(m.culture)}${xBadges(m)}</div>
+    <div>${tb(m.type)}</div>
+    <div class="list-tags">${sb(es)}${cb(m.culture)}${xb(m)}</div>
+    <div class="list-ticks" data-stop="1">
+      <span class="list-tick${a.wrong?' on-wrong':''}" data-ann="wrong" data-id="${m.id}">⚠ Wrong</span>
+      <span class="list-tick${a.accuracy?' on-accuracy':''}" data-ann="accuracy" data-id="${m.id}">🔍 Acc</span>
+      <span class="list-tick${f.small&&a.small?' on-small':''}" data-ann="small" data-id="${m.id}">📐 Sm</span>
+    </div>
   </div>`;
 }
 
+// ── Render ────────────────────────────────────────────────────────────────────
 function render(){
-  const filtered=applySort(applyFilters(DATA));
+  const filtered=sorted(DATA.filter(matches));
   document.getElementById('count').textContent=`${filtered.length} / ${DATA.length}`;
   const container=document.getElementById('main-content');
-  if(!filtered.length){container.innerHTML='<div class="empty">No results found.</div>';return;}
+  if(!filtered.length){ container.innerHTML='<div class="empty">No results.</div>'; return; }
+
   if(state.view==='grid'){
     container.innerHTML=`<div class="grid">${filtered.map(cardHTML).join('')}</div>`;
-  }else{
+    // Checkbox listeners
+    container.querySelectorAll('input[data-ann]').forEach(cb=>{
+      cb.addEventListener('change', e=>{
+        e.stopPropagation();
+        setA(cb.dataset.id, cb.dataset.ann, cb.checked||false);
+        renderStats(DATA); render();
+      });
+    });
+  } else {
     container.innerHTML=`<div class="list-view">
-      <div class="list-header"><div>Emblem</div><div>Name</div><div>Hebrew</div><div>Type</div><div>Tags</div></div>
-      ${filtered.map(listRowHTML).join('')}
+      <div class="list-header"><div>Emblem</div><div>Name</div><div>Hebrew</div><div>Type</div><div>Tags</div><div>Mark</div></div>
+      ${filtered.map(listHTML).join('')}
     </div>`;
+    // List tick (toggle spans)
+    container.querySelectorAll('.list-tick').forEach(tick=>{
+      tick.addEventListener('click', e=>{
+        e.stopPropagation();
+        const id=tick.dataset.id, key=tick.dataset.ann;
+        const cur=!!(getA(id)[key]);
+        setA(id, key, !cur);
+        renderStats(DATA); render();
+      });
+    });
   }
-  container.querySelectorAll('[data-id]').forEach(el=>{
-    el.addEventListener('click',()=>{const m=DATA.find(d=>d.id===el.dataset.id);if(m)openModal(m);});
+
+  // Card/row click → modal (but not ticks)
+  container.querySelectorAll('[data-clickable]').forEach(el=>{
+    el.addEventListener('click', e=>{
+      if(e.target.closest('[data-stop]')) return;
+      const m=DATA.find(d=>d.id===el.dataset.id);
+      if(m) openModal(m);
+    });
   });
 }
 
+// ── Stats ─────────────────────────────────────────────────────────────────────
 function renderStats(data){
   const counts={};
-  data.forEach(m=>{counts[m.status]=(counts[m.status]||0)+1;});
-  const annCount=Object.keys(ANNOTATIONS).length;
-  document.getElementById('stats').innerHTML=[
+  data.forEach(m=>{ const s=effStatus(m); counts[s]=(counts[s]||0)+1; });
+  const items=[
     {label:'SVG',key:'found-svg',color:'#1a6b3a'},
     {label:'PNG',key:'found-png',color:'#7a5a00'},
     {label:'Wrong',key:'wrong-file',color:'#8b1a1a'},
     {label:'Missing',key:'not-found',color:'#444'},
-  ].map(i=>`<div class="stat"><div class="stat-dot" style="background:${i.color}"></div><span>${counts[i.key]||0} ${i.label}</span></div>`).join('')
-  +(annCount?`<div class="stat"><div class="stat-dot" style="background:var(--accent)"></div><span>${annCount} annotated</span></div>`:'');
+  ];
+  document.getElementById('stats').innerHTML=items.map(i=>
+    `<div class="stat"><div class="stat-dot" style="background:${i.color}"></div><span>${counts[i.key]||0} ${i.label}</span></div>`
+  ).join('');
 }
 
-// ── Modal with annotations ────────────────────────────────────────────────────
+// ── Modal ─────────────────────────────────────────────────────────────────────
 function openModal(m){
-  const imgHtml=m._img?`<img src="${m._img.url}" alt="${m.name_en}">`:'<span style="color:#ccc;font-size:48px">◻</span>';
+  const a=getA(m.id);
+  const imgH=m._img?`<img src="${m._img.url}" alt="${m.name_en}">`:'<span style="color:#ccc;font-size:48px">◻</span>';
   const commonsLink=m.commons_url?`<a href="${m.commons_url}" target="_blank">${(m.commons_filename||'').replace('File:','')}</a>`:'—';
-  const ann=getAnn(m.id);
-
   document.getElementById('modal-content').innerHTML=`
-    <div class="modal-emblem">${imgHtml}</div>
+    <div class="modal-emblem">${imgH}</div>
     <h2>${m.name_en}</h2>
     <div class="modal-he">${m.name_he}</div>
-    <div class="modal-tags">${sBadge(m.status)}${tBadge(m.type)}${cBadge(m.culture)}${xBadges(m)}</div>
+    <div class="modal-tags">${sb(effStatus(m))}${tb(m.type)}${cb(m.culture)}${xb(m)}</div>
     <div class="modal-fields">
       <span class="modal-label">ID</span><span class="modal-value">${m.id}</span>
       <span class="modal-label">District</span><span class="modal-value">${m.district}</span>
@@ -374,74 +449,47 @@ function openModal(m){
       <span class="modal-label">Commons file</span><span class="modal-value">${commonsLink}</span>
       ${m.correct_commons_url?`<span class="modal-label">Correct URL</span><span class="modal-value"><a href="${m.correct_commons_url}" target="_blank">→ view</a></span>`:''}
     </div>
-
-    <div class="modal-annotations">
-      <h4>Your annotations (saved in browser)</h4>
-      <div class="annotation-checks">
-        <label class="annotation-check">
-          <input type="checkbox" id="ann-wrong" ${ann.wrongFile?'checked':''}>
-          <label for="ann-wrong">⚠️ Wrong file — needs replacement</label>
-        </label>
-        <label class="annotation-check">
-          <input type="checkbox" id="ann-accuracy" ${ann.needsAccuracy?'checked':''}>
-          <label for="ann-accuracy">🔍 Needs accuracy improvement</label>
-        </label>
-        <label class="annotation-check">
-          <input type="checkbox" id="ann-small" ${ann.smallFile?'checked':''}>
-          <label for="ann-small">📐 Small / low resolution</label>
-        </label>
-      </div>
-      <div style="margin-top:12px">
-        <div style="font-size:11px;color:var(--muted);margin-bottom:6px">Notes</div>
-        <textarea id="ann-note" style="width:100%;font-family:'DM Mono',monospace;font-size:12px;padding:8px;border:1px solid var(--border);border-radius:4px;resize:vertical;min-height:60px;outline:none;color:var(--text)">${ann.note||''}</textarea>
-      </div>
-      <button id="ann-save" style="margin-top:10px;font-family:'DM Mono',monospace;font-size:11px;padding:6px 14px;background:var(--accent);color:#fff;border:none;border-radius:4px;cursor:pointer;">Save annotations</button>
-      <span id="ann-saved" style="margin-left:10px;font-size:11px;color:var(--muted);display:none">✓ Saved</span>
+    <div class="modal-note-area" style="margin-top:20px">
+      <label>Notes (saved in browser)</label>
+      <textarea id="modal-note">${a.note||''}</textarea>
+      <button class="note-save-btn" id="note-save-btn">Save note</button>
+      <span class="note-saved" id="note-saved" style="display:none">✓ Saved</span>
     </div>
   `;
-
-  document.getElementById('ann-save').addEventListener('click',()=>{
-    setAnn(m.id,'wrongFile',   document.getElementById('ann-wrong').checked);
-    setAnn(m.id,'needsAccuracy',document.getElementById('ann-accuracy').checked);
-    setAnn(m.id,'smallFile',   document.getElementById('ann-small').checked);
-    setAnn(m.id,'note',        document.getElementById('ann-note').value.trim());
-    const saved=document.getElementById('ann-saved');
-    saved.style.display='inline';
-    setTimeout(()=>saved.style.display='none',2000);
-    renderStats(DATA);
-    render();
+  document.getElementById('note-save-btn').addEventListener('click',()=>{
+    setA(m.id,'note',document.getElementById('modal-note').value.trim());
+    const s=document.getElementById('note-saved');
+    s.style.display='inline'; setTimeout(()=>s.style.display='none',2000);
+    renderStats(DATA); render();
   });
-
   document.getElementById('modal-overlay').classList.add('open');
 }
 
-// ── Export annotations as CSV ─────────────────────────────────────────────────
-function exportAnnotations(){
-  const rows=['id,name_en,name_he,status,wrong_file,needs_accuracy,small_file,note'];
+// ── Export ────────────────────────────────────────────────────────────────────
+function exportAnn(){
+  const rows=['id,name_en,status,wrong,accuracy,small,note'];
   DATA.forEach(m=>{
-    const ann=getAnn(m.id);
-    if(Object.keys(ann).length===0)return;
-    rows.push([
-      m.id,m.name_en,m.name_he,m.status,
-      ann.wrongFile?'yes':'',
-      ann.needsAccuracy?'yes':'',
-      ann.smallFile?'yes':'',
-      `"${(ann.note||'').replace(/"/g,'""')}"`
-    ].join(','));
+    const a=getA(m.id);
+    if(!Object.keys(a).length) return;
+    rows.push([m.id,m.name_en,effStatus(m),a.wrong?'yes':'',a.accuracy?'yes':'',a.small?'yes':'',`"${(a.note||'').replace(/"/g,'""')}"`].join(','));
   });
   const blob=new Blob([rows.join('\n')],{type:'text/csv'});
-  const a=document.createElement('a');
-  a.href=URL.createObjectURL(blob);
-  a.download='emblem-annotations.csv';
-  a.click();
+  const el=document.createElement('a');
+  el.href=URL.createObjectURL(blob);
+  el.download='emblem-annotations.csv';
+  el.click();
 }
 
+// ── GitHub file listing ───────────────────────────────────────────────────────
 async function listFiles(folder){
-  const url=`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${folder}?ref=${BRANCH}`;
-  try{const r=await fetch(url);if(!r.ok)return[];return(await r.json()).map(f=>f.name);}
-  catch{return[];}
+  try{
+    const r=await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${folder}?ref=${BRANCH}`);
+    if(!r.ok) return [];
+    return (await r.json()).map(f=>f.name);
+  } catch{ return []; }
 }
 
+// ── Init ──────────────────────────────────────────────────────────────────────
 async function main(){
   const[csvText,svgFiles,pngFiles]=await Promise.all([
     fetch(CSV_URL).then(r=>r.text()),
@@ -452,37 +500,37 @@ async function main(){
   renderStats(DATA);
   render();
 
-  document.getElementById('search').addEventListener('input',e=>{state.search=e.target.value;render();});
-  document.getElementById('sort').addEventListener('change',e=>{state.sort=e.target.value;render();});
-  document.getElementById('export-btn').addEventListener('click',exportAnnotations);
+  document.getElementById('search').addEventListener('input',e=>{ state.search=e.target.value; render(); });
+  document.getElementById('sort').addEventListener('change',e=>{ state.sort=e.target.value; render(); });
+  document.getElementById('export-btn').addEventListener('click',exportAnn);
+  document.getElementById('btn-grid').addEventListener('click',()=>{ state.view='grid'; document.getElementById('btn-grid').classList.add('active'); document.getElementById('btn-list').classList.remove('active'); render(); });
+  document.getElementById('btn-list').addEventListener('click',()=>{ state.view='list'; document.getElementById('btn-list').classList.add('active'); document.getElementById('btn-grid').classList.remove('active'); render(); });
 
   document.querySelectorAll('.filter-btn').forEach(btn=>{
     btn.addEventListener('click',()=>{
-      const group=btn.dataset.group,value=btn.dataset.value;
-      if(group==='status'){
-        if(value==='all'){
+      const g=btn.dataset.group, v=btn.dataset.value;
+      if(g==='status'){
+        if(v==='all'){
           state.filters.status.clear();
           document.querySelectorAll('[data-group="status"]').forEach(b=>b.classList.remove('active'));
           btn.classList.add('active');
-        }else{
+        } else {
           document.querySelector('[data-group="status"][data-value="all"]').classList.remove('active');
-          if(state.filters.status.has(value)){state.filters.status.delete(value);btn.classList.remove('active');}
-          else{state.filters.status.add(value);btn.classList.add('active');}
-          if(state.filters.status.size===0)document.querySelector('[data-group="status"][data-value="all"]').classList.add('active');
+          if(state.filters.status.has(v)){ state.filters.status.delete(v); btn.classList.remove('active'); }
+          else { state.filters.status.add(v); btn.classList.add('active'); }
+          if(!state.filters.status.size) document.querySelector('[data-group="status"][data-value="all"]').classList.add('active');
         }
-      }else{
-        if(state.filters[group].has(value)){state.filters[group].delete(value);btn.classList.remove('active');}
-        else{state.filters[group].add(value);btn.classList.add('active');}
+      } else {
+        if(state.filters[g].has(v)){ state.filters[g].delete(v); btn.classList.remove('active'); }
+        else { state.filters[g].add(v); btn.classList.add('active'); }
       }
       render();
     });
   });
 
-  document.getElementById('btn-grid').addEventListener('click',()=>{state.view='grid';document.getElementById('btn-grid').classList.add('active');document.getElementById('btn-list').classList.remove('active');render();});
-  document.getElementById('btn-list').addEventListener('click',()=>{state.view='list';document.getElementById('btn-list').classList.add('active');document.getElementById('btn-grid').classList.remove('active');render();});
   document.getElementById('modal-close').addEventListener('click',()=>document.getElementById('modal-overlay').classList.remove('open'));
-  document.getElementById('modal-overlay').addEventListener('click',e=>{if(e.target===document.getElementById('modal-overlay'))document.getElementById('modal-overlay').classList.remove('open');});
-  document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('modal-overlay').classList.remove('open');});
+  document.getElementById('modal-overlay').addEventListener('click',e=>{ if(e.target===document.getElementById('modal-overlay')) document.getElementById('modal-overlay').classList.remove('open'); });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape') document.getElementById('modal-overlay').classList.remove('open'); });
 }
 main();
 </script>
