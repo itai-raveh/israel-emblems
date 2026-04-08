@@ -139,7 +139,7 @@
       <option value="type">Type</option>
       <option value="district">District</option>
     </select>
-    <span class="count" id="count"></span>
+    <span class="count" id="count" style="font-size:13px;font-weight:500;color:var(--text)"></span>
     <button class="export-btn" id="export-btn">⬇ Export annotations</button>
     <div class="view-toggle">
       <button class="view-btn active" id="btn-grid">⊞</button>
@@ -152,6 +152,9 @@
       <button class="filter-btn active" data-group="status" data-value="all">All</button>
       <button class="filter-btn" data-group="status" data-value="found-svg">✅ SVG</button>
       <button class="filter-btn" data-group="status" data-value="found-png">🟡 PNG</button>
+      <button class="filter-btn" data-group="status" data-value="healthy-svg">✅ Healthy SVG</button>
+      <button class="filter-btn" data-group="status" data-value="healthy-png">🟡 Healthy PNG</button>
+      <button class="filter-btn" data-group="status" data-value="healthy">⭐ All healthy</button>
       <button class="filter-btn" data-group="status" data-value="wrong-file">⚠️ Wrong</button>
       <button class="filter-btn" data-group="status" data-value="not-found">❌ Missing</button>
     </div>
@@ -279,13 +282,24 @@ function sizeBadge(m){ if(getA(m.id).size) return`<span class="badge badge-size"
 const state={view:'grid',sort:'name',search:'',filters:{status:new Set(),flag:new Set(),type:new Set(),culture:new Set()}};
 let DATA=[];
 
+function isHealthy(m){
+  const es=effStatus(m);
+  const a=getA(m.id);
+  return (es==='found-svg'||es==='found-png') && !a.wrong && !a.missing;
+}
+
 function matches(m){
   const q=state.search.toLowerCase();
   const{status,flag,type,culture}=state.filters;
   const es=effStatus(m);
   const a=getA(m.id);
   if(q&&![m.id,m.name_en,m.name_he,m.district,m.type,m.culture].some(v=>(v||'').toLowerCase().includes(q))) return false;
-  if(status.size&&!status.has(es)) return false;
+  if(status.size){
+    if(status.has('healthy-svg') && !(isHealthy(m)&&es==='found-svg')) return false;
+    if(status.has('healthy-png') && !(isHealthy(m)&&es==='found-png')) return false;
+    if(status.has('healthy')     && !isHealthy(m)) return false;
+    if(!status.has('healthy-svg')&&!status.has('healthy-png')&&!status.has('healthy')&&!status.has(es)) return false;
+  }
   if(type.size&&!type.has((m.type||'').toLowerCase())) return false;
   if(culture.size&&!culture.has((m.culture||'').toLowerCase())) return false;
   if(flag.has('size')&&!a.size) return false;
@@ -352,7 +366,7 @@ function listHTML(m){
 // ── Render ────────────────────────────────────────────────────────────────────
 function render(){
   const filtered=sorted(DATA.filter(matches));
-  document.getElementById('count').textContent=`${filtered.length} / ${DATA.length}`;
+  document.getElementById('count').textContent=`${filtered.length} of ${DATA.length}`;
   const container=document.getElementById('main-content');
   if(!filtered.length){ container.innerHTML='<div class="empty">No results.</div>'; return; }
 
