@@ -201,8 +201,11 @@ let ANN=loadAnn();
 function getA(id){ return ANN[id]||{}; }
 function setA(id,key,val){
   if(!ANN[id]) ANN[id]={};
-  if(!val) delete ANN[id][key]; else ANN[id][key]=val;
-  if(!Object.keys(ANN[id]).length) delete ANN[id];
+  // Always store the value explicitly — false means "user unticked"
+  ANN[id][key]=val;
+  // Clean up only if all values are falsy AND not explicit false overrides
+  const allEmpty=Object.values(ANN[id]).every(v=>v===''||v===null||v===undefined);
+  if(allEmpty) delete ANN[id];
   saveAnn(ANN);
 }
 
@@ -245,9 +248,24 @@ function enrich(data,allFiles){
 // ── Effective status — annotations override CSV status ────────────────────────
 function effStatus(m){
   const a=getA(m.id);
+  // Explicit false means user unticked a CSV-sourced status
+  if(a.wrong===false&&m.status==='wrong-file') return 'found-png';
+  if(a.missing===false&&m.status==='not-found') return 'found-png';
   if(a.wrong)   return 'wrong-file';
   if(a.missing) return 'not-found';
   return m.status;
+}
+
+// Tick checked state: reflects CSV status unless localStorage overrides it
+function isWrong(m){
+  const a=getA(m.id);
+  if('wrong' in a) return !!a.wrong;
+  return m.status==='wrong-file';
+}
+function isMissing(m){
+  const a=getA(m.id);
+  if('missing' in a) return !!a.missing;
+  return m.status==='not-found';
 }
 
 // ── Badges ────────────────────────────────────────────────────────────────────
@@ -301,11 +319,11 @@ function cardHTML(m){
     <div class="card-meta">${m.district}</div>
     <div class="card-tags">${sb(es)}${tb(m.type)}${cb(m.culture)}${sizeBadge(m)}</div>
     <div class="card-ticks" data-stop="1">
-      <label class="tick t-wrong${a.wrong?' on':''}">
-        <input type="checkbox" data-ann="wrong" data-id="${m.id}" ${a.wrong?'checked':''}>Wrong
+      <label class="tick t-wrong${isWrong(m)?' on':''}">
+        <input type="checkbox" data-ann="wrong" data-id="${m.id}" ${isWrong(m)?'checked':''}>Wrong
       </label>
-      <label class="tick t-missing${a.missing?' on':''}">
-        <input type="checkbox" data-ann="missing" data-id="${m.id}" ${a.missing?'checked':''}>Missing
+      <label class="tick t-missing${isMissing(m)?' on':''}">
+        <input type="checkbox" data-ann="missing" data-id="${m.id}" ${isMissing(m)?'checked':''}>Missing
       </label>
       <label class="tick t-size${a.size?' on':''}">
         <input type="checkbox" data-ann="size" data-id="${m.id}" ${a.size?'checked':''}>Size
@@ -324,8 +342,8 @@ function listHTML(m){
     <div>${tb(m.type)}</div>
     <div class="list-tags">${sb(es)}${cb(m.culture)}${sizeBadge(m)}</div>
     <div class="list-ticks" data-stop="1">
-      <span class="ltick${a.wrong?' on-wrong':''}" data-ann="wrong" data-id="${m.id}">Wrong</span>
-      <span class="ltick${a.missing?' on-missing':''}" data-ann="missing" data-id="${m.id}">Missing</span>
+      <span class="ltick${isWrong(m)?' on-wrong':''}" data-ann="wrong" data-id="${m.id}">Wrong</span>
+      <span class="ltick${isMissing(m)?' on-missing':''}" data-ann="missing" data-id="${m.id}">Missing</span>
       <span class="ltick${a.size?' on-size':''}" data-ann="size" data-id="${m.id}">Size</span>
     </div>
   </div>`;
