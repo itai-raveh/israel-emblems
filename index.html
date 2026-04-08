@@ -37,7 +37,7 @@
   .view-btn.active{background:var(--accent);color:#fff;border-color:var(--accent);}
   .count{color:var(--muted);font-size:11px;white-space:nowrap;}
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:1px;background:var(--border);}
-  .card{background:var(--surface);padding:16px;display:flex;flex-direction:column;gap:8px;cursor:pointer;transition:background 0.1s;}
+  .card{background:var(--surface);padding:16px;display:flex;flex-direction:column;gap:8px;cursor:pointer;transition:background 0.1s;position:relative;}
   .card:hover{background:#fafaf7;}
   .emblem-wrap{height:90px;display:flex;align-items:center;justify-content:center;background:var(--bg);border-radius:4px;overflow:hidden;}
   .emblem-wrap img{max-height:80px;max-width:100%;object-fit:contain;}
@@ -70,9 +70,11 @@
   .badge-city{background:#eff6ff;color:#1d4ed8;}
   .badge-local{background:#f0fdf4;color:#15803d;}
   .badge-regional{background:#fdf4ff;color:#7e22ce;}
+
+  /* Modal */
   .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:100;align-items:center;justify-content:center;padding:24px;}
   .modal-overlay.open{display:flex;}
-  .modal{background:var(--surface);border-radius:8px;max-width:560px;width:100%;max-height:90vh;overflow-y:auto;padding:32px;position:relative;}
+  .modal{background:var(--surface);border-radius:8px;max-width:580px;width:100%;max-height:90vh;overflow-y:auto;padding:32px;position:relative;}
   .modal-close{position:absolute;top:16px;right:16px;background:none;border:none;font-size:20px;cursor:pointer;color:var(--muted);line-height:1;}
   .modal-emblem{text-align:center;padding:24px;background:var(--bg);border-radius:6px;margin-bottom:20px;}
   .modal-emblem img{max-height:180px;max-width:100%;object-fit:contain;}
@@ -85,8 +87,24 @@
   .modal-value a{color:var(--accent);text-decoration:none;}
   .modal-value a:hover{text-decoration:underline;}
   .modal-notes{margin-top:20px;padding:12px;background:var(--wrong-bg);border-radius:4px;border-left:3px solid var(--wrong);font-size:12px;color:var(--wrong);}
+
+  /* Annotation checkboxes in modal */
+  .modal-annotations{margin-top:24px;padding-top:20px;border-top:1px solid var(--border);}
+  .modal-annotations h4{font-size:11px;text-transform:uppercase;letter-spacing:0.5px;color:var(--muted);margin-bottom:12px;}
+  .annotation-checks{display:flex;flex-direction:column;gap:10px;}
+  .annotation-check{display:flex;align-items:center;gap:10px;cursor:pointer;font-size:12px;}
+  .annotation-check input[type="checkbox"]{width:15px;height:15px;cursor:pointer;accent-color:var(--accent);}
+  .annotation-check label{cursor:pointer;}
+
+  /* Annotated card indicator */
+  .card-annotated-dot{position:absolute;top:8px;right:8px;width:7px;height:7px;border-radius:50%;background:var(--accent);opacity:0.6;}
+
   .empty{padding:80px;text-align:center;color:var(--muted);background:var(--surface);}
   .loading{padding:80px;text-align:center;color:var(--muted);}
+
+  /* Export button */
+  .export-btn{font-family:'DM Mono',monospace;font-size:11px;padding:5px 10px;border:1px solid var(--border);border-radius:4px;background:var(--surface);color:var(--muted);cursor:pointer;margin-left:auto;}
+  .export-btn:hover{border-color:var(--accent);color:var(--accent);}
 </style>
 </head>
 <body>
@@ -107,6 +125,7 @@
       <option value="district">District</option>
     </select>
     <span class="count" id="count"></span>
+    <button class="export-btn" id="export-btn" title="Export annotations as CSV">⬇ Export annotations</button>
     <div class="view-toggle">
       <button class="view-btn active" id="btn-grid" title="Grid view">⊞</button>
       <button class="view-btn" id="btn-list" title="List view">☰</button>
@@ -127,6 +146,8 @@
     <div class="btn-group">
       <button class="filter-btn" data-group="flag" data-value="needs-accuracy">🔍 Needs accuracy</button>
       <button class="filter-btn" data-group="flag" data-value="small-file">📐 Small file</button>
+      <button class="filter-btn" data-group="flag" data-value="wrong-file-manual">⚠️ Marked wrong</button>
+      <button class="filter-btn" data-group="flag" data-value="annotated">✏️ Annotated</button>
     </div>
     <span class="controls-label" style="margin-left:12px">Type:</span>
     <div class="btn-group">
@@ -154,13 +175,29 @@
 const GITHUB_USER='itai-raveh',GITHUB_REPO='israel-emblems',BRANCH='main';
 const RAW=`https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/${BRANCH}`;
 const CSV_URL=`${RAW}/data/municipalities.csv`;
+const STORAGE_KEY='israel-emblems-annotations';
 
-// IDs to override status — rosh-pina and kiryat-tivon are confirmed good
 const STATUS_OVERRIDES={'rosh-pina':'found-svg','kiryat-tivon':'found-svg'};
 
-// Add IDs here to flag as needing accuracy review
-const NEEDS_ACCURACY=new Set([]);
+// ── Annotations (localStorage) ────────────────────────────────────────────────
+// Structure: { [id]: { wrongFile: bool, needsAccuracy: bool, smallFile: bool, note: string } }
+function loadAnnotations(){
+  try{ return JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}'); }
+  catch{ return {}; }
+}
+function saveAnnotations(ann){ localStorage.setItem(STORAGE_KEY,JSON.stringify(ann)); }
+let ANNOTATIONS=loadAnnotations();
 
+function getAnn(id){ return ANNOTATIONS[id]||{}; }
+function setAnn(id,key,val){
+  if(!ANNOTATIONS[id])ANNOTATIONS[id]={};
+  ANNOTATIONS[id][key]=val;
+  // Clean up empty entries
+  if(!Object.values(ANNOTATIONS[id]).some(v=>v))delete ANNOTATIONS[id];
+  saveAnnotations(ANNOTATIONS);
+}
+
+// ── CSV parser ─────────────────────────────────────────────────────────────────
 function parseCSV(text){
   if(text.charCodeAt(0)===0xFEFF)text=text.slice(1);
   const lines=text.split('\n').filter(l=>l.trim());
@@ -192,20 +229,39 @@ function enrich(data,allFiles){
   return data.map(m=>{
     if(STATUS_OVERRIDES[m.id])m.status=STATUS_OVERRIDES[m.id];
     m._img=imageUrl(m,allFiles);
-    m._needsAccuracy=NEEDS_ACCURACY.has(m.id)||(m.notes||'').includes('needs-accuracy');
     const w=parseFloat(m.width_px)||0,h=parseFloat(m.height_px)||0;
-    m._smallFile=(m.format==='PNG'||m.status==='found-png')&&w>0&&w<150&&h<150;
+    m._smallFileAuto=(m.format==='PNG'||m.status==='found-png')&&w>0&&w<150&&h<150;
     return m;
   });
 }
 
-const STATUS_LABELS={'found-svg':'✅ SVG','found-png':'🟡 PNG','wrong-file':'⚠️ Wrong','not-found':'❌ Missing','not-yet':'⬜ Not yet','error':'🔴 Error'};
+// ── Dynamic annotation flags (merged with stored) ─────────────────────────────
+function getFlags(m){
+  const ann=getAnn(m.id);
+  return{
+    wrongFile:  !!ann.wrongFile,
+    needsAccuracy: !!ann.needsAccuracy,
+    smallFile:  m._smallFileAuto||!!ann.smallFile,
+    hasNote:    !!(ann.note&&ann.note.trim()),
+    isAnnotated:Object.keys(getAnn(m.id)).length>0,
+  };
+}
 
+// ── Badges ────────────────────────────────────────────────────────────────────
+const STATUS_LABELS={'found-svg':'✅ SVG','found-png':'🟡 PNG','wrong-file':'⚠️ Wrong','not-found':'❌ Missing','not-yet':'⬜ Not yet','error':'🔴 Error'};
 function sBadge(status){const cls=(status||'error').replace(/[^a-z-]/g,'');return`<span class="badge badge-${cls}">${STATUS_LABELS[status]||status}</span>`;}
 function cBadge(culture){if(!culture)return'';return`<span class="badge badge-${culture.toLowerCase()}">${culture}</span>`;}
 function tBadge(type){if(!type)return'';return`<span class="badge badge-${type.toLowerCase()}">${type}</span>`;}
-function xBadges(m){let o='';if(m._needsAccuracy)o+=`<span class="badge badge-needs-accuracy">🔍 Needs accuracy</span>`;if(m._smallFile)o+=`<span class="badge badge-small-file">📐 Small</span>`;return o;}
+function xBadges(m){
+  const f=getFlags(m);
+  let o='';
+  if(f.wrongFile)   o+=`<span class="badge badge-wrong-file">⚠️ Wrong</span>`;
+  if(f.needsAccuracy)o+=`<span class="badge badge-needs-accuracy">🔍 Needs accuracy</span>`;
+  if(f.smallFile)   o+=`<span class="badge badge-small-file">📐 Small</span>`;
+  return o;
+}
 
+// ── State ─────────────────────────────────────────────────────────────────────
 const state={view:'grid',sort:'name',search:'',filters:{status:new Set(),flag:new Set(),type:new Set(),culture:new Set()}};
 let DATA=[];
 
@@ -217,8 +273,13 @@ function applyFilters(data){
     if(status.size&&!status.has(m.status))return false;
     if(type.size&&!type.has((m.type||'').toLowerCase()))return false;
     if(culture.size&&!culture.has((m.culture||'').toLowerCase()))return false;
-    if(flag.has('needs-accuracy')&&!m._needsAccuracy)return false;
-    if(flag.has('small-file')&&!m._smallFile)return false;
+    if(flag.size){
+      const f=getFlags(m);
+      if(flag.has('needs-accuracy')&&!f.needsAccuracy)return false;
+      if(flag.has('small-file')&&!f.smallFile)return false;
+      if(flag.has('wrong-file-manual')&&!f.wrongFile)return false;
+      if(flag.has('annotated')&&!f.isAnnotated)return false;
+    }
     return true;
   });
 }
@@ -242,7 +303,10 @@ function imgHTML(m,size=80){
 }
 
 function cardHTML(m){
+  const f=getFlags(m);
+  const dot=f.isAnnotated?`<div class="card-annotated-dot" title="Annotated"></div>`:'';
   return`<div class="card" data-id="${m.id}">
+    ${dot}
     <div class="emblem-wrap">${imgHTML(m,80)}</div>
     <div><div class="card-name">${m.name_en}</div><div class="card-name-he">${m.name_he}</div></div>
     <div class="card-meta">${m.district}</div>
@@ -281,20 +345,22 @@ function render(){
 function renderStats(data){
   const counts={};
   data.forEach(m=>{counts[m.status]=(counts[m.status]||0)+1;});
-  const items=[
+  const annCount=Object.keys(ANNOTATIONS).length;
+  document.getElementById('stats').innerHTML=[
     {label:'SVG',key:'found-svg',color:'#1a6b3a'},
     {label:'PNG',key:'found-png',color:'#7a5a00'},
     {label:'Wrong',key:'wrong-file',color:'#8b1a1a'},
     {label:'Missing',key:'not-found',color:'#444'},
-  ];
-  document.getElementById('stats').innerHTML=items.map(i=>
-    `<div class="stat"><div class="stat-dot" style="background:${i.color}"></div><span>${counts[i.key]||0} ${i.label}</span></div>`
-  ).join('');
+  ].map(i=>`<div class="stat"><div class="stat-dot" style="background:${i.color}"></div><span>${counts[i.key]||0} ${i.label}</span></div>`).join('')
+  +(annCount?`<div class="stat"><div class="stat-dot" style="background:var(--accent)"></div><span>${annCount} annotated</span></div>`:'');
 }
 
+// ── Modal with annotations ────────────────────────────────────────────────────
 function openModal(m){
   const imgHtml=m._img?`<img src="${m._img.url}" alt="${m.name_en}">`:'<span style="color:#ccc;font-size:48px">◻</span>';
   const commonsLink=m.commons_url?`<a href="${m.commons_url}" target="_blank">${(m.commons_filename||'').replace('File:','')}</a>`:'—';
+  const ann=getAnn(m.id);
+
   document.getElementById('modal-content').innerHTML=`
     <div class="modal-emblem">${imgHtml}</div>
     <h2>${m.name_en}</h2>
@@ -307,11 +373,67 @@ function openModal(m){
       <span class="modal-label">Dimensions</span><span class="modal-value">${m.width_px&&m.height_px?m.width_px+' × '+m.height_px+' px':'—'}</span>
       <span class="modal-label">Commons file</span><span class="modal-value">${commonsLink}</span>
       ${m.correct_commons_url?`<span class="modal-label">Correct URL</span><span class="modal-value"><a href="${m.correct_commons_url}" target="_blank">→ view</a></span>`:''}
-      ${m.notes?`<span class="modal-label">Notes</span><span class="modal-value">${m.notes}</span>`:''}
     </div>
-    ${m.status==='wrong-file'?`<div class="modal-notes">⚠️ This file was incorrectly grabbed by the scraper and needs manual replacement.</div>`:''}
+
+    <div class="modal-annotations">
+      <h4>Your annotations (saved in browser)</h4>
+      <div class="annotation-checks">
+        <label class="annotation-check">
+          <input type="checkbox" id="ann-wrong" ${ann.wrongFile?'checked':''}>
+          <label for="ann-wrong">⚠️ Wrong file — needs replacement</label>
+        </label>
+        <label class="annotation-check">
+          <input type="checkbox" id="ann-accuracy" ${ann.needsAccuracy?'checked':''}>
+          <label for="ann-accuracy">🔍 Needs accuracy improvement</label>
+        </label>
+        <label class="annotation-check">
+          <input type="checkbox" id="ann-small" ${ann.smallFile?'checked':''}>
+          <label for="ann-small">📐 Small / low resolution</label>
+        </label>
+      </div>
+      <div style="margin-top:12px">
+        <div style="font-size:11px;color:var(--muted);margin-bottom:6px">Notes</div>
+        <textarea id="ann-note" style="width:100%;font-family:'DM Mono',monospace;font-size:12px;padding:8px;border:1px solid var(--border);border-radius:4px;resize:vertical;min-height:60px;outline:none;color:var(--text)">${ann.note||''}</textarea>
+      </div>
+      <button id="ann-save" style="margin-top:10px;font-family:'DM Mono',monospace;font-size:11px;padding:6px 14px;background:var(--accent);color:#fff;border:none;border-radius:4px;cursor:pointer;">Save annotations</button>
+      <span id="ann-saved" style="margin-left:10px;font-size:11px;color:var(--muted);display:none">✓ Saved</span>
+    </div>
   `;
+
+  document.getElementById('ann-save').addEventListener('click',()=>{
+    setAnn(m.id,'wrongFile',   document.getElementById('ann-wrong').checked);
+    setAnn(m.id,'needsAccuracy',document.getElementById('ann-accuracy').checked);
+    setAnn(m.id,'smallFile',   document.getElementById('ann-small').checked);
+    setAnn(m.id,'note',        document.getElementById('ann-note').value.trim());
+    const saved=document.getElementById('ann-saved');
+    saved.style.display='inline';
+    setTimeout(()=>saved.style.display='none',2000);
+    renderStats(DATA);
+    render();
+  });
+
   document.getElementById('modal-overlay').classList.add('open');
+}
+
+// ── Export annotations as CSV ─────────────────────────────────────────────────
+function exportAnnotations(){
+  const rows=['id,name_en,name_he,status,wrong_file,needs_accuracy,small_file,note'];
+  DATA.forEach(m=>{
+    const ann=getAnn(m.id);
+    if(Object.keys(ann).length===0)return;
+    rows.push([
+      m.id,m.name_en,m.name_he,m.status,
+      ann.wrongFile?'yes':'',
+      ann.needsAccuracy?'yes':'',
+      ann.smallFile?'yes':'',
+      `"${(ann.note||'').replace(/"/g,'""')}"`
+    ].join(','));
+  });
+  const blob=new Blob([rows.join('\n')],{type:'text/csv'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='emblem-annotations.csv';
+  a.click();
 }
 
 async function listFiles(folder){
@@ -332,6 +454,7 @@ async function main(){
 
   document.getElementById('search').addEventListener('input',e=>{state.search=e.target.value;render();});
   document.getElementById('sort').addEventListener('change',e=>{state.sort=e.target.value;render();});
+  document.getElementById('export-btn').addEventListener('click',exportAnnotations);
 
   document.querySelectorAll('.filter-btn').forEach(btn=>{
     btn.addEventListener('click',()=>{
