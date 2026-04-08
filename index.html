@@ -8,10 +8,12 @@
 <style>
   :root {
     --bg:#f5f2eb;--surface:#fff;--border:#d6d0c4;--text:#1a1814;--muted:#7a7468;--accent:#2d5a8e;
-    --svg:#1a6b3a;--svg-bg:#e8f5ee;--png:#7a5a00;--png-bg:#fff8e0;
-    --wrong:#8b1a1a;--wrong-bg:#fdecea;--missing:#444;--missing-bg:#f0f0f0;
-    --error:#5a2d8b;--error-bg:#f3eeff;--accuracy:#1a4a6b;--accuracy-bg:#e8f0fb;
-    --small:#6b3a1a;--small-bg:#fdf0e8;
+    --svg:#1a6b3a;--svg-bg:#e8f5ee;
+    --png:#7a5a00;--png-bg:#fff8e0;
+    --wrong:#8b1a1a;--wrong-bg:#fdecea;
+    --missing:#444;--missing-bg:#f0f0f0;
+    --size:#6b3a1a;--size-bg:#fdf0e8;
+    --error:#5a2d8b;--error-bg:#f3eeff;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font-size:13px;min-height:100vh;}
@@ -22,6 +24,7 @@
   .stats{display:flex;gap:24px;margin-top:24px;flex-wrap:wrap;}
   .stat{display:flex;align-items:center;gap:8px;font-size:12px;}
   .stat-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+
   .controls{padding:14px 40px;background:var(--bg);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:10;display:flex;flex-direction:column;gap:10px;}
   .controls-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
   .controls input[type="text"]{font-family:'DM Mono',monospace;font-size:12px;padding:7px 12px;border:1px solid var(--border);border-radius:4px;background:var(--surface);color:var(--text);width:220px;outline:none;}
@@ -39,7 +42,7 @@
   .export-btn{font-family:'DM Mono',monospace;font-size:11px;padding:5px 10px;border:1px solid var(--border);border-radius:4px;background:var(--surface);color:var(--muted);cursor:pointer;}
   .export-btn:hover{border-color:var(--accent);color:var(--accent);}
 
-  /* ── Grid ── */
+  /* Grid */
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1px;background:var(--border);}
   .card{background:var(--surface);padding:14px;display:flex;flex-direction:column;gap:7px;cursor:pointer;transition:background 0.1s;}
   .card:hover{background:#fafaf7;}
@@ -51,25 +54,24 @@
   .card-meta{font-size:10px;color:var(--muted);}
   .card-tags{display:flex;flex-wrap:wrap;gap:3px;}
 
-  /* ── Inline annotation ticks ── */
-  .card-ticks{display:flex;gap:6px;padding-top:6px;border-top:1px solid var(--border);margin-top:2px;}
-  .tick{display:flex;align-items:center;gap:4px;font-size:10px;color:var(--muted);cursor:pointer;user-select:none;padding:2px 4px;border-radius:3px;transition:background 0.1s;}
+  /* Inline ticks */
+  .card-ticks{display:flex;gap:0;padding-top:8px;border-top:1px solid var(--border);margin-top:2px;}
+  .tick{display:flex;align-items:center;gap:4px;font-size:10px;color:var(--muted);cursor:pointer;user-select:none;padding:3px 6px;border-radius:3px;flex:1;justify-content:center;transition:all 0.1s;border:1px solid transparent;}
   .tick:hover{background:var(--bg);}
-  .tick input{width:12px;height:12px;cursor:pointer;margin:0;flex-shrink:0;}
-  .tick.active-wrong{color:var(--wrong);font-weight:500;}
-  .tick.active-accuracy{color:var(--accuracy);font-weight:500;}
-  .tick.active-small{color:var(--small);font-weight:500;}
+  .tick input{width:11px;height:11px;cursor:pointer;margin:0;flex-shrink:0;accent-color:var(--accent);}
+  .tick.t-wrong.on{color:var(--wrong);border-color:var(--wrong-bg);background:var(--wrong-bg);}
+  .tick.t-missing.on{color:var(--missing);border-color:#ddd;background:var(--missing-bg);}
+  .tick.t-size.on{color:var(--size);border-color:var(--size-bg);background:var(--size-bg);}
 
-  /* ── Badges ── */
-  .badge{display:inline-block;font-size:10px;padding:2px 6px;border-radius:3px;font-weight:500;letter-spacing:0.2px;white-space:nowrap;}
+  /* Badges */
+  .badge{display:inline-block;font-size:10px;padding:2px 6px;border-radius:3px;font-weight:500;white-space:nowrap;}
   .badge-found-svg{background:var(--svg-bg);color:var(--svg);}
   .badge-found-png{background:var(--png-bg);color:var(--png);}
   .badge-wrong-file{background:var(--wrong-bg);color:var(--wrong);}
   .badge-not-found{background:var(--missing-bg);color:var(--missing);}
-  .badge-error{background:var(--error-bg);color:var(--error);}
   .badge-not-yet{background:var(--missing-bg);color:var(--missing);}
-  .badge-needs-accuracy{background:var(--accuracy-bg);color:var(--accuracy);}
-  .badge-small-file{background:var(--small-bg);color:var(--small);}
+  .badge-error{background:var(--error-bg);color:var(--error);}
+  .badge-size{background:var(--size-bg);color:var(--size);}
   .badge-jewish{background:#eef2ff;color:#3730a3;}
   .badge-arab{background:#fef3c7;color:#92400e;}
   .badge-mixed{background:#f0fdf4;color:#166534;}
@@ -78,22 +80,23 @@
   .badge-local{background:#f0fdf4;color:#15803d;}
   .badge-regional{background:#fdf4ff;color:#7e22ce;}
 
-  /* ── List view ── */
+  /* List */
   .list-view{background:var(--surface);}
-  .list-header{display:grid;grid-template-columns:60px 1fr 130px 100px 200px 130px;gap:12px;padding:10px 20px;background:var(--bg);border-bottom:2px solid var(--border);font-size:10px;text-transform:uppercase;letter-spacing:0.5px;color:var(--muted);}
-  .list-row{display:grid;grid-template-columns:60px 1fr 130px 100px 200px 130px;gap:12px;padding:10px 20px;border-bottom:1px solid var(--border);align-items:center;cursor:pointer;transition:background 0.1s;}
+  .list-header{display:grid;grid-template-columns:60px 1fr 130px 90px 160px 120px;gap:12px;padding:10px 20px;background:var(--bg);border-bottom:2px solid var(--border);font-size:10px;text-transform:uppercase;letter-spacing:0.5px;color:var(--muted);}
+  .list-row{display:grid;grid-template-columns:60px 1fr 130px 90px 160px 120px;gap:12px;padding:10px 20px;border-bottom:1px solid var(--border);align-items:center;cursor:pointer;transition:background 0.1s;}
   .list-row:hover{background:#fafaf7;}
   .list-thumb{width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:var(--bg);border-radius:3px;overflow:hidden;}
   .list-thumb img{max-width:44px;max-height:44px;object-fit:contain;}
   .list-name{font-family:'Fraunces',serif;font-weight:300;font-size:14px;}
   .list-tags{display:flex;flex-wrap:wrap;gap:3px;}
   .list-ticks{display:flex;gap:4px;}
-  .list-tick{font-size:10px;padding:2px 6px;border-radius:3px;border:1px solid var(--border);cursor:pointer;white-space:nowrap;background:var(--surface);color:var(--muted);}
-  .list-tick.on-wrong{background:var(--wrong-bg);color:var(--wrong);border-color:var(--wrong);}
-  .list-tick.on-accuracy{background:var(--accuracy-bg);color:var(--accuracy);border-color:var(--accuracy);}
-  .list-tick.on-small{background:var(--small-bg);color:var(--small);border-color:var(--small);}
+  .ltick{font-size:10px;padding:2px 7px;border-radius:3px;border:1px solid var(--border);cursor:pointer;white-space:nowrap;background:var(--surface);color:var(--muted);transition:all 0.1s;}
+  .ltick:hover{border-color:var(--accent);}
+  .ltick.on-wrong{background:var(--wrong-bg);color:var(--wrong);border-color:var(--wrong);}
+  .ltick.on-missing{background:var(--missing-bg);color:var(--missing);border-color:#bbb;}
+  .ltick.on-size{background:var(--size-bg);color:var(--size);border-color:var(--size);}
 
-  /* ── Modal ── */
+  /* Modal */
   .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:100;align-items:center;justify-content:center;padding:24px;}
   .modal-overlay.open{display:flex;}
   .modal{background:var(--surface);border-radius:8px;max-width:560px;width:100%;max-height:90vh;overflow-y:auto;padding:32px;position:relative;}
@@ -103,24 +106,22 @@
   .modal h2{font-family:'Fraunces',serif;font-weight:300;font-size:22px;margin-bottom:4px;}
   .modal-he{direction:rtl;color:var(--muted);margin-bottom:16px;font-size:14px;}
   .modal-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:20px;}
-  .modal-fields{display:grid;grid-template-columns:130px 1fr;gap:8px 12px;font-size:12px;}
+  .modal-fields{display:grid;grid-template-columns:130px 1fr;gap:8px 12px;font-size:12px;margin-bottom:20px;}
   .modal-label{color:var(--muted);}
   .modal-value{word-break:break-all;}
   .modal-value a{color:var(--accent);text-decoration:none;}
   .modal-value a:hover{text-decoration:underline;}
-  .modal-note-area{margin-top:20px;}
-  .modal-note-area label{font-size:11px;color:var(--muted);display:block;margin-bottom:6px;}
-  .modal-note-area textarea{width:100%;font-family:'DM Mono',monospace;font-size:12px;padding:8px;border:1px solid var(--border);border-radius:4px;resize:vertical;min-height:60px;outline:none;color:var(--text);}
-  .modal-note-area textarea:focus{border-color:var(--accent);}
-  .note-save-btn{margin-top:8px;font-family:'DM Mono',monospace;font-size:11px;padding:5px 12px;background:var(--accent);color:#fff;border:none;border-radius:4px;cursor:pointer;}
-  .note-saved{margin-left:10px;font-size:11px;color:var(--muted);}
+  .modal-note label{font-size:11px;color:var(--muted);display:block;margin-bottom:6px;}
+  .modal-note textarea{width:100%;font-family:'DM Mono',monospace;font-size:12px;padding:8px;border:1px solid var(--border);border-radius:4px;resize:vertical;min-height:60px;outline:none;color:var(--text);}
+  .modal-note textarea:focus{border-color:var(--accent);}
+  .note-save{margin-top:8px;font-family:'DM Mono',monospace;font-size:11px;padding:5px 12px;background:var(--accent);color:#fff;border:none;border-radius:4px;cursor:pointer;}
+  .note-ok{margin-left:10px;font-size:11px;color:var(--muted);display:none;}
 
   .empty{padding:80px;text-align:center;color:var(--muted);background:var(--surface);}
   .loading{padding:80px;text-align:center;color:var(--muted);}
 </style>
 </head>
 <body>
-
 <header>
   <h1>Israeli Municipal <em>Emblems</em></h1>
   <p>Encyclopedia / index of coats of arms for all ~250 Israeli municipalities</p>
@@ -158,10 +159,7 @@
   <div class="controls-row">
     <span class="controls-label">Flags:</span>
     <div class="btn-group">
-      <button class="filter-btn" data-group="flag" data-value="wrong-manual">⚠️ Marked wrong</button>
-      <button class="filter-btn" data-group="flag" data-value="needs-accuracy">🔍 Needs accuracy</button>
-      <button class="filter-btn" data-group="flag" data-value="small-file">📐 Small</button>
-      <button class="filter-btn" data-group="flag" data-value="annotated">✏️ Has notes</button>
+      <button class="filter-btn" data-group="flag" data-value="size">📐 Size</button>
     </div>
     <span class="controls-label" style="margin-left:12px">Type:</span>
     <div class="btn-group">
@@ -192,24 +190,18 @@
 const GITHUB_USER='itai-raveh', GITHUB_REPO='israel-emblems', BRANCH='main';
 const RAW=`https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/${BRANCH}`;
 const CSV_URL=`${RAW}/data/municipalities.csv`;
-const STORAGE_KEY='israel-emblems-v2';
+const STORAGE_KEY='israel-emblems-v3';
 
 const STATUS_OVERRIDES={'rosh-pina':'found-svg','kiryat-tivon':'found-svg'};
 
-// ── localStorage annotations ──────────────────────────────────────────────────
-// { id: { wrong: bool, accuracy: bool, small: bool, note: string } }
+// ── Annotations: { id: { wrong, missing, size, note } } ──────────────────────
 function loadAnn(){ try{ return JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}'); } catch{ return {}; } }
-function saveAnn(a){ localStorage.setItem(STORAGE_KEY, JSON.stringify(a)); }
-let ANN = loadAnn();
-
-function getA(id){ return ANN[id] || {}; }
-function setA(id, key, val){
+function saveAnn(a){ localStorage.setItem(STORAGE_KEY,JSON.stringify(a)); }
+let ANN=loadAnn();
+function getA(id){ return ANN[id]||{}; }
+function setA(id,key,val){
   if(!ANN[id]) ANN[id]={};
-  if(val===''||val===false||val===null){
-    delete ANN[id][key];
-  } else {
-    ANN[id][key]=val;
-  }
+  if(!val) delete ANN[id][key]; else ANN[id][key]=val;
   if(!Object.keys(ANN[id]).length) delete ANN[id];
   saveAnn(ANN);
 }
@@ -220,7 +212,7 @@ function parseCSV(text){
   const lines=text.split('\n').filter(l=>l.trim());
   const headers=lines[0].split(',');
   return lines.slice(1).map(line=>{
-    const vals=[]; let cur='', inQ=false;
+    const vals=[]; let cur='',inQ=false;
     for(const ch of line){
       if(ch==='"') inQ=!inQ;
       else if(ch===','&&!inQ){ vals.push(cur); cur=''; }
@@ -233,53 +225,37 @@ function parseCSV(text){
   }).filter(r=>r.id);
 }
 
-function imgUrl(muni, allFiles){
-  const p=muni.id+'__';
+function imgUrl(m,allFiles){
+  const p=m.id+'__';
   const s=allFiles.svg.find(f=>f.startsWith(p));
-  if(s) return {url:`${RAW}/emblems/svg/${encodeURIComponent(s)}`,type:'svg'};
+  if(s) return{url:`${RAW}/emblems/svg/${encodeURIComponent(s)}`,type:'svg'};
   const n=allFiles.png.find(f=>f.startsWith(p));
-  if(n) return {url:`${RAW}/emblems/png/${encodeURIComponent(n)}`,type:'png'};
+  if(n) return{url:`${RAW}/emblems/png/${encodeURIComponent(n)}`,type:'png'};
   return null;
 }
 
-function enrich(data, allFiles){
+function enrich(data,allFiles){
   return data.map(m=>{
     if(STATUS_OVERRIDES[m.id]) m.status=STATUS_OVERRIDES[m.id];
-    m._img=imgUrl(m, allFiles);
-    const w=parseFloat(m.width_px)||0, h=parseFloat(m.height_px)||0;
-    m._autoSmall=(m.format==='PNG'||m.status==='found-png')&&w>0&&w<150&&h<150;
+    m._img=imgUrl(m,allFiles);
     return m;
   });
 }
 
-// ── Effective status (annotations can override) ───────────────────────────────
+// ── Effective status — annotations override CSV status ────────────────────────
 function effStatus(m){
   const a=getA(m.id);
-  if(a.wrong) return 'wrong-file';
+  if(a.wrong)   return 'wrong-file';
+  if(a.missing) return 'not-found';
   return m.status;
-}
-
-function effFlags(m){
-  const a=getA(m.id);
-  return {
-    wrong:    !!a.wrong,
-    accuracy: !!a.accuracy,
-    small:    m._autoSmall||!!a.small,
-    hasNote:  !!(a.note&&a.note.trim()),
-  };
 }
 
 // ── Badges ────────────────────────────────────────────────────────────────────
 const SL={'found-svg':'✅ SVG','found-png':'🟡 PNG','wrong-file':'⚠️ Wrong','not-found':'❌ Missing','not-yet':'⬜ Not yet','error':'🔴 Error'};
-function sb(status){ const c=(status||'error').replace(/[^a-z-]/g,''); return `<span class="badge badge-${c}">${SL[status]||status}</span>`; }
-function cb(culture){ if(!culture)return''; return `<span class="badge badge-${culture.toLowerCase()}">${culture}</span>`; }
-function tb(type){ if(!type)return''; return `<span class="badge badge-${type.toLowerCase()}">${type}</span>`; }
-function xb(m){
-  const f=effFlags(m); let o='';
-  if(f.accuracy) o+=`<span class="badge badge-needs-accuracy">🔍 Accuracy</span>`;
-  if(f.small)    o+=`<span class="badge badge-small-file">📐 Small</span>`;
-  return o;
-}
+function sb(status){ const c=(status||'error').replace(/[^a-z-]/g,''); return`<span class="badge badge-${c}">${SL[status]||status}</span>`; }
+function cb(culture){ if(!culture)return''; return`<span class="badge badge-${culture.toLowerCase()}">${culture}</span>`; }
+function tb(type){ if(!type)return''; return`<span class="badge badge-${type.toLowerCase()}">${type}</span>`; }
+function sizeBadge(m){ if(getA(m.id).size) return`<span class="badge badge-size">📐 Size</span>`; return''; }
 
 // ── State ─────────────────────────────────────────────────────────────────────
 const state={view:'grid',sort:'name',search:'',filters:{status:new Set(),flag:new Set(),type:new Set(),culture:new Set()}};
@@ -287,22 +263,19 @@ let DATA=[];
 
 function matches(m){
   const q=state.search.toLowerCase();
-  const {status,flag,type,culture}=state.filters;
+  const{status,flag,type,culture}=state.filters;
   const es=effStatus(m);
-  const f=effFlags(m);
+  const a=getA(m.id);
   if(q&&![m.id,m.name_en,m.name_he,m.district,m.type,m.culture].some(v=>(v||'').toLowerCase().includes(q))) return false;
   if(status.size&&!status.has(es)) return false;
   if(type.size&&!type.has((m.type||'').toLowerCase())) return false;
   if(culture.size&&!culture.has((m.culture||'').toLowerCase())) return false;
-  if(flag.has('wrong-manual')&&!f.wrong) return false;
-  if(flag.has('needs-accuracy')&&!f.accuracy) return false;
-  if(flag.has('small-file')&&!f.small) return false;
-  if(flag.has('annotated')&&!f.hasNote) return false;
+  if(flag.has('size')&&!a.size) return false;
   return true;
 }
 
 function sorted(data){
-  return [...data].sort((a,b)=>{
+  return[...data].sort((a,b)=>{
     switch(state.sort){
       case'name': return(a.name_en||'').localeCompare(b.name_en||'');
       case'name-desc': return(b.name_en||'').localeCompare(a.name_en||'');
@@ -314,60 +287,46 @@ function sorted(data){
   });
 }
 
-// ── Image HTML ────────────────────────────────────────────────────────────────
-function ih(m, size=80){
-  if(!m._img) return `<span class="no-image">◻</span>`;
-  return `<img src="${m._img.url}" alt="${m.name_en}" loading="lazy"
-    style="max-height:${size}px;max-width:100%;object-fit:contain"
-    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-    <span class="no-image" style="display:none">◻</span>`;
+function ih(m,size=80){
+  if(!m._img) return`<span class="no-image">◻</span>`;
+  return`<img src="${m._img.url}" alt="${m.name_en}" loading="lazy" style="max-height:${size}px;max-width:100%;object-fit:contain" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="no-image" style="display:none">◻</span>`;
 }
 
-// ── Card HTML ─────────────────────────────────────────────────────────────────
+// ── Card ──────────────────────────────────────────────────────────────────────
 function cardHTML(m){
-  const f=effFlags(m), es=effStatus(m);
-  const a=getA(m.id);
-  return `<div class="card" data-id="${m.id}" data-clickable="1">
+  const a=getA(m.id), es=effStatus(m);
+  return`<div class="card" data-id="${m.id}" data-clickable="1">
     <div class="emblem-wrap">${ih(m,80)}</div>
-    <div>
-      <div class="card-name">${m.name_en}</div>
-      <div class="card-name-he">${m.name_he}</div>
-    </div>
+    <div><div class="card-name">${m.name_en}</div><div class="card-name-he">${m.name_he}</div></div>
     <div class="card-meta">${m.district}</div>
-    <div class="card-tags">
-      ${sb(es)}${tb(m.type)}${cb(m.culture)}${xb(m)}
-    </div>
+    <div class="card-tags">${sb(es)}${tb(m.type)}${cb(m.culture)}${sizeBadge(m)}</div>
     <div class="card-ticks" data-stop="1">
-      <label class="tick${f.wrong?' active-wrong':''}" title="Mark as wrong file">
-        <input type="checkbox" data-ann="wrong" data-id="${m.id}" ${a.wrong?'checked':''}>
-        Wrong
+      <label class="tick t-wrong${a.wrong?' on':''}">
+        <input type="checkbox" data-ann="wrong" data-id="${m.id}" ${a.wrong?'checked':''}>Wrong
       </label>
-      <label class="tick${f.accuracy?' active-accuracy':''}" title="Needs accuracy">
-        <input type="checkbox" data-ann="accuracy" data-id="${m.id}" ${a.accuracy?'checked':''}>
-        Accuracy
+      <label class="tick t-missing${a.missing?' on':''}">
+        <input type="checkbox" data-ann="missing" data-id="${m.id}" ${a.missing?'checked':''}>Missing
       </label>
-      <label class="tick${f.small&&a.small?' active-small':''}" title="Small file">
-        <input type="checkbox" data-ann="small" data-id="${m.id}" ${a.small?'checked':''}>
-        Small
+      <label class="tick t-size${a.size?' on':''}">
+        <input type="checkbox" data-ann="size" data-id="${m.id}" ${a.size?'checked':''}>Size
       </label>
     </div>
   </div>`;
 }
 
-// ── List row HTML ─────────────────────────────────────────────────────────────
+// ── List row ──────────────────────────────────────────────────────────────────
 function listHTML(m){
-  const f=effFlags(m), es=effStatus(m);
-  const a=getA(m.id);
-  return `<div class="list-row" data-id="${m.id}" data-clickable="1">
+  const a=getA(m.id), es=effStatus(m);
+  return`<div class="list-row" data-id="${m.id}" data-clickable="1">
     <div class="list-thumb">${ih(m,44)}</div>
     <div><div class="list-name">${m.name_en}</div><div class="card-meta">${m.district}</div></div>
     <div style="direction:rtl;font-size:12px;color:var(--muted)">${m.name_he}</div>
     <div>${tb(m.type)}</div>
-    <div class="list-tags">${sb(es)}${cb(m.culture)}${xb(m)}</div>
+    <div class="list-tags">${sb(es)}${cb(m.culture)}${sizeBadge(m)}</div>
     <div class="list-ticks" data-stop="1">
-      <span class="list-tick${a.wrong?' on-wrong':''}" data-ann="wrong" data-id="${m.id}">⚠ Wrong</span>
-      <span class="list-tick${a.accuracy?' on-accuracy':''}" data-ann="accuracy" data-id="${m.id}">🔍 Acc</span>
-      <span class="list-tick${f.small&&a.small?' on-small':''}" data-ann="small" data-id="${m.id}">📐 Sm</span>
+      <span class="ltick${a.wrong?' on-wrong':''}" data-ann="wrong" data-id="${m.id}">Wrong</span>
+      <span class="ltick${a.missing?' on-missing':''}" data-ann="missing" data-id="${m.id}">Missing</span>
+      <span class="ltick${a.size?' on-size':''}" data-ann="size" data-id="${m.id}">Size</span>
     </div>
   </div>`;
 }
@@ -381,11 +340,10 @@ function render(){
 
   if(state.view==='grid'){
     container.innerHTML=`<div class="grid">${filtered.map(cardHTML).join('')}</div>`;
-    // Checkbox listeners
     container.querySelectorAll('input[data-ann]').forEach(cb=>{
-      cb.addEventListener('change', e=>{
+      cb.addEventListener('change',e=>{
         e.stopPropagation();
-        setA(cb.dataset.id, cb.dataset.ann, cb.checked||false);
+        setA(cb.dataset.id,cb.dataset.ann,cb.checked||false);
         renderStats(DATA); render();
       });
     });
@@ -394,21 +352,18 @@ function render(){
       <div class="list-header"><div>Emblem</div><div>Name</div><div>Hebrew</div><div>Type</div><div>Tags</div><div>Mark</div></div>
       ${filtered.map(listHTML).join('')}
     </div>`;
-    // List tick (toggle spans)
-    container.querySelectorAll('.list-tick').forEach(tick=>{
-      tick.addEventListener('click', e=>{
+    container.querySelectorAll('.ltick').forEach(tick=>{
+      tick.addEventListener('click',e=>{
         e.stopPropagation();
         const id=tick.dataset.id, key=tick.dataset.ann;
-        const cur=!!(getA(id)[key]);
-        setA(id, key, !cur);
+        setA(id,key,!getA(id)[key]);
         renderStats(DATA); render();
       });
     });
   }
 
-  // Card/row click → modal (but not ticks)
   container.querySelectorAll('[data-clickable]').forEach(el=>{
-    el.addEventListener('click', e=>{
+    el.addEventListener('click',e=>{
       if(e.target.closest('[data-stop]')) return;
       const m=DATA.find(d=>d.id===el.dataset.id);
       if(m) openModal(m);
@@ -420,15 +375,12 @@ function render(){
 function renderStats(data){
   const counts={};
   data.forEach(m=>{ const s=effStatus(m); counts[s]=(counts[s]||0)+1; });
-  const items=[
+  document.getElementById('stats').innerHTML=[
     {label:'SVG',key:'found-svg',color:'#1a6b3a'},
     {label:'PNG',key:'found-png',color:'#7a5a00'},
     {label:'Wrong',key:'wrong-file',color:'#8b1a1a'},
     {label:'Missing',key:'not-found',color:'#444'},
-  ];
-  document.getElementById('stats').innerHTML=items.map(i=>
-    `<div class="stat"><div class="stat-dot" style="background:${i.color}"></div><span>${counts[i.key]||0} ${i.label}</span></div>`
-  ).join('');
+  ].map(i=>`<div class="stat"><div class="stat-dot" style="background:${i.color}"></div><span>${counts[i.key]||0} ${i.label}</span></div>`).join('');
 }
 
 // ── Modal ─────────────────────────────────────────────────────────────────────
@@ -440,7 +392,7 @@ function openModal(m){
     <div class="modal-emblem">${imgH}</div>
     <h2>${m.name_en}</h2>
     <div class="modal-he">${m.name_he}</div>
-    <div class="modal-tags">${sb(effStatus(m))}${tb(m.type)}${cb(m.culture)}${xb(m)}</div>
+    <div class="modal-tags">${sb(effStatus(m))}${tb(m.type)}${cb(m.culture)}${sizeBadge(m)}</div>
     <div class="modal-fields">
       <span class="modal-label">ID</span><span class="modal-value">${m.id}</span>
       <span class="modal-label">District</span><span class="modal-value">${m.district}</span>
@@ -449,17 +401,17 @@ function openModal(m){
       <span class="modal-label">Commons file</span><span class="modal-value">${commonsLink}</span>
       ${m.correct_commons_url?`<span class="modal-label">Correct URL</span><span class="modal-value"><a href="${m.correct_commons_url}" target="_blank">→ view</a></span>`:''}
     </div>
-    <div class="modal-note-area" style="margin-top:20px">
+    <div class="modal-note">
       <label>Notes (saved in browser)</label>
       <textarea id="modal-note">${a.note||''}</textarea>
-      <button class="note-save-btn" id="note-save-btn">Save note</button>
-      <span class="note-saved" id="note-saved" style="display:none">✓ Saved</span>
+      <button class="note-save" id="note-save">Save note</button>
+      <span class="note-ok" id="note-ok">✓ Saved</span>
     </div>
   `;
-  document.getElementById('note-save-btn').addEventListener('click',()=>{
+  document.getElementById('note-save').addEventListener('click',()=>{
     setA(m.id,'note',document.getElementById('modal-note').value.trim());
-    const s=document.getElementById('note-saved');
-    s.style.display='inline'; setTimeout(()=>s.style.display='none',2000);
+    const ok=document.getElementById('note-ok');
+    ok.style.display='inline'; setTimeout(()=>ok.style.display='none',2000);
     renderStats(DATA); render();
   });
   document.getElementById('modal-overlay').classList.add('open');
@@ -467,29 +419,24 @@ function openModal(m){
 
 // ── Export ────────────────────────────────────────────────────────────────────
 function exportAnn(){
-  const rows=['id,name_en,status,wrong,accuracy,small,note'];
+  const rows=['id,name_en,status,wrong,missing,size,note'];
   DATA.forEach(m=>{
     const a=getA(m.id);
     if(!Object.keys(a).length) return;
-    rows.push([m.id,m.name_en,effStatus(m),a.wrong?'yes':'',a.accuracy?'yes':'',a.small?'yes':'',`"${(a.note||'').replace(/"/g,'""')}"`].join(','));
+    rows.push([m.id,m.name_en,effStatus(m),a.wrong?'yes':'',a.missing?'yes':'',a.size?'yes':'',`"${(a.note||'').replace(/"/g,'""')}"`].join(','));
   });
   const blob=new Blob([rows.join('\n')],{type:'text/csv'});
-  const el=document.createElement('a');
-  el.href=URL.createObjectURL(blob);
-  el.download='emblem-annotations.csv';
-  el.click();
+  const el=document.createElement('a'); el.href=URL.createObjectURL(blob); el.download='emblem-annotations.csv'; el.click();
 }
 
-// ── GitHub file listing ───────────────────────────────────────────────────────
 async function listFiles(folder){
   try{
     const r=await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${folder}?ref=${BRANCH}`);
     if(!r.ok) return [];
-    return (await r.json()).map(f=>f.name);
+    return(await r.json()).map(f=>f.name);
   } catch{ return []; }
 }
 
-// ── Init ──────────────────────────────────────────────────────────────────────
 async function main(){
   const[csvText,svgFiles,pngFiles]=await Promise.all([
     fetch(CSV_URL).then(r=>r.text()),
@@ -497,8 +444,7 @@ async function main(){
     listFiles('emblems/png'),
   ]);
   DATA=enrich(parseCSV(csvText),{svg:svgFiles,png:pngFiles});
-  renderStats(DATA);
-  render();
+  renderStats(DATA); render();
 
   document.getElementById('search').addEventListener('input',e=>{ state.search=e.target.value; render(); });
   document.getElementById('sort').addEventListener('change',e=>{ state.sort=e.target.value; render(); });
@@ -517,12 +463,12 @@ async function main(){
         } else {
           document.querySelector('[data-group="status"][data-value="all"]').classList.remove('active');
           if(state.filters.status.has(v)){ state.filters.status.delete(v); btn.classList.remove('active'); }
-          else { state.filters.status.add(v); btn.classList.add('active'); }
+          else{ state.filters.status.add(v); btn.classList.add('active'); }
           if(!state.filters.status.size) document.querySelector('[data-group="status"][data-value="all"]').classList.add('active');
         }
       } else {
         if(state.filters[g].has(v)){ state.filters[g].delete(v); btn.classList.remove('active'); }
-        else { state.filters[g].add(v); btn.classList.add('active'); }
+        else{ state.filters[g].add(v); btn.classList.add('active'); }
       }
       render();
     });
