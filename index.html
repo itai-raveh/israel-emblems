@@ -10,7 +10,7 @@
     --bg:#f5f2eb;--surface:#fff;--border:#d6d0c4;--text:#1a1814;--muted:#7a7468;--accent:#2d5a8e;
     --svg:#1a6b3a;--svg-bg:#e8f5ee;
     --png:#7a5a00;--png-bg:#fff8e0;
-    --wrong:#8b1a1a;--wrong-bg:#fdecea;
+    --logo:#3730a3;--logo-bg:#eef2ff;
     --missing:#444;--missing-bg:#f0f0f0;
     --size:#6b3a1a;--size-bg:#fdf0e8;
     --error:#5a2d8b;--error-bg:#f3eeff;
@@ -66,15 +66,13 @@
   .tick{display:flex;align-items:center;gap:4px;font-size:10px;color:var(--muted);cursor:pointer;user-select:none;padding:3px 6px;border-radius:3px;flex:1;justify-content:center;transition:all 0.1s;border:1px solid transparent;}
   .tick:hover{background:var(--bg);}
   .tick input{width:11px;height:11px;cursor:pointer;margin:0;flex-shrink:0;accent-color:var(--accent);}
-  .tick.t-wrong.on{color:var(--wrong);border-color:var(--wrong-bg);background:var(--wrong-bg);}
   .tick.t-missing.on{color:var(--missing);border-color:#ddd;background:var(--missing-bg);}
   .tick.t-size.on{color:var(--size);border-color:var(--size-bg);background:var(--size-bg);}
 
   /* Badges */
   .badge{display:inline-block;font-size:10px;padding:2px 6px;border-radius:3px;font-weight:500;white-space:nowrap;}
-  .badge-found-svg{background:var(--svg-bg);color:var(--svg);}
-  .badge-found-png{background:var(--png-bg);color:var(--png);}
-  .badge-wrong-file{background:var(--wrong-bg);color:var(--wrong);}
+  .badge-found-svg,.badge-found-png{background:var(--svg-bg);color:var(--svg);}
+  .badge-logo{background:var(--logo-bg);color:var(--logo);}
   .badge-not-found{background:var(--missing-bg);color:var(--missing);}
   .badge-not-yet{background:var(--missing-bg);color:var(--missing);}
   .badge-error{background:var(--error-bg);color:var(--error);}
@@ -103,7 +101,6 @@
   .list-ticks{display:flex;gap:4px;}
   .ltick{font-size:10px;padding:2px 7px;border-radius:3px;border:1px solid var(--border);cursor:pointer;white-space:nowrap;background:var(--surface);color:var(--muted);transition:all 0.1s;}
   .ltick:hover{border-color:var(--accent);}
-  .ltick.on-wrong{background:var(--wrong-bg);color:var(--wrong);border-color:var(--wrong);}
   .ltick.on-missing{background:var(--missing-bg);color:var(--missing);border-color:#bbb;}
   .ltick.on-size{background:var(--size-bg);color:var(--size);border-color:var(--size);}
 
@@ -161,12 +158,8 @@
     <span class="controls-label">Status:</span>
     <div class="btn-group">
       <button class="filter-btn active" data-group="status" data-value="all">All</button>
-      <button class="filter-btn" data-group="status" data-value="found-svg">✅ SVG</button>
-      <button class="filter-btn" data-group="status" data-value="found-png">🟡 PNG</button>
-      <button class="filter-btn" data-group="status" data-value="healthy-svg">✅ Healthy SVG</button>
-      <button class="filter-btn" data-group="status" data-value="healthy-png">🟡 Healthy PNG</button>
-      <button class="filter-btn" data-group="status" data-value="healthy">⭐ All healthy</button>
-      <button class="filter-btn" data-group="status" data-value="wrong-file">⚠️ Wrong</button>
+      <button class="filter-btn" data-group="status" data-value="found">✅ Found</button>
+      <button class="filter-btn" data-group="status" data-value="logo">🏷 Municipal Logo</button>
       <button class="filter-btn" data-group="status" data-value="not-found">❌ Missing</button>
       <button class="filter-btn" data-group="status" data-value="obsolete">🏛 Obsolete</button>
     </div>
@@ -241,7 +234,14 @@ function findBestImage(id, allFiles) {
   }
 
   // Fallback: obsolete files (for obsolete entries)
-  const obsoletePng = allFiles.png.find(f => f.startsWith(`${id}-`) && f.includes('obsolete'));
+  const obsoleteSvg = allFiles.svg.find(f => f.startsWith(`${id}-`) && f.includes('-obsolete'));
+  if (obsoleteSvg) {
+    return {
+      url: `${RAW}/emblems/svg/${encodeURIComponent(obsoleteSvg)}`,
+      tier: 5, label: 'SVG·Obsolete', name: obsoleteSvg,
+    };
+  }
+  const obsoletePng = allFiles.png.find(f => f.startsWith(`${id}-`) && f.includes('-obsolete'));
   if (obsoletePng) {
     return {
       url: `${RAW}/emblems/png/${encodeURIComponent(obsoletePng)}`,
@@ -284,33 +284,40 @@ function parseCSV(text){
   }).filter(r=>r.id);
 }
 
-function isObsolete(m) {
-  return (m.file_status||'').toLowerCase()==='obsolete';
+function isObsolete(m, allFiles) {
+  if ((m.file_status||'').toLowerCase()==='obsolete') return true;
+  if (!allFiles) return false;
+  // Also obsolete if only -obsolete files exist (no COA or logo)
+  const id = m.id;
+  const hasObsolete = [...allFiles.svg, ...allFiles.png].some(f =>
+    f.startsWith(id + '-') && f.includes('-obsolete')
+  );
+  const hasCOA = allFiles.svg.includes(`${id}-COA.svg`) ||
+    ['png','jpg','webp'].some(e => allFiles.png.includes(`${id}-COA.${e}`));
+  const hasLogo = allFiles.svg.includes(`${id}-logo.svg`) ||
+    ['png','jpg','webb'].some(e => allFiles.png.includes(`${id}-logo.${e}`));
+  return hasObsolete && !hasCOA && !hasLogo;
 }
 
 function enrich(data, allFiles){
   return data.map(m=>{
     m._img = findBestImage(m.id, allFiles);
+    m._obsolete = isObsolete(m, allFiles);
     return m;
   });
 }
 
 // ── Effective status ──────────────────────────────────────────────────────────
 function effStatus(m){
-  if(isObsolete(m)) return 'obsolete';
+  if(m._obsolete) return 'obsolete';
+  // If best available image is a logo (tier 3/4), flag as logo regardless of CSV status
+  if(m._img && m._img.tier >= 3) return 'logo';
   const a=getA(m.id);
-  if(a.wrong===false&&m.status==='wrong-file') return 'found-png';
   if(a.missing===false&&m.status==='not-found') return 'found-png';
-  if(a.wrong)   return 'wrong-file';
   if(a.missing) return 'not-found';
   return m.status;
 }
 
-function isWrong(m){
-  const a=getA(m.id);
-  if('wrong' in a) return !!a.wrong;
-  return m.status==='wrong-file';
-}
 function isMissing(m){
   const a=getA(m.id);
   if('missing' in a) return !!a.missing;
@@ -319,9 +326,9 @@ function isMissing(m){
 
 // ── Badges ────────────────────────────────────────────────────────────────────
 const SL={
-  'found-svg':'✅ SVG','found-png':'🟡 PNG',
-  'wrong-file':'⚠️ Wrong','not-found':'❌ Missing',
-  'not-yet':'⬜ Not yet','error':'🔴 Error',
+  'found-svg':'✅ Found','found-png':'✅ Found',
+  'logo':'🏷 Municipal Logo','not-found':'❌ Missing',
+  'not-yet':'❌ Missing','error':'❌ Missing',
   'obsolete':'🏛 Obsolete'
 };
 function sb(status){ const c=(status||'error').replace(/[^a-z-]/g,''); return`<span class="badge badge-${c}">${SL[status]||status}</span>`; }
@@ -339,12 +346,6 @@ function tierBadge(img) {
 const state={view:'grid',sort:'name',search:'',filters:{status:new Set(),flag:new Set(),type:new Set(),culture:new Set()}};
 let DATA=[];
 
-function isHealthy(m){
-  const es=effStatus(m);
-  const a=getA(m.id);
-  return (es==='found-svg'||es==='found-png') && !a.wrong && !a.missing;
-}
-
 function matches(m){
   const q=state.search.toLowerCase();
   const{status,flag,type,culture}=state.filters;
@@ -352,11 +353,10 @@ function matches(m){
   const a=getA(m.id);
   if(q&&![m.id,m.name_en,m.name_he,m.district,m.type,m.culture].some(v=>(v||'').toLowerCase().includes(q))) return false;
   if(status.size){
-    if(status.has('healthy-svg') && !(isHealthy(m)&&es==='found-svg')) return false;
-    if(status.has('healthy-png') && !(isHealthy(m)&&es==='found-png')) return false;
-    if(status.has('healthy')     && !isHealthy(m)) return false;
-    if(status.has('obsolete')    && es!=='obsolete') return false;
-    if(!status.has('healthy-svg')&&!status.has('healthy-png')&&!status.has('healthy')&&!status.has('obsolete')&&!status.has(es)) return false;
+    if(status.has('found')   && es!=='found-svg' && es!=='found-png') return false;
+    if(status.has('logo')    && es!=='logo') return false;
+    if(status.has('obsolete')&& es!=='obsolete') return false;
+    if(!status.has('found')&&!status.has('logo')&&!status.has('obsolete')&&!status.has(es)) return false;
   }
   if(type.size&&!type.has((m.type||'').toLowerCase())) return false;
   if(culture.size&&!culture.has((m.culture||'').toLowerCase())) return false;
@@ -385,7 +385,7 @@ function ih(m, size=80){
 // ── Card ──────────────────────────────────────────────────────────────────────
 function cardHTML(m){
   const a=getA(m.id), es=effStatus(m);
-  const obs = isObsolete(m);
+  const obs = m._obsolete;
   return`<div class="card${obs?' obsolete':''}" data-id="${m.id}" data-clickable="1">
     <div class="emblem-wrap">
       ${ih(m,80)}
@@ -395,9 +395,6 @@ function cardHTML(m){
     <div class="card-meta">${m.district}</div>
     <div class="card-tags">${sb(es)}${tb(m.type)}${cb(m.culture)}${sizeBadge(m)}</div>
     ${obs ? '' : `<div class="card-ticks" data-stop="1">
-      <label class="tick t-wrong${isWrong(m)?' on':''}">
-        <input type="checkbox" data-ann="wrong" data-id="${m.id}" ${isWrong(m)?'checked':''}>Wrong
-      </label>
       <label class="tick t-missing${isMissing(m)?' on':''}">
         <input type="checkbox" data-ann="missing" data-id="${m.id}" ${isMissing(m)?'checked':''}>Missing
       </label>
@@ -411,7 +408,7 @@ function cardHTML(m){
 // ── List row ──────────────────────────────────────────────────────────────────
 function listHTML(m){
   const a=getA(m.id), es=effStatus(m);
-  const obs = isObsolete(m);
+  const obs = m._obsolete;
   return`<div class="list-row${obs?' obsolete':''}" data-id="${m.id}" data-clickable="1">
     <div class="list-thumb">${ih(m,44)}</div>
     <div><div class="list-name">${m.name_en}</div><div class="card-meta">${m.district}</div></div>
@@ -420,7 +417,6 @@ function listHTML(m){
     <div class="list-tags">${sb(es)}${cb(m.culture)}${sizeBadge(m)}</div>
     <div class="list-ticks" data-stop="1">
       ${obs ? '' : `
-      <span class="ltick${isWrong(m)?' on-wrong':''}" data-ann="wrong" data-id="${m.id}">Wrong</span>
       <span class="ltick${isMissing(m)?' on-missing':''}" data-ann="missing" data-id="${m.id}">Missing</span>
       <span class="ltick${a.size?' on-size':''}" data-ann="size" data-id="${m.id}">Size</span>
       `}
@@ -470,13 +466,18 @@ function render(){
 
 // ── Stats ─────────────────────────────────────────────────────────────────────
 function renderStats(data){
-  const counts={};
-  data.forEach(m=>{ const s=effStatus(m); counts[s]=(counts[s]||0)+1; });
+  const counts={found:0,logo:0,missing:0,obsolete:0};
+  data.forEach(m=>{
+    const s=effStatus(m);
+    if(s==='found-svg'||s==='found-png') counts.found++;
+    else if(s==='logo') counts.logo++;
+    else if(s==='obsolete') counts.obsolete++;
+    else counts.missing++;
+  });
   document.getElementById('stats').innerHTML=[
-    {label:'SVG',key:'found-svg',color:'#1a6b3a'},
-    {label:'PNG',key:'found-png',color:'#7a5a00'},
-    {label:'Wrong',key:'wrong-file',color:'#8b1a1a'},
-    {label:'Missing',key:'not-found',color:'#444'},
+    {label:'Found',key:'found',color:'#1a6b3a'},
+    {label:'Logo only',key:'logo',color:'#3730a3'},
+    {label:'Missing',key:'missing',color:'#444'},
     {label:'Obsolete',key:'obsolete',color:'#5a4a00'},
   ].map(i=>`<div class="stat"><div class="stat-dot" style="background:${i.color}"></div><span>${counts[i.key]||0} ${i.label}</span></div>`).join('');
 }
@@ -519,11 +520,11 @@ function openModal(m){
 
 // ── Export ────────────────────────────────────────────────────────────────────
 function exportAnn(){
-  const rows=['id,name_en,status,wrong,missing,size,note'];
+  const rows=['id,name_en,status,missing,size,note'];
   DATA.forEach(m=>{
     const a=getA(m.id);
     if(!Object.keys(a).length) return;
-    rows.push([m.id,m.name_en,effStatus(m),a.wrong?'yes':'',a.missing?'yes':'',a.size?'yes':'',`"${(a.note||'').replace(/"/g,'""')}"`].join(','));
+    rows.push([m.id,m.name_en,effStatus(m),a.missing?'yes':'',a.size?'yes':'',`"${(a.note||'').replace(/"/g,'""')}"`].join(','));
   });
   const blob=new Blob([rows.join('\n')],{type:'text/csv'});
   const el=document.createElement('a'); el.href=URL.createObjectURL(blob); el.download='emblem-annotations.csv'; el.click();
