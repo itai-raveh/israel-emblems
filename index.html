@@ -82,6 +82,15 @@
   .badge-city{background:#eff6ff;color:#1d4ed8;}
   .badge-local{background:#f0fdf4;color:#15803d;}
   .badge-regional{background:#fdf4ff;color:#7e22ce;}
+  .badge-palestinian{background:#fef9ec;color:#92400e;}
+  .badge-west-bank{background:#fff7ed;color:#9a3412;}
+  .badge-gaza{background:#f0fdf4;color:#065f46;}
+
+  .section-divider{display:flex;align-items:center;gap:16px;padding:24px 40px 12px;background:var(--bg);border-top:2px solid var(--border);}
+  .section-divider h2{font-family:'Fraunces',serif;font-weight:300;font-size:20px;white-space:nowrap;}
+  .section-divider h2 em{font-style:italic;color:#92400e;}
+  .section-divider-line{flex:1;height:1px;background:var(--border);}
+  .section-count{font-size:11px;color:var(--muted);white-space:nowrap;}
 
   .list-view{background:var(--surface);}
   .list-header{display:grid;grid-template-columns:60px 1fr 130px 90px 180px 100px;gap:12px;padding:10px 20px;background:var(--bg);border-bottom:2px solid var(--border);font-size:10px;text-transform:uppercase;letter-spacing:0.5px;color:var(--muted);}
@@ -179,6 +188,12 @@
       <button class="filter-btn" data-group="culture" data-value="mixed">Mixed</button>
       <button class="filter-btn" data-group="culture" data-value="bedouin">Bedouin</button>
       <button class="filter-btn" data-group="culture" data-value="druze">Druze</button>
+      <button class="filter-btn" data-group="culture" data-value="palestinian" style="border-color:#d97706;color:#92400e;">🇵🇸 Palestinian</button>
+    </div>
+    <div class="vdivider"></div>
+    <div class="btn-group" id="ps-district-filters" style="display:none;">
+      <button class="filter-btn" data-group="district" data-value="West Bank">West Bank</button>
+      <button class="filter-btn" data-group="district" data-value="Gaza Strip">Gaza Strip</button>
     </div>
   </div>
 </div>
@@ -196,6 +211,7 @@
 const GITHUB_USER='itai-raveh', GITHUB_REPO='israel-emblems', BRANCH='main';
 const RAW=`https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/${BRANCH}`;
 const CSV_URL=`${RAW}/data/municipalities.csv`;
+const PS_CSV_URL=`${RAW}/data/palestinian_municipalities.csv`;
 const STORAGE_KEY='israel-emblems-v4';
 
 const IMG_EXTS=['svg','png','jpg','webp'];
@@ -326,9 +342,14 @@ function smallBadge(m){return getA(m.id).size?`<span class="badge badge-size">�
 
 function cardHTML(m){
   const a=getA(m.id);
+  const isPalestinian=m.culture==='palestinian';
+  const localName=isPalestinian&&m.name_ar
+    ?`<div class="card-name-he" style="font-size:10px;color:var(--muted);direction:rtl;text-align:right;">${m.name_he}</div>
+       <div class="card-name-he" style="font-size:10px;color:var(--muted);direction:rtl;text-align:right;">${m.name_ar}</div>`
+    :`<div class="card-name-he">${m.name_he}</div>`;
   return`<div class="card" data-id="${m.id}" data-clickable="1">
     <div class="emblem-wrap">${ih(m,80)}${m._img?tierBadge(m._img):''}</div>
-    <div><div class="card-name">${m.name_en}</div><div class="card-name-he">${m.name_he}</div></div>
+    <div><div class="card-name">${m.name_en}</div>${localName}</div>
     <div class="card-meta">${m.district||''}</div>
     <div class="card-tags">${tb(m.type)}${cb(m.culture)}${logoBadge(m)}${smallBadge(m)}</div>
     ${m._obsolete?'':`<div class="card-ticks" data-stop="1">
@@ -344,10 +365,14 @@ function cardHTML(m){
 
 function listHTML(m){
   const a=getA(m.id);
+  const isPalestinian=m.culture==='palestinian';
+  const heCell=isPalestinian&&m.name_ar
+    ?`<div style="text-align:right"><div style="direction:rtl;font-size:12px;color:var(--muted)">${m.name_he}</div><div style="direction:rtl;font-size:11px;color:var(--muted);opacity:.7">${m.name_ar}</div></div>`
+    :`<div style="direction:rtl;font-size:12px;color:var(--muted)">${m.name_he}</div>`;
   return`<div class="list-row" data-id="${m.id}" data-clickable="1">
     <div class="list-thumb">${ih(m,44)}</div>
     <div><div class="list-name">${m.name_en}</div><div style="font-size:10px;color:var(--muted)">${m.district||''}</div></div>
-    <div style="direction:rtl;font-size:12px;color:var(--muted)">${m.name_he}</div>
+    ${heCell}
     <div>${tb(m.type)}</div>
     <div class="list-tags">${cb(m.culture)}${logoBadge(m)}${smallBadge(m)}</div>
     <div class="list-ticks" data-stop="1">
@@ -359,31 +384,61 @@ function listHTML(m){
 
 function render(){
   const filtered=sorted(DATA.filter(matches));
+  const israeli=filtered.filter(m=>m.culture!=='palestinian');
+  const palestinian=filtered.filter(m=>m.culture==='palestinian');
+
   document.getElementById('count').textContent=`${filtered.length} of ${DATA.length}`;
   const container=document.getElementById('main-content');
   if(!filtered.length){container.innerHTML='<div class="empty">No results.</div>';return;}
-  if(state.view==='grid'){
-    container.innerHTML=`<div class="grid">${filtered.map(cardHTML).join('')}</div>`;
-    container.querySelectorAll('input[data-ann]').forEach(inp=>{
-      inp.addEventListener('change',e=>{
-        e.stopPropagation();
-        setA(inp.dataset.id,inp.dataset.ann,inp.checked||false);
-        renderStats(DATA);render();
-      });
-    });
-  }else{
-    container.innerHTML=`<div class="list-view">
-      <div class="list-header"><div>Emblem</div><div>Name</div><div>Hebrew</div><div>Type</div><div>Tags</div><div>Mark</div></div>
-      ${filtered.map(listHTML).join('')}
-    </div>`;
-    container.querySelectorAll('.ltick').forEach(tick=>{
-      tick.addEventListener('click',e=>{
-        e.stopPropagation();
-        setA(tick.dataset.id,tick.dataset.ann,!getA(tick.dataset.id)[tick.dataset.ann]);
-        renderStats(DATA);render();
-      });
-    });
+
+  let html='';
+
+  if(israeli.length){
+    if(state.view==='grid'){
+      html+=`<div class="grid">${israeli.map(cardHTML).join('')}</div>`;
+    }else{
+      html+=`<div class="list-view">
+        <div class="list-header"><div>Emblem</div><div>Name</div><div>Hebrew</div><div>Type</div><div>Tags</div><div>Mark</div></div>
+        ${israeli.map(listHTML).join('')}
+      </div>`;
+    }
   }
+
+  if(palestinian.length){
+    const wbCount=palestinian.filter(m=>m.district==='West Bank').length;
+    const gzCount=palestinian.filter(m=>m.district==='Gaza Strip').length;
+    const subLabel=[wbCount&&`${wbCount} West Bank`,gzCount&&`${gzCount} Gaza`].filter(Boolean).join(' · ');
+    html+=`<div class="section-divider">
+      <h2>Palestinian <em>Emblems</em></h2>
+      <div class="section-divider-line"></div>
+      <span class="section-count">${palestinian.length} shown${subLabel?' ('+subLabel+')':''}</span>
+    </div>`;
+    if(state.view==='grid'){
+      html+=`<div class="grid">${palestinian.map(cardHTML).join('')}</div>`;
+    }else{
+      html+=`<div class="list-view">
+        <div class="list-header"><div>Emblem</div><div>Name</div><div>Hebrew / Arabic</div><div>Type</div><div>Tags</div><div>Mark</div></div>
+        ${palestinian.map(listHTML).join('')}
+      </div>`;
+    }
+  }
+
+  container.innerHTML=html;
+
+  container.querySelectorAll('input[data-ann]').forEach(inp=>{
+    inp.addEventListener('change',e=>{
+      e.stopPropagation();
+      setA(inp.dataset.id,inp.dataset.ann,inp.checked||false);
+      renderStats(DATA);render();
+    });
+  });
+  container.querySelectorAll('.ltick').forEach(tick=>{
+    tick.addEventListener('click',e=>{
+      e.stopPropagation();
+      setA(tick.dataset.id,tick.dataset.ann,!getA(tick.dataset.id)[tick.dataset.ann]);
+      renderStats(DATA);render();
+    });
+  });
   container.querySelectorAll('[data-clickable]').forEach(el=>{
     el.addEventListener('click',e=>{
       if(e.target.closest('[data-stop]'))return;
@@ -394,8 +449,9 @@ function render(){
 }
 
 function renderStats(data){
-  const c={found:0,logo:0,missing:0,obsolete:0};
+  const c={found:0,logo:0,missing:0,obsolete:0,palestinian:0};
   data.forEach(m=>{
+    if(m.culture==='palestinian'){c.palestinian++;return;}
     const s=effStatus(m);
     if(s==='found-svg'||s==='found-png')c.found++;
     else if(s==='logo')c.logo++;
@@ -407,6 +463,7 @@ function renderStats(data){
     {label:'Logo only',key:'logo',color:'#3730a3'},
     {label:'Missing',key:'missing',color:'#444'},
     {label:'Obsolete',key:'obsolete',color:'#5a4a00'},
+    {label:'Palestinian',key:'palestinian',color:'#92400e'},
   ].map(i=>`<div class="stat"><div class="stat-dot" style="background:${i.color}"></div><span>${c[i.key]||0} ${i.label}</span></div>`).join('');
 }
 
@@ -414,10 +471,14 @@ function openModal(m){
   const a=getA(m.id);
   const imgH=m._img?`<img src="${m._img.url}" alt="${m.name_en}">`:'<span style="color:#ccc;font-size:48px">◻</span>';
   const commonsLink=m.commons_url?`<a href="${m.commons_url}" target="_blank">${(m.commons_filename||'').replace('File:','')}</a>`:'—';
+  const isPalestinian=m.culture==='palestinian';
+  const heBlock=isPalestinian&&m.name_ar
+    ?`<div class="modal-he">${m.name_he}</div><div class="modal-he" style="font-size:13px;opacity:.75">${m.name_ar}</div>`
+    :`<div class="modal-he">${m.name_he}</div>`;
   document.getElementById('modal-content').innerHTML=`
     <div class="modal-emblem">${imgH}</div>
     <h2>${m.name_en}</h2>
-    <div class="modal-he">${m.name_he}</div>
+    ${heBlock}
     <div class="modal-tags">
       ${tb(m.type)}${cb(m.culture)}${logoBadge(m)}${smallBadge(m)}
       ${m._img&&m._img.tier<5?`<span class="badge" style="background:#eee;color:#666">${m._img.label}</span>`:''}
@@ -425,6 +486,7 @@ function openModal(m){
     <div class="modal-fields">
       <span class="modal-label">ID</span><span class="modal-value">${m.id}</span>
       <span class="modal-label">District</span><span class="modal-value">${m.district||'—'}</span>
+      ${isPalestinian?`<span class="modal-label">Governorate</span><span class="modal-value">${m.notes&&m.notes.includes('gov:')?m.notes.replace(/.*gov:\s*/,'').replace(/\s*\|.*/,''):'—'}</span>`:''}
       <span class="modal-label">Commons file</span><span class="modal-value">${commonsLink}</span>
       ${m.notes?`<span class="modal-label">Notes</span><span class="modal-value">${m.notes}</span>`:''}
     </div>
@@ -464,12 +526,16 @@ async function listFiles(folder){
 }
 
 async function main(){
-  const[csvText,svgFiles,pngFiles]=await Promise.all([
+  const[csvText,psCsvText,svgFiles,pngFiles]=await Promise.all([
     fetch(CSV_URL).then(r=>r.text()),
+    fetch(PS_CSV_URL).then(r=>r.ok?r.text():'').catch(()=>''),
     listFiles('emblems/svg'),
     listFiles('emblems/png'),
   ]);
-  DATA=enrich(parseCSV(csvText),{svg:svgFiles,png:pngFiles});
+  const allFiles={svg:svgFiles,png:pngFiles};
+  const israeli=enrich(parseCSV(csvText),allFiles);
+  const palestinian=psCsvText?enrich(parseCSV(psCsvText),allFiles):[];
+  DATA=[...israeli,...palestinian];
   renderStats(DATA);render();
 
   document.getElementById('search').addEventListener('input',e=>{state.search=e.target.value;render();});
@@ -515,6 +581,10 @@ async function main(){
         const v=btn.dataset.value;
         if(state.filters[group].has(v)){state.filters[group].delete(v);btn.classList.remove('active');}
         else{state.filters[group].add(v);btn.classList.add('active');}
+        if(group==='culture'){
+          const hasPalestinian=state.filters.culture.has('palestinian');
+          document.getElementById('ps-district-filters').style.display=hasPalestinian?'flex':'none';
+        }
         render();
       });
     });
