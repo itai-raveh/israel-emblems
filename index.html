@@ -64,6 +64,7 @@
   .tick{display:flex;align-items:center;gap:4px;font-size:10px;color:var(--muted);cursor:pointer;user-select:none;padding:3px 7px;border-radius:3px;flex:1;justify-content:center;transition:all 0.1s;border:1px solid transparent;}
   .tick:hover{background:var(--bg);}
   .tick input{width:11px;height:11px;cursor:pointer;margin:0;flex-shrink:0;accent-color:var(--accent);}
+  .tick.t-missing.on{color:var(--missing);border-color:#ddd;background:var(--missing-bg);}
   .tick.t-size.on{color:var(--size);border-color:var(--size-bg);background:var(--size-bg);}
 
   .badge{display:inline-block;font-size:10px;padding:2px 6px;border-radius:3px;font-weight:500;white-space:nowrap;}
@@ -93,6 +94,7 @@
   .list-ticks{display:flex;gap:4px;}
   .ltick{font-size:10px;padding:2px 7px;border-radius:3px;border:1px solid var(--border);cursor:pointer;white-space:nowrap;background:var(--surface);color:var(--muted);transition:all 0.1s;}
   .ltick:hover{border-color:var(--accent);}
+  .ltick.on-missing{background:var(--missing-bg);color:var(--missing);border-color:#bbb;}
   .ltick.on-size{background:var(--size-bg);color:var(--size);border-color:var(--size);}
 
   .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:100;align-items:center;justify-content:center;padding:24px;}
@@ -137,9 +139,6 @@
     </select>
     <span class="count" id="count" style="font-size:13px;font-weight:500;color:var(--text)"></span>
     <div class="right-controls">
-      <button class="flag-btn" id="flag-missing">❌ Missing</button>
-      <button class="flag-btn" id="flag-size">📐 Small file</button>
-      <div class="vdivider"></div>
       <button class="export-btn" id="export-btn">⬇ Export</button>
       <div class="vdivider"></div>
       <button class="view-btn active" id="btn-grid">⊞</button>
@@ -150,6 +149,11 @@
     <div class="btn-group">
       <button class="filter-btn active" data-group="coa" data-value="coa">🏛 COA</button>
       <button class="filter-btn" data-group="coa" data-value="obsolete">📜 Obsolete</button>
+    </div>
+    <div class="vdivider"></div>
+    <div class="btn-group">
+      <button class="flag-btn" id="flag-missing">❌ Missing</button>
+      <button class="flag-btn" id="flag-size">📐 Small file</button>
     </div>
     <div class="vdivider"></div>
     <div class="btn-group">
@@ -257,6 +261,12 @@ function enrich(data,allFiles){
   });
 }
 
+function isMissing(m){
+  const a=getA(m.id);
+  if('missing' in a) return !!a.missing;
+  return m.status==='not-found'||!m._img;
+}
+
 function effStatus(m){
   if(m._obsolete)return'obsolete';
   const a=getA(m.id);
@@ -322,6 +332,9 @@ function cardHTML(m){
     <div class="card-meta">${m.district||''}</div>
     <div class="card-tags">${tb(m.type)}${cb(m.culture)}${logoBadge(m)}${smallBadge(m)}</div>
     ${m._obsolete?'':`<div class="card-ticks" data-stop="1">
+      <label class="tick t-missing${isMissing(m)?' on':''}">
+        <input type="checkbox" data-ann="missing" data-id="${m.id}" ${isMissing(m)?'checked':''}> Missing
+      </label>
       <label class="tick t-size${a.size?' on':''}">
         <input type="checkbox" data-ann="size" data-id="${m.id}" ${a.size?'checked':''}> Small file
       </label>
@@ -338,7 +351,8 @@ function listHTML(m){
     <div>${tb(m.type)}</div>
     <div class="list-tags">${cb(m.culture)}${logoBadge(m)}${smallBadge(m)}</div>
     <div class="list-ticks" data-stop="1">
-      ${m._obsolete?'':`<span class="ltick${a.size?' on-size':''}" data-ann="size" data-id="${m.id}">Small file</span>`}
+      ${m._obsolete?'':`<span class="ltick${isMissing(m)?' on-missing':''}" data-ann="missing" data-id="${m.id}">Missing</span>
+      <span class="ltick${a.size?' on-size':''}" data-ann="size" data-id="${m.id}">Small file</span>`}
     </div>
   </div>`;
 }
