@@ -14,6 +14,7 @@
     --missing:#444;--missing-bg:#f0f0f0;
     --size:#6b3a1a;--size-bg:#fdf0e8;
     --error:#5a2d8b;--error-bg:#f3eeff;
+    --obsolete:#5a4a00;--obsolete-bg:#fdf8e0;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font-size:13px;min-height:100vh;}
@@ -46,9 +47,15 @@
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1px;background:var(--border);}
   .card{background:var(--surface);padding:14px;display:flex;flex-direction:column;gap:7px;cursor:pointer;transition:background 0.1s;}
   .card:hover{background:#fafaf7;}
-  .emblem-wrap{height:90px;display:flex;align-items:center;justify-content:center;background:var(--bg);border-radius:4px;overflow:hidden;}
+  .card.obsolete{opacity:0.8;}
+  .emblem-wrap{height:90px;display:flex;align-items:center;justify-content:center;background:var(--bg);border-radius:4px;overflow:hidden;position:relative;}
   .emblem-wrap img{max-height:80px;max-width:100%;object-fit:contain;}
   .no-image{color:var(--border);font-size:28px;}
+  .img-tier{position:absolute;bottom:3px;right:3px;font-size:9px;padding:1px 4px;border-radius:2px;opacity:0.75;font-weight:500;}
+  .img-tier.t1{background:var(--svg-bg);color:var(--svg);}
+  .img-tier.t2{background:var(--png-bg);color:var(--png);}
+  .img-tier.t3{background:#e8eeff;color:#3730a3;}
+  .img-tier.t4{background:#fef3c7;color:#92400e;}
   .card-name{font-family:'Fraunces',serif;font-weight:300;font-size:13px;line-height:1.3;}
   .card-name-he{font-size:10px;color:var(--muted);direction:rtl;text-align:right;}
   .card-meta{font-size:10px;color:var(--muted);}
@@ -72,10 +79,13 @@
   .badge-not-yet{background:var(--missing-bg);color:var(--missing);}
   .badge-error{background:var(--error-bg);color:var(--error);}
   .badge-size{background:var(--size-bg);color:var(--size);}
+  .badge-obsolete{background:var(--obsolete-bg);color:var(--obsolete);}
   .badge-jewish{background:#eef2ff;color:#3730a3;}
   .badge-arab{background:#fef3c7;color:#92400e;}
   .badge-mixed{background:#f0fdf4;color:#166534;}
   .badge-bedouin{background:#fdf4ff;color:#6b21a8;}
+  .badge-druze{background:#fff0f8;color:#9d174d;}
+  .badge-circassian{background:#f0f4ff;color:#1e3a8a;}
   .badge-city{background:#eff6ff;color:#1d4ed8;}
   .badge-local{background:#f0fdf4;color:#15803d;}
   .badge-regional{background:#fdf4ff;color:#7e22ce;}
@@ -85,6 +95,7 @@
   .list-header{display:grid;grid-template-columns:60px 1fr 130px 90px 160px 120px;gap:12px;padding:10px 20px;background:var(--bg);border-bottom:2px solid var(--border);font-size:10px;text-transform:uppercase;letter-spacing:0.5px;color:var(--muted);}
   .list-row{display:grid;grid-template-columns:60px 1fr 130px 90px 160px 120px;gap:12px;padding:10px 20px;border-bottom:1px solid var(--border);align-items:center;cursor:pointer;transition:background 0.1s;}
   .list-row:hover{background:#fafaf7;}
+  .list-row.obsolete{opacity:0.8;}
   .list-thumb{width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:var(--bg);border-radius:3px;overflow:hidden;}
   .list-thumb img{max-width:44px;max-height:44px;object-fit:contain;}
   .list-name{font-family:'Fraunces',serif;font-weight:300;font-size:14px;}
@@ -157,6 +168,7 @@
       <button class="filter-btn" data-group="status" data-value="healthy">⭐ All healthy</button>
       <button class="filter-btn" data-group="status" data-value="wrong-file">⚠️ Wrong</button>
       <button class="filter-btn" data-group="status" data-value="not-found">❌ Missing</button>
+      <button class="filter-btn" data-group="status" data-value="obsolete">🏛 Obsolete</button>
     </div>
   </div>
   <div class="controls-row">
@@ -195,18 +207,59 @@ const RAW=`https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/${BRA
 const CSV_URL=`${RAW}/data/municipalities.csv`;
 const STORAGE_KEY='israel-emblems-v3';
 
-const STATUS_OVERRIDES={'rosh-pina':'found-svg','kiryat-tivon':'found-svg'};
+// ── Image hierarchy ───────────────────────────────────────────────────────────
+// Priority:
+//   1. {id}-COA.svg          (COA svg, no logo)
+//   2. {id}-COA.png/jpg/webp (COA png, no logo)
+//   3. {id}-logo.svg         (logo svg)
+//   4. {id}-logo.png/jpg     (logo png)
+// -double and -obsolete files are excluded from display
+const IMG_EXTS = ['svg','png','jpg','webp'];
 
-// ── Annotations: { id: { wrong, missing, size, note } } ──────────────────────
+function findBestImage(id, allFiles) {
+  const candidates = [
+    // Tier 1: COA SVG
+    { tier: 1, label: 'SVG·COA', folder: 'svg', name: `${id}-COA.svg` },
+    // Tier 2: COA PNG (any ext)
+    ...IMG_EXTS.filter(e=>e!=='svg').map(e=>({ tier: 2, label: 'PNG·COA', folder: 'png', name: `${id}-COA.${e}` })),
+    // Tier 3: Logo SVG
+    { tier: 3, label: 'SVG·Logo', folder: 'svg', name: `${id}-logo.svg` },
+    // Tier 4: Logo PNG (any ext)
+    ...IMG_EXTS.filter(e=>e!=='svg').map(e=>({ tier: 4, label: 'PNG·Logo', folder: 'png', name: `${id}-logo.${e}` })),
+  ];
+
+  for (const c of candidates) {
+    const list = c.folder === 'svg' ? allFiles.svg : allFiles.png;
+    if (list.includes(c.name)) {
+      return {
+        url: `${RAW}/emblems/${c.folder}/${encodeURIComponent(c.name)}`,
+        tier: c.tier,
+        label: c.label,
+        name: c.name,
+      };
+    }
+  }
+
+  // Fallback: obsolete files (for obsolete entries)
+  const obsoletePng = allFiles.png.find(f => f.startsWith(`${id}-`) && f.includes('obsolete'));
+  if (obsoletePng) {
+    return {
+      url: `${RAW}/emblems/png/${encodeURIComponent(obsoletePng)}`,
+      tier: 5, label: 'PNG·Obsolete', name: obsoletePng,
+    };
+  }
+
+  return null;
+}
+
+// ── Annotations ───────────────────────────────────────────────────────────────
 function loadAnn(){ try{ return JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}'); } catch{ return {}; } }
 function saveAnn(a){ localStorage.setItem(STORAGE_KEY,JSON.stringify(a)); }
 let ANN=loadAnn();
 function getA(id){ return ANN[id]||{}; }
 function setA(id,key,val){
   if(!ANN[id]) ANN[id]={};
-  // Always store the value explicitly — false means "user unticked"
   ANN[id][key]=val;
-  // Clean up only if all values are falsy AND not explicit false overrides
   const allEmpty=Object.values(ANN[id]).every(v=>v===''||v===null||v===undefined);
   if(allEmpty) delete ANN[id];
   saveAnn(ANN);
@@ -231,27 +284,21 @@ function parseCSV(text){
   }).filter(r=>r.id);
 }
 
-function imgUrl(m,allFiles){
-  const p=m.id+'__';
-  const s=allFiles.svg.find(f=>f.startsWith(p));
-  if(s) return{url:`${RAW}/emblems/svg/${encodeURIComponent(s)}`,type:'svg'};
-  const n=allFiles.png.find(f=>f.startsWith(p));
-  if(n) return{url:`${RAW}/emblems/png/${encodeURIComponent(n)}`,type:'png'};
-  return null;
+function isObsolete(m) {
+  return (m.file_status||'').toLowerCase()==='obsolete';
 }
 
-function enrich(data,allFiles){
+function enrich(data, allFiles){
   return data.map(m=>{
-    if(STATUS_OVERRIDES[m.id]) m.status=STATUS_OVERRIDES[m.id];
-    m._img=imgUrl(m,allFiles);
+    m._img = findBestImage(m.id, allFiles);
     return m;
   });
 }
 
-// ── Effective status — annotations override CSV status ────────────────────────
+// ── Effective status ──────────────────────────────────────────────────────────
 function effStatus(m){
+  if(isObsolete(m)) return 'obsolete';
   const a=getA(m.id);
-  // Explicit false means user unticked a CSV-sourced status
   if(a.wrong===false&&m.status==='wrong-file') return 'found-png';
   if(a.missing===false&&m.status==='not-found') return 'found-png';
   if(a.wrong)   return 'wrong-file';
@@ -259,7 +306,6 @@ function effStatus(m){
   return m.status;
 }
 
-// Tick checked state: reflects CSV status unless localStorage overrides it
 function isWrong(m){
   const a=getA(m.id);
   if('wrong' in a) return !!a.wrong;
@@ -272,11 +318,22 @@ function isMissing(m){
 }
 
 // ── Badges ────────────────────────────────────────────────────────────────────
-const SL={'found-svg':'✅ SVG','found-png':'🟡 PNG','wrong-file':'⚠️ Wrong','not-found':'❌ Missing','not-yet':'⬜ Not yet','error':'🔴 Error'};
+const SL={
+  'found-svg':'✅ SVG','found-png':'🟡 PNG',
+  'wrong-file':'⚠️ Wrong','not-found':'❌ Missing',
+  'not-yet':'⬜ Not yet','error':'🔴 Error',
+  'obsolete':'🏛 Obsolete'
+};
 function sb(status){ const c=(status||'error').replace(/[^a-z-]/g,''); return`<span class="badge badge-${c}">${SL[status]||status}</span>`; }
 function cb(culture){ if(!culture)return''; return`<span class="badge badge-${culture.toLowerCase()}">${culture}</span>`; }
 function tb(type){ if(!type)return''; return`<span class="badge badge-${type.toLowerCase()}">${type}</span>`; }
 function sizeBadge(m){ if(getA(m.id).size) return`<span class="badge badge-size">📐 Size</span>`; return''; }
+
+function tierBadge(img) {
+  if(!img) return '';
+  const cls = ['','t1','t2','t3','t4','t4'][img.tier] || '';
+  return `<span class="img-tier ${cls}">${img.label}</span>`;
+}
 
 // ── State ─────────────────────────────────────────────────────────────────────
 const state={view:'grid',sort:'name',search:'',filters:{status:new Set(),flag:new Set(),type:new Set(),culture:new Set()}};
@@ -298,7 +355,8 @@ function matches(m){
     if(status.has('healthy-svg') && !(isHealthy(m)&&es==='found-svg')) return false;
     if(status.has('healthy-png') && !(isHealthy(m)&&es==='found-png')) return false;
     if(status.has('healthy')     && !isHealthy(m)) return false;
-    if(!status.has('healthy-svg')&&!status.has('healthy-png')&&!status.has('healthy')&&!status.has(es)) return false;
+    if(status.has('obsolete')    && es!=='obsolete') return false;
+    if(!status.has('healthy-svg')&&!status.has('healthy-png')&&!status.has('healthy')&&!status.has('obsolete')&&!status.has(es)) return false;
   }
   if(type.size&&!type.has((m.type||'').toLowerCase())) return false;
   if(culture.size&&!culture.has((m.culture||'').toLowerCase())) return false;
@@ -319,7 +377,7 @@ function sorted(data){
   });
 }
 
-function ih(m,size=80){
+function ih(m, size=80){
   if(!m._img) return`<span class="no-image">◻</span>`;
   return`<img src="${m._img.url}" alt="${m.name_en}" loading="lazy" style="max-height:${size}px;max-width:100%;object-fit:contain" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="no-image" style="display:none">◻</span>`;
 }
@@ -327,12 +385,16 @@ function ih(m,size=80){
 // ── Card ──────────────────────────────────────────────────────────────────────
 function cardHTML(m){
   const a=getA(m.id), es=effStatus(m);
-  return`<div class="card" data-id="${m.id}" data-clickable="1">
-    <div class="emblem-wrap">${ih(m,80)}</div>
+  const obs = isObsolete(m);
+  return`<div class="card${obs?' obsolete':''}" data-id="${m.id}" data-clickable="1">
+    <div class="emblem-wrap">
+      ${ih(m,80)}
+      ${m._img ? tierBadge(m._img) : ''}
+    </div>
     <div><div class="card-name">${m.name_en}</div><div class="card-name-he">${m.name_he}</div></div>
     <div class="card-meta">${m.district}</div>
     <div class="card-tags">${sb(es)}${tb(m.type)}${cb(m.culture)}${sizeBadge(m)}</div>
-    <div class="card-ticks" data-stop="1">
+    ${obs ? '' : `<div class="card-ticks" data-stop="1">
       <label class="tick t-wrong${isWrong(m)?' on':''}">
         <input type="checkbox" data-ann="wrong" data-id="${m.id}" ${isWrong(m)?'checked':''}>Wrong
       </label>
@@ -342,23 +404,26 @@ function cardHTML(m){
       <label class="tick t-size${a.size?' on':''}">
         <input type="checkbox" data-ann="size" data-id="${m.id}" ${a.size?'checked':''}>Size
       </label>
-    </div>
+    </div>`}
   </div>`;
 }
 
 // ── List row ──────────────────────────────────────────────────────────────────
 function listHTML(m){
   const a=getA(m.id), es=effStatus(m);
-  return`<div class="list-row" data-id="${m.id}" data-clickable="1">
+  const obs = isObsolete(m);
+  return`<div class="list-row${obs?' obsolete':''}" data-id="${m.id}" data-clickable="1">
     <div class="list-thumb">${ih(m,44)}</div>
     <div><div class="list-name">${m.name_en}</div><div class="card-meta">${m.district}</div></div>
     <div style="direction:rtl;font-size:12px;color:var(--muted)">${m.name_he}</div>
     <div>${tb(m.type)}</div>
     <div class="list-tags">${sb(es)}${cb(m.culture)}${sizeBadge(m)}</div>
     <div class="list-ticks" data-stop="1">
+      ${obs ? '' : `
       <span class="ltick${isWrong(m)?' on-wrong':''}" data-ann="wrong" data-id="${m.id}">Wrong</span>
       <span class="ltick${isMissing(m)?' on-missing':''}" data-ann="missing" data-id="${m.id}">Missing</span>
       <span class="ltick${a.size?' on-size':''}" data-ann="size" data-id="${m.id}">Size</span>
+      `}
     </div>
   </div>`;
 }
@@ -412,6 +477,7 @@ function renderStats(data){
     {label:'PNG',key:'found-png',color:'#7a5a00'},
     {label:'Wrong',key:'wrong-file',color:'#8b1a1a'},
     {label:'Missing',key:'not-found',color:'#444'},
+    {label:'Obsolete',key:'obsolete',color:'#5a4a00'},
   ].map(i=>`<div class="stat"><div class="stat-dot" style="background:${i.color}"></div><span>${counts[i.key]||0} ${i.label}</span></div>`).join('');
 }
 
@@ -420,11 +486,12 @@ function openModal(m){
   const a=getA(m.id);
   const imgH=m._img?`<img src="${m._img.url}" alt="${m.name_en}">`:'<span style="color:#ccc;font-size:48px">◻</span>';
   const commonsLink=m.commons_url?`<a href="${m.commons_url}" target="_blank">${(m.commons_filename||'').replace('File:','')}</a>`:'—';
+  const tierInfo = m._img ? `<span class="badge" style="background:#eee;color:#555">${m._img.label}</span>` : '';
   document.getElementById('modal-content').innerHTML=`
     <div class="modal-emblem">${imgH}</div>
     <h2>${m.name_en}</h2>
     <div class="modal-he">${m.name_he}</div>
-    <div class="modal-tags">${sb(effStatus(m))}${tb(m.type)}${cb(m.culture)}${sizeBadge(m)}</div>
+    <div class="modal-tags">${sb(effStatus(m))}${tb(m.type)}${cb(m.culture)}${tierInfo}${sizeBadge(m)}</div>
     <div class="modal-fields">
       <span class="modal-label">ID</span><span class="modal-value">${m.id}</span>
       <span class="modal-label">District</span><span class="modal-value">${m.district}</span>
@@ -432,9 +499,10 @@ function openModal(m){
       <span class="modal-label">Dimensions</span><span class="modal-value">${m.width_px&&m.height_px?m.width_px+' × '+m.height_px+' px':'—'}</span>
       <span class="modal-label">Commons file</span><span class="modal-value">${commonsLink}</span>
       ${m.correct_commons_url?`<span class="modal-label">Correct URL</span><span class="modal-value"><a href="${m.correct_commons_url}" target="_blank">→ view</a></span>`:''}
+      ${m.notes?`<span class="modal-label">Notes</span><span class="modal-value">${m.notes}</span>`:''}
     </div>
     <div class="modal-note">
-      <label>Notes (saved in browser)</label>
+      <label>Personal notes (saved in browser)</label>
       <textarea id="modal-note">${a.note||''}</textarea>
       <button class="note-save" id="note-save">Save note</button>
       <span class="note-ok" id="note-ok">✓ Saved</span>
