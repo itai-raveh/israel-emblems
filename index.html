@@ -9,11 +9,9 @@
   :root {
     --bg:#f5f2eb;--surface:#fff;--border:#d6d0c4;--text:#1a1814;--muted:#7a7468;--accent:#2d5a8e;
     --svg:#1a6b3a;--svg-bg:#e8f5ee;
-    --png:#7a5a00;--png-bg:#fff8e0;
     --logo:#3730a3;--logo-bg:#eef2ff;
     --missing:#444;--missing-bg:#f0f0f0;
     --size:#6b3a1a;--size-bg:#fdf0e8;
-    --error:#5a2d8b;--error-bg:#f3eeff;
     --obsolete:#5a4a00;--obsolete-bg:#fdf8e0;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
@@ -26,56 +24,52 @@
   .stat{display:flex;align-items:center;gap:8px;font-size:12px;}
   .stat-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
 
-  .controls{padding:14px 40px;background:var(--bg);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:10;display:flex;flex-direction:column;gap:10px;}
-  .controls-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
-  .controls input[type="text"]{font-family:'DM Mono',monospace;font-size:12px;padding:7px 12px;border:1px solid var(--border);border-radius:4px;background:var(--surface);color:var(--text);width:220px;outline:none;}
+  .controls{padding:12px 40px;background:var(--bg);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:10;display:flex;flex-direction:column;gap:8px;}
+  .controls-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+  .controls input[type="text"]{font-family:'DM Mono',monospace;font-size:12px;padding:6px 12px;border:1px solid var(--border);border-radius:4px;background:var(--surface);color:var(--text);width:200px;outline:none;}
   .controls input[type="text"]:focus{border-color:var(--accent);}
   .controls-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;white-space:nowrap;}
-  .btn-group{display:flex;gap:4px;flex-wrap:wrap;}
-  .filter-btn{font-family:'DM Mono',monospace;font-size:11px;padding:5px 10px;border:1px solid var(--border);border-radius:4px;background:var(--surface);color:var(--muted);cursor:pointer;transition:all 0.12s;white-space:nowrap;}
+  .btn-group{display:flex;gap:3px;flex-wrap:wrap;}
+  .filter-btn{font-family:'DM Mono',monospace;font-size:11px;padding:4px 9px;border:1px solid var(--border);border-radius:4px;background:var(--surface);color:var(--muted);cursor:pointer;transition:all 0.12s;white-space:nowrap;}
   .filter-btn:hover{border-color:var(--accent);color:var(--accent);}
   .filter-btn.active{background:var(--accent);color:#fff;border-color:var(--accent);}
-  .sort-select{font-family:'DM Mono',monospace;font-size:11px;padding:5px 10px;border:1px solid var(--border);border-radius:4px;background:var(--surface);color:var(--text);cursor:pointer;outline:none;}
-  .view-toggle{margin-left:auto;display:flex;gap:4px;}
-  .view-btn{font-family:'DM Mono',monospace;font-size:16px;padding:4px 8px;border:1px solid var(--border);border-radius:4px;background:var(--surface);color:var(--muted);cursor:pointer;line-height:1;}
+  .sort-select{font-family:'DM Mono',monospace;font-size:11px;padding:4px 9px;border:1px solid var(--border);border-radius:4px;background:var(--surface);color:var(--text);cursor:pointer;outline:none;}
+  .right-controls{margin-left:auto;display:flex;gap:6px;align-items:center;}
+  .flag-btn{font-family:'DM Mono',monospace;font-size:11px;padding:4px 9px;border:1px solid var(--border);border-radius:4px;background:var(--surface);color:var(--muted);cursor:pointer;transition:all 0.12s;white-space:nowrap;}
+  .flag-btn:hover{border-color:var(--accent);color:var(--accent);}
+  .flag-btn.active-size{background:var(--size-bg);color:var(--size);border-color:var(--size);}
+  .flag-btn.active-missing{background:var(--missing-bg);color:var(--missing);border-color:#bbb;}
+  .view-btn{font-family:'DM Mono',monospace;font-size:16px;padding:3px 7px;border:1px solid var(--border);border-radius:4px;background:var(--surface);color:var(--muted);cursor:pointer;line-height:1;}
   .view-btn.active{background:var(--accent);color:#fff;border-color:var(--accent);}
   .count{color:var(--muted);font-size:11px;white-space:nowrap;}
-  .export-btn{font-family:'DM Mono',monospace;font-size:11px;padding:5px 10px;border:1px solid var(--border);border-radius:4px;background:var(--surface);color:var(--muted);cursor:pointer;}
+  .export-btn{font-family:'DM Mono',monospace;font-size:11px;padding:4px 9px;border:1px solid var(--border);border-radius:4px;background:var(--surface);color:var(--muted);cursor:pointer;}
   .export-btn:hover{border-color:var(--accent);color:var(--accent);}
+  .vdivider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
 
-  /* Grid */
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1px;background:var(--border);}
   .card{background:var(--surface);padding:14px;display:flex;flex-direction:column;gap:7px;cursor:pointer;transition:background 0.1s;}
   .card:hover{background:#fafaf7;}
-  .card.obsolete{opacity:0.8;}
   .emblem-wrap{height:90px;display:flex;align-items:center;justify-content:center;background:var(--bg);border-radius:4px;overflow:hidden;position:relative;}
   .emblem-wrap img{max-height:80px;max-width:100%;object-fit:contain;}
   .no-image{color:var(--border);font-size:28px;}
-  .img-tier{position:absolute;bottom:3px;right:3px;font-size:9px;padding:1px 4px;border-radius:2px;opacity:0.75;font-weight:500;}
+  .img-tier{position:absolute;bottom:3px;right:3px;font-size:9px;padding:1px 4px;border-radius:2px;opacity:0.7;font-weight:500;}
   .img-tier.t1{background:var(--svg-bg);color:var(--svg);}
-  .img-tier.t2{background:var(--png-bg);color:var(--png);}
-  .img-tier.t3{background:#e8eeff;color:#3730a3;}
-  .img-tier.t4{background:#fef3c7;color:#92400e;}
+  .img-tier.t2{background:#fff8e0;color:#7a5a00;}
+  .img-tier.t3,.img-tier.t4{background:#e8eeff;color:#3730a3;}
   .card-name{font-family:'Fraunces',serif;font-weight:300;font-size:13px;line-height:1.3;}
   .card-name-he{font-size:10px;color:var(--muted);direction:rtl;text-align:right;}
   .card-meta{font-size:10px;color:var(--muted);}
   .card-tags{display:flex;flex-wrap:wrap;gap:3px;}
-
-  /* Inline ticks */
-  .card-ticks{display:flex;gap:0;padding-top:8px;border-top:1px solid var(--border);margin-top:2px;}
-  .tick{display:flex;align-items:center;gap:4px;font-size:10px;color:var(--muted);cursor:pointer;user-select:none;padding:3px 6px;border-radius:3px;flex:1;justify-content:center;transition:all 0.1s;border:1px solid transparent;}
+  .card-ticks{display:flex;gap:4px;padding-top:8px;border-top:1px solid var(--border);margin-top:2px;}
+  .tick{display:flex;align-items:center;gap:4px;font-size:10px;color:var(--muted);cursor:pointer;user-select:none;padding:3px 7px;border-radius:3px;flex:1;justify-content:center;transition:all 0.1s;border:1px solid transparent;}
   .tick:hover{background:var(--bg);}
   .tick input{width:11px;height:11px;cursor:pointer;margin:0;flex-shrink:0;accent-color:var(--accent);}
-  .tick.t-missing.on{color:var(--missing);border-color:#ddd;background:var(--missing-bg);}
   .tick.t-size.on{color:var(--size);border-color:var(--size-bg);background:var(--size-bg);}
 
-  /* Badges */
   .badge{display:inline-block;font-size:10px;padding:2px 6px;border-radius:3px;font-weight:500;white-space:nowrap;}
   .badge-found-svg,.badge-found-png{background:var(--svg-bg);color:var(--svg);}
   .badge-logo{background:var(--logo-bg);color:var(--logo);}
-  .badge-not-found{background:var(--missing-bg);color:var(--missing);}
-  .badge-not-yet{background:var(--missing-bg);color:var(--missing);}
-  .badge-error{background:var(--error-bg);color:var(--error);}
+  .badge-not-found,.badge-not-yet,.badge-error{background:var(--missing-bg);color:var(--missing);}
   .badge-size{background:var(--size-bg);color:var(--size);}
   .badge-obsolete{background:var(--obsolete-bg);color:var(--obsolete);}
   .badge-jewish{background:#eef2ff;color:#3730a3;}
@@ -88,12 +82,10 @@
   .badge-local{background:#f0fdf4;color:#15803d;}
   .badge-regional{background:#fdf4ff;color:#7e22ce;}
 
-  /* List */
   .list-view{background:var(--surface);}
-  .list-header{display:grid;grid-template-columns:60px 1fr 130px 90px 160px 120px;gap:12px;padding:10px 20px;background:var(--bg);border-bottom:2px solid var(--border);font-size:10px;text-transform:uppercase;letter-spacing:0.5px;color:var(--muted);}
-  .list-row{display:grid;grid-template-columns:60px 1fr 130px 90px 160px 120px;gap:12px;padding:10px 20px;border-bottom:1px solid var(--border);align-items:center;cursor:pointer;transition:background 0.1s;}
+  .list-header{display:grid;grid-template-columns:60px 1fr 130px 90px 180px 100px;gap:12px;padding:10px 20px;background:var(--bg);border-bottom:2px solid var(--border);font-size:10px;text-transform:uppercase;letter-spacing:0.5px;color:var(--muted);}
+  .list-row{display:grid;grid-template-columns:60px 1fr 130px 90px 180px 100px;gap:12px;padding:10px 20px;border-bottom:1px solid var(--border);align-items:center;cursor:pointer;transition:background 0.1s;}
   .list-row:hover{background:#fafaf7;}
-  .list-row.obsolete{opacity:0.8;}
   .list-thumb{width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:var(--bg);border-radius:3px;overflow:hidden;}
   .list-thumb img{max-width:44px;max-height:44px;object-fit:contain;}
   .list-name{font-family:'Fraunces',serif;font-weight:300;font-size:14px;}
@@ -101,10 +93,8 @@
   .list-ticks{display:flex;gap:4px;}
   .ltick{font-size:10px;padding:2px 7px;border-radius:3px;border:1px solid var(--border);cursor:pointer;white-space:nowrap;background:var(--surface);color:var(--muted);transition:all 0.1s;}
   .ltick:hover{border-color:var(--accent);}
-  .ltick.on-missing{background:var(--missing-bg);color:var(--missing);border-color:#bbb;}
   .ltick.on-size{background:var(--size-bg);color:var(--size);border-color:var(--size);}
 
-  /* Modal */
   .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:100;align-items:center;justify-content:center;padding:24px;}
   .modal-overlay.open{display:flex;}
   .modal{background:var(--surface);border-radius:8px;max-width:560px;width:100%;max-height:90vh;overflow-y:auto;padding:32px;position:relative;}
@@ -124,7 +114,6 @@
   .modal-note textarea:focus{border-color:var(--accent);}
   .note-save{margin-top:8px;font-family:'DM Mono',monospace;font-size:11px;padding:5px 12px;background:var(--accent);color:#fff;border:none;border-radius:4px;cursor:pointer;}
   .note-ok{margin-left:10px;font-size:11px;color:var(--muted);display:none;}
-
   .empty{padding:80px;text-align:center;color:var(--muted);background:var(--surface);}
   .loading{padding:80px;text-align:center;color:var(--muted);}
 </style>
@@ -138,49 +127,54 @@
 
 <div class="controls">
   <div class="controls-row">
-    <input type="text" id="search" placeholder="Search by name, district, type…">
+    <input type="text" id="search" placeholder="Search by name, district…">
     <span class="controls-label">Sort:</span>
     <select class="sort-select" id="sort">
       <option value="name">Name A–Z</option>
       <option value="name-desc">Name Z–A</option>
-      <option value="status">Status</option>
       <option value="type">Type</option>
       <option value="district">District</option>
     </select>
     <span class="count" id="count" style="font-size:13px;font-weight:500;color:var(--text)"></span>
-    <button class="export-btn" id="export-btn">⬇ Export annotations</button>
-    <div class="view-toggle">
+    <div class="right-controls">
+      <button class="flag-btn" id="flag-missing">❌ Missing</button>
+      <button class="flag-btn" id="flag-size">📐 Small file</button>
+      <div class="vdivider"></div>
+      <button class="export-btn" id="export-btn">⬇ Export</button>
+      <div class="vdivider"></div>
       <button class="view-btn active" id="btn-grid">⊞</button>
       <button class="view-btn" id="btn-list">☰</button>
     </div>
   </div>
   <div class="controls-row">
-    <span class="controls-label">Status:</span>
     <div class="btn-group">
-      <button class="filter-btn active" data-group="status" data-value="all">All</button>
-      <button class="filter-btn" data-group="status" data-value="found">✅ Found</button>
-      <button class="filter-btn" data-group="status" data-value="logo">🏷 Municipal Logo</button>
-      <button class="filter-btn" data-group="status" data-value="not-found">❌ Missing</button>
-      <button class="filter-btn" data-group="status" data-value="obsolete">🏛 Obsolete</button>
+      <button class="filter-btn active" data-group="coa" data-value="coa">🏛 COA</button>
+      <button class="filter-btn" data-group="coa" data-value="obsolete">📜 Obsolete</button>
     </div>
-  </div>
-  <div class="controls-row">
-    <span class="controls-label">Flags:</span>
-    <div class="btn-group">
-      <button class="filter-btn" data-group="flag" data-value="size">📐 Size</button>
-    </div>
-    <span class="controls-label" style="margin-left:12px">Type:</span>
+    <div class="vdivider"></div>
     <div class="btn-group">
       <button class="filter-btn" data-group="type" data-value="city">City</button>
       <button class="filter-btn" data-group="type" data-value="local">Local</button>
       <button class="filter-btn" data-group="type" data-value="regional">Regional</button>
     </div>
-    <span class="controls-label" style="margin-left:12px">Culture:</span>
+    <div class="vdivider"></div>
+    <div class="btn-group">
+      <button class="filter-btn" data-group="district" data-value="north">North</button>
+      <button class="filter-btn" data-group="district" data-value="center">Center</button>
+      <button class="filter-btn" data-group="district" data-value="south">South</button>
+      <button class="filter-btn" data-group="district" data-value="jerusalem">Jerusalem</button>
+      <button class="filter-btn" data-group="district" data-value="haifa">Haifa</button>
+      <button class="filter-btn" data-group="district" data-value="tel-aviv">Tel Aviv</button>
+      <button class="filter-btn" data-group="district" data-value="golan">Golan</button>
+      <button class="filter-btn" data-group="district" data-value="judea-samaria">Judea & Samaria</button>
+    </div>
+    <div class="vdivider"></div>
     <div class="btn-group">
       <button class="filter-btn" data-group="culture" data-value="jewish">Jewish</button>
       <button class="filter-btn" data-group="culture" data-value="arab">Arab</button>
       <button class="filter-btn" data-group="culture" data-value="mixed">Mixed</button>
       <button class="filter-btn" data-group="culture" data-value="bedouin">Bedouin</button>
+      <button class="filter-btn" data-group="culture" data-value="druze">Druze</button>
     </div>
   </div>
 </div>
@@ -198,83 +192,49 @@
 const GITHUB_USER='itai-raveh', GITHUB_REPO='israel-emblems', BRANCH='main';
 const RAW=`https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/${BRANCH}`;
 const CSV_URL=`${RAW}/data/municipalities.csv`;
-const STORAGE_KEY='israel-emblems-v3';
+const STORAGE_KEY='israel-emblems-v4';
 
-// ── Image hierarchy ───────────────────────────────────────────────────────────
-// Priority:
-//   1. {id}-COA.svg          (COA svg, no logo)
-//   2. {id}-COA.png/jpg/webp (COA png, no logo)
-//   3. {id}-logo.svg         (logo svg)
-//   4. {id}-logo.png/jpg     (logo png)
-// -double and -obsolete files are excluded from display
-const IMG_EXTS = ['svg','png','jpg','webp'];
+const IMG_EXTS=['svg','png','jpg','webp'];
 
-function findBestImage(id, allFiles) {
-  const candidates = [
-    // Tier 1: COA SVG
-    { tier: 1, label: 'SVG·COA', folder: 'svg', name: `${id}-COA.svg` },
-    // Tier 2: COA PNG (any ext)
-    ...IMG_EXTS.filter(e=>e!=='svg').map(e=>({ tier: 2, label: 'PNG·COA', folder: 'png', name: `${id}-COA.${e}` })),
-    // Tier 3: Logo SVG
-    { tier: 3, label: 'SVG·Logo', folder: 'svg', name: `${id}-logo.svg` },
-    // Tier 4: Logo PNG (any ext)
-    ...IMG_EXTS.filter(e=>e!=='svg').map(e=>({ tier: 4, label: 'PNG·Logo', folder: 'png', name: `${id}-logo.${e}` })),
+function findBestImage(id,allFiles){
+  const candidates=[
+    {tier:1,label:'SVG',folder:'svg',name:`${id}-COA.svg`},
+    ...IMG_EXTS.filter(e=>e!=='svg').map(e=>({tier:2,label:'PNG',folder:'png',name:`${id}-COA.${e}`})),
+    {tier:3,label:'SVG·Logo',folder:'svg',name:`${id}-logo.svg`},
+    ...IMG_EXTS.filter(e=>e!=='svg').map(e=>({tier:4,label:'PNG·Logo',folder:'png',name:`${id}-logo.${e}`})),
   ];
-
-  for (const c of candidates) {
-    const list = c.folder === 'svg' ? allFiles.svg : allFiles.png;
-    if (list.includes(c.name)) {
-      return {
-        url: `${RAW}/emblems/${c.folder}/${encodeURIComponent(c.name)}`,
-        tier: c.tier,
-        label: c.label,
-        name: c.name,
-      };
-    }
+  for(const c of candidates){
+    const list=c.folder==='svg'?allFiles.svg:allFiles.png;
+    if(list.includes(c.name))return{url:`${RAW}/emblems/${c.folder}/${encodeURIComponent(c.name)}`,tier:c.tier,label:c.label,name:c.name};
   }
-
-  // Fallback: obsolete files (for obsolete entries)
-  const obsoleteSvg = allFiles.svg.find(f => f.startsWith(`${id}-`) && f.includes('-obsolete'));
-  if (obsoleteSvg) {
-    return {
-      url: `${RAW}/emblems/svg/${encodeURIComponent(obsoleteSvg)}`,
-      tier: 5, label: 'SVG·Obsolete', name: obsoleteSvg,
-    };
+  const obsName=[...allFiles.svg,...allFiles.png].find(f=>f.startsWith(`${id}-`)&&f.includes('-obsolete'));
+  if(obsName){
+    const folder=allFiles.svg.includes(obsName)?'svg':'png';
+    return{url:`${RAW}/emblems/${folder}/${encodeURIComponent(obsName)}`,tier:5,label:'Obsolete',name:obsName};
   }
-  const obsoletePng = allFiles.png.find(f => f.startsWith(`${id}-`) && f.includes('-obsolete'));
-  if (obsoletePng) {
-    return {
-      url: `${RAW}/emblems/png/${encodeURIComponent(obsoletePng)}`,
-      tier: 5, label: 'PNG·Obsolete', name: obsoletePng,
-    };
-  }
-
   return null;
 }
 
-// ── Annotations ───────────────────────────────────────────────────────────────
-function loadAnn(){ try{ return JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}'); } catch{ return {}; } }
-function saveAnn(a){ localStorage.setItem(STORAGE_KEY,JSON.stringify(a)); }
+function loadAnn(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}')}catch{return{}}}
+function saveAnn(a){localStorage.setItem(STORAGE_KEY,JSON.stringify(a))}
 let ANN=loadAnn();
-function getA(id){ return ANN[id]||{}; }
+function getA(id){return ANN[id]||{}}
 function setA(id,key,val){
-  if(!ANN[id]) ANN[id]={};
+  if(!ANN[id])ANN[id]={};
   ANN[id][key]=val;
-  const allEmpty=Object.values(ANN[id]).every(v=>v===''||v===null||v===undefined);
-  if(allEmpty) delete ANN[id];
+  if(Object.values(ANN[id]).every(v=>!v))delete ANN[id];
   saveAnn(ANN);
 }
 
-// ── CSV ───────────────────────────────────────────────────────────────────────
 function parseCSV(text){
-  if(text.charCodeAt(0)===0xFEFF) text=text.slice(1);
+  if(text.charCodeAt(0)===0xFEFF)text=text.slice(1);
   const lines=text.split('\n').filter(l=>l.trim());
   const headers=lines[0].split(',');
   return lines.slice(1).map(line=>{
-    const vals=[]; let cur='',inQ=false;
+    const vals=[];let cur='',inQ=false;
     for(const ch of line){
-      if(ch==='"') inQ=!inQ;
-      else if(ch===','&&!inQ){ vals.push(cur); cur=''; }
+      if(ch==='"')inQ=!inQ;
+      else if(ch===','&&!inQ){vals.push(cur);cur='';}
       else cur+=ch;
     }
     vals.push(cur);
@@ -284,163 +244,120 @@ function parseCSV(text){
   }).filter(r=>r.id);
 }
 
-function isObsolete(m, allFiles) {
-  if ((m.file_status||'').toLowerCase()==='obsolete') return true;
-  if (!allFiles) return false;
-  // Also obsolete if only -obsolete files exist (no COA or logo)
-  const id = m.id;
-  const hasObsolete = [...allFiles.svg, ...allFiles.png].some(f =>
-    f.startsWith(id + '-') && f.includes('-obsolete')
-  );
-  const hasCOA = allFiles.svg.includes(`${id}-COA.svg`) ||
-    ['png','jpg','webp'].some(e => allFiles.png.includes(`${id}-COA.${e}`));
-  const hasLogo = allFiles.svg.includes(`${id}-logo.svg`) ||
-    ['png','jpg','webb'].some(e => allFiles.png.includes(`${id}-logo.${e}`));
-  return hasObsolete && !hasCOA && !hasLogo;
-}
-
-function enrich(data, allFiles){
+function enrich(data,allFiles){
   return data.map(m=>{
-    m._img = findBestImage(m.id, allFiles);
-    m._obsolete = isObsolete(m, allFiles);
+    m._img=findBestImage(m.id,allFiles);
+    const csvObs=(m.file_status||'').toLowerCase()==='obsolete';
+    const hasObs=[...allFiles.svg,...allFiles.png].some(f=>f.startsWith(m.id+'-')&&f.includes('-obsolete'));
+    const hasCOA=allFiles.svg.includes(`${m.id}-COA.svg`)||['png','jpg','webp'].some(e=>allFiles.png.includes(`${m.id}-COA.${e}`));
+    const hasLogo=allFiles.svg.includes(`${m.id}-logo.svg`)||['png','jpg','webp'].some(e=>allFiles.png.includes(`${m.id}-logo.${e}`));
+    m._obsolete=csvObs||(hasObs&&!hasCOA&&!hasLogo);
+    m._isLogo=!m._obsolete&&!!m._img&&m._img.tier>=3;
     return m;
   });
 }
 
-// ── Effective status ──────────────────────────────────────────────────────────
 function effStatus(m){
-  if(m._obsolete) return 'obsolete';
-  // If best available image is a logo (tier 3/4), flag as logo regardless of CSV status
-  if(m._img && m._img.tier >= 3) return 'logo';
+  if(m._obsolete)return'obsolete';
   const a=getA(m.id);
-  if(a.missing===false&&m.status==='not-found') return 'found-png';
-  if(a.missing) return 'not-found';
-  return m.status;
+  if(a.missing||!m._img)return'not-found';
+  return m._isLogo?'logo':(m._img.tier<=1?'found-svg':'found-png');
 }
 
-function isMissing(m){
-  const a=getA(m.id);
-  if('missing' in a) return !!a.missing;
-  return m.status==='not-found';
-}
-
-// ── Badges ────────────────────────────────────────────────────────────────────
-const SL={
-  'found-svg':'✅ Found','found-png':'✅ Found',
-  'logo':'🏷 Municipal Logo','not-found':'❌ Missing',
-  'not-yet':'❌ Missing','error':'❌ Missing',
-  'obsolete':'🏛 Obsolete'
+const state={
+  view:'grid',sort:'name',search:'',
+  coa:'coa',flagMissing:false,flagSize:false,
+  filters:{type:new Set(),district:new Set(),culture:new Set()}
 };
-function sb(status){ const c=(status||'error').replace(/[^a-z-]/g,''); return`<span class="badge badge-${c}">${SL[status]||status}</span>`; }
-function cb(culture){ if(!culture)return''; return`<span class="badge badge-${culture.toLowerCase()}">${culture}</span>`; }
-function tb(type){ if(!type)return''; return`<span class="badge badge-${type.toLowerCase()}">${type}</span>`; }
-function sizeBadge(m){ if(getA(m.id).size) return`<span class="badge badge-size">📐 Size</span>`; return''; }
-
-function tierBadge(img) {
-  if(!img) return '';
-  const cls = ['','t1','t2','t3','t4','t4'][img.tier] || '';
-  return `<span class="img-tier ${cls}">${img.label}</span>`;
-}
-
-// ── State ─────────────────────────────────────────────────────────────────────
-const state={view:'grid',sort:'name',search:'',filters:{status:new Set(),flag:new Set(),type:new Set(),culture:new Set()}};
 let DATA=[];
 
 function matches(m){
-  const q=state.search.toLowerCase();
-  const{status,flag,type,culture}=state.filters;
+  if(state.coa==='coa'&&m._obsolete)return false;
+  if(state.coa==='obsolete'&&!m._obsolete)return false;
   const es=effStatus(m);
-  const a=getA(m.id);
-  if(q&&![m.id,m.name_en,m.name_he,m.district,m.type,m.culture].some(v=>(v||'').toLowerCase().includes(q))) return false;
-  if(status.size){
-    if(status.has('found')   && es!=='found-svg' && es!=='found-png') return false;
-    if(status.has('logo')    && es!=='logo') return false;
-    if(status.has('obsolete')&& es!=='obsolete') return false;
-    if(!status.has('found')&&!status.has('logo')&&!status.has('obsolete')&&!status.has(es)) return false;
-  }
-  if(type.size&&!type.has((m.type||'').toLowerCase())) return false;
-  if(culture.size&&!culture.has((m.culture||'').toLowerCase())) return false;
-  if(flag.has('size')&&!a.size) return false;
+  if(state.flagMissing&&es!=='not-found')return false;
+  if(state.flagSize&&!getA(m.id).size)return false;
+  const q=state.search.toLowerCase();
+  if(q&&![m.id,m.name_en,m.name_he,m.district,m.type,m.culture].some(v=>(v||'').toLowerCase().includes(q)))return false;
+  const{type,district,culture}=state.filters;
+  if(type.size&&!type.has((m.type||'').toLowerCase()))return false;
+  if(district.size&&!district.has((m.district||'').toLowerCase()))return false;
+  if(culture.size&&!culture.has((m.culture||'').toLowerCase()))return false;
   return true;
 }
 
 function sorted(data){
   return[...data].sort((a,b)=>{
     switch(state.sort){
-      case'name': return(a.name_en||'').localeCompare(b.name_en||'');
-      case'name-desc': return(b.name_en||'').localeCompare(a.name_en||'');
-      case'status': return effStatus(a).localeCompare(effStatus(b));
-      case'type': return(a.type||'').localeCompare(b.type||'');
-      case'district': return(a.district||'').localeCompare(b.district||'');
-      default: return 0;
+      case'name':return(a.name_en||'').localeCompare(b.name_en||'');
+      case'name-desc':return(b.name_en||'').localeCompare(a.name_en||'');
+      case'type':return(a.type||'').localeCompare(b.type||'');
+      case'district':return(a.district||'').localeCompare(b.district||'');
+      default:return 0;
     }
   });
 }
 
-function ih(m, size=80){
-  if(!m._img) return`<span class="no-image">◻</span>`;
+function ih(m,size=80){
+  if(!m._img)return`<span class="no-image">◻</span>`;
   return`<img src="${m._img.url}" alt="${m.name_en}" loading="lazy" style="max-height:${size}px;max-width:100%;object-fit:contain" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="no-image" style="display:none">◻</span>`;
 }
 
-// ── Card ──────────────────────────────────────────────────────────────────────
+function tierBadge(img){
+  if(!img||img.tier===5)return'';
+  const cls=['','t1','t2','t3','t4'][img.tier]||'';
+  return`<span class="img-tier ${cls}">${img.label}</span>`;
+}
+
+function cb(culture){if(!culture)return'';return`<span class="badge badge-${culture.toLowerCase()}">${culture}</span>`;}
+function tb(type){if(!type)return'';return`<span class="badge badge-${type.toLowerCase()}">${type}</span>`;}
+function logoBadge(m){return m._isLogo?`<span class="badge badge-logo">🏷 Logo</span>`:'';}
+function smallBadge(m){return getA(m.id).size?`<span class="badge badge-size">📐 Small</span>`:'';}
+
 function cardHTML(m){
-  const a=getA(m.id), es=effStatus(m);
-  const obs = m._obsolete;
-  return`<div class="card${obs?' obsolete':''}" data-id="${m.id}" data-clickable="1">
-    <div class="emblem-wrap">
-      ${ih(m,80)}
-      ${m._img ? tierBadge(m._img) : ''}
-    </div>
+  const a=getA(m.id);
+  return`<div class="card" data-id="${m.id}" data-clickable="1">
+    <div class="emblem-wrap">${ih(m,80)}${m._img?tierBadge(m._img):''}</div>
     <div><div class="card-name">${m.name_en}</div><div class="card-name-he">${m.name_he}</div></div>
-    <div class="card-meta">${m.district}</div>
-    <div class="card-tags">${sb(es)}${tb(m.type)}${cb(m.culture)}${sizeBadge(m)}</div>
-    ${obs ? '' : `<div class="card-ticks" data-stop="1">
-      <label class="tick t-missing${isMissing(m)?' on':''}">
-        <input type="checkbox" data-ann="missing" data-id="${m.id}" ${isMissing(m)?'checked':''}>Missing
-      </label>
+    <div class="card-meta">${m.district||''}</div>
+    <div class="card-tags">${tb(m.type)}${cb(m.culture)}${logoBadge(m)}${smallBadge(m)}</div>
+    ${m._obsolete?'':`<div class="card-ticks" data-stop="1">
       <label class="tick t-size${a.size?' on':''}">
-        <input type="checkbox" data-ann="size" data-id="${m.id}" ${a.size?'checked':''}>Size
+        <input type="checkbox" data-ann="size" data-id="${m.id}" ${a.size?'checked':''}> Small file
       </label>
     </div>`}
   </div>`;
 }
 
-// ── List row ──────────────────────────────────────────────────────────────────
 function listHTML(m){
-  const a=getA(m.id), es=effStatus(m);
-  const obs = m._obsolete;
-  return`<div class="list-row${obs?' obsolete':''}" data-id="${m.id}" data-clickable="1">
+  const a=getA(m.id);
+  return`<div class="list-row" data-id="${m.id}" data-clickable="1">
     <div class="list-thumb">${ih(m,44)}</div>
-    <div><div class="list-name">${m.name_en}</div><div class="card-meta">${m.district}</div></div>
+    <div><div class="list-name">${m.name_en}</div><div style="font-size:10px;color:var(--muted)">${m.district||''}</div></div>
     <div style="direction:rtl;font-size:12px;color:var(--muted)">${m.name_he}</div>
     <div>${tb(m.type)}</div>
-    <div class="list-tags">${sb(es)}${cb(m.culture)}${sizeBadge(m)}</div>
+    <div class="list-tags">${cb(m.culture)}${logoBadge(m)}${smallBadge(m)}</div>
     <div class="list-ticks" data-stop="1">
-      ${obs ? '' : `
-      <span class="ltick${isMissing(m)?' on-missing':''}" data-ann="missing" data-id="${m.id}">Missing</span>
-      <span class="ltick${a.size?' on-size':''}" data-ann="size" data-id="${m.id}">Size</span>
-      `}
+      ${m._obsolete?'':`<span class="ltick${a.size?' on-size':''}" data-ann="size" data-id="${m.id}">Small file</span>`}
     </div>
   </div>`;
 }
 
-// ── Render ────────────────────────────────────────────────────────────────────
 function render(){
   const filtered=sorted(DATA.filter(matches));
   document.getElementById('count').textContent=`${filtered.length} of ${DATA.length}`;
   const container=document.getElementById('main-content');
-  if(!filtered.length){ container.innerHTML='<div class="empty">No results.</div>'; return; }
-
+  if(!filtered.length){container.innerHTML='<div class="empty">No results.</div>';return;}
   if(state.view==='grid'){
     container.innerHTML=`<div class="grid">${filtered.map(cardHTML).join('')}</div>`;
-    container.querySelectorAll('input[data-ann]').forEach(cb=>{
-      cb.addEventListener('change',e=>{
+    container.querySelectorAll('input[data-ann]').forEach(inp=>{
+      inp.addEventListener('change',e=>{
         e.stopPropagation();
-        setA(cb.dataset.id,cb.dataset.ann,cb.checked||false);
-        renderStats(DATA); render();
+        setA(inp.dataset.id,inp.dataset.ann,inp.checked||false);
+        renderStats(DATA);render();
       });
     });
-  } else {
+  }else{
     container.innerHTML=`<div class="list-view">
       <div class="list-header"><div>Emblem</div><div>Name</div><div>Hebrew</div><div>Type</div><div>Tags</div><div>Mark</div></div>
       ${filtered.map(listHTML).join('')}
@@ -448,58 +365,53 @@ function render(){
     container.querySelectorAll('.ltick').forEach(tick=>{
       tick.addEventListener('click',e=>{
         e.stopPropagation();
-        const id=tick.dataset.id, key=tick.dataset.ann;
-        setA(id,key,!getA(id)[key]);
-        renderStats(DATA); render();
+        setA(tick.dataset.id,tick.dataset.ann,!getA(tick.dataset.id)[tick.dataset.ann]);
+        renderStats(DATA);render();
       });
     });
   }
-
   container.querySelectorAll('[data-clickable]').forEach(el=>{
     el.addEventListener('click',e=>{
-      if(e.target.closest('[data-stop]')) return;
+      if(e.target.closest('[data-stop]'))return;
       const m=DATA.find(d=>d.id===el.dataset.id);
-      if(m) openModal(m);
+      if(m)openModal(m);
     });
   });
 }
 
-// ── Stats ─────────────────────────────────────────────────────────────────────
 function renderStats(data){
-  const counts={found:0,logo:0,missing:0,obsolete:0};
+  const c={found:0,logo:0,missing:0,obsolete:0};
   data.forEach(m=>{
     const s=effStatus(m);
-    if(s==='found-svg'||s==='found-png') counts.found++;
-    else if(s==='logo') counts.logo++;
-    else if(s==='obsolete') counts.obsolete++;
-    else counts.missing++;
+    if(s==='found-svg'||s==='found-png')c.found++;
+    else if(s==='logo')c.logo++;
+    else if(s==='obsolete')c.obsolete++;
+    else c.missing++;
   });
   document.getElementById('stats').innerHTML=[
     {label:'Found',key:'found',color:'#1a6b3a'},
     {label:'Logo only',key:'logo',color:'#3730a3'},
     {label:'Missing',key:'missing',color:'#444'},
     {label:'Obsolete',key:'obsolete',color:'#5a4a00'},
-  ].map(i=>`<div class="stat"><div class="stat-dot" style="background:${i.color}"></div><span>${counts[i.key]||0} ${i.label}</span></div>`).join('');
+  ].map(i=>`<div class="stat"><div class="stat-dot" style="background:${i.color}"></div><span>${c[i.key]||0} ${i.label}</span></div>`).join('');
 }
 
-// ── Modal ─────────────────────────────────────────────────────────────────────
 function openModal(m){
   const a=getA(m.id);
   const imgH=m._img?`<img src="${m._img.url}" alt="${m.name_en}">`:'<span style="color:#ccc;font-size:48px">◻</span>';
   const commonsLink=m.commons_url?`<a href="${m.commons_url}" target="_blank">${(m.commons_filename||'').replace('File:','')}</a>`:'—';
-  const tierInfo = m._img ? `<span class="badge" style="background:#eee;color:#555">${m._img.label}</span>` : '';
   document.getElementById('modal-content').innerHTML=`
     <div class="modal-emblem">${imgH}</div>
     <h2>${m.name_en}</h2>
     <div class="modal-he">${m.name_he}</div>
-    <div class="modal-tags">${sb(effStatus(m))}${tb(m.type)}${cb(m.culture)}${tierInfo}${sizeBadge(m)}</div>
+    <div class="modal-tags">
+      ${tb(m.type)}${cb(m.culture)}${logoBadge(m)}${smallBadge(m)}
+      ${m._img&&m._img.tier<5?`<span class="badge" style="background:#eee;color:#666">${m._img.label}</span>`:''}
+    </div>
     <div class="modal-fields">
       <span class="modal-label">ID</span><span class="modal-value">${m.id}</span>
-      <span class="modal-label">District</span><span class="modal-value">${m.district}</span>
-      <span class="modal-label">Format</span><span class="modal-value">${m.format||'—'}</span>
-      <span class="modal-label">Dimensions</span><span class="modal-value">${m.width_px&&m.height_px?m.width_px+' × '+m.height_px+' px':'—'}</span>
+      <span class="modal-label">District</span><span class="modal-value">${m.district||'—'}</span>
       <span class="modal-label">Commons file</span><span class="modal-value">${commonsLink}</span>
-      ${m.correct_commons_url?`<span class="modal-label">Correct URL</span><span class="modal-value"><a href="${m.correct_commons_url}" target="_blank">→ view</a></span>`:''}
       ${m.notes?`<span class="modal-label">Notes</span><span class="modal-value">${m.notes}</span>`:''}
     </div>
     <div class="modal-note">
@@ -512,30 +424,29 @@ function openModal(m){
   document.getElementById('note-save').addEventListener('click',()=>{
     setA(m.id,'note',document.getElementById('modal-note').value.trim());
     const ok=document.getElementById('note-ok');
-    ok.style.display='inline'; setTimeout(()=>ok.style.display='none',2000);
-    renderStats(DATA); render();
+    ok.style.display='inline';setTimeout(()=>ok.style.display='none',2000);
+    renderStats(DATA);render();
   });
   document.getElementById('modal-overlay').classList.add('open');
 }
 
-// ── Export ────────────────────────────────────────────────────────────────────
 function exportAnn(){
-  const rows=['id,name_en,status,missing,size,note'];
+  const rows=['id,name_en,size,note'];
   DATA.forEach(m=>{
     const a=getA(m.id);
-    if(!Object.keys(a).length) return;
-    rows.push([m.id,m.name_en,effStatus(m),a.missing?'yes':'',a.size?'yes':'',`"${(a.note||'').replace(/"/g,'""')}"`].join(','));
+    if(!Object.keys(a).length)return;
+    rows.push([m.id,m.name_en,a.size?'yes':'',`"${(a.note||'').replace(/"/g,'""')}"`].join(','));
   });
   const blob=new Blob([rows.join('\n')],{type:'text/csv'});
-  const el=document.createElement('a'); el.href=URL.createObjectURL(blob); el.download='emblem-annotations.csv'; el.click();
+  const el=document.createElement('a');el.href=URL.createObjectURL(blob);el.download='emblem-annotations.csv';el.click();
 }
 
 async function listFiles(folder){
   try{
     const r=await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${folder}?ref=${BRANCH}`);
-    if(!r.ok) return [];
+    if(!r.ok)return[];
     return(await r.json()).map(f=>f.name);
-  } catch{ return []; }
+  }catch{return[];}
 }
 
 async function main(){
@@ -545,39 +456,59 @@ async function main(){
     listFiles('emblems/png'),
   ]);
   DATA=enrich(parseCSV(csvText),{svg:svgFiles,png:pngFiles});
-  renderStats(DATA); render();
+  renderStats(DATA);render();
 
-  document.getElementById('search').addEventListener('input',e=>{ state.search=e.target.value; render(); });
-  document.getElementById('sort').addEventListener('change',e=>{ state.sort=e.target.value; render(); });
+  document.getElementById('search').addEventListener('input',e=>{state.search=e.target.value;render();});
+  document.getElementById('sort').addEventListener('change',e=>{state.sort=e.target.value;render();});
   document.getElementById('export-btn').addEventListener('click',exportAnn);
-  document.getElementById('btn-grid').addEventListener('click',()=>{ state.view='grid'; document.getElementById('btn-grid').classList.add('active'); document.getElementById('btn-list').classList.remove('active'); render(); });
-  document.getElementById('btn-list').addEventListener('click',()=>{ state.view='list'; document.getElementById('btn-list').classList.add('active'); document.getElementById('btn-grid').classList.remove('active'); render(); });
 
-  document.querySelectorAll('.filter-btn').forEach(btn=>{
+  document.getElementById('btn-grid').addEventListener('click',()=>{
+    state.view='grid';
+    document.getElementById('btn-grid').classList.add('active');
+    document.getElementById('btn-list').classList.remove('active');
+    render();
+  });
+  document.getElementById('btn-list').addEventListener('click',()=>{
+    state.view='list';
+    document.getElementById('btn-list').classList.add('active');
+    document.getElementById('btn-grid').classList.remove('active');
+    render();
+  });
+
+  document.getElementById('flag-missing').addEventListener('click',function(){
+    state.flagMissing=!state.flagMissing;
+    this.classList.toggle('active-missing',state.flagMissing);
+    render();
+  });
+  document.getElementById('flag-size').addEventListener('click',function(){
+    state.flagSize=!state.flagSize;
+    this.classList.toggle('active-size',state.flagSize);
+    render();
+  });
+
+  document.querySelectorAll('[data-group="coa"]').forEach(btn=>{
     btn.addEventListener('click',()=>{
-      const g=btn.dataset.group, v=btn.dataset.value;
-      if(g==='status'){
-        if(v==='all'){
-          state.filters.status.clear();
-          document.querySelectorAll('[data-group="status"]').forEach(b=>b.classList.remove('active'));
-          btn.classList.add('active');
-        } else {
-          document.querySelector('[data-group="status"][data-value="all"]').classList.remove('active');
-          if(state.filters.status.has(v)){ state.filters.status.delete(v); btn.classList.remove('active'); }
-          else{ state.filters.status.add(v); btn.classList.add('active'); }
-          if(!state.filters.status.size) document.querySelector('[data-group="status"][data-value="all"]').classList.add('active');
-        }
-      } else {
-        if(state.filters[g].has(v)){ state.filters[g].delete(v); btn.classList.remove('active'); }
-        else{ state.filters[g].add(v); btn.classList.add('active'); }
-      }
+      state.coa=btn.dataset.value;
+      document.querySelectorAll('[data-group="coa"]').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
       render();
     });
   });
 
+  ['type','district','culture'].forEach(group=>{
+    document.querySelectorAll(`[data-group="${group}"]`).forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        const v=btn.dataset.value;
+        if(state.filters[group].has(v)){state.filters[group].delete(v);btn.classList.remove('active');}
+        else{state.filters[group].add(v);btn.classList.add('active');}
+        render();
+      });
+    });
+  });
+
   document.getElementById('modal-close').addEventListener('click',()=>document.getElementById('modal-overlay').classList.remove('open'));
-  document.getElementById('modal-overlay').addEventListener('click',e=>{ if(e.target===document.getElementById('modal-overlay')) document.getElementById('modal-overlay').classList.remove('open'); });
-  document.addEventListener('keydown',e=>{ if(e.key==='Escape') document.getElementById('modal-overlay').classList.remove('open'); });
+  document.getElementById('modal-overlay').addEventListener('click',e=>{if(e.target===document.getElementById('modal-overlay'))document.getElementById('modal-overlay').classList.remove('open');});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('modal-overlay').classList.remove('open');});
 }
 main();
 </script>
