@@ -1,4 +1,4 @@
-﻿id,name_he,name_en,type,district,culture,status,file_status,format,width_px,height_px,match_score,commons_filename,commons_url,quality_flags,correct_commons_url,notes,verified,expected_filename_prefix
+id,name_he,name_en,type,district,culture,status,file_status,format,width_px,height_px,match_score,commons_filename,commons_url,quality_flags,correct_commons_url,notes,verified,expected_filename_prefix
 gush-etzion,מועצה אזורית גוש-עציון,Gush Etzion,regional,judea-samaria,jewish,error,⚠️ Scraper error,,,,,,,info_failed,,,,gush-etzion__גוש-עציון__regional__judea-samaria__jewish__
 tel-aviv,תל-אביב-יפו,Tel Aviv-Yafo,city,tel-aviv,mixed,found-png,🟡 PNG only — no SVG,PNG,199,160,21,File:Coat_of_arms_of_Tel_Sheva_(Israel).jpg,https://commons.wikimedia.org/wiki/File:Coat_of_arms_of_Tel_Sheva_(Israel).jpg,wrong-file | small-file,,,,tel-aviv__תל-אביב-יפו__city__tel-aviv__mixed__
 petah-tikva,פתח-תקווה,Petah Tikva,city,center,jewish,found-png,🟡 PNG only — no SVG,PNG,948,1131,24,File:Ganey Tikva COA.png,https://commons.wikimedia.org/wiki/File:Ganey_Tikva_COA.png,wrong-file | low-confidence,,,,petah-tikva__פתח-תקווה__city__center__jewish__
@@ -22,8 +22,8 @@ maalot-tarshiha,מעלות-תרשיחא,Maalot Tarshiha,city,north,mixed,found-p
 or-akiva,אור-עקיבא,Or Akiva,city,haifa,jewish,found-png,🟡 PNG only — no SVG,PNG,630,722,,File:OR_Akiva_COA.png,https://commons.wikimedia.org/wiki/File:OR_Akiva_COA.png,no-svg,,,,or-akiva__אור-עקיבא__city__haifa__jewish__
 binyamina,מועצה מקומית בנימינה-גבעת-עדה,Binyamina,local,haifa,jewish,not-found,❌ Not found by v6 scraper,PNG,2048,1536,,File:PikiWiki Israel 10094 local council binyamina-givat ada.jpg,https://commons.wikimedia.org/wiki/File:PikiWiki_Israel_10094_local_council_binyamina-givat_ada.jpg,wrong-file,,,,binyamina__בנימינה-גבעת-עדה__local__haifa__jewish__
 gan-yavne,מועצה מקומית גן-יבנה,Gan Yavne,local,center,jewish,not-found,❌ Not found by v6 scraper,PNG,948,1131,16,File:Ganey Tikva COA.png,https://commons.wikimedia.org/wiki/File:Ganey_Tikva_COA.png,wrong-file | low-confidence,,,,gan-yavne__גן-יבנה__local__center__jewish__
-gedera,מועצה מקומית גדרה,Gedera,local,center,jewish,found-png,🟡 PNG only — no SVG,PNG,2592,1944,,File:View_of_Gedera_from_Tel_Qatra.jpg,https://commons.wikimedia.org/wiki/File:View_of_Gedera_from_Tel_Qatra.jpg,wrong-file,,,,gedera__גדרה__local__center__jewish__
-mazkeret-batya,מועצה מקומית מזכרת-בתיה,Mazkeret Batya,local,center,jewish,found-png,🟡 PNG only — no SVG,PNG,4288,2848,16,File:בית_משק_הברון_מזכרת_בתיה.jpg,https://commons.wikimedia.org/wiki/File:בית_משק_הברון_מזכרת_בתיה.jpg,wrong-file | low-confidence,,,,mazkeret-batya__מזכרת-בתיה__local__center__jewish__
+gedera,מועצה מקומית גדרה,Gedera,local,center,jewish,found-png,found-png,PNG,2592,1944,,File:View_of_Gedera_from_Tel_Qatra.jpg,https://commons.wikimedia.org/wiki/File:View_of_Gedera_from_Tel_Qatra.jpg,wrong-file,,,,gedera__גדרה__local__center__jewish__
+mazkeret-batya,מועצה מקומית מזכרת-בתיה,Mazkeret Batya,local,center,jewish,found-png,found-png,PNG,4288,2848,16,File:בית_משק_הברון_מזכרת_בתיה.jpg,https://commons.wikimedia.org/wiki/File:בית_משק_הברון_מזכרת_בתיה.jpg,wrong-file | low-confidence,,,,mazkeret-batya__מזכרת-בתיה__local__center__jewish__
 metula,מועצה מקומית מטולה,Metula,local,north,jewish,found-png,🟡 PNG only — no SVG,PNG,4272,2848,,File:Metula_and_Hermon.JPG,https://commons.wikimedia.org/wiki/File:Metula_and_Hermon.JPG,wrong-file,,,,metula__מטולה__local__north__jewish__
 mitzpe-ramon,מועצה מקומית מצפה-רמון,Mitzpe Ramon,local,south,jewish,found-png,🟡 PNG only — no SVG,PNG,684,896,,File:MIZPE_RAMON_OVERVIEW.jpg,https://commons.wikimedia.org/wiki/File:MIZPE_RAMON_OVERVIEW.jpg,wrong-file,,,,mitzpe-ramon__מצפה-רמון__local__south__jewish__
 omer,מועצה מקומית עומר,Omer,local,south,jewish,wrong-file,⚠️ Wrong file — Wikipedia UI icon or unrelated image,PNG,2048,1536,,"File:Omer,_Israel_1.jpg","https://commons.wikimedia.org/wiki/File:Omer,_Israel_1.jpg",wrong-file,,Wrong file grabbed by scraper — needs manual lookup,,omer__עומר__local__south__jewish__
@@ -118,42 +118,42 @@ beit-aryeh,מועצה מקומית בית-אריה,Beit Aryeh,local,judea-samari
 beit-dagan,מועצה מקומית בית-דגן,Beit Dagan,local,center,jewish,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,beit-dagan__בית-דגן__local__center__jewish__
 beit-el,מועצה מקומית בית-אל,Beit El,local,judea-samaria,jewish,not-found,❌ Not found by v6 scraper,,,,,,,,,,,beit-el__בית-אל__local__judea-samaria__jewish__
 beit-jann,בית-ג'ן,Beit Jann,local,north,druze,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,beit-jann__בית-ג'ן__local__north__druze__
-bir-elmaksur,ביר-אל-מכסור,Bir-Elmaksur,local,north,arab,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,bir-elmaksur__ביר-אל-מכסור__local__north__arab__
-bnei-ayish,"בני-עי""ש",Bnei Ayish,local,center,arab,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,bnei-ayish__בני-עי_ש__local__center__arab__
+bir-elmaksur,ביר-אל-מכסור,Bir-Elmaksur,local,north,arab,found-png,found-png,,,,,,,,,,,bir-elmaksur__ביר-אל-מכסור__local__north__arab__
+bnei-ayish,"בני-עי""ש",Bnei Ayish,local,center,arab,found-png,found-png,,,,,,,,,,,bnei-ayish__בני-עי_ש__local__center__arab__
 bosmat-tivon,בסמת-טבעון,Bosmat Tivon,local,north,arab,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,bosmat-tivon__בסמת-טבעון__local__north__arab__
 bueine-nujeidat,בועיינה-נוג'ידאת,Bueine-Nujeidat,local,north,arab,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,bueine-nujeidat__בועיינה-נוג'ידאת__local__north__arab__
 buqata,בוקעאתה,Buq'ata,local,north,druze,not-found,❌ Not found by v6 scraper,,,,,,,,,,,buqata__בוקעאתה__local__north__druze__
 daburiyya,דבוריה,Daburiyya,local,north,arab,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,daburiyya__דבוריה__local__north__arab__
 deir-hanna,דיר-חנא,Deir Hanna,local,north,arab,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,deir-hanna__דיר-חנא__local__north__arab__
-deir-al-asad,דיר-אל-אסד,Deir al-Asad,local,north,arab,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,deir-al-asad__דיר-אל-אסד__local__north__arab__
+deir-al-asad,דיר-אל-אסד,Deir al-Asad,local,north,arab,found-png,found-png,,,,,,,,,,,deir-al-asad__דיר-אל-אסד__local__north__arab__
 efrat,מועצה מקומית אפרת,Efrat,local,judea-samaria,jewish,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,efrat__אפרת__local__judea-samaria__jewish__
 eilaboun,עילבון,Eilaboun,local,north,arab,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,eilaboun__עילבון__local__north__arab__
-ein-knia,עין-קיניה,Ein Knia,local,north,druze,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,ein-knia__עין-קיניה__local__north__druze__
+ein-knia,עין-קיניה,Ein Knia,local,north,druze,found-png,found-png,,,,,,,,,,,ein-knia__עין-קיניה__local__north__druze__
 ein-mahel,עין-מאהל,Ein Mahel,local,north,arab,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,ein-mahel__עין-מאהל__local__north__arab__
 elkana,מועצה מקומית אלקנה,Elkana,local,judea-samaria,jewish,not-found,❌ Not found by v6 scraper,,,,,,,,,,,elkana__אלקנה__local__judea-samaria__jewish__
 elyakhin,מועצה מקומית אליכין,Elyakhin,local,center,jewish,not-found,❌ Not found by v6 scraper,,,,,,,,,,,elyakhin__אליכין__local__center__jewish__
 emanuel,מועצה מקומית עמנואל,Emanuel,local,judea-samaria,jewish,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,emanuel__עמנואל__local__judea-samaria__jewish__
 even-yehuda,מועצה מקומית אבן-יהודה,Even Yehuda,local,center,jewish,wrong-file,⚠️ Wrong file — Wikipedia UI icon or unrelated image,,,,,,,,,Wrong file grabbed by scraper — needs manual lookup,,even-yehuda__אבן-יהודה__local__center__jewish__
 fassuta,פסוטה,Fassuta,local,north,arab,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,fassuta__פסוטה__local__north__arab__
-fureidis,פורידיס,Fureidis,local,haifa,arab,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,fureidis__פורידיס__local__haifa__arab__
+fureidis,פורידיס,Fureidis,local,haifa,arab,found-png,found-png,,,,,,,,,,,fureidis__פורידיס__local__haifa__arab__
 ganey-tikva,מועצה מקומית גני-תקוה,Ganey Tikva,local,center,jewish,wrong-file,⚠️ Wrong file — Wikipedia UI icon or unrelated image,,,,,,,,,Wrong file grabbed by scraper — needs manual lookup,,ganey-tikva__גני-תקוה__local__center__jewish__
 givat-zeev,מועצה מקומית גבעת-זאב,Givat Zeev,local,judea-samaria,jewish,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,givat-zeev__גבעת-זאב__local__judea-samaria__jewish__
 har-adar,מועצה מקומית הר-אדר,Har Adar,local,judea-samaria,jewish,not-found,❌ Not found by v6 scraper,,,,,,,,,,,har-adar__הר-אדר__local__judea-samaria__jewish__
 hatzor-haglilit,מועצה מקומית חצור-הגלילית,Hatzor Haglilit,local,north,jewish,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,hatzor-haglilit__חצור-הגלילית__local__north__jewish__
-hura,חורה,Hura,local,south,bedouin,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,hura__חורה__local__south__bedouin__
-hurfeish,חורפיש,Hurfeish,local,north,druze,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,hurfeish__חורפיש__local__north__druze__
+hura,חורה,Hura,local,south,bedouin,found-png,found-png,,,,,,,,,,,hura__חורה__local__south__bedouin__
+hurfeish,חורפיש,Hurfeish,local,north,druze,found-png,found-png,,,,,,,,,,,hurfeish__חורפיש__local__north__druze__
 ibillin,אעבלין,I'billin,local,north,arab,not-found,❌ Not found by v6 scraper,,,,,,,,,,,ibillin__אעבלין__local__north__arab__
 iksal,אכסאל,Iksal,local,north,arab,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,iksal__אכסאל__local__north__arab__
 ilut,עילוט,Ilut,local,north,arab,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,ilut__עילוט__local__north__arab__
 jaljulye,ג'לג'וליה,Jaljulye,local,center,arab,not-found,❌ Not found by v6 scraper,,,,,,,,,,,jaljulye__ג'לג'וליה__local__center__arab__
 jisr-az-zarqa,ג'סר-א-זרקא,Jisr az-Zarqa,local,haifa,arab,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,jisr-az-zarqa__ג'סר-א-זרקא__local__haifa__arab__
-judeidi-makr,ג'דיידה-מכר,Judeidi-Makr,local,north,arab,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,judeidi-makr__ג'דיידה-מכר__local__north__arab__
-julis,ג'וליס,Julis,local,north,druze,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,julis__ג'וליס__local__north__druze__
+judeidi-makr,ג'דיידה-מכר,Judeidi-Makr,local,north,arab,found-png,found-png,,,,,,,,,,,judeidi-makr__ג'דיידה-מכר__local__north__arab__
+julis,ג'וליס,Julis,local,north,druze,found-png,found-png,,,,,,,,,,,julis__ג'וליס__local__north__druze__
 kaabiyye,כעביה-טבאש-חג'אג'רה,Ka'abiyye-Tabbash,local,north,arab,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,kaabiyye__כעביה-טבאש-חג'אג'רה__local__north__arab__
-kabul,כאבול,Kabul,local,north,arab,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,kabul__כאבול__local__north__arab__
-kadima-zoran,מועצה מקומית קדימה-צורן,Kadima Zoran,local,center,jewish,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,kadima-zoran__קדימה-צורן__local__center__jewish__
+kabul,כאבול,Kabul,local,north,arab,found-png,found-png,,,,,,,,,,,kabul__כאבול__local__north__arab__
+kadima-zoran,מועצה מקומית קדימה-צורן,Kadima Zoran,local,center,jewish,found-png,found-png,,,,,,,,,,,kadima-zoran__קדימה-צורן__local__center__jewish__
 kafr-bara,כפר-ברא,Kafr Bara,local,center,arab,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,kafr-bara__כפר-ברא__local__center__arab__
-kafr-manda,כפר-מנדא,Kafr Manda,local,north,arab,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,kafr-manda__כפר-מנדא__local__north__arab__
+kafr-manda,כפר-מנדא,Kafr Manda,local,north,arab,found-png,found-png,,,,,,,,,,,kafr-manda__כפר-מנדא__local__north__arab__
 kafr-qara,כפר-קרע,Kafr Qara,local,haifa,arab,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,kafr-qara__כפר-קרע__local__haifa__arab__
 kafr-yasif,כפר-יאסיף,Kafr Yasif,local,north,mixed,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,kafr-yasif__כפר-יאסיף__local__north__mixed__
 karnei-shomron,מועצה מקומית קרני-שומרון,Karnei Shomron,local,judea-samaria,jewish,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,karnei-shomron__קרני-שומרון__local__judea-samaria__jewish__
@@ -162,43 +162,43 @@ kedumim,מועצה מקומית קדומים,Kedumim,local,judea-samaria,jewish,
 kfar-kama,כפר-קמה,Kfar Kama,local,north,circassian,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,kfar-kama__כפר-קמה__local__north__circassian__
 kfar-kana,כפר-כנא,Kfar Kana,local,north,arab,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,kfar-kana__כפר-כנא__local__north__arab__
 kfar-qasem,כפר-קאסם,Kfar Qasem,local,center,arab,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,kfar-qasem__כפר-קאסם__local__center__arab__
-kfar-shmaryahu,מועצה מקומית כפר-שמריהו,Kfar Shmaryahu,local,tel-aviv,jewish,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,kfar-shmaryahu__כפר-שמריהו__local__tel-aviv__jewish__
+kfar-shmaryahu,מועצה מקומית כפר-שמריהו,Kfar Shmaryahu,local,tel-aviv,jewish,found-svg,found-svg,,,,,,,,,,,kfar-shmaryahu__כפר-שמריהו__local__tel-aviv__jewish__
 kfar-tavor,מועצה מקומית כפר-תבור,Kfar Tavor,local,north,jewish,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,kfar-tavor__כפר-תבור__local__north__jewish__
 kfar-vradim,מועצה מקומית כפר-ורדים,Kfar Vradim,local,north,jewish,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,kfar-vradim__כפר-ורדים__local__north__jewish__
 kfar-yona,מועצה מקומית כפר-יונה,Kfar Yona,local,center,jewish,not-found,❌ Not found by v6 scraper,,,,,,,,,,,kfar-yona__כפר-יונה__local__center__jewish__
 kiryat-arba,מועצה מקומית קריית-ארבע,Kiryat Arba,local,judea-samaria,jewish,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,kiryat-arba__קריית-ארבע__local__judea-samaria__jewish__
 kiryat-ekron,מועצה מקומית קריית-עקרון,Kiryat Ekron,local,center,jewish,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,kiryat-ekron__קריית-עקרון__local__center__jewish__
 kiryat-yearim,מועצה מקומית קריית-יערים,Kiryat Ye'arim,local,jerusalem,jewish,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,kiryat-yearim__קריית-יערים__local__jerusalem__jewish__
-kisra-sumei,כסרא-סמיע,Kisra-Sumei,local,north,druze,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,kisra-sumei__כסרא-סמיע__local__north__druze__
+kisra-sumei,כסרא-סמיע,Kisra-Sumei,local,north,druze,found-png,found-png,,,,,,,,,,,kisra-sumei__כסרא-סמיע__local__north__druze__
 kochav-yair,מועצה מקומית כוכב-יאיר,Kochav Yair,local,center,jewish,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,kochav-yair__כוכב-יאיר__local__center__jewish__
-kuseife,כסיפה,Kuseife,local,south,bedouin,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,kuseife__כסיפה__local__south__bedouin__
-laqye,לקיה,Laqye,local,south,bedouin,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,laqye__לקיה__local__south__bedouin__
+kuseife,כסיפה,Kuseife,local,south,bedouin,found-png,found-png,,,,,,,,,,,kuseife__כסיפה__local__south__bedouin__
+laqye,לקיה,Laqye,local,south,bedouin,found-png,found-png,,,,,,,,,,,laqye__לקיה__local__south__bedouin__
 migdal,מועצה מקומית מגדל,Migdal,local,north,jewish,not-found,❌ Not found by v6 scraper,,,,,,,,,,,migdal__מגדל__local__north__jewish__
-reina,ריינה,Reina,local,north,arab,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,reina__ריינה__local__north__arab__
+reina,ריינה,Reina,local,north,arab,found-png,found-png,,,,,,,,,,,reina__ריינה__local__north__arab__
 sajur,סג'ור,Sajur,local,north,druze,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,sajur__סג'ור__local__north__druze__
 shab-al-salim,שעב,Shab al-Salim,local,north,arab,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,shab-al-salim__שעב__local__north__arab__
 shibli-umm-al-ghanam,שבלי-אום אל-ע'נם,Shibli,local,north,arab,wrong-file,⚠️ Wrong file — Wikipedia UI icon or unrelated image,,,,,,,,,Wrong file grabbed by scraper — needs manual lookup,,shibli-umm-al-ghanam__שבלי-אום אל-ע'נם__local__north__arab__
 taibeh-north,טייבה-צפון,Taibeh (North),local,north,arab,not-found,❌ Not found by v6 scraper,,,,,,,,,,,taibeh-north__טייבה-צפון__local__north__arab__
 tel-mond,מועצה מקומית תל-מונד,Tel Mond,local,center,jewish,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,tel-mond__תל-מונד__local__center__jewish__
-tuba-zangariyye,טובא-זנגרייה,Tuba-Zangariyye,local,north,arab,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,tuba-zangariyye__טובא-זנגרייה__local__north__arab__
-usfiya,עוספיא,Usfiya,local,haifa,druze,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,usfiya__עוספיא__local__haifa__druze__
-yarka,ירכא,Yarka,local,north,druze,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,yarka__ירכא__local__north__druze__
+tuba-zangariyye,טובא-זנגרייה,Tuba-Zangariyye,local,north,arab,found-png,found-png,,,,,,,,,,,tuba-zangariyye__טובא-זנגרייה__local__north__arab__
+usfiya,עוספיא,Usfiya,local,haifa,druze,found-png,found-png,,,,,,,,,,,usfiya__עוספיא__local__haifa__druze__
+yarka,ירכא,Yarka,local,north,druze,found-png,found-png,,,,,,,,,,,yarka__ירכא__local__north__druze__
 lehavim,מועצה מקומית להבים,Lehavim,local,south,jewish,not-found,❌ Not found by v6 scraper,,,,,,,,,,,lehavim__להבים__local__south__jewish__
 maale-efraim,מועצה מקומית מעלה-אפרים,Maale Efraim,local,judea-samaria,jewish,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,maale-efraim__מעלה-אפרים__local__judea-samaria__jewish__
 maale-iron,מעלה-עירון,Maale Iron,local,haifa,arab,not-found,❌ Not found by v6 scraper,,,,,,,,,,,maale-iron__מעלה-עירון__local__haifa__arab__
 maghar,מג'אר,Maghar,local,north,mixed,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,maghar__מג'אר__local__north__mixed__
-majdal-shams,מג'דל-שמס,Majdal Shams,local,north,druze,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,majdal-shams__מג'דל-שמס__local__north__druze__
+majdal-shams,מג'דל-שמס,Majdal Shams,local,north,druze,found-png,found-png,,,,,,,,,,,majdal-shams__מג'דל-שמס__local__north__druze__
 masada,מסעדה,Masada,local,north,druze,wrong-file,⚠️ Wrong file — Wikipedia UI icon or unrelated image,,,,,,,,,Wrong file grabbed by scraper — needs manual lookup,,masada__מסעדה__local__north__druze__
 mashhad,משהד,Mashhad,local,north,arab,wrong-file,⚠️ Wrong file — Wikipedia UI icon or unrelated image,,,,,,,,,Wrong file grabbed by scraper — needs manual lookup,,mashhad__משהד__local__north__arab__
 mazraa,מזרעה,Mazraa,local,north,arab,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,mazraa__מזרעה__local__north__arab__
 meitar,מועצה מקומית מיתר,Meitar,local,south,jewish,wrong-file,⚠️ Wrong file — Wikipedia UI icon or unrelated image,,,,,,,,,Wrong file grabbed by scraper — needs manual lookup,,meitar__מיתר__local__south__jewish__
-mevaseret-zion,מועצה מקומית מבשרת-ציון,Mevaseret Zion,local,jerusalem,jewish,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,mevaseret-zion__מבשרת-ציון__local__jerusalem__jewish__
+mevaseret-zion,מועצה מקומית מבשרת-ציון,Mevaseret Zion,local,jerusalem,jewish,found-svg,found-svg,,,,,,,,,,,mevaseret-zion__מבשרת-ציון__local__jerusalem__jewish__
 mielya,מעיליא,Mielya,local,north,arab,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,mielya__מעיליא__local__north__arab__
-nahef,נחף,Nahef,local,north,arab,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,nahef__נחף__local__north__arab__
+nahef,נחף,Nahef,local,north,arab,found-png,found-png,,,,,,,,,,,nahef__נחף__local__north__arab__
 neot-hovav,מועצה מקומית נאות-חובב,Neot Hovav,local,south,jewish,wrong-file,⚠️ Wrong file — Wikipedia UI icon or unrelated image,,,,,,,,,Wrong file grabbed by scraper — needs manual lookup,,neot-hovav__נאות-חובב__local__south__jewish__
 oranit,מועצה מקומית אורנית,Oranit,local,judea-samaria,jewish,not-found,❌ Not found by v6 scraper,,,,,,,,,,,oranit__אורנית__local__judea-samaria__jewish__
 pardesia,מועצה מקומית פרדסיה,Pardesia,local,center,jewish,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,pardesia__פרדסיה__local__center__jewish__
-peqiin,פקיעין,Peqiin,local,north,druze,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,peqiin__פקיעין__local__north__druze__
+peqiin,פקיעין,Peqiin,local,north,druze,found-png,found-png,,,,,,,,,,,peqiin__פקיעין__local__north__druze__
 ramat-yishay,מועצה מקומית רמת-ישי,Ramat Yishay,local,north,jewish,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,ramat-yishay__רמת-ישי__local__north__jewish__
 rameh,ראמה,Rameh,local,north,arab,wrong-file,⚠️ Wrong file — Wikipedia UI icon or unrelated image,,,,,,,,,Wrong file grabbed by scraper — needs manual lookup,,rameh__ראמה__local__north__arab__
 rekhasim,מועצה מקומית רכסים,Rekhasim,local,haifa,jewish,not-found,❌ Not found by v6 scraper,,,,,,,,,,,rekhasim__רכסים__local__haifa__jewish__
@@ -210,15 +210,15 @@ shoham,מועצה מקומית שהם,Shoham,local,center,jewish,wrong-file,⚠�
 tel-sheva,תל-שבע,Tel Sheva,local,south,bedouin,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,tel-sheva__תל-שבע__local__south__bedouin__
 turan,טורעאן,Tur'an,local,north,arab,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,turan__טורעאן__local__north__arab__
 yafa-an-naseriyye,יפיע,Yafa an-Naseriyye,local,north,arab,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,yafa-an-naseriyye__יפיע__local__north__arab__
-yanuh-jat,יאנוח-ג'ת,Yanuh-Jat,local,north,druze,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,yanuh-jat__יאנוח-ג'ת__local__north__druze__
-yavneel,מועצה מקומית יבנאל,Yavneel,local,north,jewish,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,yavneel__יבנאל__local__north__jewish__
+yanuh-jat,יאנוח-ג'ת,Yanuh-Jat,local,north,druze,found-png,found-png,,,,,,,,,,,yanuh-jat__יאנוח-ג'ת__local__north__druze__
+yavneel,מועצה מקומית יבנאל,Yavneel,local,north,jewish,found-png,found-png,,,,,,,,,,,yavneel__יבנאל__local__north__jewish__
 alona,מועצה אזורית אלונה,Alona,regional,haifa,jewish,wrong-file,⚠️ Wrong file — Wikipedia UI icon or unrelated image,,,,,,,,,Wrong file grabbed by scraper — needs manual lookup,,alona__אלונה__regional__haifa__jewish__
 beer-tuvia,מועצה אזורית באר-טוביה,Beer Tuvia,regional,south,jewish,not-found,❌ Not found by v6 scraper,,,,,,,,,,,beer-tuvia__באר-טוביה__regional__south__jewish__
 binyamin,מועצה אזורית מטה-בנימין,Mateh Binyamin,regional,judea-samaria,jewish,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,binyamin__מטה-בנימין__regional__judea-samaria__jewish__
 brener,מועצה אזורית ברנר,Brener,regional,center,jewish,wrong-file,⚠️ Wrong file — Wikipedia UI icon or unrelated image,,,,,,,,,Wrong file grabbed by scraper — needs manual lookup,,brener__ברנר__regional__center__jewish__
 bustan-al-marj,בוסתאן-אל-מרג',Bustan al-Marj,regional,north,arab,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,bustan-al-marj__בוסתאן-אל-מרג'__regional__north__arab__
 central-arava,מועצה אזורית ערבה-תיכונה,Central Arava,regional,south,jewish,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,central-arava__ערבה-תיכונה__regional__south__jewish__
-daliyat-karmel,דאלית-אל-כרמל,Daliyat al-Karmel,regional,haifa,druze,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,daliyat-karmel__דאלית-אל-כרמל__regional__haifa__druze__
+daliyat-karmel,דאלית-אל-כרמל,Daliyat al-Karmel,regional,haifa,druze,found-png,found-png,,,,,,,,,,,daliyat-karmel__דאלית-אל-כרמל__regional__haifa__druze__
 drom-hasharon,מועצה אזורית דרום-השרון,Drom HaSharon,regional,center,jewish,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,drom-hasharon__דרום-השרון__regional__center__jewish__
 el-batouf,אל-בטוף,El-Batouf,regional,north,arab,found-png,🟡 Found by v6 scraper (PNG),,,,,,,,,,,el-batouf__אל-בטוף__regional__north__arab__
 emek-hamayanot,מועצה אזורית עמק-המעיינות,Emek Hama'ayanot,regional,north,jewish,not-found,❌ Not found by v6 scraper,,,,,,,,,,,emek-hamayanot__עמק-המעיינות__regional__north__jewish__
@@ -250,3 +250,11 @@ zvulun,מועצה אזורית זבולון,Zvulun,regional,haifa,jewish,wrong-f
 emek-lod,מועצה אזורית עמק לוד,Emek Lod,regional,center,jewish,found-png,obsolete,png,,,,Emek_Lod_COA.png,,,,"Defunct regional council, merged into other authorities",,Emek_Lod_COA-obsolete
 givat-ada,מועצה מקומית גבעת עדה,Giv'at Ada,local,haifa,jewish,found-png,obsolete,png,,,,Givat_Ada_COA_obsolete.png,,,,"Defunct local council, merged with Binyamina to form Binyamina-Givat Ada",,Givat_Ada_COA_obsolete
 binyamina-old,מועצה מקומית בנימינה,Binyamina (old COA),local,haifa,jewish,found-png,obsolete,png,,,,binyamina-COA-obsolete.png,,,,Old COA of Binyamina before merger with Giv'at Ada,,binyamina-COA-obsolete
+jatt,ג'ת,Jatt,local,center,arab,found-png,found-png,,,,,,,,,,,
+miilya,מעיליא,Mi'ilya,local,north,arab,found-png,found-png,,,,,,,,,,,
+yesod-hamaala,יסוד המעלה,Yesod HaMaala,local,north,jewish,found-png,found-png,,,,,,,,,,,
+zarzir,זרזיר,Zarzir,local,haifa,arab,found-png,found-png,,,,,,,,,,,
+zemer,זמר,Zemer,local,center,arab,found-png,found-png,,,,,,,,,,,
+gush-halav,גוש חלב,Gush Halav,local,north,arab,found-png,found-png,,,,,,,,,,,
+kafr-kanna,כפר כנא,Kafr Kanna,local,north,arab,found-png,found-png,,,,,,,,,,,
+shaar-shomron,שער שומרון,Shaar Shomron,local,center,jewish,found-png,found-png,,,,,,,,,,,
