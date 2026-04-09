@@ -141,6 +141,7 @@
     <input type="text" id="search" placeholder="Search by name, district…">
     <span class="controls-label">Sort:</span>
     <select class="sort-select" id="sort">
+      <option value="importance" selected>City → Regional → Local</option>
       <option value="name">Name A–Z</option>
       <option value="name-desc">Name Z–A</option>
       <option value="type">Type</option>
@@ -188,7 +189,7 @@
       <button class="filter-btn" data-group="culture" data-value="mixed">Mixed</button>
       <button class="filter-btn" data-group="culture" data-value="bedouin">Bedouin</button>
       <button class="filter-btn" data-group="culture" data-value="druze">Druze</button>
-      <button class="filter-btn" data-group="culture" data-value="palestinian" style="border-color:#d97706;color:#92400e;">🇵🇸 Palestinian</button>
+      <button class="filter-btn" data-group="culture" data-value="palestinian" style="border-color:#d97706;color:#92400e;">Palestinian</button>
     </div>
     <div class="vdivider"></div>
     <div class="btn-group" id="ps-district-filters" style="display:none;">
@@ -291,7 +292,7 @@ function effStatus(m){
 }
 
 const state={
-  view:'grid',sort:'name',search:'',
+  view:'grid',sort:'importance',search:'',
   coa:'coa',flagMissing:false,flagSize:false,
   filters:{type:new Set(),district:new Set(),culture:new Set()}
 };
@@ -312,9 +313,16 @@ function matches(m){
   return true;
 }
 
+const TYPE_RANK={'city':0,'regional':1,'local':2};
+
 function sorted(data){
   return[...data].sort((a,b)=>{
     switch(state.sort){
+      case'importance':{
+        const ta=TYPE_RANK[a.type]??3, tb=TYPE_RANK[b.type]??3;
+        if(ta!==tb)return ta-tb;
+        return(a.name_en||'').localeCompare(b.name_en||'');
+      }
       case'name':return(a.name_en||'').localeCompare(b.name_en||'');
       case'name-desc':return(b.name_en||'').localeCompare(a.name_en||'');
       case'type':return(a.type||'').localeCompare(b.type||'');
