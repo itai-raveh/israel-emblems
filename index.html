@@ -217,43 +217,21 @@ const STORAGE_KEY='israel-emblems-v4';
 
 const IMG_EXTS=['svg','png','jpg','webp'];
 
-function findBestImage(id,hasCOA,hasLogo,isObsolete){
-  // Build URL from CSV knowledge — no file scanning needed
-  if(hasCOA){
-    // Try SVG first, then common PNG extensions
-    const svgName=`${id}-COA.svg`;
-    return{
-      url:`${RAW}/emblems/svg/${encodeURIComponent(svgName)}`,
-      urlFallbacks:[
-        `${RAW}/emblems/png/${encodeURIComponent(id+'-COA.png')}`,
-        `${RAW}/emblems/png/${encodeURIComponent(id+'-COA.jpg')}`,
-        `${RAW}/emblems/png/${encodeURIComponent(id+'-COA.gif')}`,
-        `${RAW}/emblems/png/${encodeURIComponent(id+'-COA.webp')}`,
-        `${RAW}/emblems/png/${encodeURIComponent(id+'-COA.jpeg')}`,
-        `${RAW}/emblems/png/${encodeURIComponent(id+'-COA.tiff')}`,
-      ],
-      tier:1,label:'COA',name:`${id}-COA`
-    };
+function findBestImage(id,allFiles){
+  const candidates=[
+    {tier:1,label:'SVG',folder:'svg',name:`${id}-COA.svg`},
+    ...IMG_EXTS.filter(e=>e!=='svg').map(e=>({tier:2,label:'PNG',folder:'png',name:`${id}-COA.${e}`})),
+    {tier:3,label:'SVG·Logo',folder:'svg',name:`${id}-logo.svg`},
+    ...IMG_EXTS.filter(e=>e!=='svg').map(e=>({tier:4,label:'PNG·Logo',folder:'png',name:`${id}-logo.${e}`})),
+  ];
+  for(const c of candidates){
+    const list=c.folder==='svg'?allFiles.svg:allFiles.png;
+    if(list.includes(c.name))return{url:`${RAW}/emblems/${c.folder}/${encodeURIComponent(c.name)}`,tier:c.tier,label:c.label,name:c.name};
   }
-  if(hasLogo){
-    return{
-      url:`${RAW}/emblems/svg/${encodeURIComponent(id+'-logo.svg')}`,
-      urlFallbacks:[
-        `${RAW}/emblems/png/${encodeURIComponent(id+'-logo.png')}`,
-        `${RAW}/emblems/png/${encodeURIComponent(id+'-logo.jpg')}`,
-      ],
-      tier:3,label:'Logo',name:`${id}-logo`
-    };
-  }
-  if(isObsolete){
-    return{
-      url:`${RAW}/emblems/png/${encodeURIComponent(id+'-COA-obsolete.jpg')}`,
-      urlFallbacks:[
-        `${RAW}/emblems/png/${encodeURIComponent(id+'-COA-obsolete.png')}`,
-        `${RAW}/emblems/svg/${encodeURIComponent(id+'-COA-obsolete.svg')}`,
-      ],
-      tier:5,label:'Obsolete',name:`${id}-COA-obsolete`
-    };
+  const obsName=[...allFiles.svg,...allFiles.png].find(f=>f.startsWith(`${id}-`)&&f.includes('-obsolete'));
+  if(obsName){
+    const folder=allFiles.svg.includes(obsName)?'svg':'png';
+    return{url:`${RAW}/emblems/${folder}/${encodeURIComponent(obsName)}`,tier:5,label:'Obsolete',name:obsName};
   }
   return null;
 }
@@ -287,14 +265,14 @@ function parseCSV(text){
   }).filter(r=>r.id);
 }
 
-function enrich(data){
+function enrich(data,allFiles){
   return data.map(m=>{
-    const hasCOA=m.has_coa==='yes';
-    const hasLogo=m.has_logo==='yes';
-    const isObsolete=m.status==='obsolete';
-    m._obsolete=isObsolete||(m.id==='maccabim-reut');
-    m._img=findBestImage(m.id,hasCOA,hasLogo,m._obsolete);
-    m._isLogo=!m._obsolete&&hasLogo&&!hasCOA;
+    m._img=findBestImage(m.id,allFiles);
+    const hasObs=[...allFiles.svg,...allFiles.png].some(f=>f.startsWith(m.id+'-')&&f.includes('-obsolete'));
+    const hasCOA=(m.has_coa==='yes')||allFiles.svg.includes(`${m.id}-COA.svg`)||['png','jpg','webp'].some(e=>allFiles.png.includes(`${m.id}-COA.${e}`));
+    const hasLogo=(m.has_logo==='yes')||allFiles.svg.includes(`${m.id}-logo.svg`)||['png','jpg','webp'].some(e=>allFiles.png.includes(`${m.id}-logo.${e}`));
+    m._obsolete=hasObs&&!hasCOA&&!hasLogo;
+    m._isLogo=!m._obsolete&&!!m._img&&m._img.tier>=3;
     m._population=parseInt(m.population)||0;
     m._sizeTier=m.size_tier||'';
     return m;
@@ -304,14 +282,14 @@ function enrich(data){
 function isMissing(m){
   const a=getA(m.id);
   if('missing' in a) return !!a.missing;
-  return m.status==='missing';
+  return m.status==='missing'||!m._img;
 }
 
 function effStatus(m){
   if(m._obsolete)return'obsolete';
   const a=getA(m.id);
-  if(a.missing||m.status==='missing')return'not-found';
-  return m._isLogo?'logo':(m.has_coa==='yes'?'found-png':'found-png');
+  if(a.missing||!m._img)return'not-found';
+  return m._isLogo?'logo':(m._img.tier<=1?'found-svg':'found-png');
 }
 
 const state={
@@ -453,15 +431,9 @@ function sorted(data){
   });
 }
 
-function onImgError(el){
-  var fb=(el.getAttribute('data-fb')||'').split('|').filter(Boolean);
-  if(fb.length){el.src=fb[0];el.setAttribute('data-fb',fb.slice(1).join('|'));}
-  else{el.style.display='none';var n=el.nextElementSibling;if(n)n.style.display='block';}
-}
 function ih(m,size=80){
-  if(!m._img)return '<span class="no-image">&#9633;</span>';
-  const fb=(m._img.urlFallbacks||[]).join('|');
-  return '<img src="'+m._img.url+'" data-fb="'+fb+'" alt="'+m.name_en+'" loading="lazy" style="max-height:'+size+'px;max-width:100%;object-fit:contain" onerror="onImgError(this)">'+'<span class="no-image" style="display:none">&#9633;</span>';
+  if(!m._img)return`<span class="no-image">◻</span>`;
+  return`<img src="${m._img.url}" alt="${m.name_en}" loading="lazy" style="max-height:${size}px;max-width:100%;object-fit:contain" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="no-image" style="display:none">◻</span>`;
 }
 
 function tierBadge(img){
@@ -665,28 +637,34 @@ function openModal(m){
 }
 
 function exportAnn(){
-  const rows=['id,name_en,missing,small_file,note'];
+  const rows=['id,name_en,size,note'];
   DATA.forEach(m=>{
     const a=getA(m.id);
     if(!Object.keys(a).length)return;
-    rows.push([
-      m.id, m.name_en,
-      a.missing?'yes':'',
-      a.size?'yes':'',
-      `"${(a.note||'').replace(/"/g,'""')}"`
-    ].join(','));
+    rows.push([m.id,m.name_en,a.size?'yes':'',`"${(a.note||'').replace(/"/g,'""')}"`].join(','));
   });
   const blob=new Blob([rows.join('\n')],{type:'text/csv'});
   const el=document.createElement('a');el.href=URL.createObjectURL(blob);el.download='emblem-annotations.csv';el.click();
 }
 
+async function listFiles(folder){
+  try{
+    const r=await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${folder}?ref=${BRANCH}`);
+    if(!r.ok)return[];
+    return(await r.json()).map(f=>f.name);
+  }catch{return[];}
+}
+
 async function main(){
-  const[csvText,psCsvText]=await Promise.all([
+  const[csvText,psCsvText,svgFiles,pngFiles]=await Promise.all([
     fetch(CSV_URL).then(r=>r.text()),
     fetch(PS_CSV_URL).then(r=>r.ok?r.text():'').catch(()=>''),
+    listFiles('emblems/svg'),
+    listFiles('emblems/png'),
   ]);
-  const israeli=enrich(parseCSV(csvText));
-  const palestinian=psCsvText?enrich(parseCSV(psCsvText)):[];
+  const allFiles={svg:svgFiles,png:pngFiles};
+  const israeli=enrich(parseCSV(csvText),allFiles);
+  const palestinian=psCsvText?enrich(parseCSV(psCsvText),allFiles):[];
   DATA=[...israeli,...palestinian];
   renderStats(DATA);render();
 
