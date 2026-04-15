@@ -8,7 +8,7 @@ ramat-gan,רמת-גן,Ramat Gan,city,tel-aviv,jewish,found,yes,no,162000,עיר 
 ashkelon,אשקלון,Ashkelon,city,south,jewish,found,yes,yes,149160,עיר גדולה
 hadera,חדרה,Hadera,city,haifa,jewish,found,yes,no,100000,עיר גדולה
 or-yehuda,אור-יהודה,Or Yehuda,city,tel-aviv,jewish,found,yes,yes,40000,עיירה
-beit-shean,בית-שאן,Beit Shean,city,north,jewish,found,no,yes,18900,מועצה מקומית
+beit-shean,בית-שאן,Beit Shean,city,north,jewish,found,yes,yes,18900,מועצה מקומית
 kiryat-motzkin,קריית-מוצקין,Kiryat Motzkin,city,haifa,jewish,found,yes,no,43000,עיירה
 kiryat-ono,קריית-אונו,Kiryat Ono,city,tel-aviv,jewish,found,yes,yes,38000,עיירה
 kiryat-shmona,קריית-שמונה,Kiryat Shmona,city,north,jewish,found,yes,no,25000,עיירה
@@ -258,3 +258,10 @@ zemer,זמר,Zemer,local,center,arab,found,yes,no,7360,מועצה מקומית
 gush-halav,גוש חלב,Gush Halav,local,north,arab,found,yes,no,3154,מועצה מקומית
 kafr-kanna,כפר כנא,Kafr Kanna,local,north,arab,found,yes,no,23705,עיירה
 shaar-shomron,שער שומרון,Shaar Shomron,local,center,jewish,found,yes,no,,מועצה מקומית
+zur-hadassa,צור הדסה,Zur Hadassa,local,jerusalem,jewish,found,yes,no,6000,מועצה מקומית
+kawkab-abu-al-hija,כאוכב אבו אל-היג'א,Kawkab Abu al-Hija,local,north,arab,found,yes,no,3724,מועצה מקומית
+bana,בענה,Bana,local,north,arab,found,yes,no,8536,מועצה מקומית
+majd-al-krum,מג'ד אל-כרום,Majd al-Krum,local,north,arab,found,yes,no,15630,מועצה מקומית
+shaarei-tikva,שערי תקווה,Shaarei Tikva,local,judea-samaria,jewish,found,yes,no,8000,מועצה מקומית
+neve-monosson,נווה מונוסון,Neve Monosson,local,tel-aviv,jewish,found,yes,no,,מועצה מקומית
+maccabim-reut,מכבים-רעות,Maccabim-Reut,local,center,jewish,found,yes,no,,מועצה מקומית
