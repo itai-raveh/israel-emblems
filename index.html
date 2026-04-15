@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -6,206 +7,207 @@
 <title>Israeli Municipal Emblems</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,wght@0,300;0,600;1,300&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg:#f5f2eb;--surface:#fff;--border:#d6d0c4;--text:#1a1814;--muted:#7a7468;--accent:#2d5a8e;
-    --svg:#1a6b3a;--svg-bg:#e8f5ee;
-    --logo:#3730a3;--logo-bg:#eef2ff;
-    --missing:#444;--missing-bg:#f0f0f0;
-    --size:#6b3a1a;--size-bg:#fdf0e8;
-    --obsolete:#5a4a00;--obsolete-bg:#fdf8e0;
-  }
-  *{box-sizing:border-box;margin:0;padding:0;}
-  body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font-size:13px;min-height:100vh;}
-  header{padding:48px 40px 32px;border-bottom:1px solid var(--border);background:var(--surface);}
-  header h1{font-family:'Fraunces',serif;font-size:36px;font-weight:300;letter-spacing:-0.5px;margin-bottom:6px;}
-  header h1 em{font-style:italic;color:var(--accent);}
-  header p{color:var(--muted);font-size:12px;}
-  .stats{display:flex;gap:24px;margin-top:24px;flex-wrap:wrap;}
-  .stat{display:flex;align-items:center;gap:8px;font-size:12px;}
-  .stat-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+:root {
+--bg:#f5f2eb;--surface:#fff;--border:#d6d0c4;--text:#1a1814;--muted:#7a7468;--accent:#2d5a8e;
+--svg:#1a6b3a;--svg-bg:#e8f5ee;
+--logo:#3730a3;--logo-bg:#eef2ff;
+--missing:#444;--missing-bg:#f0f0f0;
+--size:#6b3a1a;--size-bg:#fdf0e8;
+--obsolete:#5a4a00;--obsolete-bg:#fdf8e0;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font-size:13px;min-height:100vh;}
+header{padding:48px 40px 32px;border-bottom:1px solid var(--border);background:var(--surface);}
+header h1{font-family:'Fraunces',serif;font-size:36px;font-weight:300;letter-spacing:-0.5px;margin-bottom:6px;}
+header h1 em{font-style:italic;color:var(--accent);}
+header p{color:var(--muted);font-size:12px;}
+.stats{display:flex;gap:24px;margin-top:24px;flex-wrap:wrap;}
+.stat{display:flex;align-items:center;gap:8px;font-size:12px;}
+.stat-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
 
-  .controls{padding:12px 40px;background:var(--bg);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:10;display:flex;flex-direction:column;gap:8px;}
-  .controls-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
-  .controls input[type="text"]{font-family:'DM Mono',monospace;font-size:12px;padding:6px 12px;border:1px solid var(--border);border-radius:4px;background:var(--surface);color:var(--text);width:200px;outline:none;}
-  .controls input[type="text"]:focus{border-color:var(--accent);}
-  .controls-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;white-space:nowrap;}
-  .btn-group{display:flex;gap:3px;flex-wrap:wrap;}
-  .filter-btn{font-family:'DM Mono',monospace;font-size:11px;padding:4px 9px;border:1px solid var(--border);border-radius:4px;background:var(--surface);color:var(--muted);cursor:pointer;transition:all 0.12s;white-space:nowrap;}
-  .filter-btn:hover{border-color:var(--accent);color:var(--accent);}
-  .filter-btn.active{background:var(--accent);color:#fff;border-color:var(--accent);}
-  .sort-select{font-family:'DM Mono',monospace;font-size:11px;padding:4px 9px;border:1px solid var(--border);border-radius:4px;background:var(--surface);color:var(--text);cursor:pointer;outline:none;}
-  .right-controls{margin-left:auto;display:flex;gap:6px;align-items:center;}
-  .flag-btn{font-family:'DM Mono',monospace;font-size:11px;padding:4px 9px;border:1px solid var(--border);border-radius:4px;background:var(--surface);color:var(--muted);cursor:pointer;transition:all 0.12s;white-space:nowrap;}
-  .flag-btn:hover{border-color:var(--accent);color:var(--accent);}
-  .flag-btn.active-size{background:var(--size-bg);color:var(--size);border-color:var(--size);}
-  .flag-btn.active-missing{background:var(--missing-bg);color:var(--missing);border-color:#bbb;}
-  .view-btn{font-family:'DM Mono',monospace;font-size:16px;padding:3px 7px;border:1px solid var(--border);border-radius:4px;background:var(--surface);color:var(--muted);cursor:pointer;line-height:1;}
-  .view-btn.active{background:var(--accent);color:#fff;border-color:var(--accent);}
-  .count{color:var(--muted);font-size:11px;white-space:nowrap;}
-  .export-btn{font-family:'DM Mono',monospace;font-size:11px;padding:4px 9px;border:1px solid var(--border);border-radius:4px;background:var(--surface);color:var(--muted);cursor:pointer;}
-  .export-btn:hover{border-color:var(--accent);color:var(--accent);}
-  .vdivider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.controls{padding:12px 40px;background:var(–bg);border-bottom:1px solid var(–border);position:sticky;top:0;z-index:10;display:flex;flex-direction:column;gap:8px;}
+.controls-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.controls input[type=“text”]{font-family:‘DM Mono’,monospace;font-size:12px;padding:6px 12px;border:1px solid var(–border);border-radius:4px;background:var(–surface);color:var(–text);width:200px;outline:none;}
+.controls input[type=“text”]:focus{border-color:var(–accent);}
+.controls-label{font-size:10px;color:var(–muted);text-transform:uppercase;letter-spacing:0.5px;white-space:nowrap;}
+.btn-group{display:flex;gap:3px;flex-wrap:wrap;}
+.filter-btn{font-family:‘DM Mono’,monospace;font-size:11px;padding:4px 9px;border:1px solid var(–border);border-radius:4px;background:var(–surface);color:var(–muted);cursor:pointer;transition:all 0.12s;white-space:nowrap;}
+.filter-btn:hover{border-color:var(–accent);color:var(–accent);}
+.filter-btn.active{background:var(–accent);color:#fff;border-color:var(–accent);}
+.sort-select{font-family:‘DM Mono’,monospace;font-size:11px;padding:4px 9px;border:1px solid var(–border);border-radius:4px;background:var(–surface);color:var(–text);cursor:pointer;outline:none;}
+.right-controls{margin-left:auto;display:flex;gap:6px;align-items:center;}
+.flag-btn{font-family:‘DM Mono’,monospace;font-size:11px;padding:4px 9px;border:1px solid var(–border);border-radius:4px;background:var(–surface);color:var(–muted);cursor:pointer;transition:all 0.12s;white-space:nowrap;}
+.flag-btn:hover{border-color:var(–accent);color:var(–accent);}
+.flag-btn.active-size{background:var(–size-bg);color:var(–size);border-color:var(–size);}
+.flag-btn.active-missing{background:var(–missing-bg);color:var(–missing);border-color:#bbb;}
+.view-btn{font-family:‘DM Mono’,monospace;font-size:16px;padding:3px 7px;border:1px solid var(–border);border-radius:4px;background:var(–surface);color:var(–muted);cursor:pointer;line-height:1;}
+.view-btn.active{background:var(–accent);color:#fff;border-color:var(–accent);}
+.count{color:var(–muted);font-size:11px;white-space:nowrap;}
+.export-btn{font-family:‘DM Mono’,monospace;font-size:11px;padding:4px 9px;border:1px solid var(–border);border-radius:4px;background:var(–surface);color:var(–muted);cursor:pointer;}
+.export-btn:hover{border-color:var(–accent);color:var(–accent);}
+.vdivider{width:1px;height:20px;background:var(–border);flex-shrink:0;}
 
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1px;background:var(--border);}
-  .card{background:var(--surface);padding:14px;display:flex;flex-direction:column;gap:7px;cursor:pointer;transition:background 0.1s;}
-  .card:hover{background:#fafaf7;}
-  .emblem-wrap{height:90px;display:flex;align-items:center;justify-content:center;background:var(--bg);border-radius:4px;overflow:hidden;position:relative;}
-  .emblem-wrap img{max-height:80px;max-width:100%;object-fit:contain;}
-  .no-image{color:var(--border);font-size:28px;}
-  .img-tier{position:absolute;bottom:3px;right:3px;font-size:9px;padding:1px 4px;border-radius:2px;opacity:0.7;font-weight:500;}
-  .img-tier.t1{background:var(--svg-bg);color:var(--svg);}
-  .img-tier.t2{background:#fff8e0;color:#7a5a00;}
-  .img-tier.t3,.img-tier.t4{background:#e8eeff;color:#3730a3;}
-  .card-name{font-family:'Fraunces',serif;font-weight:300;font-size:13px;line-height:1.3;}
-  .card-name-he{font-size:10px;color:var(--muted);direction:rtl;text-align:right;}
-  .card-meta{font-size:10px;color:var(--muted);}
-  .card-tags{display:flex;flex-wrap:wrap;gap:3px;}
-  .card-ticks{display:flex;gap:4px;padding-top:8px;border-top:1px solid var(--border);margin-top:2px;}
-  .tick{display:flex;align-items:center;gap:4px;font-size:10px;color:var(--muted);cursor:pointer;user-select:none;padding:3px 7px;border-radius:3px;flex:1;justify-content:center;transition:all 0.1s;border:1px solid transparent;}
-  .tick:hover{background:var(--bg);}
-  .tick input{width:11px;height:11px;cursor:pointer;margin:0;flex-shrink:0;accent-color:var(--accent);}
-  .tick.t-missing.on{color:var(--missing);border-color:#ddd;background:var(--missing-bg);}
-  .tick.t-size.on{color:var(--size);border-color:var(--size-bg);background:var(--size-bg);}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1px;background:var(–border);}
+.card{background:var(–surface);padding:14px;display:flex;flex-direction:column;gap:7px;cursor:pointer;transition:background 0.1s;}
+.card:hover{background:#fafaf7;}
+.emblem-wrap{height:90px;display:flex;align-items:center;justify-content:center;background:var(–bg);border-radius:4px;overflow:hidden;position:relative;}
+.emblem-wrap img{max-height:80px;max-width:100%;object-fit:contain;}
+.no-image{color:var(–border);font-size:28px;}
+.img-tier{position:absolute;bottom:3px;right:3px;font-size:9px;padding:1px 4px;border-radius:2px;opacity:0.7;font-weight:500;}
+.img-tier.t1{background:var(–svg-bg);color:var(–svg);}
+.img-tier.t2{background:#fff8e0;color:#7a5a00;}
+.img-tier.t3,.img-tier.t4{background:#e8eeff;color:#3730a3;}
+.card-name{font-family:‘Fraunces’,serif;font-weight:300;font-size:13px;line-height:1.3;}
+.card-name-he{font-size:10px;color:var(–muted);direction:rtl;text-align:right;}
+.card-meta{font-size:10px;color:var(–muted);}
+.card-tags{display:flex;flex-wrap:wrap;gap:3px;}
+.card-ticks{display:flex;gap:4px;padding-top:8px;border-top:1px solid var(–border);margin-top:2px;}
+.tick{display:flex;align-items:center;gap:4px;font-size:10px;color:var(–muted);cursor:pointer;user-select:none;padding:3px 7px;border-radius:3px;flex:1;justify-content:center;transition:all 0.1s;border:1px solid transparent;}
+.tick:hover{background:var(–bg);}
+.tick input{width:11px;height:11px;cursor:pointer;margin:0;flex-shrink:0;accent-color:var(–accent);}
+.tick.t-missing.on{color:var(–missing);border-color:#ddd;background:var(–missing-bg);}
+.tick.t-size.on{color:var(–size);border-color:var(–size-bg);background:var(–size-bg);}
 
-  .badge{display:inline-block;font-size:10px;padding:2px 6px;border-radius:3px;font-weight:500;white-space:nowrap;}
-  .badge-found-svg,.badge-found-png{background:var(--svg-bg);color:var(--svg);}
-  .badge-logo{background:var(--logo-bg);color:var(--logo);}
-  .badge-not-found,.badge-not-yet,.badge-error{background:var(--missing-bg);color:var(--missing);}
-  .badge-size{background:var(--size-bg);color:var(--size);}
-  .badge-obsolete{background:var(--obsolete-bg);color:var(--obsolete);}
-  .badge-jewish{background:#eef2ff;color:#3730a3;}
-  .badge-arab{background:#fef3c7;color:#92400e;}
-  .badge-mixed{background:#f0fdf4;color:#166534;}
-  .badge-bedouin{background:#fdf4ff;color:#6b21a8;}
-  .badge-druze{background:#fff0f8;color:#9d174d;}
-  .badge-circassian{background:#f0f4ff;color:#1e3a8a;}
-  .badge-city{background:#eff6ff;color:#1d4ed8;}
-  .badge-local{background:#f0fdf4;color:#15803d;}
-  .badge-regional{background:#fdf4ff;color:#7e22ce;}
-  .badge-palestinian{background:#fef9ec;color:#92400e;}
-  .badge-west-bank{background:#fff7ed;color:#9a3412;}
-  .badge-gaza{background:#f0fdf4;color:#065f46;}
+.badge{display:inline-block;font-size:10px;padding:2px 6px;border-radius:3px;font-weight:500;white-space:nowrap;}
+.badge-found-svg,.badge-found-png{background:var(–svg-bg);color:var(–svg);}
+.badge-logo{background:var(–logo-bg);color:var(–logo);}
+.badge-not-found,.badge-not-yet,.badge-error{background:var(–missing-bg);color:var(–missing);}
+.badge-size{background:var(–size-bg);color:var(–size);}
+.badge-obsolete{background:var(–obsolete-bg);color:var(–obsolete);}
+.badge-jewish{background:#eef2ff;color:#3730a3;}
+.badge-arab{background:#fef3c7;color:#92400e;}
+.badge-mixed{background:#f0fdf4;color:#166534;}
+.badge-bedouin{background:#fdf4ff;color:#6b21a8;}
+.badge-druze{background:#fff0f8;color:#9d174d;}
+.badge-circassian{background:#f0f4ff;color:#1e3a8a;}
+.badge-city{background:#eff6ff;color:#1d4ed8;}
+.badge-local{background:#f0fdf4;color:#15803d;}
+.badge-regional{background:#fdf4ff;color:#7e22ce;}
+.badge-palestinian{background:#fef9ec;color:#92400e;}
+.badge-west-bank{background:#fff7ed;color:#9a3412;}
+.badge-gaza{background:#f0fdf4;color:#065f46;}
 
-  .section-divider{display:flex;align-items:center;gap:16px;padding:24px 40px 12px;background:var(--bg);border-top:2px solid var(--border);}
-  .section-divider h2{font-family:'Fraunces',serif;font-weight:300;font-size:20px;white-space:nowrap;}
-  .section-divider h2 em{font-style:italic;color:#92400e;}
-  .section-divider-line{flex:1;height:1px;background:var(--border);}
-  .section-count{font-size:11px;color:var(--muted);white-space:nowrap;}
+.section-divider{display:flex;align-items:center;gap:16px;padding:24px 40px 12px;background:var(–bg);border-top:2px solid var(–border);}
+.section-divider h2{font-family:‘Fraunces’,serif;font-weight:300;font-size:20px;white-space:nowrap;}
+.section-divider h2 em{font-style:italic;color:#92400e;}
+.section-divider-line{flex:1;height:1px;background:var(–border);}
+.section-count{font-size:11px;color:var(–muted);white-space:nowrap;}
 
-  .list-view{background:var(--surface);}
-  .list-header{display:grid;grid-template-columns:60px 1fr 130px 90px 180px 100px;gap:12px;padding:10px 20px;background:var(--bg);border-bottom:2px solid var(--border);font-size:10px;text-transform:uppercase;letter-spacing:0.5px;color:var(--muted);}
-  .list-row{display:grid;grid-template-columns:60px 1fr 130px 90px 180px 100px;gap:12px;padding:10px 20px;border-bottom:1px solid var(--border);align-items:center;cursor:pointer;transition:background 0.1s;}
-  .list-row:hover{background:#fafaf7;}
-  .list-thumb{width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:var(--bg);border-radius:3px;overflow:hidden;}
-  .list-thumb img{max-width:44px;max-height:44px;object-fit:contain;}
-  .list-name{font-family:'Fraunces',serif;font-weight:300;font-size:14px;}
-  .list-tags{display:flex;flex-wrap:wrap;gap:3px;}
-  .list-ticks{display:flex;gap:4px;}
-  .ltick{font-size:10px;padding:2px 7px;border-radius:3px;border:1px solid var(--border);cursor:pointer;white-space:nowrap;background:var(--surface);color:var(--muted);transition:all 0.1s;}
-  .ltick:hover{border-color:var(--accent);}
-  .ltick.on-missing{background:var(--missing-bg);color:var(--missing);border-color:#bbb;}
-  .ltick.on-size{background:var(--size-bg);color:var(--size);border-color:var(--size);}
+.list-view{background:var(–surface);}
+.list-header{display:grid;grid-template-columns:60px 1fr 130px 90px 180px 100px;gap:12px;padding:10px 20px;background:var(–bg);border-bottom:2px solid var(–border);font-size:10px;text-transform:uppercase;letter-spacing:0.5px;color:var(–muted);}
+.list-row{display:grid;grid-template-columns:60px 1fr 130px 90px 180px 100px;gap:12px;padding:10px 20px;border-bottom:1px solid var(–border);align-items:center;cursor:pointer;transition:background 0.1s;}
+.list-row:hover{background:#fafaf7;}
+.list-thumb{width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:var(–bg);border-radius:3px;overflow:hidden;}
+.list-thumb img{max-width:44px;max-height:44px;object-fit:contain;}
+.list-name{font-family:‘Fraunces’,serif;font-weight:300;font-size:14px;}
+.list-tags{display:flex;flex-wrap:wrap;gap:3px;}
+.list-ticks{display:flex;gap:4px;}
+.ltick{font-size:10px;padding:2px 7px;border-radius:3px;border:1px solid var(–border);cursor:pointer;white-space:nowrap;background:var(–surface);color:var(–muted);transition:all 0.1s;}
+.ltick:hover{border-color:var(–accent);}
+.ltick.on-missing{background:var(–missing-bg);color:var(–missing);border-color:#bbb;}
+.ltick.on-size{background:var(–size-bg);color:var(–size);border-color:var(–size);}
 
-  .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:100;align-items:center;justify-content:center;padding:24px;}
-  .modal-overlay.open{display:flex;}
-  .modal{background:var(--surface);border-radius:8px;max-width:560px;width:100%;max-height:90vh;overflow-y:auto;padding:32px;position:relative;}
-  .modal-close{position:absolute;top:16px;right:16px;background:none;border:none;font-size:20px;cursor:pointer;color:var(--muted);line-height:1;}
-  .modal-emblem{text-align:center;padding:24px;background:var(--bg);border-radius:6px;margin-bottom:20px;}
-  .modal-emblem img{max-height:200px;max-width:100%;object-fit:contain;}
-  .modal h2{font-family:'Fraunces',serif;font-weight:300;font-size:22px;margin-bottom:4px;}
-  .modal-he{direction:rtl;color:var(--muted);margin-bottom:16px;font-size:14px;}
-  .modal-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:20px;}
-  .modal-fields{display:grid;grid-template-columns:130px 1fr;gap:8px 12px;font-size:12px;margin-bottom:20px;}
-  .modal-label{color:var(--muted);}
-  .modal-value{word-break:break-all;}
-  .modal-value a{color:var(--accent);text-decoration:none;}
-  .modal-value a:hover{text-decoration:underline;}
-  .modal-note label{font-size:11px;color:var(--muted);display:block;margin-bottom:6px;}
-  .modal-note textarea{width:100%;font-family:'DM Mono',monospace;font-size:12px;padding:8px;border:1px solid var(--border);border-radius:4px;resize:vertical;min-height:60px;outline:none;color:var(--text);}
-  .modal-note textarea:focus{border-color:var(--accent);}
-  .note-save{margin-top:8px;font-family:'DM Mono',monospace;font-size:11px;padding:5px 12px;background:var(--accent);color:#fff;border:none;border-radius:4px;cursor:pointer;}
-  .note-ok{margin-left:10px;font-size:11px;color:var(--muted);display:none;}
-  .empty{padding:80px;text-align:center;color:var(--muted);background:var(--surface);}
-  .loading{padding:80px;text-align:center;color:var(--muted);}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:100;align-items:center;justify-content:center;padding:24px;}
+.modal-overlay.open{display:flex;}
+.modal{background:var(–surface);border-radius:8px;max-width:560px;width:100%;max-height:90vh;overflow-y:auto;padding:32px;position:relative;}
+.modal-close{position:absolute;top:16px;right:16px;background:none;border:none;font-size:20px;cursor:pointer;color:var(–muted);line-height:1;}
+.modal-emblem{text-align:center;padding:24px;background:var(–bg);border-radius:6px;margin-bottom:20px;}
+.modal-emblem img{max-height:200px;max-width:100%;object-fit:contain;}
+.modal h2{font-family:‘Fraunces’,serif;font-weight:300;font-size:22px;margin-bottom:4px;}
+.modal-he{direction:rtl;color:var(–muted);margin-bottom:16px;font-size:14px;}
+.modal-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:20px;}
+.modal-fields{display:grid;grid-template-columns:130px 1fr;gap:8px 12px;font-size:12px;margin-bottom:20px;}
+.modal-label{color:var(–muted);}
+.modal-value{word-break:break-all;}
+.modal-value a{color:var(–accent);text-decoration:none;}
+.modal-value a:hover{text-decoration:underline;}
+.modal-note label{font-size:11px;color:var(–muted);display:block;margin-bottom:6px;}
+.modal-note textarea{width:100%;font-family:‘DM Mono’,monospace;font-size:12px;padding:8px;border:1px solid var(–border);border-radius:4px;resize:vertical;min-height:60px;outline:none;color:var(–text);}
+.modal-note textarea:focus{border-color:var(–accent);}
+.note-save{margin-top:8px;font-family:‘DM Mono’,monospace;font-size:11px;padding:5px 12px;background:var(–accent);color:#fff;border:none;border-radius:4px;cursor:pointer;}
+.note-ok{margin-left:10px;font-size:11px;color:var(–muted);display:none;}
+.empty{padding:80px;text-align:center;color:var(–muted);background:var(–surface);}
+.loading{padding:80px;text-align:center;color:var(–muted);}
 </style>
+
 </head>
 <body>
 <header>
-  <h1>Israeli Municipal <em>Emblems</em></h1>
-  <p>Encyclopedia / index of coats of arms for all ~250 Israeli municipalities</p>
-  <div class="stats" id="stats"></div>
+<h1>Israeli Municipal <em>Emblems</em></h1>
+<p>Encyclopedia / index of coats of arms for all ~250 Israeli municipalities</p>
+<div class="stats" id="stats"></div>
 </header>
 
 <div class="controls">
-  <div class="controls-row">
-    <input type="text" id="search" placeholder="Search by name, district…">
-    <span class="controls-label">Sort:</span>
-    <select class="sort-select" id="sort">
-      <option value="importance" selected>City → Regional → Local</option>
-      <option value="name">Name A–Z</option>
-      <option value="name-desc">Name Z–A</option>
-      <option value="type">Type</option>
-      <option value="district">District</option>
-    </select>
-    <span class="count" id="count" style="font-size:13px;font-weight:500;color:var(--text)"></span>
-    <div class="right-controls">
-      <button class="export-btn" id="export-btn">⬇ Export</button>
-      <div class="vdivider"></div>
-      <button class="view-btn active" id="btn-grid">⊞</button>
-      <button class="view-btn" id="btn-list">☰</button>
-    </div>
-  </div>
-  <div class="controls-row">
-    <div class="btn-group">
-      <button class="filter-btn active" data-group="coa" data-value="coa">🏛 COA</button>
-      <button class="filter-btn" data-group="coa" data-value="obsolete">📜 Obsolete</button>
-    </div>
-    <div class="vdivider"></div>
-    <div class="btn-group">
-      <button class="flag-btn" id="flag-missing">❌ Missing</button>
-      <button class="flag-btn" id="flag-size">📐 Small file</button>
-    </div>
-    <div class="vdivider"></div>
-    <div class="btn-group">
-      <button class="filter-btn" data-group="type" data-value="city">City</button>
-      <button class="filter-btn" data-group="type" data-value="local">Local</button>
-      <button class="filter-btn" data-group="type" data-value="regional">Regional</button>
-    </div>
-    <div class="vdivider"></div>
-    <div class="btn-group">
-      <button class="filter-btn" data-group="district" data-value="north">North</button>
-      <button class="filter-btn" data-group="district" data-value="center">Center</button>
-      <button class="filter-btn" data-group="district" data-value="south">South</button>
-      <button class="filter-btn" data-group="district" data-value="jerusalem">Jerusalem</button>
-      <button class="filter-btn" data-group="district" data-value="haifa">Haifa</button>
-      <button class="filter-btn" data-group="district" data-value="tel-aviv">Tel Aviv</button>
-      <button class="filter-btn" data-group="district" data-value="golan">Golan</button>
-      <button class="filter-btn" data-group="district" data-value="judea-samaria">Judea & Samaria</button>
-    </div>
-    <div class="vdivider"></div>
-    <div class="btn-group">
-      <button class="filter-btn" data-group="culture" data-value="jewish">Jewish</button>
-      <button class="filter-btn" data-group="culture" data-value="arab">Arab</button>
-      <button class="filter-btn" data-group="culture" data-value="mixed">Mixed</button>
-      <button class="filter-btn" data-group="culture" data-value="bedouin">Bedouin</button>
-      <button class="filter-btn" data-group="culture" data-value="druze">Druze</button>
-    </div>
-    <div style="width:1px;height:20px;background:var(--border);flex-shrink:0;margin:0 4px;"></div>
-    <button class="filter-btn" data-group="culture" data-value="palestinian" style="border-color:#d97706;color:#92400e;">Palestinian</button>
-    <div class="btn-group" id="ps-district-filters" style="display:none;">
-      <button class="filter-btn" data-group="district" data-value="West Bank">West Bank</button>
-      <button class="filter-btn" data-group="district" data-value="Gaza Strip">Gaza Strip</button>
-    </div>
-  </div>
+<div class="controls-row">
+<input type="text" id="search" placeholder="Search by name, district…">
+<span class="controls-label">Sort:</span>
+<select class="sort-select" id="sort">
+<option value="importance" selected>City → Regional → Local</option>
+<option value="name">Name A–Z</option>
+<option value="name-desc">Name Z–A</option>
+<option value="type">Type</option>
+<option value="district">District</option>
+</select>
+<span class="count" id="count" style="font-size:13px;font-weight:500;color:var(--text)"></span>
+<div class="right-controls">
+<button class="export-btn" id="export-btn">⬇ Export</button>
+<div class="vdivider"></div>
+<button class="view-btn active" id="btn-grid">⊞</button>
+<button class="view-btn" id="btn-list">☰</button>
+</div>
+</div>
+<div class="controls-row">
+<div class="btn-group">
+<button class="filter-btn active" data-group="coa" data-value="coa">🏛 COA</button>
+<button class="filter-btn" data-group="coa" data-value="obsolete">📜 Obsolete</button>
+</div>
+<div class="vdivider"></div>
+<div class="btn-group">
+<button class="flag-btn" id="flag-missing">❌ Missing</button>
+<button class="flag-btn" id="flag-size">📐 Small file</button>
+</div>
+<div class="vdivider"></div>
+<div class="btn-group">
+<button class="filter-btn" data-group="type" data-value="city">City</button>
+<button class="filter-btn" data-group="type" data-value="local">Local</button>
+<button class="filter-btn" data-group="type" data-value="regional">Regional</button>
+</div>
+<div class="vdivider"></div>
+<div class="btn-group">
+<button class="filter-btn" data-group="district" data-value="north">North</button>
+<button class="filter-btn" data-group="district" data-value="center">Center</button>
+<button class="filter-btn" data-group="district" data-value="south">South</button>
+<button class="filter-btn" data-group="district" data-value="jerusalem">Jerusalem</button>
+<button class="filter-btn" data-group="district" data-value="haifa">Haifa</button>
+<button class="filter-btn" data-group="district" data-value="tel-aviv">Tel Aviv</button>
+<button class="filter-btn" data-group="district" data-value="golan">Golan</button>
+<button class="filter-btn" data-group="district" data-value="judea-samaria">Judea & Samaria</button>
+</div>
+<div class="vdivider"></div>
+<div class="btn-group">
+<button class="filter-btn" data-group="culture" data-value="jewish">Jewish</button>
+<button class="filter-btn" data-group="culture" data-value="arab">Arab</button>
+<button class="filter-btn" data-group="culture" data-value="mixed">Mixed</button>
+<button class="filter-btn" data-group="culture" data-value="bedouin">Bedouin</button>
+<button class="filter-btn" data-group="culture" data-value="druze">Druze</button>
+</div>
+<div style="width:1px;height:20px;background:var(--border);flex-shrink:0;margin:0 4px;"></div>
+<button class="filter-btn" data-group="culture" data-value="palestinian" style="border-color:#d97706;color:#92400e;">Palestinian</button>
+<div class="btn-group" id="ps-district-filters" style="display:none;">
+<button class="filter-btn" data-group="district" data-value="West Bank">West Bank</button>
+<button class="filter-btn" data-group="district" data-value="Gaza Strip">Gaza Strip</button>
+</div>
+</div>
 </div>
 
 <div id="main-content"><div class="loading">Loading…</div></div>
 
 <div class="modal-overlay" id="modal-overlay">
-  <div class="modal">
-    <button class="modal-close" id="modal-close">✕</button>
-    <div id="modal-content"></div>
-  </div>
+<div class="modal">
+<button class="modal-close" id="modal-close">✕</button>
+<div id="modal-content"></div>
+</div>
 </div>
 
 <script>
@@ -217,23 +219,45 @@ const STORAGE_KEY='israel-emblems-v4';
 
 const IMG_EXTS=['svg','png','jpg','webp'];
 
-function findBestImage(id,allFiles){
-  const candidates=[
-    {tier:1,label:'SVG',folder:'svg',name:`${id}-COA.svg`},
-    ...IMG_EXTS.filter(e=>e!=='svg').map(e=>({tier:2,label:'PNG',folder:'png',name:`${id}-COA.${e}`})),
-    {tier:3,label:'SVG·Logo',folder:'svg',name:`${id}-logo.svg`},
-    ...IMG_EXTS.filter(e=>e!=='svg').map(e=>({tier:4,label:'PNG·Logo',folder:'png',name:`${id}-logo.${e}`})),
-  ];
-  for(const c of candidates){
-    const list=c.folder==='svg'?allFiles.svg:allFiles.png;
-    if(list.includes(c.name))return{url:`${RAW}/emblems/${c.folder}/${encodeURIComponent(c.name)}`,tier:c.tier,label:c.label,name:c.name};
-  }
-  const obsName=[...allFiles.svg,...allFiles.png].find(f=>f.startsWith(`${id}-`)&&f.includes('-obsolete'));
-  if(obsName){
-    const folder=allFiles.svg.includes(obsName)?'svg':'png';
-    return{url:`${RAW}/emblems/${folder}/${encodeURIComponent(obsName)}`,tier:5,label:'Obsolete',name:obsName};
-  }
-  return null;
+function findBestImage(id,hasCOA,hasLogo,isObsolete){
+// Build URL from CSV knowledge — no file scanning needed
+if(hasCOA){
+// Try SVG first, then common PNG extensions
+const svgName=`${id}-COA.svg`;
+return{
+url:`${RAW}/emblems/svg/${encodeURIComponent(svgName)}`,
+urlFallbacks:[
+`${RAW}/emblems/png/${encodeURIComponent(id+'-COA.png')}`,
+`${RAW}/emblems/png/${encodeURIComponent(id+'-COA.jpg')}`,
+`${RAW}/emblems/png/${encodeURIComponent(id+'-COA.gif')}`,
+`${RAW}/emblems/png/${encodeURIComponent(id+'-COA.webp')}`,
+`${RAW}/emblems/png/${encodeURIComponent(id+'-COA.jpeg')}`,
+`${RAW}/emblems/png/${encodeURIComponent(id+'-COA.tiff')}`,
+],
+tier:1,label:'COA',name:`${id}-COA`
+};
+}
+if(hasLogo){
+return{
+url:`${RAW}/emblems/svg/${encodeURIComponent(id+'-logo.svg')}`,
+urlFallbacks:[
+`${RAW}/emblems/png/${encodeURIComponent(id+'-logo.png')}`,
+`${RAW}/emblems/png/${encodeURIComponent(id+'-logo.jpg')}`,
+],
+tier:3,label:'Logo',name:`${id}-logo`
+};
+}
+if(isObsolete){
+return{
+url:`${RAW}/emblems/png/${encodeURIComponent(id+'-COA-obsolete.jpg')}`,
+urlFallbacks:[
+`${RAW}/emblems/png/${encodeURIComponent(id+'-COA-obsolete.png')}`,
+`${RAW}/emblems/svg/${encodeURIComponent(id+'-COA-obsolete.svg')}`,
+],
+tier:5,label:'Obsolete',name:`${id}-COA-obsolete`
+};
+}
+return null;
 }
 
 function loadAnn(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}')}catch{return{}}}
@@ -241,205 +265,211 @@ function saveAnn(a){localStorage.setItem(STORAGE_KEY,JSON.stringify(a))}
 let ANN=loadAnn();
 function getA(id){return ANN[id]||{}}
 function setA(id,key,val){
-  if(!ANN[id])ANN[id]={};
-  ANN[id][key]=val;
-  if(Object.values(ANN[id]).every(v=>!v))delete ANN[id];
-  saveAnn(ANN);
+if(!ANN[id])ANN[id]={};
+ANN[id][key]=val;
+if(Object.values(ANN[id]).every(v=>!v))delete ANN[id];
+saveAnn(ANN);
 }
 
 function parseCSV(text){
-  if(text.charCodeAt(0)===0xFEFF)text=text.slice(1);
-  const lines=text.split('\n').filter(l=>l.trim());
-  const headers=lines[0].split(',');
-  return lines.slice(1).map(line=>{
-    const vals=[];let cur='',inQ=false;
-    for(const ch of line){
-      if(ch==='"')inQ=!inQ;
-      else if(ch===','&&!inQ){vals.push(cur);cur='';}
-      else cur+=ch;
-    }
-    vals.push(cur);
-    const obj={};
-    headers.forEach((h,i)=>obj[h.trim()]=(vals[i]||'').trim());
-    return obj;
-  }).filter(r=>r.id);
+if(text.charCodeAt(0)===0xFEFF)text=text.slice(1);
+const lines=text.split('\n').filter(l=>l.trim());
+const headers=lines[0].split(',');
+return lines.slice(1).map(line=>{
+const vals=[];let cur='',inQ=false;
+for(const ch of line){
+if(ch==='"')inQ=!inQ;
+else if(ch===','&&!inQ){vals.push(cur);cur='';}
+else cur+=ch;
+}
+vals.push(cur);
+const obj={};
+headers.forEach((h,i)=>obj[h.trim()]=(vals[i]||'').trim());
+return obj;
+}).filter(r=>r.id);
 }
 
-function enrich(data,allFiles){
-  return data.map(m=>{
-    m._img=findBestImage(m.id,allFiles);
-    const hasObs=[...allFiles.svg,...allFiles.png].some(f=>f.startsWith(m.id+'-')&&f.includes('-obsolete'));
-    const hasCOA=(m.has_coa==='yes')||allFiles.svg.includes(`${m.id}-COA.svg`)||['png','jpg','webp'].some(e=>allFiles.png.includes(`${m.id}-COA.${e}`));
-    const hasLogo=(m.has_logo==='yes')||allFiles.svg.includes(`${m.id}-logo.svg`)||['png','jpg','webp'].some(e=>allFiles.png.includes(`${m.id}-logo.${e}`));
-    m._obsolete=hasObs&&!hasCOA&&!hasLogo;
-    m._isLogo=!m._obsolete&&!!m._img&&m._img.tier>=3;
-    m._population=parseInt(m.population)||0;
-    m._sizeTier=m.size_tier||'';
-    return m;
-  });
+function enrich(data){
+return data.map(m=>{
+const hasCOA=m.has_coa==='yes';
+const hasLogo=m.has_logo==='yes';
+const isObsolete=m.status==='obsolete';
+m._obsolete=isObsolete||(m.id==='maccabim-reut');
+m._img=findBestImage(m.id,hasCOA,hasLogo,m._obsolete);
+m._isLogo=!m._obsolete&&hasLogo&&!hasCOA;
+m._population=parseInt(m.population)||0;
+m._sizeTier=m.size_tier||'';
+return m;
+});
 }
 
 function isMissing(m){
-  const a=getA(m.id);
-  if('missing' in a) return !!a.missing;
-  return m.status==='missing'||!m._img;
+const a=getA(m.id);
+if('missing' in a) return !!a.missing;
+return m.status==='missing';
 }
 
 function effStatus(m){
-  if(m._obsolete)return'obsolete';
-  const a=getA(m.id);
-  if(a.missing||!m._img)return'not-found';
-  return m._isLogo?'logo':(m._img.tier<=1?'found-svg':'found-png');
+if(m._obsolete)return'obsolete';
+const a=getA(m.id);
+if(a.missing||m.status==='missing')return'not-found';
+return m._isLogo?'logo':(m.has_coa==='yes'?'found-png':'found-png');
 }
 
 const state={
-  view:'grid',sort:'importance',search:'',
-  coa:'coa',flagMissing:false,flagSize:false,
-  filters:{type:new Set(),district:new Set(),culture:new Set()}
+view:'grid',sort:'importance',search:'',
+coa:'coa',flagMissing:false,flagSize:false,
+filters:{type:new Set(),district:new Set(),culture:new Set()}
 };
 let DATA=[];
 
 function matches(m){
-  if(state.coa==='coa'&&m._obsolete)return false;
-  if(state.coa==='obsolete'&&!m._obsolete)return false;
-  const es=effStatus(m);
-  if(state.flagMissing&&es!=='not-found')return false;
-  if(state.flagSize&&!getA(m.id).size)return false;
-  const q=state.search.toLowerCase();
-  if(q&&![m.id,m.name_en,m.name_he,m.district,m.type,m.culture].some(v=>(v||'').toLowerCase().includes(q)))return false;
-  const{type,district,culture}=state.filters;
-  if(type.size&&!type.has((m.type||'').toLowerCase()))return false;
-  if(district.size&&!district.has((m.district||'').toLowerCase()))return false;
-  if(culture.size&&!culture.has((m.culture||'').toLowerCase()))return false;
-  return true;
+if(state.coa==='coa'&&m._obsolete)return false;
+if(state.coa==='obsolete'&&!m._obsolete)return false;
+const es=effStatus(m);
+if(state.flagMissing&&es!=='not-found')return false;
+if(state.flagSize&&!getA(m.id).size)return false;
+const q=state.search.toLowerCase();
+if(q&&![m.id,m.name_en,m.name_he,m.district,m.type,m.culture].some(v=>(v||'').toLowerCase().includes(q)))return false;
+const{type,district,culture}=state.filters;
+if(type.size&&!type.has((m.type||'').toLowerCase()))return false;
+if(district.size&&!district.has((m.district||'').toLowerCase()))return false;
+if(culture.size&&!culture.has((m.culture||'').toLowerCase()))return false;
+return true;
 }
 
 const TYPE_RANK={'city':0,'regional':1,'local':2};
 
 // Population lookup (CBS 2021 estimates)
 const POP={
-  'tel-aviv':460000,'jerusalem':970000,'haifa':285000,'rishon-lezion':257128,
-  'petah-tikva':252270,'ashdod':225975,'netanya':224066,'beer-sheva':211251,
-  'bnei-brak':210000,'holon':200000,'ramat-gan':162000,'ashkelon':149160,
-  'rehovot':147878,'bat-yam':159000,'modiin-illit':80000,'lod':82629,
-  'raanana':78562,'rahat':76237,'herzliya':100000,'kfar-saba':101801,
-  'hadera':100000,'rosh-haayin':71651,'beitar-illit':70000,'hod-hasharon':65363,
-  'kiryat-gat':60582,'givatayim':59000,'afula':59075,'umm-al-fahm':58000,
-  'nof-hagalil':47000,'karmiel':46311,'taibeh':45388,'modiin':97097,
-  'ramat-hasharon':47000,'eilat':52753,'yavne':53595,'netivot':42039,
-  'or-yehuda':40000,'kiryat-ono':38000,'maale-adumim':40000,'sakhnin':32000,
-  'kiryat-yam':40000,'kiryat-bialik':40000,'pardes-hanna':40000,
-  'kiryat-motzkin':43000,'kiryat-shmona':25000,'tzfat':34000,'maghar':34000,
-  'tamra':33000,'sderot':30553,'kiryat-arba':8000,'nazareth':80000,
-  'shefaram':38000,'tira':27392,'rahat':76237,'dimona':35892,'ofakim':33999,
-  'elad':49593,'nes-ziona':50456,'ramla':77798,'kfar-yona':27898,
-  'beer-yaakov':29852,'givat-shmuel':28162,'migdal-haemek':26000,
-  'kiryat-malachi':25022,'harish':25000,'gush-etzion':25000,'azor':24000,
-  'kiryat-ekron':11051,'nahariya':61000,'acre':49614,'tirat-carmel':23000,
-  'nesher':23000,'yokneam':23000,'maalot-tarshiha':22315,'hura':23943,
-  'kuseife':23219,'kadima-zoran':22920,'shoham':21441,'beit-shean':18900,
-  'kiryat-ata':57000,'beit-shemesh':130000,'mitzpe-ramon':5178,
-  'ariel':20000,'kfar-qasem':24757,'qalansawe':23877,'meitar':10565,
-  'yehud-monosson':30619,'or-akiva':19000,'kfar-shmaryahu':5000,
-  'savyon':4051,'metula':1693,'omer':7656,'lehavim':6977,'pardesia':7251,
-  'elyakhin':3461,'beit-dagan':7644,'bnei-ayish':6895,'kafr-bara':3856,
-  'kochav-yair':8949,'mazkeret-batya':15424,'zemer':7360,'shoham':21441,
-  // regional
-  'emek-hefer':42880,'emek-yizrael':40146,'gilboa':32165,'mateh-asher':30846,
-  'drom-hasharon':34327,'gezer':27622,'lev-hasharon':23672,'hevel-modiin':24107,
-  'hof-hakarmel':36000,'mateh-yehuda':57000,'shomron':25000,'galil-elion':19440,
-  'merom-hagalil':15892,'golan':19214,'maale-yosef':11605,'megiddo':12200,
-  'gilboa':32165,'emek-hayarden':14390,'emek-hamayanot':14377,'eshkol':15205,
-  'merhavim':14605,'ramat-negev':8558,'sdot-negev':11062,'shafir':12853,
-  'lachish':13778,'beer-tuvia':23841,'bnei-shimon':11419,'yoav':9197,
-  'shaar-hanegev':9071,'hof-ashkelon':19295,'hof-hasharon':14872,
-  'hevel-yavne':6920,'sadot-dan':15987,'gan-rave':6585,'brener':8046,
-  'gderot':5192,'nahal-soreq':10189,'hevel-eilot':4745,'tamar':1572,
-  'central-arava':3772,'neve-midbar':13309,'jordan-valley':10000,
-  'har-hevron':17000,'bustan-al-marj':8137,'el-batouf':8408,
-  'megilot-yam-hamelah':1500,'zvulun':16000,'mevoot-hermon':3000,
-  // local
-  'arraba':26641,'judeidi-makr':21507,'majd-al-krum':15630,'kafr-kanna':23705,
-  'kafr-manda':21073,'iksal':15146,'usfiya':15000,'rekhasim':16000,
-  'reina':14000,'kabul':14473,'ein-mahel':13748,'ibillin':13692,
-  'deir-al-asad':12935,'beit-jann':12307,'majdal-shams':11405,'yeroham':11031,
-  'segev-shalom':11865,'jaljulye':10480,'mashhad':8655,'daburiyya':10782,
-  'deir-hanna':10599,'kafr-yasif':10323,'bir-elmaksur':9959,'bueine-nujeidat':10137,
-  'hatzor-haglilit':9764,'kisra-sumei':9108,'nahef':9000,'hurfeish':6581,
-  'julis':6657,'ilut':8654,'abu-sinan':14455,'iksal':15146,'fureidis':15000,
-  'tuba-zangariyye':8000,'maghar':34000,'jisr-az-zarqa':16000,'arara':15000,
-  'abu-ghosh':8000,'rameh':8000,'sajur':7000,'yanuh-jat':7000,'yarka':16000,
-  'turan':19000,'yafa-an-naseriyye':20000,'baqa-gharbiyye':33000,
-  'daliyat-karmel':18000,'basma':5000,'bana':8536,'mazraa':4078,
-  'kaabiyye':5732,'beit-el':7000,'beit-aryeh':8000,'elkana':6000,
-  'efrat':12000,'givat-zeev':20000,'oranit':8000,'alfei-menashe':9000,
-  'karnei-shomron':9000,'kedumim':5000,'maale-efraim':7000,'maale-iron':12000,
-  'kiryat-yearim':5000,'mevaseret-zion':25000,'tel-sheva':22187,
-  'laqye':15295,'tel-mond':14179,'even-yehuda':14266,'gedera':30392,
-  'gan-yavne':24251,'ganey-tikva':22694,'jatt':10000,'taibeh-north':8000,
-  'zarzir':13000,'shab':5000,'mielya':4000,'migdal':3000,'peqiin':5000,
-  'eilaboun':5812,'fassuta':3236,'gush-halav':3154,'buqata':6752,
-  'ein-knia':2172,'ghajar':2745,'kfar-kama':3479,'kfar-tavor':4425,
-  'kfar-vradim':5531,'kawkab-abu-al-hija':3724,'bosmat-tivon':8068,
-  'masada':10000,'shibli-umm-al-ghanam':5000,'yavneel':5000,
-  'yesod-hamaala':2000,'rosh-pina':4000,'metula':1693,'katzrin':8000,
-  'meitar':10565,'omer':7656,'lehavim':6977,'mitzpe-ramon':5178,
-  'neot-hovav':2000,'neve-midbar':13309,'binyamina':15000,
-  'zichron-yaakov':25000,'menashe':15000,'misgav':25000,
-  'kiryat-tivon':16000,'shlomi':8000,'shab-al-salim':5000,
-  'kafr-qara':16000,'hevron':4000
+'tel-aviv':460000,'jerusalem':970000,'haifa':285000,'rishon-lezion':257128,
+'petah-tikva':252270,'ashdod':225975,'netanya':224066,'beer-sheva':211251,
+'bnei-brak':210000,'holon':200000,'ramat-gan':162000,'ashkelon':149160,
+'rehovot':147878,'bat-yam':159000,'modiin-illit':80000,'lod':82629,
+'raanana':78562,'rahat':76237,'herzliya':100000,'kfar-saba':101801,
+'hadera':100000,'rosh-haayin':71651,'beitar-illit':70000,'hod-hasharon':65363,
+'kiryat-gat':60582,'givatayim':59000,'afula':59075,'umm-al-fahm':58000,
+'nof-hagalil':47000,'karmiel':46311,'taibeh':45388,'modiin':97097,
+'ramat-hasharon':47000,'eilat':52753,'yavne':53595,'netivot':42039,
+'or-yehuda':40000,'kiryat-ono':38000,'maale-adumim':40000,'sakhnin':32000,
+'kiryat-yam':40000,'kiryat-bialik':40000,'pardes-hanna':40000,
+'kiryat-motzkin':43000,'kiryat-shmona':25000,'tzfat':34000,'maghar':34000,
+'tamra':33000,'sderot':30553,'kiryat-arba':8000,'nazareth':80000,
+'shefaram':38000,'tira':27392,'rahat':76237,'dimona':35892,'ofakim':33999,
+'elad':49593,'nes-ziona':50456,'ramla':77798,'kfar-yona':27898,
+'beer-yaakov':29852,'givat-shmuel':28162,'migdal-haemek':26000,
+'kiryat-malachi':25022,'harish':25000,'gush-etzion':25000,'azor':24000,
+'kiryat-ekron':11051,'nahariya':61000,'acre':49614,'tirat-carmel':23000,
+'nesher':23000,'yokneam':23000,'maalot-tarshiha':22315,'hura':23943,
+'kuseife':23219,'kadima-zoran':22920,'shoham':21441,'beit-shean':18900,
+'kiryat-ata':57000,'beit-shemesh':130000,'mitzpe-ramon':5178,
+'ariel':20000,'kfar-qasem':24757,'qalansawe':23877,'meitar':10565,
+'yehud-monosson':30619,'or-akiva':19000,'kfar-shmaryahu':5000,
+'savyon':4051,'metula':1693,'omer':7656,'lehavim':6977,'pardesia':7251,
+'elyakhin':3461,'beit-dagan':7644,'bnei-ayish':6895,'kafr-bara':3856,
+'kochav-yair':8949,'mazkeret-batya':15424,'zemer':7360,'shoham':21441,
+// regional
+'emek-hefer':42880,'emek-yizrael':40146,'gilboa':32165,'mateh-asher':30846,
+'drom-hasharon':34327,'gezer':27622,'lev-hasharon':23672,'hevel-modiin':24107,
+'hof-hakarmel':36000,'mateh-yehuda':57000,'shomron':25000,'galil-elion':19440,
+'merom-hagalil':15892,'golan':19214,'maale-yosef':11605,'megiddo':12200,
+'gilboa':32165,'emek-hayarden':14390,'emek-hamayanot':14377,'eshkol':15205,
+'merhavim':14605,'ramat-negev':8558,'sdot-negev':11062,'shafir':12853,
+'lachish':13778,'beer-tuvia':23841,'bnei-shimon':11419,'yoav':9197,
+'shaar-hanegev':9071,'hof-ashkelon':19295,'hof-hasharon':14872,
+'hevel-yavne':6920,'sadot-dan':15987,'gan-rave':6585,'brener':8046,
+'gderot':5192,'nahal-soreq':10189,'hevel-eilot':4745,'tamar':1572,
+'central-arava':3772,'neve-midbar':13309,'jordan-valley':10000,
+'har-hevron':17000,'bustan-al-marj':8137,'el-batouf':8408,
+'megilot-yam-hamelah':1500,'zvulun':16000,'mevoot-hermon':3000,
+// local
+'arraba':26641,'judeidi-makr':21507,'majd-al-krum':15630,'kafr-kanna':23705,
+'kafr-manda':21073,'iksal':15146,'usfiya':15000,'rekhasim':16000,
+'reina':14000,'kabul':14473,'ein-mahel':13748,'ibillin':13692,
+'deir-al-asad':12935,'beit-jann':12307,'majdal-shams':11405,'yeroham':11031,
+'segev-shalom':11865,'jaljulye':10480,'mashhad':8655,'daburiyya':10782,
+'deir-hanna':10599,'kafr-yasif':10323,'bir-elmaksur':9959,'bueine-nujeidat':10137,
+'hatzor-haglilit':9764,'kisra-sumei':9108,'nahef':9000,'hurfeish':6581,
+'julis':6657,'ilut':8654,'abu-sinan':14455,'iksal':15146,'fureidis':15000,
+'tuba-zangariyye':8000,'maghar':34000,'jisr-az-zarqa':16000,'arara':15000,
+'abu-ghosh':8000,'rameh':8000,'sajur':7000,'yanuh-jat':7000,'yarka':16000,
+'turan':19000,'yafa-an-naseriyye':20000,'baqa-gharbiyye':33000,
+'daliyat-karmel':18000,'basma':5000,'bana':8536,'mazraa':4078,
+'kaabiyye':5732,'beit-el':7000,'beit-aryeh':8000,'elkana':6000,
+'efrat':12000,'givat-zeev':20000,'oranit':8000,'alfei-menashe':9000,
+'karnei-shomron':9000,'kedumim':5000,'maale-efraim':7000,'maale-iron':12000,
+'kiryat-yearim':5000,'mevaseret-zion':25000,'tel-sheva':22187,
+'laqye':15295,'tel-mond':14179,'even-yehuda':14266,'gedera':30392,
+'gan-yavne':24251,'ganey-tikva':22694,'jatt':10000,'taibeh-north':8000,
+'zarzir':13000,'shab':5000,'mielya':4000,'migdal':3000,'peqiin':5000,
+'eilaboun':5812,'fassuta':3236,'gush-halav':3154,'buqata':6752,
+'ein-knia':2172,'ghajar':2745,'kfar-kama':3479,'kfar-tavor':4425,
+'kfar-vradim':5531,'kawkab-abu-al-hija':3724,'bosmat-tivon':8068,
+'masada':10000,'shibli-umm-al-ghanam':5000,'yavneel':5000,
+'yesod-hamaala':2000,'rosh-pina':4000,'metula':1693,'katzrin':8000,
+'meitar':10565,'omer':7656,'lehavim':6977,'mitzpe-ramon':5178,
+'neot-hovav':2000,'neve-midbar':13309,'binyamina':15000,
+'zichron-yaakov':25000,'menashe':15000,'misgav':25000,
+'kiryat-tivon':16000,'shlomi':8000,'shab-al-salim':5000,
+'kafr-qara':16000,'hevron':4000
 };
 
 function getPop(m){ return m._population||POP[m.id]||0; }
 
 // Section assignment for Israeli municipalities
 function getSection(m){
-  const t=m.type;
-  if(t==='regional') return 1; // section B
-  if(t==='city') return 0;     // section A
-  // local: by population
-  return 2; // section C
+const t=m.type;
+if(t==='regional') return 1; // section B
+if(t==='city') return 0; // section A
+// local: by population
+return 2; // section C
 }
 // Within section A: city+local with pop>=20000 treated as "urban"
 // Actually: section A = city OR local>=20000, B = regional, C = rest
 function getSectionV2(m){
-  if(m.type==='regional') return 1;
-  const pop=getPop(m);
-  if(m.type==='city'||pop>=20000) return 0;
-  return 2;
+if(m.type==='regional') return 1;
+const pop=getPop(m);
+if(m.type==='city'||pop>=20000) return 0;
+return 2;
 }
 
 function sorted(data){
-  return[...data].sort((a,b)=>{
-    switch(state.sort){
-      case'importance':{
-        const aMissing=isMissing(a)?1:0, bMissing=isMissing(b)?1:0;
-        if(aMissing!==bMissing)return aMissing-bMissing;
-        const sa=getSectionV2(a), sb=getSectionV2(b);
-        if(sa!==sb)return sa-sb;
-        // within section: sort by population desc, then name
-        const pa=getPop(a), pb=getPop(b);
-        if(pa!==pb)return pb-pa;
-        return(a.name_en||'').localeCompare(b.name_en||'');
-      }
-      case'name':return(a.name_en||'').localeCompare(b.name_en||'');
-      case'name-desc':return(b.name_en||'').localeCompare(a.name_en||'');
-      case'type':return(a.type||'').localeCompare(b.type||'');
-      case'district':return(a.district||'').localeCompare(b.district||'');
-      default:return 0;
-    }
-  });
+return[...data].sort((a,b)=>{
+switch(state.sort){
+case'importance':{
+const aMissing=isMissing(a)?1:0, bMissing=isMissing(b)?1:0;
+if(aMissing!==bMissing)return aMissing-bMissing;
+const sa=getSectionV2(a), sb=getSectionV2(b);
+if(sa!==sb)return sa-sb;
+// within section: sort by population desc, then name
+const pa=getPop(a), pb=getPop(b);
+if(pa!==pb)return pb-pa;
+return(a.name_en||'').localeCompare(b.name_en||'');
+}
+case'name':return(a.name_en||'').localeCompare(b.name_en||'');
+case'name-desc':return(b.name_en||'').localeCompare(a.name_en||'');
+case'type':return(a.type||'').localeCompare(b.type||'');
+case'district':return(a.district||'').localeCompare(b.district||'');
+default:return 0;
+}
+});
 }
 
 function ih(m,size=80){
-  if(!m._img)return`<span class="no-image">◻</span>`;
-  return`<img src="${m._img.url}" alt="${m.name_en}" loading="lazy" style="max-height:${size}px;max-width:100%;object-fit:contain" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="no-image" style="display:none">◻</span>`;
+if(!m._img)return`<span class="no-image">◻</span>`;
+const fallbacks=m._img.urlFallbacks||[];
+const fbAttr=fallbacks.length?` data-fallbacks="${fallbacks.map(u=>encodeURIComponent(u)).join(',')}"` :'';
+return`<img src="${m._img.url}" alt="${m.name_en}" loading="lazy" style="max-height:${size}px;max-width:100%;object-fit:contain"${fbAttr} onerror="
+var fb=this.dataset.fallbacks?this.dataset.fallbacks.split(','):[];
+if(fb.length){this.src=decodeURIComponent(fb.shift());this.dataset.fallbacks=fb.join(',');}
+else{this.style.display='none';this.nextElementSibling.style.display='block';}
+"><span class="no-image" style="display:none">◻</span>`;
 }
 
 function tierBadge(img){
-  if(!img||img.tier===5)return'';
-  const cls=['','t1','t2','t3','t4'][img.tier]||'';
-  return`<span class="img-tier ${cls}">${img.label}</span>`;
+if(!img||img.tier===5)return'';
+const cls=['','t1','t2','t3','t4'][img.tier]||'';
+return`<span class="img-tier ${cls}">${img.label}</span>`;
 }
 
 function cb(culture){if(!culture)return'';return`<span class="badge badge-${culture.toLowerCase()}">${culture}</span>`;}
@@ -448,283 +478,282 @@ function logoBadge(m){return m._isLogo?`<span class="badge badge-logo">🏷 Logo
 function smallBadge(m){return getA(m.id).size?`<span class="badge badge-size">📐 Small</span>`:'';}
 
 function cardHTML(m){
-  const a=getA(m.id);
-  const isPalestinian=m.culture==='palestinian';
-  const localName=isPalestinian&&m.name_ar
-    ?`<div class="card-name-he" style="font-size:10px;color:var(--muted);direction:rtl;text-align:right;">${m.name_he}</div>
-       <div class="card-name-he" style="font-size:10px;color:var(--muted);direction:rtl;text-align:right;">${m.name_ar}</div>`
-    :`<div class="card-name-he">${m.name_he}</div>`;
-  return`<div class="card" data-id="${m.id}" data-clickable="1">
-    <div class="emblem-wrap">${ih(m,80)}${m._img?tierBadge(m._img):''}</div>
-    <div><div class="card-name">${m.name_en}</div>${localName}</div>
-    <div class="card-meta">${m.district||''}</div>
-    <div class="card-tags">${tb(m.type)}${cb(m.culture)}${logoBadge(m)}${smallBadge(m)}</div>
-    ${m._obsolete?'':`<div class="card-ticks" data-stop="1">
-      <label class="tick t-missing${isMissing(m)?' on':''}">
-        <input type="checkbox" data-ann="missing" data-id="${m.id}" ${isMissing(m)?'checked':''}> Missing
-      </label>
-      <label class="tick t-size${a.size?' on':''}">
-        <input type="checkbox" data-ann="size" data-id="${m.id}" ${a.size?'checked':''}> Small file
-      </label>
-    </div>`}
-  </div>`;
+const a=getA(m.id);
+const isPalestinian=m.culture==='palestinian';
+const localName=isPalestinian&&m.name_ar
+?`<div class="card-name-he" style="font-size:10px;color:var(--muted);direction:rtl;text-align:right;">${m.name_he}</div>
+<div class="card-name-he" style="font-size:10px;color:var(--muted);direction:rtl;text-align:right;">${m.name_ar}</div>`
+:`<div class="card-name-he">${m.name_he}</div>`;
+return`<div class="card" data-id="${m.id}" data-clickable="1">
+<div class="emblem-wrap">${ih(m,80)}${m._img?tierBadge(m._img):''}</div>
+<div><div class="card-name">${m.name_en}</div>${localName}</div>
+<div class="card-meta">${m.district||''}</div>
+<div class="card-tags">${tb(m.type)}${cb(m.culture)}${logoBadge(m)}${smallBadge(m)}</div>
+${m._obsolete?'':`<div class="card-ticks" data-stop="1">
+<label class="tick t-missing${isMissing(m)?' on':''}">
+<input type="checkbox" data-ann="missing" data-id="${m.id}" ${isMissing(m)?'checked':''}> Missing
+</label>
+<label class="tick t-size${a.size?' on':''}">
+<input type="checkbox" data-ann="size" data-id="${m.id}" ${a.size?'checked':''}> Small file
+</label>
+</div>`}
+</div>`;
 }
 
 function listHTML(m){
-  const a=getA(m.id);
-  const isPalestinian=m.culture==='palestinian';
-  const heCell=isPalestinian&&m.name_ar
-    ?`<div style="text-align:right"><div style="direction:rtl;font-size:12px;color:var(--muted)">${m.name_he}</div><div style="direction:rtl;font-size:11px;color:var(--muted);opacity:.7">${m.name_ar}</div></div>`
-    :`<div style="direction:rtl;font-size:12px;color:var(--muted)">${m.name_he}</div>`;
-  return`<div class="list-row" data-id="${m.id}" data-clickable="1">
-    <div class="list-thumb">${ih(m,44)}</div>
-    <div><div class="list-name">${m.name_en}</div><div style="font-size:10px;color:var(--muted)">${m.district||''}</div></div>
-    ${heCell}
-    <div>${tb(m.type)}</div>
-    <div class="list-tags">${cb(m.culture)}${logoBadge(m)}${smallBadge(m)}</div>
-    <div class="list-ticks" data-stop="1">
-      ${m._obsolete?'':`<span class="ltick${isMissing(m)?' on-missing':''}" data-ann="missing" data-id="${m.id}">Missing</span>
-      <span class="ltick${a.size?' on-size':''}" data-ann="size" data-id="${m.id}">Small file</span>`}
-    </div>
-  </div>`;
+const a=getA(m.id);
+const isPalestinian=m.culture==='palestinian';
+const heCell=isPalestinian&&m.name_ar
+?`<div style="text-align:right"><div style="direction:rtl;font-size:12px;color:var(--muted)">${m.name_he}</div><div style="direction:rtl;font-size:11px;color:var(--muted);opacity:.7">${m.name_ar}</div></div>`
+:`<div style="direction:rtl;font-size:12px;color:var(--muted)">${m.name_he}</div>`;
+return`<div class="list-row" data-id="${m.id}" data-clickable="1">
+<div class="list-thumb">${ih(m,44)}</div>
+<div><div class="list-name">${m.name_en}</div><div style="font-size:10px;color:var(--muted)">${m.district||''}</div></div>
+${heCell}
+<div>${tb(m.type)}</div>
+<div class="list-tags">${cb(m.culture)}${logoBadge(m)}${smallBadge(m)}</div>
+<div class="list-ticks" data-stop="1">
+${m._obsolete?'':`<span class="ltick${isMissing(m)?' on-missing':''}" data-ann="missing" data-id="${m.id}">Missing</span>
+<span class="ltick${a.size?' on-size':''}" data-ann="size" data-id="${m.id}">Small file</span>`}
+</div>
+</div>`;
 }
 
 function render(){
-  const filtered=sorted(DATA.filter(matches));
-  const israeli=filtered.filter(m=>m.culture!=='palestinian');
-  const palestinian=filtered.filter(m=>m.culture==='palestinian');
+const filtered=sorted(DATA.filter(matches));
+const israeli=filtered.filter(m=>m.culture!=='palestinian');
+const palestinian=filtered.filter(m=>m.culture==='palestinian');
 
-  document.getElementById('count').textContent=`${filtered.length} of ${DATA.length}`;
-  const container=document.getElementById('main-content');
-  if(!filtered.length){container.innerHTML='<div class="empty">No results.</div>';return;}
+document.getElementById('count').textContent=`${filtered.length} of ${DATA.length}`;
+const container=document.getElementById('main-content');
+if(!filtered.length){container.innerHTML='<div class="empty">No results.</div>';return;}
 
-  let html='';
+let html='';
 
-  if(israeli.length){
-    const secA=israeli.filter(m=>getSectionV2(m)===0);
-    const secB=israeli.filter(m=>getSectionV2(m)===1);
-    const secC=israeli.filter(m=>getSectionV2(m)===2);
+if(israeli.length){
+const secA=israeli.filter(m=>getSectionV2(m)===0);
+const secB=israeli.filter(m=>getSectionV2(m)===1);
+const secC=israeli.filter(m=>getSectionV2(m)===2);
 
-    function renderSection(items,label,isFirst){
-      if(!items.length)return'';
-      let s='';
-      if(isFirst){
-        s+=`<div style="padding:10px 40px 6px;background:var(--bg);border-bottom:1px solid var(--border)"><span style="font-size:10px;text-transform:uppercase;letter-spacing:0.5px;color:var(--muted);font-family:'DM Mono',monospace">${label} · ${items.length}</span></div>`;
-      }else{
-        s+=`<div class="section-divider" style="padding:14px 40px 10px"><h2 style="font-size:12px;font-weight:400;color:var(--muted);font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:0.5px;white-space:nowrap">${label}</h2><div class="section-divider-line"></div><span class="section-count">${items.length}</span></div>`;
-      }
-      if(state.view==='grid'){
-        s+=`<div class="grid">${items.map(cardHTML).join('')}</div>`;
-      }else{
-        s+=`<div class="list-view"><div class="list-header"><div>Emblem</div><div>Name</div><div>Hebrew</div><div>Type</div><div>Tags</div><div>Mark</div></div>${items.map(listHTML).join('')}</div>`;
-      }
-      return s;
-    }
+function renderSection(items,label,isFirst){
+if(!items.length)return'';
+let s='';
+if(isFirst){
+s+=`<div style="padding:10px 40px 6px;background:var(--bg);border-bottom:1px solid var(--border)"><span style="font-size:10px;text-transform:uppercase;letter-spacing:0.5px;color:var(--muted);font-family:'DM Mono',monospace">${label} · ${items.length}</span></div>`;
+}else{
+s+=`<div class="section-divider" style="padding:14px 40px 10px"><h2 style="font-size:12px;font-weight:400;color:var(--muted);font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:0.5px;white-space:nowrap">${label}</h2><div class="section-divider-line"></div><span class="section-count">${items.length}</span></div>`;
+}
+if(state.view==='grid'){
+s+=`<div class="grid">${items.map(cardHTML).join('')}</div>`;
+}else{
+s+=`<div class="list-view"><div class="list-header"><div>Emblem</div><div>Name</div><div>Hebrew</div><div>Type</div><div>Tags</div><div>Mark</div></div>${items.map(listHTML).join('')}</div>`;
+}
+return s;
+}
 
-    if(state.sort==='importance'){
-      html+=renderSection(secA,'Cities & Towns',true);
-      html+=renderSection(secB,'Regional Councils',false);
-      html+=renderSection(secC,'Local Councils',false);
-    }else{
-      if(state.view==='grid'){
-        html+=`<div class="grid">${israeli.map(cardHTML).join('')}</div>`;
-      }else{
-        html+=`<div class="list-view"><div class="list-header"><div>Emblem</div><div>Name</div><div>Hebrew</div><div>Type</div><div>Tags</div><div>Mark</div></div>${israeli.map(listHTML).join('')}</div>`;
-      }
-    }
-  }
+if(state.sort==='importance'){
+html+=renderSection(secA,'Cities & Towns',true);
+html+=renderSection(secB,'Regional Councils',false);
+html+=renderSection(secC,'Local Councils',false);
+}else{
+if(state.view==='grid'){
+html+=`<div class="grid">${israeli.map(cardHTML).join('')}</div>`;
+}else{
+html+=`<div class="list-view"><div class="list-header"><div>Emblem</div><div>Name</div><div>Hebrew</div><div>Type</div><div>Tags</div><div>Mark</div></div>${israeli.map(listHTML).join('')}</div>`;
+}
+}
+}
 
-  if(palestinian.length){
-    const wbCount=palestinian.filter(m=>m.district==='West Bank').length;
-    const gzCount=palestinian.filter(m=>m.district==='Gaza Strip').length;
-    const subLabel=[wbCount&&`${wbCount} West Bank`,gzCount&&`${gzCount} Gaza`].filter(Boolean).join(' · ');
-    html+=`<div class="section-divider">
-      <h2>Palestinian <em>Emblems</em></h2>
-      <div class="section-divider-line"></div>
-      <span class="section-count">${palestinian.length} shown${subLabel?' ('+subLabel+')':''}</span>
-    </div>`;
-    if(state.view==='grid'){
-      html+=`<div class="grid">${palestinian.map(cardHTML).join('')}</div>`;
-    }else{
-      html+=`<div class="list-view">
-        <div class="list-header"><div>Emblem</div><div>Name</div><div>Hebrew / Arabic</div><div>Type</div><div>Tags</div><div>Mark</div></div>
-        ${palestinian.map(listHTML).join('')}
-      </div>`;
-    }
-  }
+if(palestinian.length){
+const wbCount=palestinian.filter(m=>m.district==='West Bank').length;
+const gzCount=palestinian.filter(m=>m.district==='Gaza Strip').length;
+const subLabel=[wbCount&&`${wbCount} West Bank`,gzCount&&`${gzCount} Gaza`].filter(Boolean).join(' · ');
+html+=`<div class="section-divider">
+<h2>Palestinian <em>Emblems</em></h2>
+<div class="section-divider-line"></div>
+<span class="section-count">${palestinian.length} shown${subLabel?' ('+subLabel+')':''}</span>
+</div>`;
+if(state.view==='grid'){
+html+=`<div class="grid">${palestinian.map(cardHTML).join('')}</div>`;
+}else{
+html+=`<div class="list-view">
+<div class="list-header"><div>Emblem</div><div>Name</div><div>Hebrew / Arabic</div><div>Type</div><div>Tags</div><div>Mark</div></div>
+${palestinian.map(listHTML).join('')}
+</div>`;
+}
+}
 
-  container.innerHTML=html;
+container.innerHTML=html;
 
-  container.querySelectorAll('input[data-ann]').forEach(inp=>{
-    inp.addEventListener('change',e=>{
-      e.stopPropagation();
-      setA(inp.dataset.id,inp.dataset.ann,inp.checked||false);
-      renderStats(DATA);render();
-    });
-  });
-  container.querySelectorAll('.ltick').forEach(tick=>{
-    tick.addEventListener('click',e=>{
-      e.stopPropagation();
-      setA(tick.dataset.id,tick.dataset.ann,!getA(tick.dataset.id)[tick.dataset.ann]);
-      renderStats(DATA);render();
-    });
-  });
-  container.querySelectorAll('[data-clickable]').forEach(el=>{
-    el.addEventListener('click',e=>{
-      if(e.target.closest('[data-stop]'))return;
-      const m=DATA.find(d=>d.id===el.dataset.id);
-      if(m)openModal(m);
-    });
-  });
+container.querySelectorAll('input[data-ann]').forEach(inp=>{
+inp.addEventListener('change',e=>{
+e.stopPropagation();
+setA(inp.dataset.id,inp.dataset.ann,inp.checked||false);
+renderStats(DATA);render();
+});
+});
+container.querySelectorAll('.ltick').forEach(tick=>{
+tick.addEventListener('click',e=>{
+e.stopPropagation();
+setA(tick.dataset.id,tick.dataset.ann,!getA(tick.dataset.id)[tick.dataset.ann]);
+renderStats(DATA);render();
+});
+});
+container.querySelectorAll('[data-clickable]').forEach(el=>{
+el.addEventListener('click',e=>{
+if(e.target.closest('[data-stop]'))return;
+const m=DATA.find(d=>d.id===el.dataset.id);
+if(m)openModal(m);
+});
+});
 }
 
 function renderStats(data){
-  const c={found:0,logo:0,missing:0,obsolete:0,palestinian:0};
-  data.forEach(m=>{
-    if(m.culture==='palestinian'){c.palestinian++;return;}
-    const s=effStatus(m);
-    if(s==='found-svg'||s==='found-png')c.found++;
-    else if(s==='logo')c.logo++;
-    else if(s==='obsolete')c.obsolete++;
-    else c.missing++;
-  });
-  document.getElementById('stats').innerHTML=[
-    {label:'Found',key:'found',color:'#1a6b3a'},
-    {label:'Logo only',key:'logo',color:'#3730a3'},
-    {label:'Missing',key:'missing',color:'#444'},
-    {label:'Obsolete',key:'obsolete',color:'#5a4a00'},
-    {label:'Palestinian',key:'palestinian',color:'#92400e'},
-  ].map(i=>`<div class="stat"><div class="stat-dot" style="background:${i.color}"></div><span>${c[i.key]||0} ${i.label}</span></div>`).join('');
+const c={found:0,logo:0,missing:0,obsolete:0,palestinian:0};
+data.forEach(m=>{
+if(m.culture==='palestinian'){c.palestinian++;return;}
+const s=effStatus(m);
+if(s==='found-svg'||s==='found-png')c.found++;
+else if(s==='logo')c.logo++;
+else if(s==='obsolete')c.obsolete++;
+else c.missing++;
+});
+document.getElementById('stats').innerHTML=[
+{label:'Found',key:'found',color:'#1a6b3a'},
+{label:'Logo only',key:'logo',color:'#3730a3'},
+{label:'Missing',key:'missing',color:'#444'},
+{label:'Obsolete',key:'obsolete',color:'#5a4a00'},
+{label:'Palestinian',key:'palestinian',color:'#92400e'},
+].map(i=>`<div class="stat"><div class="stat-dot" style="background:${i.color}"></div><span>${c[i.key]||0} ${i.label}</span></div>`).join('');
 }
 
 function openModal(m){
-  const a=getA(m.id);
-  const imgH=m._img?`<img src="${m._img.url}" alt="${m.name_en}">`:'<span style="color:#ccc;font-size:48px">◻</span>';
-  const commonsLink=m.commons_url?`<a href="${m.commons_url}" target="_blank">${(m.commons_filename||'').replace('File:','')}</a>`:'—';
-  const isPalestinian=m.culture==='palestinian';
-  const heBlock=isPalestinian&&m.name_ar
-    ?`<div class="modal-he">${m.name_he}</div><div class="modal-he" style="font-size:13px;opacity:.75">${m.name_ar}</div>`
-    :`<div class="modal-he">${m.name_he}</div>`;
-  document.getElementById('modal-content').innerHTML=`
-    <div class="modal-emblem">${imgH}</div>
-    <h2>${m.name_en}</h2>
-    ${heBlock}
-    <div class="modal-tags">
-      ${tb(m.type)}${cb(m.culture)}${logoBadge(m)}${smallBadge(m)}
-      ${m._img&&m._img.tier<5?`<span class="badge" style="background:#eee;color:#666">${m._img.label}</span>`:''}
-    </div>
-    <div class="modal-fields">
-      <span class="modal-label">ID</span><span class="modal-value">${m.id}</span>
-      <span class="modal-label">District</span><span class="modal-value">${m.district||'—'}</span>
-      ${isPalestinian?`<span class="modal-label">Governorate</span><span class="modal-value">${m.notes&&m.notes.includes('gov:')?m.notes.replace(/.*gov:\s*/,'').replace(/\s*\|.*/,''):'—'}</span>`:''}
-      <span class="modal-label">Commons file</span><span class="modal-value">${commonsLink}</span>
-      ${m.notes?`<span class="modal-label">Notes</span><span class="modal-value">${m.notes}</span>`:''}
-    </div>
-    <div class="modal-note">
-      <label>Personal notes (saved in browser)</label>
-      <textarea id="modal-note">${a.note||''}</textarea>
-      <button class="note-save" id="note-save">Save note</button>
-      <span class="note-ok" id="note-ok">✓ Saved</span>
-    </div>
-  `;
-  document.getElementById('note-save').addEventListener('click',()=>{
-    setA(m.id,'note',document.getElementById('modal-note').value.trim());
-    const ok=document.getElementById('note-ok');
-    ok.style.display='inline';setTimeout(()=>ok.style.display='none',2000);
-    renderStats(DATA);render();
-  });
-  document.getElementById('modal-overlay').classList.add('open');
+const a=getA(m.id);
+const imgH=m._img?`<img src="${m._img.url}" alt="${m.name_en}">`:'<span style="color:#ccc;font-size:48px">◻</span>';
+const commonsLink=m.commons_url?`<a href="${m.commons_url}" target="_blank">${(m.commons_filename||'').replace('File:','')}</a>`:'—';
+const isPalestinian=m.culture==='palestinian';
+const heBlock=isPalestinian&&m.name_ar
+?`<div class="modal-he">${m.name_he}</div><div class="modal-he" style="font-size:13px;opacity:.75">${m.name_ar}</div>`
+:`<div class="modal-he">${m.name_he}</div>`;
+document.getElementById('modal-content').innerHTML=`
+<div class="modal-emblem">${imgH}</div>
+<h2>${m.name_en}</h2>
+${heBlock}
+<div class="modal-tags">
+${tb(m.type)}${cb(m.culture)}${logoBadge(m)}${smallBadge(m)}
+${m._img&&m._img.tier<5?`<span class="badge" style="background:#eee;color:#666">${m._img.label}</span>`:''}
+</div>
+<div class="modal-fields">
+<span class="modal-label">ID</span><span class="modal-value">${m.id}</span>
+<span class="modal-label">District</span><span class="modal-value">${m.district||'—'}</span>
+${isPalestinian?`<span class="modal-label">Governorate</span><span class="modal-value">${m.notes&&m.notes.includes('gov:')?m.notes.replace(/.*gov:\s*/,'').replace(/\s*\|.*/,''):'—'}</span>`:''}
+<span class="modal-label">Commons file</span><span class="modal-value">${commonsLink}</span>
+${m.notes?`<span class="modal-label">Notes</span><span class="modal-value">${m.notes}</span>`:''}
+</div>
+<div class="modal-note">
+<label>Personal notes (saved in browser)</label>
+<textarea id="modal-note">${a.note||''}</textarea>
+
+```
+<button class="note-save" id="note-save">Save note</button>
+<span class="note-ok" id="note-ok">✓ Saved</span>
+</div>
+```
+
+`;
+document.getElementById(‘note-save’).addEventListener(‘click’,()=>{
+setA(m.id,‘note’,document.getElementById(‘modal-note’).value.trim());
+const ok=document.getElementById(‘note-ok’);
+ok.style.display=‘inline’;setTimeout(()=>ok.style.display=‘none’,2000);
+renderStats(DATA);render();
+});
+document.getElementById(‘modal-overlay’).classList.add(‘open’);
 }
 
 function exportAnn(){
-  const rows=['id,name_en,size,note'];
-  DATA.forEach(m=>{
-    const a=getA(m.id);
-    if(!Object.keys(a).length)return;
-    rows.push([m.id,m.name_en,a.size?'yes':'',`"${(a.note||'').replace(/"/g,'""')}"`].join(','));
-  });
-  const blob=new Blob([rows.join('\n')],{type:'text/csv'});
-  const el=document.createElement('a');el.href=URL.createObjectURL(blob);el.download='emblem-annotations.csv';el.click();
-}
-
-async function listFiles(folder){
-  try{
-    const r=await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${folder}?ref=${BRANCH}`);
-    if(!r.ok)return[];
-    return(await r.json()).map(f=>f.name);
-  }catch{return[];}
+const rows=[‘id,name_en,missing,small_file,note’];
+DATA.forEach(m=>{
+const a=getA(m.id);
+if(!Object.keys(a).length)return;
+rows.push([
+m.id, m.name_en,
+a.missing?‘yes’:’’,
+a.size?‘yes’:’’,
+`"${(a.note||'').replace(/"/g,'""')}"`
+].join(’,’));
+});
+const blob=new Blob([rows.join(’\n’)],{type:‘text/csv’});
+const el=document.createElement(‘a’);el.href=URL.createObjectURL(blob);el.download=‘emblem-annotations.csv’;el.click();
 }
 
 async function main(){
-  const[csvText,psCsvText,svgFiles,pngFiles]=await Promise.all([
-    fetch(CSV_URL).then(r=>r.text()),
-    fetch(PS_CSV_URL).then(r=>r.ok?r.text():'').catch(()=>''),
-    listFiles('emblems/svg'),
-    listFiles('emblems/png'),
-  ]);
-  const allFiles={svg:svgFiles,png:pngFiles};
-  const israeli=enrich(parseCSV(csvText),allFiles);
-  const palestinian=psCsvText?enrich(parseCSV(psCsvText),allFiles):[];
-  DATA=[...israeli,...palestinian];
-  renderStats(DATA);render();
+const[csvText,psCsvText]=await Promise.all([
+fetch(CSV_URL).then(r=>r.text()),
+fetch(PS_CSV_URL).then(r=>r.ok?r.text():’’).catch(()=>’’),
+]);
+const israeli=enrich(parseCSV(csvText));
+const palestinian=psCsvText?enrich(parseCSV(psCsvText)):[];
+DATA=[…israeli,…palestinian];
+renderStats(DATA);render();
 
-  document.getElementById('search').addEventListener('input',e=>{state.search=e.target.value;render();});
-  document.getElementById('sort').addEventListener('change',e=>{state.sort=e.target.value;render();});
-  document.getElementById('export-btn').addEventListener('click',exportAnn);
+document.getElementById(‘search’).addEventListener(‘input’,e=>{state.search=e.target.value;render();});
+document.getElementById(‘sort’).addEventListener(‘change’,e=>{state.sort=e.target.value;render();});
+document.getElementById(‘export-btn’).addEventListener(‘click’,exportAnn);
 
-  document.getElementById('btn-grid').addEventListener('click',()=>{
-    state.view='grid';
-    document.getElementById('btn-grid').classList.add('active');
-    document.getElementById('btn-list').classList.remove('active');
-    render();
-  });
-  document.getElementById('btn-list').addEventListener('click',()=>{
-    state.view='list';
-    document.getElementById('btn-list').classList.add('active');
-    document.getElementById('btn-grid').classList.remove('active');
-    render();
-  });
+document.getElementById(‘btn-grid’).addEventListener(‘click’,()=>{
+state.view=‘grid’;
+document.getElementById(‘btn-grid’).classList.add(‘active’);
+document.getElementById(‘btn-list’).classList.remove(‘active’);
+render();
+});
+document.getElementById(‘btn-list’).addEventListener(‘click’,()=>{
+state.view=‘list’;
+document.getElementById(‘btn-list’).classList.add(‘active’);
+document.getElementById(‘btn-grid’).classList.remove(‘active’);
+render();
+});
 
-  document.getElementById('flag-missing').addEventListener('click',function(){
-    state.flagMissing=!state.flagMissing;
-    this.classList.toggle('active-missing',state.flagMissing);
-    render();
-  });
-  document.getElementById('flag-size').addEventListener('click',function(){
-    state.flagSize=!state.flagSize;
-    this.classList.toggle('active-size',state.flagSize);
-    render();
-  });
+document.getElementById(‘flag-missing’).addEventListener(‘click’,function(){
+state.flagMissing=!state.flagMissing;
+this.classList.toggle(‘active-missing’,state.flagMissing);
+render();
+});
+document.getElementById(‘flag-size’).addEventListener(‘click’,function(){
+state.flagSize=!state.flagSize;
+this.classList.toggle(‘active-size’,state.flagSize);
+render();
+});
 
-  document.querySelectorAll('[data-group="coa"]').forEach(btn=>{
-    btn.addEventListener('click',()=>{
-      state.coa=btn.dataset.value;
-      document.querySelectorAll('[data-group="coa"]').forEach(b=>b.classList.remove('active'));
-      btn.classList.add('active');
-      render();
-    });
-  });
+document.querySelectorAll(’[data-group=“coa”]’).forEach(btn=>{
+btn.addEventListener(‘click’,()=>{
+state.coa=btn.dataset.value;
+document.querySelectorAll(’[data-group=“coa”]’).forEach(b=>b.classList.remove(‘active’));
+btn.classList.add(‘active’);
+render();
+});
+});
 
-  ['type','district','culture'].forEach(group=>{
-    document.querySelectorAll(`[data-group="${group}"]`).forEach(btn=>{
-      btn.addEventListener('click',()=>{
-        const v=btn.dataset.value;
-        if(state.filters[group].has(v)){state.filters[group].delete(v);btn.classList.remove('active');}
-        else{state.filters[group].add(v);btn.classList.add('active');}
-        if(group==='culture'){
-          const hasPalestinian=state.filters.culture.has('palestinian');
-          document.getElementById('ps-district-filters').style.display=hasPalestinian?'flex':'none';
-        }
-        render();
-      });
-    });
-  });
+[‘type’,‘district’,‘culture’].forEach(group=>{
+document.querySelectorAll(`[data-group="${group}"]`).forEach(btn=>{
+btn.addEventListener(‘click’,()=>{
+const v=btn.dataset.value;
+if(state.filters[group].has(v)){state.filters[group].delete(v);btn.classList.remove(‘active’);}
+else{state.filters[group].add(v);btn.classList.add(‘active’);}
+if(group===‘culture’){
+const hasPalestinian=state.filters.culture.has(‘palestinian’);
+document.getElementById(‘ps-district-filters’).style.display=hasPalestinian?‘flex’:‘none’;
+}
+render();
+});
+});
+});
 
-  document.getElementById('modal-close').addEventListener('click',()=>document.getElementById('modal-overlay').classList.remove('open'));
-  document.getElementById('modal-overlay').addEventListener('click',e=>{if(e.target===document.getElementById('modal-overlay'))document.getElementById('modal-overlay').classList.remove('open');});
-  document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('modal-overlay').classList.remove('open');});
+document.getElementById(‘modal-close’).addEventListener(‘click’,()=>document.getElementById(‘modal-overlay’).classList.remove(‘open’));
+document.getElementById(‘modal-overlay’).addEventListener(‘click’,e=>{if(e.target===document.getElementById(‘modal-overlay’))document.getElementById(‘modal-overlay’).classList.remove(‘open’);});
+document.addEventListener(‘keydown’,e=>{if(e.key===‘Escape’)document.getElementById(‘modal-overlay’).classList.remove(‘open’);});
 }
 main();
 </script>
+
 </body>
 </html>
