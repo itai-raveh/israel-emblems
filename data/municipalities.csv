@@ -1,267 +1,267 @@
-﻿id,name_he,name_en,type,district,culture,status,has_coa,has_logo,population,size_tier
-gush-etzion,מועצה אזורית גוש-עציון,Gush Etzion,regional,judea-samaria,jewish,found,no,yes,25000,מועצה אזורית
-tel-aviv,תל-אביב-יפו,Tel Aviv-Yafo,city,tel-aviv,mixed,found,yes,no,460000,מטרופולין
-petah-tikva,פתח-תקווה,Petah Tikva,city,center,jewish,found,yes,no,252270,מטרופולין
-beer-sheva,באר-שבע,Beer Sheva,city,south,jewish,found,yes,no,211251,מטרופולין
-bat-yam,בת-ים,Bat Yam,city,tel-aviv,jewish,found,yes,no,159000,עיר גדולה
-ramat-gan,רמת-גן,Ramat Gan,city,tel-aviv,jewish,found,yes,no,162000,עיר גדולה
-ashkelon,אשקלון,Ashkelon,city,south,jewish,found,yes,yes,149160,עיר גדולה
-hadera,חדרה,Hadera,city,haifa,jewish,found,yes,no,100000,עיר גדולה
-or-yehuda,אור-יהודה,Or Yehuda,city,tel-aviv,jewish,found,yes,yes,40000,עיירה
-beit-shean,בית-שאן,Beit Shean,city,north,jewish,found,yes,yes,18900,מועצה מקומית
-kiryat-motzkin,קריית-מוצקין,Kiryat Motzkin,city,haifa,jewish,found,yes,no,43000,עיירה
-kiryat-ono,קריית-אונו,Kiryat Ono,city,tel-aviv,jewish,found,yes,yes,38000,עיירה
-kiryat-shmona,קריית-שמונה,Kiryat Shmona,city,north,jewish,found,yes,no,25000,עיירה
-kiryat-yam,קריית-ים,Kiryat Yam,city,haifa,jewish,found,yes,no,40000,עיירה
-sakhnin,סח'נין,Sakhnin,city,north,arab,found,yes,no,32000,עיירה
-tamra,טמרה,Tamra,city,north,arab,found,yes,no,33000,עיירה
-yokneam,יקנעם-עילית,Yokneam Illit,city,haifa,jewish,found,yes,no,23000,עיירה
-modiin-illit,מודיעין-עילית,Modiin Illit,city,judea-samaria,jewish,found,yes,no,80000,עיר
-givat-shmuel,גבעת-שמואל,Givat Shmuel,city,tel-aviv,jewish,found,yes,no,28162,עיירה
-maalot-tarshiha,מעלות-תרשיחא,Maalot Tarshiha,city,north,mixed,found,yes,no,22315,עיירה
-or-akiva,אור-עקיבא,Or Akiva,city,haifa,jewish,found,yes,no,19000,מועצה מקומית
-binyamina,מועצה מקומית בנימינה-גבעת-עדה,Binyamina,local,haifa,jewish,missing,no,no,15000,מועצה מקומית
-gan-yavne,מועצה מקומית גן-יבנה,Gan Yavne,local,center,jewish,found,yes,no,24251,עיירה
-gedera,מועצה מקומית גדרה,Gedera,local,center,jewish,found,yes,no,30392,עיירה
-mazkeret-batya,מועצה מקומית מזכרת-בתיה,Mazkeret Batya,local,center,jewish,found,yes,no,15424,מועצה מקומית
-metula,מועצה מקומית מטולה,Metula,local,north,jewish,found,yes,no,1693,מועצה מקומית
-mitzpe-ramon,מועצה מקומית מצפה-רמון,Mitzpe Ramon,local,south,jewish,found,yes,no,5178,מועצה מקומית
-omer,מועצה מקומית עומר,Omer,local,south,jewish,found,yes,no,7656,מועצה מקומית
-pardes-hanna,מועצה מקומית פרדס-חנה-כרכור,Pardes Hanna,local,haifa,jewish,found,yes,yes,40000,עיירה
-zichron-yaakov,מועצה מקומית זכרון-יעקב,Zichron Yaakov,local,haifa,jewish,found,yes,no,25000,עיירה
-bnei-shimon,מועצה אזורית בני-שמעון,Bnei Shimon,regional,south,jewish,found,yes,no,11419,מועצה אזורית
-emek-hayarden,מועצה אזורית עמק-הירדן,Emek HaYarden,regional,north,jewish,found,yes,no,14390,מועצה אזורית
-emek-yizrael,מועצה אזורית עמק-יזרעאל,Emek Yizrael,regional,north,jewish,found,yes,no,40146,מועצה אזורית
-gezer,מועצה אזורית גזר,Gezer,regional,center,jewish,found,yes,no,27622,מועצה אזורית
-golan,גולן,Golan,regional,north,mixed,found,no,yes,19214,מועצה אזורית
-mateh-asher,מועצה אזורית מטה-אשר,Mateh Asher,regional,north,jewish,found,yes,no,30846,מועצה אזורית
-menashe,מועצה אזורית מנשה,Menashe,regional,haifa,jewish,found,yes,no,15000,מועצה אזורית
-merhavim,מועצה אזורית מרחבים,Merhavim,regional,south,jewish,found,yes,no,14605,מועצה אזורית
-misgav,מועצה אזורית משגב,Misgav,regional,north,jewish,missing,no,no,25000,מועצה אזורית
-shafir,מועצה אזורית שפיר,Shafir,regional,south,jewish,missing,no,no,12853,מועצה אזורית
-tamar,מועצה אזורית תמר,Tamar,regional,south,jewish,found,yes,no,1572,מועצה אזורית
-jerusalem,ירושלים,Jerusalem,city,jerusalem,mixed,found,yes,no,970000,מטרופולין
-haifa,חיפה,Haifa,city,haifa,mixed,found,yes,no,285000,מטרופולין
-rishon-lezion,ראשון-לציון,Rishon LeZion,city,center,jewish,found,yes,no,257128,מטרופולין
-ashdod,אשדוד,Ashdod,city,south,jewish,found,yes,no,225975,מטרופולין
-netanya,נתניה,Netanya,city,center,jewish,found,yes,no,224066,מטרופולין
-bnei-brak,בני-ברק,Bnei Brak,city,tel-aviv,jewish,found,yes,no,210000,מטרופולין
-holon,חולון,Holon,city,tel-aviv,jewish,found,yes,no,200000,מטרופולין
-rehovot,רחובות,Rehovot,city,center,jewish,found,yes,no,147878,עיר גדולה
-herzliya,הרצליה,Herzliya,city,tel-aviv,jewish,found,yes,no,100000,עיר גדולה
-kfar-saba,כפר-סבא,Kfar Saba,city,center,jewish,found,yes,no,101801,עיר גדולה
-modiin,מודיעין-מכבים-רעות,Modiin,city,center,jewish,found,yes,no,97097,עיר
-nazareth,נצרת,Nazareth,city,north,arab,found,yes,no,80000,עיר
-lod,לוד,Lod,city,center,mixed,found,yes,no,82629,עיר
-ramla,רמלה,Ramla,city,center,mixed,found,yes,no,77798,עיר
-givatayim,גבעתיים,Givatayim,city,tel-aviv,jewish,found,yes,no,59000,עיר
-raanana,רעננה,Ra'anana,city,center,jewish,found,yes,no,78562,עיר
-nahariya,נהריה,Nahariya,city,north,jewish,found,yes,no,61000,עיר
-eilat,אילת,Eilat,city,south,jewish,found,yes,no,52753,עיר
-acre,עכו,Acre,city,north,mixed,found,yes,no,49614,עיירה
-afula,עפולה,Afula,city,north,jewish,found,yes,no,59075,עיר
-nes-ziona,נס-ציונה,Nes Ziona,city,center,jewish,found,yes,no,50456,עיר
-elad,אלעד,Elad,city,center,jewish,found,yes,no,49593,עיירה
-dimona,דימונה,Dimona,city,south,jewish,found,yes,no,35892,עיירה
-kiryat-ata,קריית-אתא,Kiryat Ata,city,haifa,jewish,found,no,yes,57000,עיר
-kiryat-bialik,קריית-ביאליק,Kiryat Bialik,city,haifa,jewish,found,no,yes,40000,עיירה
-kiryat-gat,קריית-גת,Kiryat Gat,city,south,jewish,found,yes,no,60582,עיר
-karmiel,כרמיאל,Karmiel,city,north,jewish,found,yes,no,46311,עיירה
-netivot,נתיבות,Netivot,city,south,jewish,found,yes,no,42039,עיירה
-ofakim,אופקים,Ofakim,city,south,jewish,found,yes,no,33999,עיירה
-rahat,רהט,Rahat,city,south,bedouin,found,yes,no,76237,עיר
-sderot,שדרות,Sderot,city,south,jewish,found,yes,no,30553,עיירה
-tiberias,טבריה,Tiberias,city,north,jewish,found,yes,no,,מועצה מקומית
-tzfat,צפת,Safed,city,north,jewish,found,yes,no,34000,עיירה
-umm-al-fahm,אום-אל-פחם,Umm al-Fahm,city,haifa,arab,found,yes,no,58000,עיר
-yavne,יבנה,Yavne,city,center,jewish,found,yes,no,53595,עיר
-rosh-haayin,ראש-העין,Rosh HaAyin,city,center,jewish,found,yes,no,71651,עיר
-maale-adumim,מעלה-אדומים,Ma'ale Adumim,city,judea-samaria,jewish,found,yes,no,40000,עיירה
-ariel,אריאל,Ariel,city,judea-samaria,jewish,found,yes,no,20000,עיירה
-beitar-illit,ביתר-עילית,Beitar Illit,city,judea-samaria,jewish,found,yes,no,70000,עיר
-hod-hasharon,הוד-השרון,Hod HaSharon,city,center,jewish,found,yes,no,65363,עיר
-nof-hagalil,נוף-הגליל,Nof HaGalil,city,north,jewish,found,yes,no,47000,עיירה
-beit-shemesh,בית-שמש,Beit Shemesh,city,jerusalem,jewish,found,yes,no,130000,עיר גדולה
-harish,חריש,Harish,city,haifa,jewish,found,yes,no,25000,עיירה
-migdal-haemek,מגדל-העמק,Migdal HaEmek,city,north,jewish,found,yes,no,26000,עיירה
-nesher,נשר,Nesher,city,haifa,jewish,found,yes,no,23000,עיירה
-tirat-carmel,טירת-כרמל,Tirat Carmel,city,haifa,mixed,found,yes,no,23000,עיירה
-yeroham,מועצה מקומית ירוחם,Yeruham,local,south,jewish,found,yes,no,11031,מועצה מקומית
-arad,מועצה מקומית ערד,Arad,local,south,jewish,found,no,yes,,מועצה מקומית
-megiddo,מועצה אזורית מגידו,Megiddo,regional,north,jewish,found,yes,no,12200,מועצה אזורית
-shomron,מועצה אזורית שומרון,Shomron,regional,judea-samaria,jewish,found,yes,no,25000,מועצה אזורית
-kiryat-tivon,מועצה מקומית קריית-טבעון,Kiryat Tivon,local,haifa,jewish,found,yes,no,16000,מועצה מקומית
-rosh-pina,מועצה מקומית ראש-פינה,Rosh Pina,local,north,jewish,found,yes,no,4000,מועצה מקומית
-emek-hefer,מועצה אזורית עמק-חפר,Emek Hefer,regional,center,jewish,found,yes,no,42880,מועצה אזורית
-gilboa,מועצה אזורית גלבוע,Gilboa,regional,north,jewish,found,yes,no,32165,מועצה אזורית
-lachish,מועצה אזורית לכיש,Lachish,regional,south,jewish,found,yes,no,13778,מועצה אזורית
-ramat-negev,מועצה אזורית רמת-נגב,Ramat Negev,regional,south,jewish,found,no,yes,8558,מועצה אזורית
-yoav,מועצה אזורית יואב,Yoav,regional,south,jewish,found,yes,no,9197,מועצה אזורית
-kiryat-malachi,קריית-מלאכי,Kiryat Malachi,city,south,jewish,found,yes,no,25022,עיירה
-shefaram,שפרעם,Shefaram,city,north,mixed,found,yes,no,38000,עיירה
-taibeh,טייבה,Taibeh,city,center,arab,found,yes,no,45388,עיירה
-tira,טירה,Tira,city,center,arab,found,yes,no,27392,עיירה
-yehud-monosson,יהוד-מונוסון,Yehud-Monosson,city,tel-aviv,jewish,found,yes,yes,30619,עיירה
-ramat-hasharon,רמת-השרון,Ramat HaSharon,city,tel-aviv,jewish,found,yes,no,47000,עיירה
-baqa-gharbiyye,בקה-אל-גרביה,Baqa al-Gharbiyye,city,haifa,arab,found,yes,no,33000,עיירה
-qalansawe,קלנסווה,Qalansawe,city,center,arab,found,yes,no,23877,עיירה
-abu-ghosh,אבו-גוש,Abu Ghosh,local,jerusalem,arab,found,yes,no,8000,מועצה מקומית
-abu-sinan,אבו-סנאן,Abu Sinan,local,north,mixed,found,yes,no,14455,מועצה מקומית
-alfei-menashe,מועצה מקומית אלפי-מנשה,Alfei Menashe,local,judea-samaria,jewish,found,yes,no,9000,מועצה מקומית
-arara,ערערה,Ar'ara,local,haifa,arab,found,yes,no,15000,מועצה מקומית
-arara-banegev,ערערה-בנגב,Ar'ara BaNegev,local,south,bedouin,found,yes,no,,מועצה מקומית
-arraba,עראבה,Arraba,local,north,arab,found,yes,no,26641,עיירה
-azor,מועצה מקומית אזור,Azor,local,tel-aviv,jewish,found,no,yes,24000,עיירה
-basma,"בסמ""ה",Basma,local,haifa,arab,found,yes,no,5000,מועצה מקומית
-beer-yaakov,מועצה מקומית באר-יעקב,Beer Yaakov,local,center,jewish,found,yes,no,29852,עיירה
-beit-aryeh,מועצה מקומית בית-אריה,Beit Aryeh,local,judea-samaria,jewish,found,yes,no,8000,מועצה מקומית
-beit-dagan,מועצה מקומית בית-דגן,Beit Dagan,local,center,jewish,found,yes,no,7644,מועצה מקומית
-beit-el,מועצה מקומית בית-אל,Beit El,local,judea-samaria,jewish,found,yes,no,7000,מועצה מקומית
-beit-jann,בית-ג'ן,Beit Jann,local,north,druze,found,yes,no,12307,מועצה מקומית
-bir-elmaksur,ביר-אל-מכסור,Bir-Elmaksur,local,north,arab,found,yes,no,9959,מועצה מקומית
-bnei-ayish,"בני-עי""ש",Bnei Ayish,local,center,arab,found,yes,no,6895,מועצה מקומית
-bosmat-tivon,בסמת-טבעון,Bosmat Tivon,local,north,arab,found,yes,no,8068,מועצה מקומית
-bueine-nujeidat,בועיינה-נוג'ידאת,Bueine-Nujeidat,local,north,arab,found,yes,no,10137,מועצה מקומית
-buqata,בוקעאתה,Buq'ata,local,north,druze,found,yes,no,6752,מועצה מקומית
-daburiyya,דבוריה,Daburiyya,local,north,arab,found,yes,no,10782,מועצה מקומית
-deir-hanna,דיר-חנא,Deir Hanna,local,north,arab,found,yes,no,10599,מועצה מקומית
-deir-al-asad,דיר-אל-אסד,Deir al-Asad,local,north,arab,found,yes,no,12935,מועצה מקומית
-efrat,מועצה מקומית אפרת,Efrat,local,judea-samaria,jewish,found,no,yes,12000,מועצה מקומית
-eilaboun,עילבון,Eilaboun,local,north,arab,found,yes,no,5812,מועצה מקומית
-ein-knia,עין-קיניה,Ein Knia,local,north,druze,found,yes,no,2172,מועצה מקומית
-ein-mahel,עין-מאהל,Ein Mahel,local,north,arab,found,yes,no,13748,מועצה מקומית
-elkana,מועצה מקומית אלקנה,Elkana,local,judea-samaria,jewish,found,yes,no,6000,מועצה מקומית
-elyakhin,מועצה מקומית אליכין,Elyakhin,local,center,jewish,found,yes,no,3461,מועצה מקומית
-emanuel,מועצה מקומית עמנואל,Emanuel,local,judea-samaria,jewish,found,yes,no,,מועצה מקומית
-even-yehuda,מועצה מקומית אבן-יהודה,Even Yehuda,local,center,jewish,found,yes,no,14266,מועצה מקומית
-fassuta,פסוטה,Fassuta,local,north,arab,found,yes,no,3236,מועצה מקומית
-fureidis,פורידיס,Fureidis,local,haifa,arab,found,yes,no,15000,מועצה מקומית
-ganey-tikva,מועצה מקומית גני-תקוה,Ganey Tikva,local,center,jewish,found,yes,no,22694,עיירה
-givat-zeev,מועצה מקומית גבעת-זאב,Givat Zeev,local,judea-samaria,jewish,found,no,yes,20000,עיירה
-har-adar,מועצה מקומית הר-אדר,Har Adar,local,judea-samaria,jewish,found,no,yes,,מועצה מקומית
-hatzor-haglilit,מועצה מקומית חצור-הגלילית,Hatzor Haglilit,local,north,jewish,found,yes,no,9764,מועצה מקומית
-hura,חורה,Hura,local,south,bedouin,found,yes,no,23943,עיירה
-hurfeish,חורפיש,Hurfeish,local,north,druze,found,yes,no,6581,מועצה מקומית
-ibillin,אעבלין,I'billin,local,north,arab,found,yes,no,13692,מועצה מקומית
-iksal,אכסאל,Iksal,local,north,arab,found,yes,no,15146,מועצה מקומית
-ilut,עילוט,Ilut,local,north,arab,found,yes,no,8654,מועצה מקומית
-jaljulye,ג'לג'וליה,Jaljulye,local,center,arab,found,yes,no,10480,מועצה מקומית
-jisr-az-zarqa,ג'סר-א-זרקא,Jisr az-Zarqa,local,haifa,arab,found,yes,no,16000,מועצה מקומית
-judeidi-makr,ג'דיידה-מכר,Judeidi-Makr,local,north,arab,found,yes,no,21507,עיירה
-julis,ג'וליס,Julis,local,north,druze,found,yes,no,6657,מועצה מקומית
-kaabiyye,כעביה-טבאש-חג'אג'רה,Ka'abiyye-Tabbash,local,north,arab,found,yes,no,5732,מועצה מקומית
-kabul,כאבול,Kabul,local,north,arab,found,yes,no,14473,מועצה מקומית
-kadima-zoran,מועצה מקומית קדימה-צורן,Kadima Zoran,local,center,jewish,found,yes,no,22920,עיירה
-kafr-bara,כפר-ברא,Kafr Bara,local,center,arab,found,yes,no,3856,מועצה מקומית
-kafr-manda,כפר-מנדא,Kafr Manda,local,north,arab,found,yes,no,21073,עיירה
-kafr-qara,כפר-קרע,Kafr Qara,local,haifa,arab,found,yes,no,16000,מועצה מקומית
-kafr-yasif,כפר-יאסיף,Kafr Yasif,local,north,mixed,found,yes,no,10323,מועצה מקומית
-karnei-shomron,מועצה מקומית קרני-שומרון,Karnei Shomron,local,judea-samaria,jewish,found,yes,no,9000,מועצה מקומית
-katzrin,מועצה מקומית קצרין,Katzrin,local,north,jewish,found,yes,no,8000,מועצה מקומית
-kedumim,מועצה מקומית קדומים,Kedumim,local,judea-samaria,jewish,found,yes,no,5000,מועצה מקומית
-kfar-kama,כפר-קמה,Kfar Kama,local,north,circassian,found,yes,no,3479,מועצה מקומית
-kfar-kana,כפר-כנא,Kfar Kana,local,north,arab,found,yes,no,,מועצה מקומית
-kfar-qasem,כפר-קאסם,Kfar Qasem,local,center,arab,found,yes,no,24757,עיירה
-kfar-shmaryahu,מועצה מקומית כפר-שמריהו,Kfar Shmaryahu,local,tel-aviv,jewish,found,yes,no,5000,מועצה מקומית
-kfar-tavor,מועצה מקומית כפר-תבור,Kfar Tavor,local,north,jewish,found,yes,no,4425,מועצה מקומית
-kfar-vradim,מועצה מקומית כפר-ורדים,Kfar Vradim,local,north,jewish,found,no,yes,5531,מועצה מקומית
-kfar-yona,מועצה מקומית כפר-יונה,Kfar Yona,local,center,jewish,found,yes,no,27898,עיירה
-kiryat-arba,מועצה מקומית קריית-ארבע,Kiryat Arba,local,judea-samaria,jewish,found,yes,no,,מועצה מקומית
-kiryat-ekron,מועצה מקומית קריית-עקרון,Kiryat Ekron,local,center,jewish,found,yes,no,11051,מועצה מקומית
-kiryat-yearim,מועצה מקומית קריית-יערים,Kiryat Ye'arim,local,jerusalem,jewish,found,yes,no,5000,מועצה מקומית
-kisra-sumei,כסרא-סמיע,Kisra-Sumei,local,north,druze,found,yes,no,9108,מועצה מקומית
-kochav-yair,מועצה מקומית כוכב-יאיר,Kochav Yair,local,center,jewish,found,yes,no,8949,מועצה מקומית
-kuseife,כסיפה,Kuseife,local,south,bedouin,found,yes,no,23219,עיירה
-laqye,לקיה,Laqye,local,south,bedouin,found,yes,no,15295,מועצה מקומית
-migdal,מועצה מקומית מגדל,Migdal,local,north,jewish,found,yes,no,3000,מועצה מקומית
-reina,ריינה,Reina,local,north,arab,found,yes,no,14000,מועצה מקומית
-sajur,סג'ור,Sajur,local,north,druze,found,yes,no,7000,מועצה מקומית
-shab-al-salim,שעב,Shab al-Salim,local,north,arab,found,yes,no,5000,מועצה מקומית
-shibli-umm-al-ghanam,שבלי-אום אל-ע'נם,Shibli,local,north,arab,found,yes,no,5000,מועצה מקומית
-taibeh-north,טייבה-צפון,Taibeh (North),local,north,arab,found,yes,no,8000,מועצה מקומית
-tel-mond,מועצה מקומית תל-מונד,Tel Mond,local,center,jewish,found,yes,no,14179,מועצה מקומית
-tuba-zangariyye,טובא-זנגרייה,Tuba-Zangariyye,local,north,arab,found,yes,no,8000,מועצה מקומית
-usfiya,עוספיא,Usfiya,local,haifa,druze,found,yes,no,15000,מועצה מקומית
-yarka,ירכא,Yarka,local,north,druze,found,yes,no,16000,מועצה מקומית
-lehavim,מועצה מקומית להבים,Lehavim,local,south,jewish,found,yes,no,6977,מועצה מקומית
-maale-efraim,מועצה מקומית מעלה-אפרים,Maale Efraim,local,judea-samaria,jewish,found,yes,no,7000,מועצה מקומית
-maale-iron,מעלה-עירון,Maale Iron,local,haifa,arab,found,yes,no,12000,מועצה מקומית
-maghar,מג'אר,Maghar,local,north,mixed,found,yes,no,34000,עיירה
-majdal-shams,מג'דל-שמס,Majdal Shams,local,north,druze,found,yes,no,11405,מועצה מקומית
-masada,מסעדה,Masada,local,north,druze,found,yes,no,10000,מועצה מקומית
-mashhad,משהד,Mashhad,local,north,arab,found,yes,no,8655,מועצה מקומית
-mazraa,מזרעה,Mazraa,local,north,arab,found,yes,no,4078,מועצה מקומית
-meitar,מועצה מקומית מיתר,Meitar,local,south,jewish,found,yes,no,10565,מועצה מקומית
-mevaseret-zion,מועצה מקומית מבשרת-ציון,Mevaseret Zion,local,jerusalem,jewish,found,yes,no,25000,עיירה
-mielya,מעיליא,Mielya,local,north,arab,found,yes,no,4000,מועצה מקומית
-nahef,נחף,Nahef,local,north,arab,found,yes,no,9000,מועצה מקומית
-neot-hovav,מועצה מקומית נאות-חובב,Neot Hovav,local,south,jewish,found,yes,no,2000,מועצה מקומית
-oranit,מועצה מקומית אורנית,Oranit,local,judea-samaria,jewish,found,yes,no,8000,מועצה מקומית
-pardesia,מועצה מקומית פרדסיה,Pardesia,local,center,jewish,found,yes,no,7251,מועצה מקומית
-peqiin,פקיעין,Peqiin,local,north,druze,found,yes,no,5000,מועצה מקומית
-ramat-yishay,מועצה מקומית רמת-ישי,Ramat Yishay,local,north,jewish,found,no,yes,7000,מועצה מקומית
-rameh,ראמה,Rameh,local,north,arab,found,yes,no,8000,מועצה מקומית
-rekhasim,מועצה מקומית רכסים,Rekhasim,local,haifa,jewish,found,yes,no,16000,מועצה מקומית
-savyon,מועצה מקומית סביון,Savyon,local,center,jewish,found,yes,no,4051,מועצה מקומית
-segev-shalom,שגב-שלום,Segev Shalom,local,south,bedouin,found,yes,no,11865,מועצה מקומית
-shab,שעב,Sha'ab,local,north,arab,found,yes,no,5000,מועצה מקומית
-shlomi,מועצה מקומית שלומי,Shlomi,local,north,jewish,found,yes,no,8000,מועצה מקומית
-shoham,מועצה מקומית שהם,Shoham,local,center,jewish,found,yes,no,21441,עיירה
-tel-sheva,תל-שבע,Tel Sheva,local,south,bedouin,found,yes,no,22187,עיירה
-turan,טורעאן,Tur'an,local,north,arab,found,yes,no,19000,מועצה מקומית
-yafa-an-naseriyye,יפיע,Yafa an-Naseriyye,local,north,arab,found,yes,no,20000,עיירה
-yanuh-jat,יאנוח-ג'ת,Yanuh-Jat,local,north,druze,found,yes,no,7000,מועצה מקומית
-yavneel,מועצה מקומית יבנאל,Yavneel,local,north,jewish,found,yes,yes,5000,מועצה מקומית
-alona,מועצה אזורית אלונה,Alona,regional,haifa,jewish,found,yes,no,,מועצה אזורית
-beer-tuvia,מועצה אזורית באר-טוביה,Beer Tuvia,regional,south,jewish,found,yes,no,23841,מועצה אזורית
-binyamin,מועצה אזורית מטה-בנימין,Mateh Binyamin,regional,judea-samaria,jewish,found,yes,no,15000,מועצה אזורית
-brener,מועצה אזורית ברנר,Brener,regional,center,jewish,found,yes,no,8046,מועצה אזורית
-bustan-al-marj,בוסתאן-אל-מרג',Bustan al-Marj,regional,north,arab,found,yes,no,8137,מועצה אזורית
-central-arava,מועצה אזורית ערבה-תיכונה,Central Arava,regional,south,jewish,found,yes,no,3772,מועצה אזורית
-daliyat-karmel,דאלית-אל-כרמל,Daliyat al-Karmel,regional,haifa,druze,found,yes,no,18000,מועצה אזורית
-drom-hasharon,מועצה אזורית דרום-השרון,Drom HaSharon,regional,center,jewish,found,yes,no,34327,מועצה אזורית
-el-batouf,אל-בטוף,El-Batouf,regional,north,arab,found,yes,no,8408,מועצה אזורית
-emek-hamayanot,מועצה אזורית עמק-המעיינות,Emek Hama'ayanot,regional,north,jewish,found,yes,no,14377,מועצה אזורית
-eshkol,מועצה אזורית אשכול,Eshkol,regional,south,jewish,found,yes,no,15205,מועצה אזורית
-galil-elion,מועצה אזורית גליל-עליון,Galil Elion,regional,north,jewish,found,yes,no,19440,מועצה אזורית
-gan-rave,מועצה אזורית גן-רוה,Gan Rave,regional,center,jewish,found,yes,no,6585,מועצה אזורית
-gderot,מועצה אזורית גדרות,Gderot,regional,center,jewish,found,yes,no,5192,מועצה אזורית
-har-hevron,מועצה אזורית הר-חברון,Har Hevron,regional,judea-samaria,jewish,found,no,yes,17000,מועצה אזורית
-hevel-eilot,מועצה אזורית חבל-אילות,Hevel Eilot,regional,south,jewish,found,yes,no,4745,מועצה אזורית
-hevel-yavne,מועצה אזורית חבל-יבנה,Hevel Yavne,regional,center,jewish,found,yes,no,6920,מועצה אזורית
-hof-ashkelon,מועצה אזורית חוף-אשקלון,Hof Ashkelon,regional,south,jewish,found,yes,no,19295,מועצה אזורית
-hof-hakarmel,מועצה אזורית חוף-הכרמל,Hof HaKarmel,regional,haifa,jewish,found,yes,no,36000,מועצה אזורית
-hof-hasharon,מועצה אזורית חוף-השרון,Hof HaSharon,regional,center,jewish,found,yes,no,14872,מועצה אזורית
-jordan-valley,מועצה אזורית בקעת-הירדן,Jordan Valley,regional,judea-samaria,jewish,found,yes,no,10000,מועצה אזורית
-lev-hasharon,מועצה אזורית לב-השרון,Lev HaSharon,regional,center,jewish,found,yes,no,23672,מועצה אזורית
-maale-yosef,מועצה אזורית מעלה-יוסף,Maale Yosef,regional,north,jewish,found,yes,no,11605,מועצה אזורית
-mateh-yehuda,מועצה אזורית מטה-יהודה,Mateh Yehuda,regional,jerusalem,jewish,found,yes,no,57000,מועצה אזורית
-megilot-yam-hamelah,מועצה אזורית מגילות-ים-המלח,Megilot Yam HaMelah,regional,judea-samaria,jewish,found,no,yes,1500,מועצה אזורית
-merom-hagalil,מועצה אזורית מרום-הגליל,Merom HaGalil,regional,north,jewish,found,yes,no,15892,מועצה אזורית
-mevoot-hermon,מועצה אזורית מבואות-החרמון,Mevoot Hermon,regional,north,jewish,found,no,yes,3000,מועצה אזורית
-modiin-region,מועצה אזורית חבל-מודיעין,Modiin Region,regional,center,jewish,found,no,yes,30000,מועצה אזורית
-nahal-soreq,מועצה אזורית נחל-שורק,Nahal Soreq,regional,center,jewish,found,no,yes,10189,מועצה אזורית
-neve-midbar,נווה-מדבר,Neve Midbar,regional,south,bedouin,found,yes,no,13309,מועצה אזורית
-sadot-dan,מועצה אזורית שדות-דן,Sadot Dan,regional,north,jewish,found,no,yes,15987,מועצה אזורית
-sdot-negev,מועצה אזורית שדות-נגב,Sdot Negev,regional,south,jewish,found,yes,no,11062,מועצה אזורית
-shaar-hanegev,מועצה אזורית שער-הנגב,Shaar HaNegev,regional,south,jewish,missing,no,no,9071,מועצה אזורית
-shaar-hagalil,מועצה אזורית שער-הגליל,Shaar Hagalil,regional,north,jewish,found,yes,no,5000,מועצה אזורית
-zvulun,מועצה אזורית זבולון,Zvulun,regional,haifa,jewish,found,yes,no,16000,מועצה אזורית
-emek-lod,מועצה אזורית עמק לוד,Emek Lod,regional,center,jewish,missing,no,no,15987,מועצה אזורית
-givat-ada,מועצה מקומית גבעת עדה,Giv'at Ada,local,haifa,jewish,missing,no,no,,מועצה מקומית
-binyamina-old,מועצה מקומית בנימינה,Binyamina (old COA),local,haifa,jewish,missing,no,no,,מועצה מקומית
-jatt,ג'ת,Jatt,local,center,arab,found,yes,no,10000,מועצה מקומית
-miilya,מעיליא,Mi'ilya,local,north,arab,found,yes,no,,מועצה מקומית
-yesod-hamaala,יסוד המעלה,Yesod HaMaala,local,north,jewish,found,yes,no,2000,מועצה מקומית
-zarzir,זרזיר,Zarzir,local,haifa,arab,found,yes,no,13000,מועצה מקומית
-zemer,זמר,Zemer,local,center,arab,found,yes,no,7360,מועצה מקומית
-gush-halav,גוש חלב,Gush Halav,local,north,arab,found,yes,no,3154,מועצה מקומית
-kafr-kanna,כפר כנא,Kafr Kanna,local,north,arab,found,yes,no,23705,עיירה
-shaar-shomron,שער שומרון,Shaar Shomron,local,center,jewish,found,yes,no,,מועצה מקומית
-zur-hadassa,צור הדסה,Zur Hadassa,local,jerusalem,jewish,found,yes,no,6000,מועצה מקומית
-kawkab-abu-al-hija,כאוכב אבו אל-היג'א,Kawkab Abu al-Hija,local,north,arab,found,yes,no,3724,מועצה מקומית
-bana,בענה,Bana,local,north,arab,found,yes,no,8536,מועצה מקומית
-majd-al-krum,מג'ד אל-כרום,Majd al-Krum,local,north,arab,found,yes,no,15630,מועצה מקומית
-shaarei-tikva,שערי תקווה,Shaarei Tikva,local,judea-samaria,jewish,found,yes,no,8000,מועצה מקומית
-neve-monosson,נווה מונוסון,Neve Monosson,local,tel-aviv,jewish,found,yes,no,,מועצה מקומית
-maccabim-reut,מכבים-רעות,Maccabim-Reut,local,center,jewish,found,yes,no,,מועצה מקומית
+﻿id,name_he,name_en,type,district,culture,status,has_coa,has_logo,population,size_tier,סוג_מגן,צבע_מגן,צבע_דומיננטי,תגיות_1,תגיות_2,תגיות_3,תגיות_4,תגיות_5
+gush-etzion,מועצה אזורית גוש-עציון,Gush Etzion,regional,judea-samaria,jewish,found,no,yes,25000,מועצה אזורית,,,,,,,,
+tel-aviv,תל-אביב-יפו,Tel Aviv-Yafo,city,tel-aviv,mixed,found,yes,no,460000,מטרופולין,,,,,,,,
+petah-tikva,פתח-תקווה,Petah Tikva,city,center,jewish,found,yes,no,252270,מטרופולין,,,,,,,,
+beer-sheva,באר-שבע,Beer Sheva,city,south,jewish,found,yes,no,211251,מטרופולין,,,,,,,,
+bat-yam,בת-ים,Bat Yam,city,tel-aviv,jewish,found,yes,no,159000,עיר גדולה,,,,,,,,
+ramat-gan,רמת-גן,Ramat Gan,city,tel-aviv,jewish,found,yes,no,162000,עיר גדולה,,,,,,,,
+ashkelon,אשקלון,Ashkelon,city,south,jewish,found,yes,yes,149160,עיר גדולה,,,,,,,,
+hadera,חדרה,Hadera,city,haifa,jewish,found,yes,no,100000,עיר גדולה,,,,,,,,
+or-yehuda,אור-יהודה,Or Yehuda,city,tel-aviv,jewish,found,yes,yes,40000,עיירה,,,,,,,,
+beit-shean,בית-שאן,Beit Shean,city,north,jewish,found,yes,yes,18900,מועצה מקומית,,,,,,,,
+kiryat-motzkin,קריית-מוצקין,Kiryat Motzkin,city,haifa,jewish,found,yes,no,43000,עיירה,,,,,,,,
+kiryat-ono,קריית-אונו,Kiryat Ono,city,tel-aviv,jewish,found,yes,yes,38000,עיירה,,,,,,,,
+kiryat-shmona,קריית-שמונה,Kiryat Shmona,city,north,jewish,found,yes,no,25000,עיירה,,,,,,,,
+kiryat-yam,קריית-ים,Kiryat Yam,city,haifa,jewish,found,yes,no,40000,עיירה,,,,,,,,
+sakhnin,סח'נין,Sakhnin,city,north,arab,found,yes,no,32000,עיירה,,,,,,,,
+tamra,טמרה,Tamra,city,north,arab,found,yes,no,33000,עיירה,,,,,,,,
+yokneam,יקנעם-עילית,Yokneam Illit,city,haifa,jewish,found,yes,no,23000,עיירה,,,,,,,,
+modiin-illit,מודיעין-עילית,Modiin Illit,city,judea-samaria,jewish,found,yes,no,80000,עיר,,,,,,,,
+givat-shmuel,גבעת-שמואל,Givat Shmuel,city,tel-aviv,jewish,found,yes,no,28162,עיירה,,,,,,,,
+maalot-tarshiha,מעלות-תרשיחא,Maalot Tarshiha,city,north,mixed,found,yes,no,22315,עיירה,,,,,,,,
+or-akiva,אור-עקיבא,Or Akiva,city,haifa,jewish,found,yes,no,19000,מועצה מקומית,,,,,,,,
+binyamina,מועצה מקומית בנימינה-גבעת-עדה,Binyamina,local,haifa,jewish,missing,no,no,15000,מועצה מקומית,,,,,,,,
+gan-yavne,מועצה מקומית גן-יבנה,Gan Yavne,local,center,jewish,found,yes,no,24251,עיירה,,,,,,,,
+gedera,מועצה מקומית גדרה,Gedera,local,center,jewish,found,yes,no,30392,עיירה,,,,,,,,
+mazkeret-batya,מועצה מקומית מזכרת-בתיה,Mazkeret Batya,local,center,jewish,found,yes,no,15424,מועצה מקומית,,,,,,,,
+metula,מועצה מקומית מטולה,Metula,local,north,jewish,found,yes,no,1693,מועצה מקומית,,,,,,,,
+mitzpe-ramon,מועצה מקומית מצפה-רמון,Mitzpe Ramon,local,south,jewish,found,yes,no,5178,מועצה מקומית,,,,,,,,
+omer,מועצה מקומית עומר,Omer,local,south,jewish,found,yes,no,7656,מועצה מקומית,,,,,,,,
+pardes-hanna,מועצה מקומית פרדס-חנה-כרכור,Pardes Hanna,local,haifa,jewish,found,yes,yes,40000,עיירה,,,,,,,,
+zichron-yaakov,מועצה מקומית זכרון-יעקב,Zichron Yaakov,local,haifa,jewish,found,yes,no,25000,עיירה,,,,,,,,
+bnei-shimon,מועצה אזורית בני-שמעון,Bnei Shimon,regional,south,jewish,found,yes,no,11419,מועצה אזורית,,,,,,,,
+emek-hayarden,מועצה אזורית עמק-הירדן,Emek HaYarden,regional,north,jewish,found,yes,no,14390,מועצה אזורית,,,,,,,,
+emek-yizrael,מועצה אזורית עמק-יזרעאל,Emek Yizrael,regional,north,jewish,found,yes,no,40146,מועצה אזורית,,,,,,,,
+gezer,מועצה אזורית גזר,Gezer,regional,center,jewish,found,yes,no,27622,מועצה אזורית,,,,,,,,
+golan,גולן,Golan,regional,north,mixed,found,no,yes,19214,מועצה אזורית,,,,,,,,
+mateh-asher,מועצה אזורית מטה-אשר,Mateh Asher,regional,north,jewish,found,yes,no,30846,מועצה אזורית,,,,,,,,
+menashe,מועצה אזורית מנשה,Menashe,regional,haifa,jewish,found,yes,no,15000,מועצה אזורית,,,,,,,,
+merhavim,מועצה אזורית מרחבים,Merhavim,regional,south,jewish,found,yes,no,14605,מועצה אזורית,,,,,,,,
+misgav,מועצה אזורית משגב,Misgav,regional,north,jewish,missing,no,no,25000,מועצה אזורית,,,,,,,,
+shafir,מועצה אזורית שפיר,Shafir,regional,south,jewish,missing,no,no,12853,מועצה אזורית,,,,,,,,
+tamar,מועצה אזורית תמר,Tamar,regional,south,jewish,found,yes,no,1572,מועצה אזורית,,,,,,,,
+jerusalem,ירושלים,Jerusalem,city,jerusalem,mixed,found,yes,no,970000,מטרופולין,,,,,,,,
+haifa,חיפה,Haifa,city,haifa,mixed,found,yes,no,285000,מטרופולין,,,,,,,,
+rishon-lezion,ראשון-לציון,Rishon LeZion,city,center,jewish,found,yes,no,257128,מטרופולין,,,,,,,,
+ashdod,אשדוד,Ashdod,city,south,jewish,found,yes,no,225975,מטרופולין,,,,,,,,
+netanya,נתניה,Netanya,city,center,jewish,found,yes,no,224066,מטרופולין,,,,,,,,
+bnei-brak,בני-ברק,Bnei Brak,city,tel-aviv,jewish,found,yes,no,210000,מטרופולין,,,,,,,,
+holon,חולון,Holon,city,tel-aviv,jewish,found,yes,no,200000,מטרופולין,,,,,,,,
+rehovot,רחובות,Rehovot,city,center,jewish,found,yes,no,147878,עיר גדולה,,,,,,,,
+herzliya,הרצליה,Herzliya,city,tel-aviv,jewish,found,yes,no,100000,עיר גדולה,,,,,,,,
+kfar-saba,כפר-סבא,Kfar Saba,city,center,jewish,found,yes,no,101801,עיר גדולה,,,,,,,,
+modiin,מודיעין-מכבים-רעות,Modiin,city,center,jewish,found,yes,no,97097,עיר,,,,,,,,
+nazareth,נצרת,Nazareth,city,north,arab,found,yes,no,80000,עיר,,,,,,,,
+lod,לוד,Lod,city,center,mixed,found,yes,no,82629,עיר,,,,,,,,
+ramla,רמלה,Ramla,city,center,mixed,found,yes,no,77798,עיר,,,,,,,,
+givatayim,גבעתיים,Givatayim,city,tel-aviv,jewish,found,yes,no,59000,עיר,,,,,,,,
+raanana,רעננה,Ra'anana,city,center,jewish,found,yes,no,78562,עיר,,,,,,,,
+nahariya,נהריה,Nahariya,city,north,jewish,found,yes,no,61000,עיר,,,,,,,,
+eilat,אילת,Eilat,city,south,jewish,found,yes,no,52753,עיר,,,,,,,,
+acre,עכו,Acre,city,north,mixed,found,yes,no,49614,עיירה,,,,,,,,
+afula,עפולה,Afula,city,north,jewish,found,yes,no,59075,עיר,,,,,,,,
+nes-ziona,נס-ציונה,Nes Ziona,city,center,jewish,found,yes,no,50456,עיר,,,,,,,,
+elad,אלעד,Elad,city,center,jewish,found,yes,no,49593,עיירה,,,,,,,,
+dimona,דימונה,Dimona,city,south,jewish,found,yes,no,35892,עיירה,,,,,,,,
+kiryat-ata,קריית-אתא,Kiryat Ata,city,haifa,jewish,found,no,yes,57000,עיר,,,,,,,,
+kiryat-bialik,קריית-ביאליק,Kiryat Bialik,city,haifa,jewish,found,no,yes,40000,עיירה,,,,,,,,
+kiryat-gat,קריית-גת,Kiryat Gat,city,south,jewish,found,yes,no,60582,עיר,,,,,,,,
+karmiel,כרמיאל,Karmiel,city,north,jewish,found,yes,no,46311,עיירה,,,,,,,,
+netivot,נתיבות,Netivot,city,south,jewish,found,yes,no,42039,עיירה,,,,,,,,
+ofakim,אופקים,Ofakim,city,south,jewish,found,yes,no,33999,עיירה,,,,,,,,
+rahat,רהט,Rahat,city,south,bedouin,found,yes,no,76237,עיר,,,,,,,,
+sderot,שדרות,Sderot,city,south,jewish,found,yes,no,30553,עיירה,,,,,,,,
+tiberias,טבריה,Tiberias,city,north,jewish,found,yes,no,,מועצה מקומית,,,,,,,,
+tzfat,צפת,Safed,city,north,jewish,found,yes,no,34000,עיירה,,,,,,,,
+umm-al-fahm,אום-אל-פחם,Umm al-Fahm,city,haifa,arab,found,yes,no,58000,עיר,,,,,,,,
+yavne,יבנה,Yavne,city,center,jewish,found,yes,no,53595,עיר,,,,,,,,
+rosh-haayin,ראש-העין,Rosh HaAyin,city,center,jewish,found,yes,no,71651,עיר,,,,,,,,
+maale-adumim,מעלה-אדומים,Ma'ale Adumim,city,judea-samaria,jewish,found,yes,no,40000,עיירה,,,,,,,,
+ariel,אריאל,Ariel,city,judea-samaria,jewish,found,yes,no,20000,עיירה,,,,,,,,
+beitar-illit,ביתר-עילית,Beitar Illit,city,judea-samaria,jewish,found,yes,no,70000,עיר,,,,,,,,
+hod-hasharon,הוד-השרון,Hod HaSharon,city,center,jewish,found,yes,no,65363,עיר,,,,,,,,
+nof-hagalil,נוף-הגליל,Nof HaGalil,city,north,jewish,found,yes,no,47000,עיירה,,,,,,,,
+beit-shemesh,בית-שמש,Beit Shemesh,city,jerusalem,jewish,found,yes,no,130000,עיר גדולה,,,,,,,,
+harish,חריש,Harish,city,haifa,jewish,found,yes,no,25000,עיירה,,,,,,,,
+migdal-haemek,מגדל-העמק,Migdal HaEmek,city,north,jewish,found,yes,no,26000,עיירה,,,,,,,,
+nesher,נשר,Nesher,city,haifa,jewish,found,yes,no,23000,עיירה,,,,,,,,
+tirat-carmel,טירת-כרמל,Tirat Carmel,city,haifa,mixed,found,yes,no,23000,עיירה,,,,,,,,
+yeroham,מועצה מקומית ירוחם,Yeruham,local,south,jewish,found,yes,no,11031,מועצה מקומית,,,,,,,,
+arad,מועצה מקומית ערד,Arad,local,south,jewish,found,no,yes,,מועצה מקומית,,,,,,,,
+megiddo,מועצה אזורית מגידו,Megiddo,regional,north,jewish,found,yes,no,12200,מועצה אזורית,,,,,,,,
+shomron,מועצה אזורית שומרון,Shomron,regional,judea-samaria,jewish,found,yes,no,25000,מועצה אזורית,,,,,,,,
+kiryat-tivon,מועצה מקומית קריית-טבעון,Kiryat Tivon,local,haifa,jewish,found,yes,no,16000,מועצה מקומית,,,,,,,,
+rosh-pina,מועצה מקומית ראש-פינה,Rosh Pina,local,north,jewish,found,yes,no,4000,מועצה מקומית,,,,,,,,
+emek-hefer,מועצה אזורית עמק-חפר,Emek Hefer,regional,center,jewish,found,yes,no,42880,מועצה אזורית,,,,,,,,
+gilboa,מועצה אזורית גלבוע,Gilboa,regional,north,jewish,found,yes,no,32165,מועצה אזורית,,,,,,,,
+lachish,מועצה אזורית לכיש,Lachish,regional,south,jewish,found,yes,no,13778,מועצה אזורית,,,,,,,,
+ramat-negev,מועצה אזורית רמת-נגב,Ramat Negev,regional,south,jewish,found,no,yes,8558,מועצה אזורית,,,,,,,,
+yoav,מועצה אזורית יואב,Yoav,regional,south,jewish,found,yes,no,9197,מועצה אזורית,,,,,,,,
+kiryat-malachi,קריית-מלאכי,Kiryat Malachi,city,south,jewish,found,yes,no,25022,עיירה,,,,,,,,
+shefaram,שפרעם,Shefaram,city,north,mixed,found,yes,no,38000,עיירה,,,,,,,,
+taibeh,טייבה,Taibeh,city,center,arab,found,yes,no,45388,עיירה,,,,,,,,
+tira,טירה,Tira,city,center,arab,found,yes,no,27392,עיירה,,,,,,,,
+yehud-monosson,יהוד-מונוסון,Yehud-Monosson,city,tel-aviv,jewish,found,yes,yes,30619,עיירה,,,,,,,,
+ramat-hasharon,רמת-השרון,Ramat HaSharon,city,tel-aviv,jewish,found,yes,no,47000,עיירה,,,,,,,,
+baqa-gharbiyye,בקה-אל-גרביה,Baqa al-Gharbiyye,city,haifa,arab,found,yes,no,33000,עיירה,,,,,,,,
+qalansawe,קלנסווה,Qalansawe,city,center,arab,found,yes,no,23877,עיירה,,,,,,,,
+abu-ghosh,אבו-גוש,Abu Ghosh,local,jerusalem,arab,found,yes,no,8000,מועצה מקומית,,,,,,,,
+abu-sinan,אבו-סנאן,Abu Sinan,local,north,mixed,found,yes,no,14455,מועצה מקומית,,,,,,,,
+alfei-menashe,מועצה מקומית אלפי-מנשה,Alfei Menashe,local,judea-samaria,jewish,found,yes,no,9000,מועצה מקומית,,,,,,,,
+arara,ערערה,Ar'ara,local,haifa,arab,found,yes,no,15000,מועצה מקומית,,,,,,,,
+arara-banegev,ערערה-בנגב,Ar'ara BaNegev,local,south,bedouin,found,yes,no,,מועצה מקומית,,,,,,,,
+arraba,עראבה,Arraba,local,north,arab,found,yes,no,26641,עיירה,,,,,,,,
+azor,מועצה מקומית אזור,Azor,local,tel-aviv,jewish,found,no,yes,24000,עיירה,,,,,,,,
+basma,"בסמ""ה",Basma,local,haifa,arab,found,yes,no,5000,מועצה מקומית,,,,,,,,
+beer-yaakov,מועצה מקומית באר-יעקב,Beer Yaakov,local,center,jewish,found,yes,no,29852,עיירה,,,,,,,,
+beit-aryeh,מועצה מקומית בית-אריה,Beit Aryeh,local,judea-samaria,jewish,found,yes,no,8000,מועצה מקומית,,,,,,,,
+beit-dagan,מועצה מקומית בית-דגן,Beit Dagan,local,center,jewish,found,yes,no,7644,מועצה מקומית,,,,,,,,
+beit-el,מועצה מקומית בית-אל,Beit El,local,judea-samaria,jewish,found,yes,no,7000,מועצה מקומית,,,,,,,,
+beit-jann,בית-ג'ן,Beit Jann,local,north,druze,found,yes,no,12307,מועצה מקומית,,,,,,,,
+bir-elmaksur,ביר-אל-מכסור,Bir-Elmaksur,local,north,arab,found,yes,no,9959,מועצה מקומית,,,,,,,,
+bnei-ayish,"בני-עי""ש",Bnei Ayish,local,center,arab,found,yes,no,6895,מועצה מקומית,,,,,,,,
+bosmat-tivon,בסמת-טבעון,Bosmat Tivon,local,north,arab,found,yes,no,8068,מועצה מקומית,,,,,,,,
+bueine-nujeidat,בועיינה-נוג'ידאת,Bueine-Nujeidat,local,north,arab,found,yes,no,10137,מועצה מקומית,,,,,,,,
+buqata,בוקעאתה,Buq'ata,local,north,druze,found,yes,no,6752,מועצה מקומית,,,,,,,,
+daburiyya,דבוריה,Daburiyya,local,north,arab,found,yes,no,10782,מועצה מקומית,,,,,,,,
+deir-hanna,דיר-חנא,Deir Hanna,local,north,arab,found,yes,no,10599,מועצה מקומית,,,,,,,,
+deir-al-asad,דיר-אל-אסד,Deir al-Asad,local,north,arab,found,yes,no,12935,מועצה מקומית,,,,,,,,
+efrat,מועצה מקומית אפרת,Efrat,local,judea-samaria,jewish,found,no,yes,12000,מועצה מקומית,,,,,,,,
+eilaboun,עילבון,Eilaboun,local,north,arab,found,yes,no,5812,מועצה מקומית,,,,,,,,
+ein-knia,עין-קיניה,Ein Knia,local,north,druze,found,yes,no,2172,מועצה מקומית,,,,,,,,
+ein-mahel,עין-מאהל,Ein Mahel,local,north,arab,found,yes,no,13748,מועצה מקומית,,,,,,,,
+elkana,מועצה מקומית אלקנה,Elkana,local,judea-samaria,jewish,found,yes,no,6000,מועצה מקומית,,,,,,,,
+elyakhin,מועצה מקומית אליכין,Elyakhin,local,center,jewish,found,yes,no,3461,מועצה מקומית,,,,,,,,
+emanuel,מועצה מקומית עמנואל,Emanuel,local,judea-samaria,jewish,found,yes,no,,מועצה מקומית,,,,,,,,
+even-yehuda,מועצה מקומית אבן-יהודה,Even Yehuda,local,center,jewish,found,yes,no,14266,מועצה מקומית,,,,,,,,
+fassuta,פסוטה,Fassuta,local,north,arab,found,yes,no,3236,מועצה מקומית,,,,,,,,
+fureidis,פורידיס,Fureidis,local,haifa,arab,found,yes,no,15000,מועצה מקומית,,,,,,,,
+ganey-tikva,מועצה מקומית גני-תקוה,Ganey Tikva,local,center,jewish,found,yes,no,22694,עיירה,,,,,,,,
+givat-zeev,מועצה מקומית גבעת-זאב,Givat Zeev,local,judea-samaria,jewish,found,no,yes,20000,עיירה,,,,,,,,
+har-adar,מועצה מקומית הר-אדר,Har Adar,local,judea-samaria,jewish,found,no,yes,,מועצה מקומית,,,,,,,,
+hatzor-haglilit,מועצה מקומית חצור-הגלילית,Hatzor Haglilit,local,north,jewish,found,yes,no,9764,מועצה מקומית,,,,,,,,
+hura,חורה,Hura,local,south,bedouin,found,yes,no,23943,עיירה,,,,,,,,
+hurfeish,חורפיש,Hurfeish,local,north,druze,found,yes,no,6581,מועצה מקומית,,,,,,,,
+ibillin,אעבלין,I'billin,local,north,arab,found,yes,no,13692,מועצה מקומית,,,,,,,,
+iksal,אכסאל,Iksal,local,north,arab,found,yes,no,15146,מועצה מקומית,,,,,,,,
+ilut,עילוט,Ilut,local,north,arab,found,yes,no,8654,מועצה מקומית,,,,,,,,
+jaljulye,ג'לג'וליה,Jaljulye,local,center,arab,found,yes,no,10480,מועצה מקומית,,,,,,,,
+jisr-az-zarqa,ג'סר-א-זרקא,Jisr az-Zarqa,local,haifa,arab,found,yes,no,16000,מועצה מקומית,,,,,,,,
+judeidi-makr,ג'דיידה-מכר,Judeidi-Makr,local,north,arab,found,yes,no,21507,עיירה,,,,,,,,
+julis,ג'וליס,Julis,local,north,druze,found,yes,no,6657,מועצה מקומית,,,,,,,,
+kaabiyye,כעביה-טבאש-חג'אג'רה,Ka'abiyye-Tabbash,local,north,arab,found,yes,no,5732,מועצה מקומית,,,,,,,,
+kabul,כאבול,Kabul,local,north,arab,found,yes,no,14473,מועצה מקומית,,,,,,,,
+kadima-zoran,מועצה מקומית קדימה-צורן,Kadima Zoran,local,center,jewish,found,yes,no,22920,עיירה,,,,,,,,
+kafr-bara,כפר-ברא,Kafr Bara,local,center,arab,found,yes,no,3856,מועצה מקומית,,,,,,,,
+kafr-manda,כפר-מנדא,Kafr Manda,local,north,arab,found,yes,no,21073,עיירה,,,,,,,,
+kafr-qara,כפר-קרע,Kafr Qara,local,haifa,arab,found,yes,no,16000,מועצה מקומית,,,,,,,,
+kafr-yasif,כפר-יאסיף,Kafr Yasif,local,north,mixed,found,yes,no,10323,מועצה מקומית,,,,,,,,
+karnei-shomron,מועצה מקומית קרני-שומרון,Karnei Shomron,local,judea-samaria,jewish,found,yes,no,9000,מועצה מקומית,,,,,,,,
+katzrin,מועצה מקומית קצרין,Katzrin,local,north,jewish,found,yes,no,8000,מועצה מקומית,,,,,,,,
+kedumim,מועצה מקומית קדומים,Kedumim,local,judea-samaria,jewish,found,yes,no,5000,מועצה מקומית,,,,,,,,
+kfar-kama,כפר-קמה,Kfar Kama,local,north,circassian,found,yes,no,3479,מועצה מקומית,,,,,,,,
+kfar-kana,כפר-כנא,Kfar Kana,local,north,arab,found,yes,no,,מועצה מקומית,,,,,,,,
+kfar-qasem,כפר-קאסם,Kfar Qasem,local,center,arab,found,yes,no,24757,עיירה,,,,,,,,
+kfar-shmaryahu,מועצה מקומית כפר-שמריהו,Kfar Shmaryahu,local,tel-aviv,jewish,found,yes,no,5000,מועצה מקומית,,,,,,,,
+kfar-tavor,מועצה מקומית כפר-תבור,Kfar Tavor,local,north,jewish,found,yes,no,4425,מועצה מקומית,,,,,,,,
+kfar-vradim,מועצה מקומית כפר-ורדים,Kfar Vradim,local,north,jewish,found,no,yes,5531,מועצה מקומית,,,,,,,,
+kfar-yona,מועצה מקומית כפר-יונה,Kfar Yona,local,center,jewish,found,yes,no,27898,עיירה,,,,,,,,
+kiryat-arba,מועצה מקומית קריית-ארבע,Kiryat Arba,local,judea-samaria,jewish,found,yes,no,,מועצה מקומית,,,,,,,,
+kiryat-ekron,מועצה מקומית קריית-עקרון,Kiryat Ekron,local,center,jewish,found,yes,no,11051,מועצה מקומית,,,,,,,,
+kiryat-yearim,מועצה מקומית קריית-יערים,Kiryat Ye'arim,local,jerusalem,jewish,found,yes,no,5000,מועצה מקומית,,,,,,,,
+kisra-sumei,כסרא-סמיע,Kisra-Sumei,local,north,druze,found,yes,no,9108,מועצה מקומית,,,,,,,,
+kochav-yair,מועצה מקומית כוכב-יאיר,Kochav Yair,local,center,jewish,found,yes,no,8949,מועצה מקומית,,,,,,,,
+kuseife,כסיפה,Kuseife,local,south,bedouin,found,yes,no,23219,עיירה,,,,,,,,
+laqye,לקיה,Laqye,local,south,bedouin,found,yes,no,15295,מועצה מקומית,,,,,,,,
+migdal,מועצה מקומית מגדל,Migdal,local,north,jewish,found,yes,no,3000,מועצה מקומית,,,,,,,,
+reina,ריינה,Reina,local,north,arab,found,yes,no,14000,מועצה מקומית,,,,,,,,
+sajur,סג'ור,Sajur,local,north,druze,found,yes,no,7000,מועצה מקומית,,,,,,,,
+shab-al-salim,שעב,Shab al-Salim,local,north,arab,found,yes,no,5000,מועצה מקומית,,,,,,,,
+shibli-umm-al-ghanam,שבלי-אום אל-ע'נם,Shibli,local,north,arab,found,yes,no,5000,מועצה מקומית,,,,,,,,
+taibeh-north,טייבה-צפון,Taibeh (North),local,north,arab,found,yes,no,8000,מועצה מקומית,,,,,,,,
+tel-mond,מועצה מקומית תל-מונד,Tel Mond,local,center,jewish,found,yes,no,14179,מועצה מקומית,,,,,,,,
+tuba-zangariyye,טובא-זנגרייה,Tuba-Zangariyye,local,north,arab,found,yes,no,8000,מועצה מקומית,,,,,,,,
+usfiya,עוספיא,Usfiya,local,haifa,druze,found,yes,no,15000,מועצה מקומית,,,,,,,,
+yarka,ירכא,Yarka,local,north,druze,found,yes,no,16000,מועצה מקומית,,,,,,,,
+lehavim,מועצה מקומית להבים,Lehavim,local,south,jewish,found,yes,no,6977,מועצה מקומית,,,,,,,,
+maale-efraim,מועצה מקומית מעלה-אפרים,Maale Efraim,local,judea-samaria,jewish,found,yes,no,7000,מועצה מקומית,,,,,,,,
+maale-iron,מעלה-עירון,Maale Iron,local,haifa,arab,found,yes,no,12000,מועצה מקומית,,,,,,,,
+maghar,מג'אר,Maghar,local,north,mixed,found,yes,no,34000,עיירה,,,,,,,,
+majdal-shams,מג'דל-שמס,Majdal Shams,local,north,druze,found,yes,no,11405,מועצה מקומית,,,,,,,,
+masada,מסעדה,Masada,local,north,druze,found,yes,no,10000,מועצה מקומית,,,,,,,,
+mashhad,משהד,Mashhad,local,north,arab,found,yes,no,8655,מועצה מקומית,,,,,,,,
+mazraa,מזרעה,Mazraa,local,north,arab,found,yes,no,4078,מועצה מקומית,,,,,,,,
+meitar,מועצה מקומית מיתר,Meitar,local,south,jewish,found,yes,no,10565,מועצה מקומית,,,,,,,,
+mevaseret-zion,מועצה מקומית מבשרת-ציון,Mevaseret Zion,local,jerusalem,jewish,found,yes,no,25000,עיירה,,,,,,,,
+mielya,מעיליא,Mielya,local,north,arab,found,yes,no,4000,מועצה מקומית,,,,,,,,
+nahef,נחף,Nahef,local,north,arab,found,yes,no,9000,מועצה מקומית,,,,,,,,
+neot-hovav,מועצה מקומית נאות-חובב,Neot Hovav,local,south,jewish,found,yes,no,2000,מועצה מקומית,,,,,,,,
+oranit,מועצה מקומית אורנית,Oranit,local,judea-samaria,jewish,found,yes,no,8000,מועצה מקומית,,,,,,,,
+pardesia,מועצה מקומית פרדסיה,Pardesia,local,center,jewish,found,yes,no,7251,מועצה מקומית,,,,,,,,
+peqiin,פקיעין,Peqiin,local,north,druze,found,yes,no,5000,מועצה מקומית,,,,,,,,
+ramat-yishay,מועצה מקומית רמת-ישי,Ramat Yishay,local,north,jewish,found,no,yes,7000,מועצה מקומית,,,,,,,,
+rameh,ראמה,Rameh,local,north,arab,found,yes,no,8000,מועצה מקומית,,,,,,,,
+rekhasim,מועצה מקומית רכסים,Rekhasim,local,haifa,jewish,found,yes,no,16000,מועצה מקומית,,,,,,,,
+savyon,מועצה מקומית סביון,Savyon,local,center,jewish,found,yes,no,4051,מועצה מקומית,,,,,,,,
+segev-shalom,שגב-שלום,Segev Shalom,local,south,bedouin,found,yes,no,11865,מועצה מקומית,,,,,,,,
+shab,שעב,Sha'ab,local,north,arab,found,yes,no,5000,מועצה מקומית,,,,,,,,
+shlomi,מועצה מקומית שלומי,Shlomi,local,north,jewish,found,yes,no,8000,מועצה מקומית,,,,,,,,
+shoham,מועצה מקומית שהם,Shoham,local,center,jewish,found,yes,no,21441,עיירה,,,,,,,,
+tel-sheva,תל-שבע,Tel Sheva,local,south,bedouin,found,yes,no,22187,עיירה,,,,,,,,
+turan,טורעאן,Tur'an,local,north,arab,found,yes,no,19000,מועצה מקומית,,,,,,,,
+yafa-an-naseriyye,יפיע,Yafa an-Naseriyye,local,north,arab,found,yes,no,20000,עיירה,,,,,,,,
+yanuh-jat,יאנוח-ג'ת,Yanuh-Jat,local,north,druze,found,yes,no,7000,מועצה מקומית,,,,,,,,
+yavneel,מועצה מקומית יבנאל,Yavneel,local,north,jewish,found,yes,yes,5000,מועצה מקומית,,,,,,,,
+alona,מועצה אזורית אלונה,Alona,regional,haifa,jewish,found,yes,no,,מועצה אזורית,,,,,,,,
+beer-tuvia,מועצה אזורית באר-טוביה,Beer Tuvia,regional,south,jewish,found,yes,no,23841,מועצה אזורית,,,,,,,,
+binyamin,מועצה אזורית מטה-בנימין,Mateh Binyamin,regional,judea-samaria,jewish,found,yes,no,15000,מועצה אזורית,,,,,,,,
+brener,מועצה אזורית ברנר,Brener,regional,center,jewish,found,yes,no,8046,מועצה אזורית,,,,,,,,
+bustan-al-marj,בוסתאן-אל-מרג',Bustan al-Marj,regional,north,arab,found,yes,no,8137,מועצה אזורית,,,,,,,,
+central-arava,מועצה אזורית ערבה-תיכונה,Central Arava,regional,south,jewish,found,yes,no,3772,מועצה אזורית,,,,,,,,
+daliyat-karmel,דאלית-אל-כרמל,Daliyat al-Karmel,regional,haifa,druze,found,yes,no,18000,מועצה אזורית,,,,,,,,
+drom-hasharon,מועצה אזורית דרום-השרון,Drom HaSharon,regional,center,jewish,found,yes,no,34327,מועצה אזורית,,,,,,,,
+el-batouf,אל-בטוף,El-Batouf,regional,north,arab,found,yes,no,8408,מועצה אזורית,,,,,,,,
+emek-hamayanot,מועצה אזורית עמק-המעיינות,Emek Hama'ayanot,regional,north,jewish,found,yes,no,14377,מועצה אזורית,,,,,,,,
+eshkol,מועצה אזורית אשכול,Eshkol,regional,south,jewish,found,yes,no,15205,מועצה אזורית,,,,,,,,
+galil-elion,מועצה אזורית גליל-עליון,Galil Elion,regional,north,jewish,found,yes,no,19440,מועצה אזורית,,,,,,,,
+gan-rave,מועצה אזורית גן-רוה,Gan Rave,regional,center,jewish,found,yes,no,6585,מועצה אזורית,,,,,,,,
+gderot,מועצה אזורית גדרות,Gderot,regional,center,jewish,found,yes,no,5192,מועצה אזורית,,,,,,,,
+har-hevron,מועצה אזורית הר-חברון,Har Hevron,regional,judea-samaria,jewish,found,no,yes,17000,מועצה אזורית,,,,,,,,
+hevel-eilot,מועצה אזורית חבל-אילות,Hevel Eilot,regional,south,jewish,found,yes,no,4745,מועצה אזורית,,,,,,,,
+hevel-yavne,מועצה אזורית חבל-יבנה,Hevel Yavne,regional,center,jewish,found,yes,no,6920,מועצה אזורית,,,,,,,,
+hof-ashkelon,מועצה אזורית חוף-אשקלון,Hof Ashkelon,regional,south,jewish,found,yes,no,19295,מועצה אזורית,,,,,,,,
+hof-hakarmel,מועצה אזורית חוף-הכרמל,Hof HaKarmel,regional,haifa,jewish,found,yes,no,36000,מועצה אזורית,,,,,,,,
+hof-hasharon,מועצה אזורית חוף-השרון,Hof HaSharon,regional,center,jewish,found,yes,no,14872,מועצה אזורית,,,,,,,,
+jordan-valley,מועצה אזורית בקעת-הירדן,Jordan Valley,regional,judea-samaria,jewish,found,yes,no,10000,מועצה אזורית,,,,,,,,
+lev-hasharon,מועצה אזורית לב-השרון,Lev HaSharon,regional,center,jewish,found,yes,no,23672,מועצה אזורית,,,,,,,,
+maale-yosef,מועצה אזורית מעלה-יוסף,Maale Yosef,regional,north,jewish,found,yes,no,11605,מועצה אזורית,,,,,,,,
+mateh-yehuda,מועצה אזורית מטה-יהודה,Mateh Yehuda,regional,jerusalem,jewish,found,yes,no,57000,מועצה אזורית,,,,,,,,
+megilot-yam-hamelah,מועצה אזורית מגילות-ים-המלח,Megilot Yam HaMelah,regional,judea-samaria,jewish,found,no,yes,1500,מועצה אזורית,,,,,,,,
+merom-hagalil,מועצה אזורית מרום-הגליל,Merom HaGalil,regional,north,jewish,found,yes,no,15892,מועצה אזורית,,,,,,,,
+mevoot-hermon,מועצה אזורית מבואות-החרמון,Mevoot Hermon,regional,north,jewish,found,no,yes,3000,מועצה אזורית,,,,,,,,
+modiin-region,מועצה אזורית חבל-מודיעין,Modiin Region,regional,center,jewish,found,no,yes,30000,מועצה אזורית,,,,,,,,
+nahal-soreq,מועצה אזורית נחל-שורק,Nahal Soreq,regional,center,jewish,found,no,yes,10189,מועצה אזורית,,,,,,,,
+neve-midbar,נווה-מדבר,Neve Midbar,regional,south,bedouin,found,yes,no,13309,מועצה אזורית,,,,,,,,
+sadot-dan,מועצה אזורית שדות-דן,Sadot Dan,regional,north,jewish,found,no,yes,15987,מועצה אזורית,,,,,,,,
+sdot-negev,מועצה אזורית שדות-נגב,Sdot Negev,regional,south,jewish,found,yes,no,11062,מועצה אזורית,,,,,,,,
+shaar-hanegev,מועצה אזורית שער-הנגב,Shaar HaNegev,regional,south,jewish,missing,no,no,9071,מועצה אזורית,,,,,,,,
+shaar-hagalil,מועצה אזורית שער-הגליל,Shaar Hagalil,regional,north,jewish,found,yes,no,5000,מועצה אזורית,,,,,,,,
+zvulun,מועצה אזורית זבולון,Zvulun,regional,haifa,jewish,found,yes,no,16000,מועצה אזורית,,,,,,,,
+emek-lod,מועצה אזורית עמק לוד,Emek Lod,regional,center,jewish,missing,no,no,15987,מועצה אזורית,,,,,,,,
+givat-ada,מועצה מקומית גבעת עדה,Giv'at Ada,local,haifa,jewish,missing,no,no,,מועצה מקומית,,,,,,,,
+binyamina-old,מועצה מקומית בנימינה,Binyamina (old COA),local,haifa,jewish,missing,no,no,,מועצה מקומית,,,,,,,,
+jatt,ג'ת,Jatt,local,center,arab,found,yes,no,10000,מועצה מקומית,,,,,,,,
+miilya,מעיליא,Mi'ilya,local,north,arab,found,yes,no,,מועצה מקומית,,,,,,,,
+yesod-hamaala,יסוד המעלה,Yesod HaMaala,local,north,jewish,found,yes,no,2000,מועצה מקומית,,,,,,,,
+zarzir,זרזיר,Zarzir,local,haifa,arab,found,yes,no,13000,מועצה מקומית,,,,,,,,
+zemer,זמר,Zemer,local,center,arab,found,yes,no,7360,מועצה מקומית,,,,,,,,
+gush-halav,גוש חלב,Gush Halav,local,north,arab,found,yes,no,3154,מועצה מקומית,,,,,,,,
+kafr-kanna,כפר כנא,Kafr Kanna,local,north,arab,found,yes,no,23705,עיירה,,,,,,,,
+shaar-shomron,שער שומרון,Shaar Shomron,local,center,jewish,found,yes,no,,מועצה מקומית,,,,,,,,
+zur-hadassa,צור הדסה,Zur Hadassa,local,jerusalem,jewish,found,yes,no,6000,מועצה מקומית,,,,,,,,
+kawkab-abu-al-hija,כאוכב אבו אל-היג'א,Kawkab Abu al-Hija,local,north,arab,found,yes,no,3724,מועצה מקומית,,,,,,,,
+bana,בענה,Bana,local,north,arab,found,yes,no,8536,מועצה מקומית,,,,,,,,
+majd-al-krum,מג'ד אל-כרום,Majd al-Krum,local,north,arab,found,yes,no,15630,מועצה מקומית,,,,,,,,
+shaarei-tikva,שערי תקווה,Shaarei Tikva,local,judea-samaria,jewish,found,yes,no,8000,מועצה מקומית,,,,,,,,
+neve-monosson,נווה מונוסון,Neve Monosson,local,tel-aviv,jewish,found,yes,no,,מועצה מקומית,,,,,,,,
+maccabim-reut,מכבים-רעות,Maccabim-Reut,local,center,jewish,found,yes,no,,מועצה מקומית,,,,,,,,
