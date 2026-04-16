@@ -360,17 +360,11 @@ function cardHTML(m){
     ?`<div class="card-name-he" style="font-size:10px;color:var(--muted);direction:rtl;text-align:right;">${m.name_he}</div>
        <div class="card-name-he" style="font-size:10px;color:var(--muted);direction:rtl;text-align:right;">${m.name_ar}</div>`
     :`<div class="card-name-he">${m.name_he}</div>`;
-  const emblTags=[m.תגיות_1,m.תגיות_2,m.תגיות_3,m.תגיות_4,m.תגיות_5,m.תגיות_6,m.תגיות_7,m.תגיות_8,m.תגיות_9,m.תגיות_10].filter(Boolean);
-  const emblTagsHTML=emblTags.length?`<div class="card-emblem-tags">${emblTags.map(t=>`<span class="emblem-tag">${t}</span>`).join('')}</div>`:'';
-  const notes=[m.note_1,m.note_2,m.note_3,m.note_4,m.note_5,m.note_6,m.note_7,m.note_8].filter(Boolean);
-  const notesHTML=notes.length?`<div class="card-notes">${notes.map(n=>`<div>· ${n}</div>`).join('')}</div>`:'';
   return`<div class="card" data-id="${m.id}" data-clickable="1">
     <div class="emblem-wrap">${ih(m,80)}${m._img?tierBadge(m._img):''}</div>
     <div><div class="card-name">${m.name_en}</div>${localName}</div>
     <div class="card-meta">${m.district||''}</div>
     <div class="card-tags">${tb(m.type)}${cb(m.culture)}${logoBadge(m)}${smallBadge(m)}</div>
-    ${emblTagsHTML}
-    ${notesHTML}
     ${m._obsolete?'':`<div class="card-ticks" data-stop="1">
       <label class="tick t-missing${isMissing(m)?' on':''}">
         <input type="checkbox" data-ann="missing" data-id="${m.id}" ${isMissing(m)?'checked':''}> Missing
@@ -507,8 +501,13 @@ function openModal(m){
       <span class="modal-label">District</span><span class="modal-value">${m.district||'—'}</span>
       ${isPalestinian?`<span class="modal-label">Governorate</span><span class="modal-value">${m.notes&&m.notes.includes('gov:')?m.notes.replace(/.*gov:\s*/,'').replace(/\s*\|.*/,''):'—'}</span>`:''}
       <span class="modal-label">Commons file</span><span class="modal-value">${commonsLink}</span>
-      ${m.notes?`<span class="modal-label">Notes</span><span class="modal-value">${m.notes}</span>`:''}
+      ${m.סוג_מגן?`<span class="modal-label">Shield type</span><span class="modal-value">${m.סוג_מגן}</span>`:''}
+      ${m.צבע_דומיננטי?`<span class="modal-label">Dominant color</span><span class="modal-value">${m.צבע_דומיננטי}</span>`:''}
+      ${m.שנת_אימוץ?`<span class="modal-label">Year adopted</span><span class="modal-value">${m.שנת_אימוץ}</span>`:''}
+      ${m.מעצב?`<span class="modal-label">Designer</span><span class="modal-value">${m.מעצב}</span>`:''}
     </div>
+    ${(()=>{const tags=[m.תגיות_1,m.תגיות_2,m.תגיות_3,m.תגיות_4,m.תגיות_5,m.תגיות_6,m.תגיות_7,m.תגיות_8,m.תגיות_9,m.תגיות_10].filter(Boolean);return tags.length?`<div style="margin-bottom:16px"><div style="font-size:11px;color:var(--muted);margin-bottom:6px">Visual elements</div><div style="display:flex;flex-wrap:wrap;gap:4px">${tags.map(t=>`<span class="emblem-tag">${t}</span>`).join('')}</div></div>`:'';})()}
+    ${(()=>{const notes=[m.note_1,m.note_2,m.note_3,m.note_4,m.note_5,m.note_6,m.note_7,m.note_8].filter(Boolean);return notes.length?`<div style="margin-bottom:16px"><div style="font-size:11px;color:var(--muted);margin-bottom:6px">About this emblem</div><div style="font-size:12px;line-height:1.7;direction:rtl;text-align:right">${notes.map(n=>`<div>· ${n}</div>`).join('')}</div></div>`:'';})()}
     <div class="modal-note">
       <label>Personal notes (saved in browser)</label>
       <textarea id="modal-note">${a.note||''}</textarea>
