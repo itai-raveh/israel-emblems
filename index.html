@@ -15,6 +15,7 @@
     --obsolete:#5a4a00;--obsolete-bg:#fdf8e0;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{overflow-x:hidden;width:100%;}
   body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font-size:13px;min-height:100vh;}
   header{padding:48px 40px 32px;border-bottom:1px solid var(--border);background:var(--surface);}
   header h1{font-family:'Fraunces',serif;font-size:36px;font-weight:300;letter-spacing:-0.5px;margin-bottom:6px;}
@@ -24,7 +25,7 @@
   .stat{display:flex;align-items:center;gap:8px;font-size:12px;}
   .stat-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
 
-  .controls{padding:12px 40px;background:var(--bg);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:10;display:flex;flex-direction:column;gap:8px;}
+  .controls{padding:12px 40px;background:var(--bg);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:10;display:flex;flex-direction:column;gap:8px;left:0;right:0;width:100%;}
   .controls-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
   .controls input[type="text"]{font-family:'DM Mono',monospace;font-size:12px;padding:6px 12px;border:1px solid var(--border);border-radius:4px;background:var(--surface);color:var(--text);width:200px;outline:none;}
   .controls input[type="text"]:focus{border-color:var(--accent);}
@@ -87,6 +88,16 @@
   .badge-gaza{background:#f0fdf4;color:#065f46;}
 
   .section-divider{display:flex;align-items:center;gap:16px;padding:24px 40px 12px;background:var(--bg);border-top:2px solid var(--border);}
+  .sec-header{display:flex;align-items:center;gap:12px;padding:10px 40px 6px;background:var(--bg);border-bottom:1px solid var(--border);cursor:pointer;user-select:none;}
+  .sec-header:hover{background:#eeeae0;}
+  .sec-header-inner{display:flex;align-items:center;gap:12px;flex:1;}
+  .sec-label{font-size:10px;text-transform:uppercase;letter-spacing:0.5px;color:var(--muted);font-family:'DM Mono',monospace;}
+  .sec-count{font-size:10px;color:var(--muted);font-family:'DM Mono',monospace;}
+  .sec-line{flex:1;height:1px;background:var(--border);}
+  .sec-chevron{font-size:11px;color:var(--muted);transition:transform 0.2s;display:inline-block;}
+  .sec-chevron.collapsed{transform:rotate(-90deg);}
+  .sec-body{overflow:hidden;}
+  .sec-body.collapsed{display:none;}
   .section-divider h2{font-family:'Fraunces',serif;font-weight:300;font-size:20px;white-space:nowrap;}
   .section-divider h2 em{font-style:italic;color:#92400e;}
   .section-divider-line{flex:1;height:1px;background:var(--border);}
@@ -217,21 +228,43 @@ const STORAGE_KEY='israel-emblems-v4';
 
 const IMG_EXTS=['svg','png','jpg','webp'];
 
-function findBestImage(id,allFiles){
-  const candidates=[
-    {tier:1,label:'SVG',folder:'svg',name:`${id}-COA.svg`},
-    ...IMG_EXTS.filter(e=>e!=='svg').map(e=>({tier:2,label:'PNG',folder:'png',name:`${id}-COA.${e}`})),
-    {tier:3,label:'SVG·Logo',folder:'svg',name:`${id}-logo.svg`},
-    ...IMG_EXTS.filter(e=>e!=='svg').map(e=>({tier:4,label:'PNG·Logo',folder:'png',name:`${id}-logo.${e}`})),
-  ];
-  for(const c of candidates){
-    const list=c.folder==='svg'?allFiles.svg:allFiles.png;
-    if(list.includes(c.name))return{url:`${RAW}/emblems/${c.folder}/${encodeURIComponent(c.name)}`,tier:c.tier,label:c.label,name:c.name};
+function findBestImage(id,hasCOA,hasLogo,isObsolete){
+  // Build URL from CSV knowledge — no file scanning needed
+  if(hasCOA){
+    // Try SVG first, then common PNG extensions
+    const svgName=`${id}-COA.svg`;
+    return{
+      url:`${RAW}/emblems/svg/${encodeURIComponent(svgName)}`,
+      urlFallbacks:[
+        `${RAW}/emblems/png/${encodeURIComponent(id+'-COA.png')}`,
+        `${RAW}/emblems/png/${encodeURIComponent(id+'-COA.jpg')}`,
+        `${RAW}/emblems/png/${encodeURIComponent(id+'-COA.gif')}`,
+        `${RAW}/emblems/png/${encodeURIComponent(id+'-COA.webp')}`,
+        `${RAW}/emblems/png/${encodeURIComponent(id+'-COA.jpeg')}`,
+        `${RAW}/emblems/png/${encodeURIComponent(id+'-COA.tiff')}`,
+      ],
+      tier:1,label:'COA',name:`${id}-COA`
+    };
   }
-  const obsName=[...allFiles.svg,...allFiles.png].find(f=>f.startsWith(`${id}-`)&&f.includes('-obsolete'));
-  if(obsName){
-    const folder=allFiles.svg.includes(obsName)?'svg':'png';
-    return{url:`${RAW}/emblems/${folder}/${encodeURIComponent(obsName)}`,tier:5,label:'Obsolete',name:obsName};
+  if(hasLogo){
+    return{
+      url:`${RAW}/emblems/svg/${encodeURIComponent(id+'-logo.svg')}`,
+      urlFallbacks:[
+        `${RAW}/emblems/png/${encodeURIComponent(id+'-logo.png')}`,
+        `${RAW}/emblems/png/${encodeURIComponent(id+'-logo.jpg')}`,
+      ],
+      tier:3,label:'Logo',name:`${id}-logo`
+    };
+  }
+  if(isObsolete){
+    return{
+      url:`${RAW}/emblems/png/${encodeURIComponent(id+'-COA-obsolete.jpg')}`,
+      urlFallbacks:[
+        `${RAW}/emblems/png/${encodeURIComponent(id+'-COA-obsolete.png')}`,
+        `${RAW}/emblems/svg/${encodeURIComponent(id+'-COA-obsolete.svg')}`,
+      ],
+      tier:5,label:'Obsolete',name:`${id}-COA-obsolete`
+    };
   }
   return null;
 }
@@ -265,14 +298,14 @@ function parseCSV(text){
   }).filter(r=>r.id);
 }
 
-function enrich(data,allFiles){
+function enrich(data){
   return data.map(m=>{
-    m._img=findBestImage(m.id,allFiles);
-    const hasObs=[...allFiles.svg,...allFiles.png].some(f=>f.startsWith(m.id+'-')&&f.includes('-obsolete'));
-    const hasCOA=(m.has_coa==='yes')||allFiles.svg.includes(`${m.id}-COA.svg`)||['png','jpg','webp'].some(e=>allFiles.png.includes(`${m.id}-COA.${e}`));
-    const hasLogo=(m.has_logo==='yes')||allFiles.svg.includes(`${m.id}-logo.svg`)||['png','jpg','webp'].some(e=>allFiles.png.includes(`${m.id}-logo.${e}`));
-    m._obsolete=hasObs&&!hasCOA&&!hasLogo;
-    m._isLogo=!m._obsolete&&!!m._img&&m._img.tier>=3;
+    const hasCOA=m.has_coa==='yes';
+    const hasLogo=m.has_logo==='yes';
+    const isObsolete=m.status==='obsolete';
+    m._obsolete=isObsolete||(m.id==='maccabim-reut');
+    m._img=findBestImage(m.id,hasCOA,hasLogo,m._obsolete);
+    m._isLogo=!m._obsolete&&hasLogo&&!hasCOA;
     m._population=parseInt(m.population)||0;
     m._sizeTier=m.size_tier||'';
     return m;
@@ -282,14 +315,14 @@ function enrich(data,allFiles){
 function isMissing(m){
   const a=getA(m.id);
   if('missing' in a) return !!a.missing;
-  return m.status==='missing'||!m._img;
+  return m.status==='missing';
 }
 
 function effStatus(m){
   if(m._obsolete)return'obsolete';
   const a=getA(m.id);
-  if(a.missing||!m._img)return'not-found';
-  return m._isLogo?'logo':(m._img.tier<=1?'found-svg':'found-png');
+  if(a.missing||m.status==='missing')return'not-found';
+  return m._isLogo?'logo':(m.has_coa==='yes'?'found-png':'found-png');
 }
 
 const state={
@@ -431,9 +464,15 @@ function sorted(data){
   });
 }
 
+function onImgError(el){
+  var fb=(el.getAttribute('data-fb')||'').split('|').filter(Boolean);
+  if(fb.length){el.src=fb[0];el.setAttribute('data-fb',fb.slice(1).join('|'));}
+  else{el.style.display='none';var n=el.nextElementSibling;if(n)n.style.display='block';}
+}
 function ih(m,size=80){
-  if(!m._img)return`<span class="no-image">◻</span>`;
-  return`<img src="${m._img.url}" alt="${m.name_en}" loading="lazy" style="max-height:${size}px;max-width:100%;object-fit:contain" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="no-image" style="display:none">◻</span>`;
+  if(!m._img)return '<span class="no-image">&#9633;</span>';
+  const fb=(m._img.urlFallbacks||[]).join('|');
+  return '<img src="'+m._img.url+'" data-fb="'+fb+'" alt="'+m.name_en+'" loading="lazy" style="max-height:'+size+'px;max-width:100%;object-fit:contain" onerror="onImgError(this)">'+'<span class="no-image" style="display:none">&#9633;</span>';
 }
 
 function tierBadge(img){
@@ -489,6 +528,14 @@ function listHTML(m){
   </div>`;
 }
 
+function toggleSection(sid){
+  state._secCollapsed=state._secCollapsed||{};
+  state._secCollapsed[sid]=!state._secCollapsed[sid];
+  const body=document.getElementById(sid);
+  const header=body&&body.previousElementSibling;
+  if(body)body.classList.toggle('collapsed',!!state._secCollapsed[sid]);
+  if(header){const ch=header.querySelector('.sec-chevron');if(ch)ch.classList.toggle('collapsed',!!state._secCollapsed[sid]);}
+}
 function render(){
   const filtered=sorted(DATA.filter(matches));
   const israeli=filtered.filter(m=>m.culture!=='palestinian');
@@ -505,19 +552,27 @@ function render(){
     const secB=israeli.filter(m=>getSectionV2(m)===1);
     const secC=israeli.filter(m=>getSectionV2(m)===2);
 
+    const _secCollapsed=state._secCollapsed=state._secCollapsed||{};
     function renderSection(items,label,isFirst){
       if(!items.length)return'';
-      let s='';
-      if(isFirst){
-        s+=`<div style="padding:10px 40px 6px;background:var(--bg);border-bottom:1px solid var(--border)"><span style="font-size:10px;text-transform:uppercase;letter-spacing:0.5px;color:var(--muted);font-family:'DM Mono',monospace">${label} · ${items.length}</span></div>`;
-      }else{
-        s+=`<div class="section-divider" style="padding:14px 40px 10px"><h2 style="font-size:12px;font-weight:400;color:var(--muted);font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:0.5px;white-space:nowrap">${label}</h2><div class="section-divider-line"></div><span class="section-count">${items.length}</span></div>`;
-      }
+      const sid='sec-'+label.replace(/[^a-z]/gi,'-');
+      const collapsed=!!_secCollapsed[sid];
+      const dividerStyle=isFirst?'':'border-top:2px solid var(--border);';
+      let s=`<div class="sec-header" style="${dividerStyle}" onclick="toggleSection('${sid}')">
+        <div class="sec-header-inner">
+          <span class="sec-label">${label}</span>
+          <div class="sec-line"></div>
+          <span class="sec-count">${items.length}</span>
+        </div>
+        <span class="sec-chevron${collapsed?' collapsed':''}">▾</span>
+      </div>`;
+      let body='';
       if(state.view==='grid'){
-        s+=`<div class="grid">${items.map(cardHTML).join('')}</div>`;
+        body=`<div class="grid">${items.map(cardHTML).join('')}</div>`;
       }else{
-        s+=`<div class="list-view"><div class="list-header"><div>Emblem</div><div>Name</div><div>Hebrew</div><div>Type</div><div>Tags</div><div>Mark</div></div>${items.map(listHTML).join('')}</div>`;
+        body=`<div class="list-view"><div class="list-header"><div>Emblem</div><div>Name</div><div>Hebrew</div><div>Type</div><div>Tags</div><div>Mark</div></div>${items.map(listHTML).join('')}</div>`;
       }
+      s+=`<div class="sec-body${collapsed?' collapsed':''}" id="${sid}">${body}</div>`;
       return s;
     }
 
@@ -637,34 +692,28 @@ function openModal(m){
 }
 
 function exportAnn(){
-  const rows=['id,name_en,size,note'];
+  const rows=['id,name_en,missing,small_file,note'];
   DATA.forEach(m=>{
     const a=getA(m.id);
     if(!Object.keys(a).length)return;
-    rows.push([m.id,m.name_en,a.size?'yes':'',`"${(a.note||'').replace(/"/g,'""')}"`].join(','));
+    rows.push([
+      m.id, m.name_en,
+      a.missing?'yes':'',
+      a.size?'yes':'',
+      `"${(a.note||'').replace(/"/g,'""')}"`
+    ].join(','));
   });
   const blob=new Blob([rows.join('\n')],{type:'text/csv'});
   const el=document.createElement('a');el.href=URL.createObjectURL(blob);el.download='emblem-annotations.csv';el.click();
 }
 
-async function listFiles(folder){
-  try{
-    const r=await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${folder}?ref=${BRANCH}`);
-    if(!r.ok)return[];
-    return(await r.json()).map(f=>f.name);
-  }catch{return[];}
-}
-
 async function main(){
-  const[csvText,psCsvText,svgFiles,pngFiles]=await Promise.all([
+  const[csvText,psCsvText]=await Promise.all([
     fetch(CSV_URL).then(r=>r.text()),
     fetch(PS_CSV_URL).then(r=>r.ok?r.text():'').catch(()=>''),
-    listFiles('emblems/svg'),
-    listFiles('emblems/png'),
   ]);
-  const allFiles={svg:svgFiles,png:pngFiles};
-  const israeli=enrich(parseCSV(csvText),allFiles);
-  const palestinian=psCsvText?enrich(parseCSV(psCsvText),allFiles):[];
+  const israeli=enrich(parseCSV(csvText));
+  const palestinian=psCsvText?enrich(parseCSV(psCsvText)):[];
   DATA=[...israeli,...palestinian];
   renderStats(DATA);render();
 
