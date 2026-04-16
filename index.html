@@ -15,7 +15,6 @@
     --obsolete:#5a4a00;--obsolete-bg:#fdf8e0;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
-  html,body{overflow-x:hidden;width:100%;}
   body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font-size:13px;min-height:100vh;}
   header{padding:48px 40px 32px;border-bottom:1px solid var(--border);background:var(--surface);}
   header h1{font-family:'Fraunces',serif;font-size:36px;font-weight:300;letter-spacing:-0.5px;margin-bottom:6px;}
@@ -25,7 +24,7 @@
   .stat{display:flex;align-items:center;gap:8px;font-size:12px;}
   .stat-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
 
-  .controls{padding:12px 40px;background:var(--bg);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:10;display:flex;flex-direction:column;gap:8px;left:0;right:0;width:100%;}
+  .controls{padding:12px 40px;background:var(--bg);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:10;display:flex;flex-direction:column;gap:8px;}
   .controls-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
   .controls input[type="text"]{font-family:'DM Mono',monospace;font-size:12px;padding:6px 12px;border:1px solid var(--border);border-radius:4px;background:var(--surface);color:var(--text);width:200px;outline:none;}
   .controls input[type="text"]:focus{border-color:var(--accent);}
@@ -88,16 +87,6 @@
   .badge-gaza{background:#f0fdf4;color:#065f46;}
 
   .section-divider{display:flex;align-items:center;gap:16px;padding:24px 40px 12px;background:var(--bg);border-top:2px solid var(--border);}
-  .sec-header{display:flex;align-items:center;gap:12px;padding:10px 40px 6px;background:var(--bg);border-bottom:1px solid var(--border);cursor:pointer;user-select:none;}
-  .sec-header:hover{background:#eeeae0;}
-  .sec-header-inner{display:flex;align-items:center;gap:12px;flex:1;}
-  .sec-label{font-size:10px;text-transform:uppercase;letter-spacing:0.5px;color:var(--muted);font-family:'DM Mono',monospace;}
-  .sec-count{font-size:10px;color:var(--muted);font-family:'DM Mono',monospace;}
-  .sec-line{flex:1;height:1px;background:var(--border);}
-  .sec-chevron{font-size:11px;color:var(--muted);transition:transform 0.2s;display:inline-block;}
-  .sec-chevron.collapsed{transform:rotate(-90deg);}
-  .sec-body{overflow:hidden;}
-  .sec-body.collapsed{display:none;}
   .section-divider h2{font-family:'Fraunces',serif;font-weight:300;font-size:20px;white-space:nowrap;}
   .section-divider h2 em{font-style:italic;color:#92400e;}
   .section-divider-line{flex:1;height:1px;background:var(--border);}
@@ -228,43 +217,21 @@ const STORAGE_KEY='israel-emblems-v4';
 
 const IMG_EXTS=['svg','png','jpg','webp'];
 
-function findBestImage(id,hasCOA,hasLogo,isObsolete){
-  // Build URL from CSV knowledge — no file scanning needed
-  if(hasCOA){
-    // Try SVG first, then common PNG extensions
-    const svgName=`${id}-COA.svg`;
-    return{
-      url:`${RAW}/emblems/svg/${encodeURIComponent(svgName)}`,
-      urlFallbacks:[
-        `${RAW}/emblems/png/${encodeURIComponent(id+'-COA.png')}`,
-        `${RAW}/emblems/png/${encodeURIComponent(id+'-COA.jpg')}`,
-        `${RAW}/emblems/png/${encodeURIComponent(id+'-COA.gif')}`,
-        `${RAW}/emblems/png/${encodeURIComponent(id+'-COA.webp')}`,
-        `${RAW}/emblems/png/${encodeURIComponent(id+'-COA.jpeg')}`,
-        `${RAW}/emblems/png/${encodeURIComponent(id+'-COA.tiff')}`,
-      ],
-      tier:1,label:'COA',name:`${id}-COA`
-    };
+function findBestImage(id,allFiles){
+  const candidates=[
+    {tier:1,label:'SVG',folder:'svg',name:`${id}-COA.svg`},
+    ...IMG_EXTS.filter(e=>e!=='svg').map(e=>({tier:2,label:'PNG',folder:'png',name:`${id}-COA.${e}`})),
+    {tier:3,label:'SVG·Logo',folder:'svg',name:`${id}-logo.svg`},
+    ...IMG_EXTS.filter(e=>e!=='svg').map(e=>({tier:4,label:'PNG·Logo',folder:'png',name:`${id}-logo.${e}`})),
+  ];
+  for(const c of candidates){
+    const list=c.folder==='svg'?allFiles.svg:allFiles.png;
+    if(list.includes(c.name))return{url:`${RAW}/emblems/${c.folder}/${encodeURIComponent(c.name)}`,tier:c.tier,label:c.label,name:c.name};
   }
-  if(hasLogo){
-    return{
-      url:`${RAW}/emblems/svg/${encodeURIComponent(id+'-logo.svg')}`,
-      urlFallbacks:[
-        `${RAW}/emblems/png/${encodeURIComponent(id+'-logo.png')}`,
-        `${RAW}/emblems/png/${encodeURIComponent(id+'-logo.jpg')}`,
-      ],
-      tier:3,label:'Logo',name:`${id}-logo`
-    };
-  }
-  if(isObsolete){
-    return{
-      url:`${RAW}/emblems/png/${encodeURIComponent(id+'-COA-obsolete.jpg')}`,
-      urlFallbacks:[
-        `${RAW}/emblems/png/${encodeURIComponent(id+'-COA-obsolete.png')}`,
-        `${RAW}/emblems/svg/${encodeURIComponent(id+'-COA-obsolete.svg')}`,
-      ],
-      tier:5,label:'Obsolete',name:`${id}-COA-obsolete`
-    };
+  const obsName=[...allFiles.svg,...allFiles.png].find(f=>f.startsWith(`${id}-`)&&f.includes('-obsolete'));
+  if(obsName){
+    const folder=allFiles.svg.includes(obsName)?'svg':'png';
+    return{url:`${RAW}/emblems/${folder}/${encodeURIComponent(obsName)}`,tier:5,label:'Obsolete',name:obsName};
   }
   return null;
 }
@@ -298,16 +265,15 @@ function parseCSV(text){
   }).filter(r=>r.id);
 }
 
-function enrich(data){
+function enrich(data,allFiles){
   return data.map(m=>{
-    const hasCOA=m.has_coa==='yes';
-    const hasLogo=m.has_logo==='yes';
-    const isObsolete=m.status==='obsolete';
-    m._obsolete=isObsolete||(m.id==='maccabim-reut');
-    m._img=findBestImage(m.id,hasCOA,hasLogo,m._obsolete);
-    m._isLogo=!m._obsolete&&hasLogo&&!hasCOA;
-    m._population=parseInt(m.population)||0;
-    m._sizeTier=m.size_tier||'';
+    m._img=findBestImage(m.id,allFiles);
+    const csvObs=(m.file_status||'').toLowerCase()==='obsolete'||(m.status||'').toLowerCase()==='obsolete';
+    const hasObs=[...allFiles.svg,...allFiles.png].some(f=>f.startsWith(m.id+'-')&&f.includes('-obsolete'));
+    const hasCOA=allFiles.svg.includes(`${m.id}-COA.svg`)||['png','jpg','webp'].some(e=>allFiles.png.includes(`${m.id}-COA.${e}`));
+    const hasLogo=allFiles.svg.includes(`${m.id}-logo.svg`)||['png','jpg','webp'].some(e=>allFiles.png.includes(`${m.id}-logo.${e}`));
+    m._obsolete=csvObs||(hasObs&&!hasCOA&&!hasLogo);
+    m._isLogo=!m._obsolete&&!!m._img&&m._img.tier>=3;
     return m;
   });
 }
@@ -315,14 +281,14 @@ function enrich(data){
 function isMissing(m){
   const a=getA(m.id);
   if('missing' in a) return !!a.missing;
-  return m.status==='missing';
+  return m.status==='not-found'||!m._img;
 }
 
 function effStatus(m){
   if(m._obsolete)return'obsolete';
   const a=getA(m.id);
-  if(a.missing||m.status==='missing')return'not-found';
-  return m._isLogo?'logo':(m.has_coa==='yes'?'found-png':'found-png');
+  if(a.missing||!m._img)return'not-found';
+  return m._isLogo?'logo':(m._img.tier<=1?'found-svg':'found-png');
 }
 
 const state={
@@ -349,110 +315,15 @@ function matches(m){
 
 const TYPE_RANK={'city':0,'regional':1,'local':2};
 
-// Population lookup (CBS 2021 estimates)
-const POP={
-  'tel-aviv':460000,'jerusalem':970000,'haifa':285000,'rishon-lezion':257128,
-  'petah-tikva':252270,'ashdod':225975,'netanya':224066,'beer-sheva':211251,
-  'bnei-brak':210000,'holon':200000,'ramat-gan':162000,'ashkelon':149160,
-  'rehovot':147878,'bat-yam':159000,'modiin-illit':80000,'lod':82629,
-  'raanana':78562,'rahat':76237,'herzliya':100000,'kfar-saba':101801,
-  'hadera':100000,'rosh-haayin':71651,'beitar-illit':70000,'hod-hasharon':65363,
-  'kiryat-gat':60582,'givatayim':59000,'afula':59075,'umm-al-fahm':58000,
-  'nof-hagalil':47000,'karmiel':46311,'taibeh':45388,'modiin':97097,
-  'ramat-hasharon':47000,'eilat':52753,'yavne':53595,'netivot':42039,
-  'or-yehuda':40000,'kiryat-ono':38000,'maale-adumim':40000,'sakhnin':32000,
-  'kiryat-yam':40000,'kiryat-bialik':40000,'pardes-hanna':40000,
-  'kiryat-motzkin':43000,'kiryat-shmona':25000,'tzfat':34000,'maghar':34000,
-  'tamra':33000,'sderot':30553,'kiryat-arba':8000,'nazareth':80000,
-  'shefaram':38000,'tira':27392,'rahat':76237,'dimona':35892,'ofakim':33999,
-  'elad':49593,'nes-ziona':50456,'ramla':77798,'kfar-yona':27898,
-  'beer-yaakov':29852,'givat-shmuel':28162,'migdal-haemek':26000,
-  'kiryat-malachi':25022,'harish':25000,'gush-etzion':25000,'azor':24000,
-  'kiryat-ekron':11051,'nahariya':61000,'acre':49614,'tirat-carmel':23000,
-  'nesher':23000,'yokneam':23000,'maalot-tarshiha':22315,'hura':23943,
-  'kuseife':23219,'kadima-zoran':22920,'shoham':21441,'beit-shean':18900,
-  'kiryat-ata':57000,'beit-shemesh':130000,'mitzpe-ramon':5178,
-  'ariel':20000,'kfar-qasem':24757,'qalansawe':23877,'meitar':10565,
-  'yehud-monosson':30619,'or-akiva':19000,'kfar-shmaryahu':5000,
-  'savyon':4051,'metula':1693,'omer':7656,'lehavim':6977,'pardesia':7251,
-  'elyakhin':3461,'beit-dagan':7644,'bnei-ayish':6895,'kafr-bara':3856,
-  'kochav-yair':8949,'mazkeret-batya':15424,'zemer':7360,'shoham':21441,
-  // regional
-  'emek-hefer':42880,'emek-yizrael':40146,'gilboa':32165,'mateh-asher':30846,
-  'drom-hasharon':34327,'gezer':27622,'lev-hasharon':23672,'hevel-modiin':24107,
-  'hof-hakarmel':36000,'mateh-yehuda':57000,'shomron':25000,'galil-elion':19440,
-  'merom-hagalil':15892,'golan':19214,'maale-yosef':11605,'megiddo':12200,
-  'gilboa':32165,'emek-hayarden':14390,'emek-hamayanot':14377,'eshkol':15205,
-  'merhavim':14605,'ramat-negev':8558,'sdot-negev':11062,'shafir':12853,
-  'lachish':13778,'beer-tuvia':23841,'bnei-shimon':11419,'yoav':9197,
-  'shaar-hanegev':9071,'hof-ashkelon':19295,'hof-hasharon':14872,
-  'hevel-yavne':6920,'sadot-dan':15987,'gan-rave':6585,'brener':8046,
-  'gderot':5192,'nahal-soreq':10189,'hevel-eilot':4745,'tamar':1572,
-  'central-arava':3772,'neve-midbar':13309,'jordan-valley':10000,
-  'har-hevron':17000,'bustan-al-marj':8137,'el-batouf':8408,
-  'megilot-yam-hamelah':1500,'zvulun':16000,'mevoot-hermon':3000,
-  // local
-  'arraba':26641,'judeidi-makr':21507,'majd-al-krum':15630,'kafr-kanna':23705,
-  'kafr-manda':21073,'iksal':15146,'usfiya':15000,'rekhasim':16000,
-  'reina':14000,'kabul':14473,'ein-mahel':13748,'ibillin':13692,
-  'deir-al-asad':12935,'beit-jann':12307,'majdal-shams':11405,'yeroham':11031,
-  'segev-shalom':11865,'jaljulye':10480,'mashhad':8655,'daburiyya':10782,
-  'deir-hanna':10599,'kafr-yasif':10323,'bir-elmaksur':9959,'bueine-nujeidat':10137,
-  'hatzor-haglilit':9764,'kisra-sumei':9108,'nahef':9000,'hurfeish':6581,
-  'julis':6657,'ilut':8654,'abu-sinan':14455,'iksal':15146,'fureidis':15000,
-  'tuba-zangariyye':8000,'maghar':34000,'jisr-az-zarqa':16000,'arara':15000,
-  'abu-ghosh':8000,'rameh':8000,'sajur':7000,'yanuh-jat':7000,'yarka':16000,
-  'turan':19000,'yafa-an-naseriyye':20000,'baqa-gharbiyye':33000,
-  'daliyat-karmel':18000,'basma':5000,'bana':8536,'mazraa':4078,
-  'kaabiyye':5732,'beit-el':7000,'beit-aryeh':8000,'elkana':6000,
-  'efrat':12000,'givat-zeev':20000,'oranit':8000,'alfei-menashe':9000,
-  'karnei-shomron':9000,'kedumim':5000,'maale-efraim':7000,'maale-iron':12000,
-  'kiryat-yearim':5000,'mevaseret-zion':25000,'tel-sheva':22187,
-  'laqye':15295,'tel-mond':14179,'even-yehuda':14266,'gedera':30392,
-  'gan-yavne':24251,'ganey-tikva':22694,'jatt':10000,'taibeh-north':8000,
-  'zarzir':13000,'shab':5000,'mielya':4000,'migdal':3000,'peqiin':5000,
-  'eilaboun':5812,'fassuta':3236,'gush-halav':3154,'buqata':6752,
-  'ein-knia':2172,'ghajar':2745,'kfar-kama':3479,'kfar-tavor':4425,
-  'kfar-vradim':5531,'kawkab-abu-al-hija':3724,'bosmat-tivon':8068,
-  'masada':10000,'shibli-umm-al-ghanam':5000,'yavneel':5000,
-  'yesod-hamaala':2000,'rosh-pina':4000,'metula':1693,'katzrin':8000,
-  'meitar':10565,'omer':7656,'lehavim':6977,'mitzpe-ramon':5178,
-  'neot-hovav':2000,'neve-midbar':13309,'binyamina':15000,
-  'zichron-yaakov':25000,'menashe':15000,'misgav':25000,
-  'kiryat-tivon':16000,'shlomi':8000,'shab-al-salim':5000,
-  'kafr-qara':16000,'hevron':4000
-};
-
-function getPop(m){ return m._population||POP[m.id]||0; }
-
-// Section assignment for Israeli municipalities
-function getSection(m){
-  const t=m.type;
-  if(t==='regional') return 1; // section B
-  if(t==='city') return 0;     // section A
-  // local: by population
-  return 2; // section C
-}
-// Within section A: city+local with pop>=20000 treated as "urban"
-// Actually: section A = city OR local>=20000, B = regional, C = rest
-function getSectionV2(m){
-  if(m.type==='regional') return 1;
-  const pop=getPop(m);
-  if(m.type==='city'||pop>=20000) return 0;
-  return 2;
-}
-
 function sorted(data){
   return[...data].sort((a,b)=>{
     switch(state.sort){
       case'importance':{
+        // Missing items always last
         const aMissing=isMissing(a)?1:0, bMissing=isMissing(b)?1:0;
         if(aMissing!==bMissing)return aMissing-bMissing;
-        const sa=getSectionV2(a), sb=getSectionV2(b);
-        if(sa!==sb)return sa-sb;
-        // within section: sort by population desc, then name
-        const pa=getPop(a), pb=getPop(b);
-        if(pa!==pb)return pb-pa;
+        const ta=TYPE_RANK[a.type]??3, tb=TYPE_RANK[b.type]??3;
+        if(ta!==tb)return ta-tb;
         return(a.name_en||'').localeCompare(b.name_en||'');
       }
       case'name':return(a.name_en||'').localeCompare(b.name_en||'');
@@ -464,15 +335,9 @@ function sorted(data){
   });
 }
 
-function onImgError(el){
-  var fb=(el.getAttribute('data-fb')||'').split('|').filter(Boolean);
-  if(fb.length){el.src=fb[0];el.setAttribute('data-fb',fb.slice(1).join('|'));}
-  else{el.style.display='none';var n=el.nextElementSibling;if(n)n.style.display='block';}
-}
 function ih(m,size=80){
-  if(!m._img)return '<span class="no-image">&#9633;</span>';
-  const fb=(m._img.urlFallbacks||[]).join('|');
-  return '<img src="'+m._img.url+'" data-fb="'+fb+'" alt="'+m.name_en+'" loading="lazy" style="max-height:'+size+'px;max-width:100%;object-fit:contain" onerror="onImgError(this)">'+'<span class="no-image" style="display:none">&#9633;</span>';
+  if(!m._img)return`<span class="no-image">◻</span>`;
+  return`<img src="${m._img.url}" alt="${m.name_en}" loading="lazy" style="max-height:${size}px;max-width:100%;object-fit:contain" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="no-image" style="display:none">◻</span>`;
 }
 
 function tierBadge(img){
@@ -528,14 +393,6 @@ function listHTML(m){
   </div>`;
 }
 
-function toggleSection(sid){
-  state._secCollapsed=state._secCollapsed||{};
-  state._secCollapsed[sid]=!state._secCollapsed[sid];
-  const body=document.getElementById(sid);
-  const header=body&&body.previousElementSibling;
-  if(body)body.classList.toggle('collapsed',!!state._secCollapsed[sid]);
-  if(header){const ch=header.querySelector('.sec-chevron');if(ch)ch.classList.toggle('collapsed',!!state._secCollapsed[sid]);}
-}
 function render(){
   const filtered=sorted(DATA.filter(matches));
   const israeli=filtered.filter(m=>m.culture!=='palestinian');
@@ -548,44 +405,13 @@ function render(){
   let html='';
 
   if(israeli.length){
-    const secA=israeli.filter(m=>getSectionV2(m)===0);
-    const secB=israeli.filter(m=>getSectionV2(m)===1);
-    const secC=israeli.filter(m=>getSectionV2(m)===2);
-
-    const _secCollapsed=state._secCollapsed=state._secCollapsed||{};
-    function renderSection(items,label,isFirst){
-      if(!items.length)return'';
-      const sid='sec-'+label.replace(/[^a-z]/gi,'-');
-      const collapsed=!!_secCollapsed[sid];
-      const dividerStyle=isFirst?'':'border-top:2px solid var(--border);';
-      let s=`<div class="sec-header" style="${dividerStyle}" onclick="toggleSection('${sid}')">
-        <div class="sec-header-inner">
-          <span class="sec-label">${label}</span>
-          <div class="sec-line"></div>
-          <span class="sec-count">${items.length}</span>
-        </div>
-        <span class="sec-chevron${collapsed?' collapsed':''}">▾</span>
-      </div>`;
-      let body='';
-      if(state.view==='grid'){
-        body=`<div class="grid">${items.map(cardHTML).join('')}</div>`;
-      }else{
-        body=`<div class="list-view"><div class="list-header"><div>Emblem</div><div>Name</div><div>Hebrew</div><div>Type</div><div>Tags</div><div>Mark</div></div>${items.map(listHTML).join('')}</div>`;
-      }
-      s+=`<div class="sec-body${collapsed?' collapsed':''}" id="${sid}">${body}</div>`;
-      return s;
-    }
-
-    if(state.sort==='importance'){
-      html+=renderSection(secA,'Cities & Towns',true);
-      html+=renderSection(secB,'Regional Councils',false);
-      html+=renderSection(secC,'Local Councils',false);
+    if(state.view==='grid'){
+      html+=`<div class="grid">${israeli.map(cardHTML).join('')}</div>`;
     }else{
-      if(state.view==='grid'){
-        html+=`<div class="grid">${israeli.map(cardHTML).join('')}</div>`;
-      }else{
-        html+=`<div class="list-view"><div class="list-header"><div>Emblem</div><div>Name</div><div>Hebrew</div><div>Type</div><div>Tags</div><div>Mark</div></div>${israeli.map(listHTML).join('')}</div>`;
-      }
+      html+=`<div class="list-view">
+        <div class="list-header"><div>Emblem</div><div>Name</div><div>Hebrew</div><div>Type</div><div>Tags</div><div>Mark</div></div>
+        ${israeli.map(listHTML).join('')}
+      </div>`;
     }
   }
 
@@ -692,28 +518,34 @@ function openModal(m){
 }
 
 function exportAnn(){
-  const rows=['id,name_en,missing,small_file,note'];
+  const rows=['id,name_en,size,note'];
   DATA.forEach(m=>{
     const a=getA(m.id);
     if(!Object.keys(a).length)return;
-    rows.push([
-      m.id, m.name_en,
-      a.missing?'yes':'',
-      a.size?'yes':'',
-      `"${(a.note||'').replace(/"/g,'""')}"`
-    ].join(','));
+    rows.push([m.id,m.name_en,a.size?'yes':'',`"${(a.note||'').replace(/"/g,'""')}"`].join(','));
   });
   const blob=new Blob([rows.join('\n')],{type:'text/csv'});
   const el=document.createElement('a');el.href=URL.createObjectURL(blob);el.download='emblem-annotations.csv';el.click();
 }
 
+async function listFiles(folder){
+  try{
+    const r=await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${folder}?ref=${BRANCH}`);
+    if(!r.ok)return[];
+    return(await r.json()).map(f=>f.name);
+  }catch{return[];}
+}
+
 async function main(){
-  const[csvText,psCsvText]=await Promise.all([
+  const[csvText,psCsvText,svgFiles,pngFiles]=await Promise.all([
     fetch(CSV_URL).then(r=>r.text()),
     fetch(PS_CSV_URL).then(r=>r.ok?r.text():'').catch(()=>''),
+    listFiles('emblems/svg'),
+    listFiles('emblems/png'),
   ]);
-  const israeli=enrich(parseCSV(csvText));
-  const palestinian=psCsvText?enrich(parseCSV(psCsvText)):[];
+  const allFiles={svg:svgFiles,png:pngFiles};
+  const israeli=enrich(parseCSV(csvText),allFiles);
+  const palestinian=psCsvText?enrich(parseCSV(psCsvText),allFiles):[];
   DATA=[...israeli,...palestinian];
   renderStats(DATA);render();
 
