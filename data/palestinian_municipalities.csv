@@ -1,93 +1,94 @@
-﻿id,name_he,name_en,name_ar,type,district,culture,status,has_coa,has_logo,notes
-ps-wb-beit-jala,בית ג'אלה,Beit Jala,بيت جالا,city,West Bank,palestinian,found,yes,no,gov: Bethlehem | COA on English + Arabic Wikipedia infobox
-ps-wb-beit-sahour,בית סאחור,Beit Sahour,بيت ساحور,city,West Bank,palestinian,found,yes,no,gov: Bethlehem | COA on Arabic Wikipedia infobox
-ps-wb-bethlehem,בית לחם,Bethlehem,بيت لحم,city,West Bank,palestinian,found,yes,no,gov: Bethlehem | COA on English + Arabic Wikipedia infobox
-ps-wb-dura,דורא,Dura,دورا,city,West Bank,palestinian,found,yes,no,gov: Hebron | COA on Arabic Wikipedia infobox
-ps-wb-halhul,חלחול,Halhul,حلحول,city,West Bank,palestinian,found,yes,no,gov: Hebron | COA on Arabic Wikipedia infobox
-ps-wb-hebron,חברון,Hebron,الخليل,city,West Bank,palestinian,found,yes,no,gov: Hebron | COA on English + Arabic Wikipedia infobox
-ps-wb-yatta,יטא,Yatta,يطا,city,West Bank,palestinian,found,yes,no,gov: Hebron | COA on Arabic Wikipedia infobox
-ps-wb-jenin,ג'נין,Jenin,جنين,city,West Bank,palestinian,found,yes,no,gov: Jenin | COA on Arabic Wikipedia infobox
-ps-wb-jericho,יריחו,Jericho,أريحا,city,West Bank,palestinian,found,yes,no,gov: Jericho | COA on English + Arabic Wikipedia infobox
-ps-wb-nablus,שכם,Nablus,نابلس,city,West Bank,palestinian,found,yes,no,gov: Nablus | COA on English + Arabic Wikipedia infobox
-ps-wb-qalqilya,קלקיליה,Qalqilya,قلقيلية,city,West Bank,palestinian,found,yes,no,gov: Qalqilya | COA on Arabic Wikipedia infobox
-ps-wb-ramallah,רמאללה,Ramallah,رام الله,city,West Bank,palestinian,found,yes,no,gov: Ramallah and al-Bireh | COA on English + Arabic Wikipedia infobox
-ps-wb-al-bireh,אל-בירה,al-Bireh,البيرة,city,West Bank,palestinian,found,yes,no,gov: Ramallah and al-Bireh | COA on Arabic Wikipedia infobox
-ps-wb-salfit,סלפית,Salfit,سلفيت,city,West Bank,palestinian,found,yes,no,gov: Salfit | COA on Arabic Wikipedia infobox
-ps-wb-tubas,טובאס,Tubas,طوباس,city,West Bank,palestinian,found,yes,no,gov: Tubas | COA on Arabic Wikipedia infobox
-ps-wb-tulkarm,טולכרם,Tulkarm,طولكرم,city,West Bank,palestinian,found,yes,no,gov: Tulkarm | COA on Arabic Wikipedia infobox
-ps-wb-battir,בתיר,Battir,بتير,local,West Bank,palestinian,found,yes,no,gov: Bethlehem | COA on Arabic Wikipedia infobox
-ps-wb-beit-fajjar,בית פג'אר,Beit Fajjar,بيت فجار,local,West Bank,palestinian,found,yes,no,gov: Bethlehem | COA on Arabic Wikipedia infobox
-ps-wb-nahhalin,נחאלין,Nahhalin,نحالين,local,West Bank,palestinian,found,yes,no,gov: Bethlehem | COA on Arabic Wikipedia infobox
-ps-wb-tuqu,תקוע,Tuqu',تقوع,local,West Bank,palestinian,found,yes,no,gov: Bethlehem | COA on Arabic Wikipedia infobox
-ps-wb-al-khader,אל-ח'דר,al-Khader,الخضر,local,West Bank,palestinian,found,yes,no,gov: Bethlehem | COA on Arabic Wikipedia infobox
-ps-wb-beit-ummar,בית עמר,Beit Ummar,بيت أمر,local,West Bank,palestinian,found,yes,no,gov: Hebron | COA on Arabic Wikipedia infobox
-ps-wb-idhna,אידנה,Idhna,إذنا,local,West Bank,palestinian,found,yes,no,gov: Hebron | COA on Arabic Wikipedia infobox
-ps-wb-sair,סעיר,Sa'ir,سعير,local,West Bank,palestinian,found,yes,no,gov: Hebron | COA on Arabic Wikipedia infobox
-ps-wb-surif,סוריף,Surif,سوريف,local,West Bank,palestinian,found,yes,no,gov: Hebron | COA on Arabic Wikipedia infobox
-ps-wb-taffuh,תפוח,Taffuh,تفوح,local,West Bank,palestinian,found,yes,no,gov: Hebron | COA on Arabic Wikipedia infobox
-ps-wb-tarqumiyah,טרקומיא,Tarqumiyah,ترقومية,local,West Bank,palestinian,found,yes,no,gov: Hebron | COA on Arabic Wikipedia infobox
-ps-wb-arraba,עראבה,Arraba,عرابة,local,West Bank,palestinian,found,yes,no,gov: Jenin | COA on Arabic Wikipedia infobox
-ps-wb-jaba,ג'בע,Jaba,جبع,local,West Bank,palestinian,found,yes,no,gov: Jenin | COA on Arabic Wikipedia infobox
-ps-wb-qabatya,קבאטיה,Qabatya,قباطية,local,West Bank,palestinian,found,yes,no,gov: Jenin | COA on Arabic Wikipedia infobox
-ps-wb-al-ram,אל-ראם,al-Ram,الرام,local,West Bank,palestinian,found,yes,no,gov: Jerusalem | COA on Arabic Wikipedia infobox
-ps-wb-aqraba,עקרבא,Aqraba,عقربا,local,West Bank,palestinian,found,yes,no,gov: Nablus | COA on Arabic Wikipedia infobox
-ps-wb-asira-ash-shamaliyya,עסירה אל-שמאלייה,Asira ash-Shamaliyya,عصيرة الشمالية,local,West Bank,palestinian,found,yes,no,gov: Nablus | COA on Arabic Wikipedia infobox
-ps-wb-beit-furik,בית פוריק,Beit Furik,بيت فوريك,local,West Bank,palestinian,found,yes,no,gov: Nablus | COA on Arabic Wikipedia infobox
-ps-wb-huwwara,חווארה,Huwwara,حوارة,local,West Bank,palestinian,found,yes,no,gov: Nablus | COA on Arabic Wikipedia infobox
-ps-wb-sebastia,סבסטיה,Sebastia,سبسطية,local,West Bank,palestinian,found,yes,no,gov: Nablus | COA on Arabic Wikipedia infobox
-ps-wb-azzun,עזון,Azzun,عزون,local,West Bank,palestinian,found,yes,no,gov: Qalqilya | COA on Arabic Wikipedia infobox
-ps-wb-jayyus,ג'ייוס,Jayyus,جيوس,local,West Bank,palestinian,found,yes,no,gov: Qalqilya | COA on Arabic Wikipedia infobox
-ps-wb-beit-rima,בית רימא,Beit Rima,بيت ريما,local,West Bank,palestinian,found,yes,no,gov: Ramallah and al-Bireh | COA on Arabic Wikipedia infobox
-ps-wb-beit-ur-al-tahta,בית עור אל-תחתא,Beit ur al-Tahta,بيت عور التحتا,local,West Bank,palestinian,found,yes,no,gov: Ramallah and al-Bireh | COA on Arabic Wikipedia infobox
-ps-wb-beitunia,בייתוניא,Beitunia,بيتونيا,local,West Bank,palestinian,found,yes,no,gov: Ramallah and al-Bireh | COA on Arabic Wikipedia infobox
-ps-wb-bir-zeit,בירזית,Bir Zeit,بيرزيت,local,West Bank,palestinian,found,yes,no,gov: Ramallah and al-Bireh | COA on Arabic Wikipedia infobox
-ps-wb-nilin,נעלין,Ni'lin,نعلين,local,West Bank,palestinian,found,yes,no,gov: Ramallah and al-Bireh | COA on Arabic Wikipedia infobox
-ps-wb-silwad,סלוואד,Silwad,سلواد,local,West Bank,palestinian,found,yes,no,gov: Ramallah and al-Bireh | COA on Arabic Wikipedia infobox
-ps-wb-sinjil,סנג'יל,Sinjil,سنجل,local,West Bank,palestinian,found,yes,no,gov: Ramallah and al-Bireh | COA on Arabic Wikipedia infobox
-ps-wb-turmusayya,תורמוסעיא,Turmus'ayya,ترمس عيا,local,West Bank,palestinian,found,yes,no,gov: Ramallah and al-Bireh | COA on Arabic Wikipedia infobox
-ps-wb-bidya,בידיה,Bidya,بدية,local,West Bank,palestinian,found,yes,no,gov: Salfit | COA on Arabic Wikipedia infobox
-ps-wb-deir-ballut,דיר בלוט,Deir Ballut,دير بلوط,local,West Bank,palestinian,found,yes,no,gov: Salfit | COA on Arabic Wikipedia infobox
-ps-wb-kafr-ad-dik,כפר א-דיק,Kafr ad-Dik,كفر الديك,local,West Bank,palestinian,found,yes,no,gov: Salfit | COA on Arabic Wikipedia infobox
-ps-wb-qarawat-bani-hassan,קראוות בני חסן,Qarawat Bani Hassan,قراوة بني حسان,local,West Bank,palestinian,found,yes,no,gov: Salfit | COA on Arabic Wikipedia infobox
-ps-wb-tammun,טמון,Tammun,طمون,local,West Bank,palestinian,found,yes,no,gov: Tubas | COA on Arabic Wikipedia infobox
-ps-wb-anabta,ענבתא,Anabta,عنبتا,local,West Bank,palestinian,found,yes,no,gov: Tulkarm | COA on Arabic Wikipedia infobox
-ps-wb-attil,עתיל,Attil,عتيل,local,West Bank,palestinian,found,yes,no,gov: Tulkarm | COA on Arabic Wikipedia infobox
-ps-wb-baqa-ash-sharqiyya,באקה אל-שרקייה,Baqa ash-Sharqiyya,باقة الشرقية,local,West Bank,palestinian,found,yes,no,gov: Tulkarm | COA on Arabic Wikipedia infobox
-ps-gz-deir-al-balah,דיר אל-בלח,Deir al-Balah,دير البلح,city,Gaza Strip,palestinian,found,yes,no,gov: Deir al-Balah | COA on Arabic Wikipedia infobox
-ps-gz-khan-yunis,ח'אן יונס,Khan Yunis,خان يونس,city,Gaza Strip,palestinian,found,yes,no,gov: Khan Yunis | COA on English + Arabic Wikipedia infobox
-ps-gz-beit-hanoun,בית חנון,Beit Hanoun,بيت حانون,city,Gaza Strip,palestinian,found,yes,no,gov: North Gaza | COA on Arabic Wikipedia infobox
-ps-gz-beit-lahiya,בית לאהיא,Beit Lahiya,بيت لاهيا,city,Gaza Strip,palestinian,found,yes,no,gov: North Gaza | COA on Arabic Wikipedia infobox
-ps-gz-jabalia,ג'בליה,Jabalia,جباليا,city,Gaza Strip,palestinian,found,yes,no,gov: North Gaza | COA on Arabic Wikipedia infobox
-ps-gz-rafah,רפיח,Rafah,رفح,city,Gaza Strip,palestinian,found,yes,no,gov: Rafah | COA on English + Arabic Wikipedia infobox
-ps-gz-zawaida,זוואידה,Zawaida,زوايدة,local,Gaza Strip,palestinian,found,yes,no,gov: Deir al-Balah | COA on Arabic Wikipedia infobox
-ps-gz-al-maghazi,אל-מגאזי,al-Maghazi,المغازي,local,Gaza Strip,palestinian,found,yes,no,gov: Deir al-Balah | COA on Arabic Wikipedia infobox
-ps-gz-al-nuseirat,אל-נוסיראת,al-Nuseirat,النصيرات,local,Gaza Strip,palestinian,found,yes,no,gov: Deir al-Balah | COA on Arabic Wikipedia infobox
-ps-gz-abasan-al-kabira,עבסאן אל-כבירה,Abasan al-Kabira,عبسان الكبيرة,local,Gaza Strip,palestinian,found,yes,no,gov: Khan Yunis | COA on Arabic Wikipedia infobox
-ps-gz-bani-suheila,בני סוהילה,Bani Suheila,بني سهيلة,local,Gaza Strip,palestinian,found,yes,no,gov: Khan Yunis | COA on Arabic Wikipedia infobox
-ps-gz-al-fukhari,אל-פוח'ארי,al-Fukhari,الفخاري,local,Gaza Strip,palestinian,found,yes,no,gov: Khan Yunis | COA on Arabic Wikipedia infobox
-ps-gz-al-qarara,אל-קראריה,al-Qarara,القرارة,local,Gaza Strip,palestinian,found,yes,no,gov: Khan Yunis | COA on Arabic Wikipedia infobox
-ps-wb-beit-awwa,בית עווא,Beit Awwa,بيت عوا,local,West Bank,palestinian,found,yes,no,gov: Hebron
-ps-wb-qarawat-bani-zaid,קראוות בני זייד,Qarawat Bani Zaid,قراوة بني زيد,local,West Bank,palestinian,found,yes,no,gov: Ramallah and al-Bireh
-ps-wb-al-ubeidiyya,אל-עובידייה,al-Ubeidiyya,العبيدية,local,West Bank,palestinian,missing,no,no,gov: Bethlehem | COA on Arabic Wikipedia infobox
-ps-wb-kafr-dan,כפר דאן,Kafr Dan,كفر دان,local,West Bank,palestinian,missing,no,no,gov: Jenin | COA on Arabic Wikipedia infobox
-ps-wb-kafr-rai,כפר ראעי,Kafr Ra'i,كفر راعي,local,West Bank,palestinian,found,yes,no,gov: Jenin | COA on Arabic Wikipedia infobox
-ps-wb-yabad,יעבד,Ya'bad,يعبد,local,West Bank,palestinian,found,yes,no,gov: Jenin | COA on Arabic Wikipedia infobox
-ps-wb-al-yamun,אל-יאמון,al-Yamun,اليامون,local,West Bank,palestinian,missing,no,no,gov: Jenin | COA on Arabic Wikipedia infobox
-ps-wb-abu-dis,אבו דיס,Abu Dis,أبو ديس,local,West Bank,palestinian,missing,no,no,gov: Jerusalem | COA on Arabic Wikipedia infobox
-ps-wb-beit-dajan,בית דג'ן,Beit Dajan,بيت دجن,local,West Bank,palestinian,missing,no,no,gov: Nablus | COA on Arabic Wikipedia infobox
-ps-wb-beit-iba,בית איבא,Beit Iba,بيت إبا,local,West Bank,palestinian,missing,no,no,gov: Nablus | COA on Arabic Wikipedia infobox
-ps-wb-burin,בורין,Burin,بورين,local,West Bank,palestinian,missing,no,no,gov: Nablus | COA on Arabic Wikipedia infobox
-ps-wb-salim,סאלם,Salim,سالم,local,West Bank,palestinian,missing,no,no,gov: Nablus | COA on Arabic Wikipedia infobox
-ps-wb-habla,חבלה,Habla,حبلة,local,West Bank,palestinian,missing,no,no,gov: Qalqilya | COA on Arabic Wikipedia infobox
-ps-wb-kafr-qaddum,כפר קדום,Kafr Qaddum,كفر قدوم,local,West Bank,palestinian,missing,no,no,gov: Qalqilya | COA on Arabic Wikipedia infobox
-ps-wb-beit-ur-al-fauqa,בית עור אל-פוקא,Beit ur al-Fauqa,بيت عور الفوقا,local,West Bank,palestinian,missing,no,no,gov: Ramallah and al-Bireh | COA on Arabic Wikipedia infobox
-ps-wb-beitin,ביתין,Beitin,بيتين,local,West Bank,palestinian,missing,no,no,gov: Ramallah and al-Bireh | COA on Arabic Wikipedia infobox
-ps-wb-budrus,בודרוס,Budrus,بدرس,local,West Bank,palestinian,missing,no,no,gov: Ramallah and al-Bireh | COA on Arabic Wikipedia infobox
-ps-wb-bruqin,בורוקין,Bruqin,بروقين,local,West Bank,palestinian,missing,no,no,gov: Salfit | COA on Arabic Wikipedia infobox
-ps-wb-marda,מרדה,Marda,مردة,local,West Bank,palestinian,missing,no,no,gov: Salfit | COA on Arabic Wikipedia infobox
-ps-wb-tayasir,טייאסיר,Tayasir,طياسير,local,West Bank,palestinian,missing,no,no,gov: Tubas | COA on Arabic Wikipedia infobox
-ps-wb-beit-lid,בית ליד,Beit Lid,بيت ليد,local,West Bank,palestinian,missing,no,no,gov: Tulkarm | COA on Arabic Wikipedia infobox
-ps-gz-gaza-city,עזה,Gaza City,مدينة غزة,city,Gaza Strip,palestinian,found,yes,no,gov: Gaza City | COA on English + Arabic Wikipedia infobox
-ps-gz-al-bureij,אל-בורייג',al-Bureij,البريج,local,Gaza Strip,palestinian,missing,no,no,gov: Deir al-Balah | COA on Arabic Wikipedia infobox
-ps-gz-abasan-al-jadida,עבסאן אל-ג'דידה,Abasan al-Jadida,عبسان الجديدة,local,Gaza Strip,palestinian,missing,no,no,gov: Khan Yunis | COA on Arabic Wikipedia infobox
-ps-gz-khuza,ח'וזאעה,Khuza'a,خزاعة,local,Gaza Strip,palestinian,found,yes,no,gov: Khan Yunis | COA on Arabic Wikipedia infobox
+﻿id,name_he,name_en,name_ar,type,district,culture,status,has_coa,has_logo,notes,סוג_מגן,צבע_דומיננטי,color_1,color_2,color_3,color_4,color_5,תגיות_1,תגיות_2,תגיות_3,תגיות_4,תגיות_5,תגיות_6,תגיות_7,תגיות_8,תגיות_9,תגיות_10,שנת_אימוץ,מעצב,note_1,note_2,note_3,note_4,note_5,note_6,note_7,note_8
+ps-wb-beit-jala,בית ג'אלה,Beit Jala,بيت جالا,city,West Bank,palestinian,found,yes,no,gov: Bethlehem | COA on English + Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-beit-sahour,בית סאחור,Beit Sahour,بيت ساحور,city,West Bank,palestinian,found,yes,no,gov: Bethlehem | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-bethlehem,בית לחם,Bethlehem,بيت لحم,city,West Bank,palestinian,found,yes,no,gov: Bethlehem | COA on English + Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-dura,דורא,Dura,دورا,city,West Bank,palestinian,found,yes,no,gov: Hebron | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-halhul,חלחול,Halhul,حلحول,city,West Bank,palestinian,found,yes,no,gov: Hebron | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-hebron,חברון,Hebron,الخليل,city,West Bank,palestinian,found,yes,no,gov: Hebron | COA on English + Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-yatta,יטא,Yatta,يطا,city,West Bank,palestinian,found,yes,no,gov: Hebron | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-jenin,ג'נין,Jenin,جنين,city,West Bank,palestinian,found,yes,no,gov: Jenin | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-jericho,יריחו,Jericho,أريحا,city,West Bank,palestinian,found,yes,no,gov: Jericho | COA on English + Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-nablus,שכם,Nablus,نابلس,city,West Bank,palestinian,found,yes,no,gov: Nablus | COA on English + Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-qalqilya,קלקיליה,Qalqilya,قلقيلية,city,West Bank,palestinian,found,yes,no,gov: Qalqilya | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-ramallah,רמאללה,Ramallah,رام الله,city,West Bank,palestinian,found,yes,no,gov: Ramallah and al-Bireh | COA on English + Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-al-bireh,אל-בירה,al-Bireh,البيرة,city,West Bank,palestinian,found,yes,no,gov: Ramallah and al-Bireh | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-salfit,סלפית,Salfit,سلفيت,city,West Bank,palestinian,found,yes,no,gov: Salfit | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-tubas,טובאס,Tubas,طوباس,city,West Bank,palestinian,found,yes,no,gov: Tubas | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-tulkarm,טולכרם,Tulkarm,طولكرم,city,West Bank,palestinian,found,yes,no,gov: Tulkarm | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-battir,בתיר,Battir,بتير,local,West Bank,palestinian,found,yes,no,gov: Bethlehem | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-beit-fajjar,בית פג'אר,Beit Fajjar,بيت فجار,local,West Bank,palestinian,found,yes,no,gov: Bethlehem | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-nahhalin,נחאלין,Nahhalin,نحالين,local,West Bank,palestinian,found,yes,no,gov: Bethlehem | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-tuqu,תקוע,Tuqu',تقوع,local,West Bank,palestinian,found,yes,no,gov: Bethlehem | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-al-khader,אל-ח'דר,al-Khader,الخضر,local,West Bank,palestinian,found,yes,no,gov: Bethlehem | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-beit-ummar,בית עמר,Beit Ummar,بيت أمر,local,West Bank,palestinian,found,yes,no,gov: Hebron | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-idhna,אידנה,Idhna,إذنا,local,West Bank,palestinian,found,yes,no,gov: Hebron | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-sair,סעיר,Sa'ir,سعير,local,West Bank,palestinian,found,yes,no,gov: Hebron | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-surif,סוריף,Surif,سوريف,local,West Bank,palestinian,found,yes,no,gov: Hebron | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-taffuh,תפוח,Taffuh,تفوح,local,West Bank,palestinian,found,yes,no,gov: Hebron | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-tarqumiyah,טרקומיא,Tarqumiyah,ترقومية,local,West Bank,palestinian,found,yes,no,gov: Hebron | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-arraba,עראבה,Arraba,عرابة,local,West Bank,palestinian,found,yes,no,gov: Jenin | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-jaba,ג'בע,Jaba,جبع,local,West Bank,palestinian,found,yes,no,gov: Jenin | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-qabatya,קבאטיה,Qabatya,قباطية,local,West Bank,palestinian,found,yes,no,gov: Jenin | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-al-ram,אל-ראם,al-Ram,الرام,local,West Bank,palestinian,found,yes,no,gov: Jerusalem | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-aqraba,עקרבא,Aqraba,عقربا,local,West Bank,palestinian,found,yes,no,gov: Nablus | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-asira-ash-shamaliyya,עסירה אל-שמאלייה,Asira ash-Shamaliyya,عصيرة الشمالية,local,West Bank,palestinian,found,yes,no,gov: Nablus | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-beit-furik,בית פוריק,Beit Furik,بيت فوريك,local,West Bank,palestinian,found,yes,no,gov: Nablus | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-huwwara,חווארה,Huwwara,حوارة,local,West Bank,palestinian,found,yes,no,gov: Nablus | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-sebastia,סבסטיה,Sebastia,سبسطية,local,West Bank,palestinian,found,yes,no,gov: Nablus | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-azzun,עזון,Azzun,عزون,local,West Bank,palestinian,found,yes,no,gov: Qalqilya | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-jayyus,ג'ייוס,Jayyus,جيوس,local,West Bank,palestinian,found,yes,no,gov: Qalqilya | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-beit-rima,בית רימא,Beit Rima,بيت ريما,local,West Bank,palestinian,found,yes,no,gov: Ramallah and al-Bireh | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-beit-ur-al-tahta,בית עור אל-תחתא,Beit ur al-Tahta,بيت عور التحتا,local,West Bank,palestinian,found,yes,no,gov: Ramallah and al-Bireh | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-beitunia,בייתוניא,Beitunia,بيتونيا,local,West Bank,palestinian,found,yes,no,gov: Ramallah and al-Bireh | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-bir-zeit,בירזית,Bir Zeit,بيرزيت,local,West Bank,palestinian,found,yes,no,gov: Ramallah and al-Bireh | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-nilin,נעלין,Ni'lin,نعلين,local,West Bank,palestinian,found,yes,no,gov: Ramallah and al-Bireh | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-silwad,סלוואד,Silwad,سلواد,local,West Bank,palestinian,found,yes,no,gov: Ramallah and al-Bireh | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-sinjil,סנג'יל,Sinjil,سنجل,local,West Bank,palestinian,found,yes,no,gov: Ramallah and al-Bireh | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-turmusayya,תורמוסעיא,Turmus'ayya,ترمس عيا,local,West Bank,palestinian,found,yes,no,gov: Ramallah and al-Bireh | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-bidya,בידיה,Bidya,بدية,local,West Bank,palestinian,found,yes,no,gov: Salfit | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-deir-ballut,דיר בלוט,Deir Ballut,دير بلوط,local,West Bank,palestinian,found,yes,no,gov: Salfit | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-kafr-ad-dik,כפר א-דיק,Kafr ad-Dik,كفر الديك,local,West Bank,palestinian,found,yes,no,gov: Salfit | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-qarawat-bani-hassan,קראוות בני חסן,Qarawat Bani Hassan,قراوة بني حسان,local,West Bank,palestinian,found,yes,no,gov: Salfit | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-tammun,טמון,Tammun,طمون,local,West Bank,palestinian,found,yes,no,gov: Tubas | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-anabta,ענבתא,Anabta,عنبتا,local,West Bank,palestinian,found,yes,no,gov: Tulkarm | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-attil,עתיל,Attil,عتيل,local,West Bank,palestinian,found,yes,no,gov: Tulkarm | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-baqa-ash-sharqiyya,באקה אל-שרקייה,Baqa ash-Sharqiyya,باقة الشرقية,local,West Bank,palestinian,found,yes,no,gov: Tulkarm | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-gz-deir-al-balah,דיר אל-בלח,Deir al-Balah,دير البلح,city,Gaza Strip,palestinian,found,yes,no,gov: Deir al-Balah | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-gz-khan-yunis,ח'אן יונס,Khan Yunis,خان يونس,city,Gaza Strip,palestinian,found,yes,no,gov: Khan Yunis | COA on English + Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-gz-beit-hanoun,בית חנון,Beit Hanoun,بيت حانون,city,Gaza Strip,palestinian,found,yes,no,gov: North Gaza | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-gz-beit-lahiya,בית לאהיא,Beit Lahiya,بيت لاهيا,city,Gaza Strip,palestinian,found,yes,no,gov: North Gaza | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-gz-jabalia,ג'בליה,Jabalia,جباليا,city,Gaza Strip,palestinian,found,yes,no,gov: North Gaza | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-gz-rafah,רפיח,Rafah,رفح,city,Gaza Strip,palestinian,found,yes,no,gov: Rafah | COA on English + Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-gz-zawaida,זוואידה,Zawaida,زوايدة,local,Gaza Strip,palestinian,found,yes,no,gov: Deir al-Balah | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-gz-al-maghazi,אל-מגאזי,al-Maghazi,المغازي,local,Gaza Strip,palestinian,found,yes,no,gov: Deir al-Balah | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-gz-al-nuseirat,אל-נוסיראת,al-Nuseirat,النصيرات,local,Gaza Strip,palestinian,found,yes,no,gov: Deir al-Balah | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-gz-abasan-al-kabira,עבסאן אל-כבירה,Abasan al-Kabira,عبسان الكبيرة,local,Gaza Strip,palestinian,found,yes,no,gov: Khan Yunis | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-gz-bani-suheila,בני סוהילה,Bani Suheila,بني سهيلة,local,Gaza Strip,palestinian,found,yes,no,gov: Khan Yunis | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-gz-al-fukhari,אל-פוח'ארי,al-Fukhari,الفخاري,local,Gaza Strip,palestinian,found,yes,no,gov: Khan Yunis | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-gz-al-qarara,אל-קראריה,al-Qarara,القرارة,local,Gaza Strip,palestinian,found,yes,no,gov: Khan Yunis | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-beit-awwa,בית עווא,Beit Awwa,بيت عوا,local,West Bank,palestinian,found,yes,no,gov: Hebron,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-qarawat-bani-zaid,קראוות בני זייד,Qarawat Bani Zaid,قراوة بني زيد,local,West Bank,palestinian,found,yes,no,gov: Ramallah and al-Bireh,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-al-ubeidiyya,אל-עובידייה,al-Ubeidiyya,العبيدية,local,West Bank,palestinian,missing,no,no,gov: Bethlehem | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-kafr-dan,כפר דאן,Kafr Dan,كفر دان,local,West Bank,palestinian,missing,no,no,gov: Jenin | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-kafr-rai,כפר ראעי,Kafr Ra'i,كفر راعي,local,West Bank,palestinian,found,yes,no,gov: Jenin | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-yabad,יעבד,Ya'bad,يعبد,local,West Bank,palestinian,found,yes,no,gov: Jenin | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-al-yamun,אל-יאמון,al-Yamun,اليامون,local,West Bank,palestinian,missing,no,no,gov: Jenin | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-abu-dis,אבו דיס,Abu Dis,أبو ديس,local,West Bank,palestinian,missing,no,no,gov: Jerusalem | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-beit-dajan,בית דג'ן,Beit Dajan,بيت دجن,local,West Bank,palestinian,missing,no,no,gov: Nablus | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-beit-iba,בית איבא,Beit Iba,بيت إبا,local,West Bank,palestinian,missing,no,no,gov: Nablus | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-burin,בורין,Burin,بورين,local,West Bank,palestinian,missing,no,no,gov: Nablus | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-salim,סאלם,Salim,سالم,local,West Bank,palestinian,missing,no,no,gov: Nablus | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-habla,חבלה,Habla,حبلة,local,West Bank,palestinian,missing,no,no,gov: Qalqilya | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-kafr-qaddum,כפר קדום,Kafr Qaddum,كفر قدوم,local,West Bank,palestinian,missing,no,no,gov: Qalqilya | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-beit-ur-al-fauqa,בית עור אל-פוקא,Beit ur al-Fauqa,بيت عور الفوقا,local,West Bank,palestinian,missing,no,no,gov: Ramallah and al-Bireh | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-beitin,ביתין,Beitin,بيتين,local,West Bank,palestinian,missing,no,no,gov: Ramallah and al-Bireh | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-budrus,בודרוס,Budrus,بدرس,local,West Bank,palestinian,missing,no,no,gov: Ramallah and al-Bireh | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-bruqin,בורוקין,Bruqin,بروقين,local,West Bank,palestinian,missing,no,no,gov: Salfit | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-marda,מרדה,Marda,مردة,local,West Bank,palestinian,missing,no,no,gov: Salfit | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-tayasir,טייאסיר,Tayasir,طياسير,local,West Bank,palestinian,missing,no,no,gov: Tubas | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-wb-beit-lid,בית ליד,Beit Lid,بيت ليد,local,West Bank,palestinian,missing,no,no,gov: Tulkarm | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-gz-gaza-city,עזה,Gaza City,مدينة غزة,city,Gaza Strip,palestinian,found,yes,no,gov: Gaza City | COA on English + Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-gz-al-bureij,אל-בורייג',al-Bureij,البريج,local,Gaza Strip,palestinian,missing,no,no,gov: Deir al-Balah | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-gz-abasan-al-jadida,עבסאן אל-ג'דידה,Abasan al-Jadida,عبسان الجديدة,local,Gaza Strip,palestinian,missing,no,no,gov: Khan Yunis | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ps-gz-khuza,ח'וזאעה,Khuza'a,خزاعة,local,Gaza Strip,palestinian,found,yes,no,gov: Khan Yunis | COA on Arabic Wikipedia infobox,,,,,,,,,,,,,,,,,,,,,,,,,,,
+id,name_he,name_en,name_ar,type,district,culture,status,has_coa,has_logo,notes,,,,,,,,,,,,,,,,,,,,,,,,,,,
