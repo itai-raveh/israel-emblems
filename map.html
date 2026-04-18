@@ -126,20 +126,35 @@ function parseCSV(text){
   }).filter(r=>r.id&&r.lat&&r.lng);
 }
 
-function bestImageUrl(m){
-  // Try SVG first, then PNG/JPG/WEBP, then logo
+function allImageUrls(m){
   const id=m.id;
-  const exts=['png','jpg','webp','gif'];
+  const urls=[];
   if(m.has_coa==='yes'){
-    // Check svg first via known list
-    for(const ext of ['svg',...exts]){
-      return`${RAW}/emblems/${ext==='svg'?'svg':'png'}/${id}-COA.${ext}`;
+    urls.push(`${RAW}/emblems/svg/${id}-COA.svg`);
+    for(const ext of ['png','jpg','webp','gif']){
+      urls.push(`${RAW}/emblems/png/${id}-COA.${ext}`);
+    }
+    // Also try obsolete
+    for(const ext of ['png','jpg','svg','gif']){
+      urls.push(`${RAW}/emblems/png/${id}-COA-obsolete.${ext}`);
     }
   }
   if(m.has_logo==='yes'){
-    return`${RAW}/emblems/png/${id}-logo.png`;
+    urls.push(`${RAW}/emblems/svg/${id}-logo.svg`);
+    for(const ext of ['png','jpg','webp','gif']){
+      urls.push(`${RAW}/emblems/png/${id}-logo.${ext}`);
+    }
   }
-  return null;
+  return urls;
+}
+
+function imgWithFallbacks(urls,alt){
+  if(!urls.length)return '';
+  // Build nested onerror chain
+  const chain=urls.slice(1).reduceRight((inner,url)=>{
+    return`this.src='${url}';this.onerror=function(){${inner}};`;
+  },`this.style.display='none';`);
+  return`<img src="${urls[0]}" onerror="${chain.replace(/"/g,"'")}" loading="lazy" alt="${alt}" style="width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 1px 3px rgba(0,0,0,0.3));">`;
 }
 
 function markerSize(){
@@ -161,14 +176,15 @@ function createMarker(m){
   const isPalestinian=m.culture==='palestinian';
   const hasImg=m.has_coa==='yes'||m.has_logo==='yes';
   const sz=markerSize();
+  const urls=allImageUrls(m);
 
   const icon=L.divIcon({
     className:'',
     iconSize:[sz,sz],
     iconAnchor:[sz/2,sz/2],
-    html:`<div class="emblem-marker${isPalestinian?' emblem-ps':''}${!hasImg?' emblem-missing':''}" style="width:${sz}px;height:${sz}px" data-id="${m.id}">
+    html:`<div class="emblem-marker" style="width:${sz}px;height:${sz}px" data-id="${m.id}">
       ${hasImg
-        ?`<img src="${bestImageUrl(m)}" onerror="this.style.display='none';this.parentNode.innerHTML='<span class=no-img>${m.id}</span>'" loading="lazy">`
+        ?imgWithFallbacks(urls,m.name_en||m.id)
         :`<span class="no-img">${m.name_en?m.name_en.slice(0,4):'?'}</span>`
       }
     </div>`
@@ -179,12 +195,12 @@ function createMarker(m){
   marker._mData=m;
   marker._hasImg=hasImg;
 
-  const imgHtml=hasImg
-    ?`<div class="pop-img"><img src="${bestImageUrl(m)}" onerror="this.style.display='none'"></div>`
+  const popImgHtml=hasImg
+    ?`<div class="pop-img">${imgWithFallbacks(urls,m.name_en||m.id).replace('style="width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 1px 3px rgba(0,0,0,0.3));"','style="max-height:80px;max-width:120px;object-fit:contain;"')}</div>`
     :'';
 
   marker.bindPopup(`
-    ${imgHtml}
+    ${popImgHtml}
     <div class="pop-name">${m.name_en||m.id}</div>
     <div class="pop-name-he">${m.name_he||''}</div>
     <div class="pop-meta">${m.district||''} · ${m.type||''}</div>
