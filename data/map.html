@@ -25,7 +25,7 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:var(--text);heig
 .em:hover .em-img{opacity:0.85;}
 .em-img{display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .em-img img{object-fit:contain;display:block;}
-.em-label{font-family:'Fraunces',serif;font-weight:300;font-size:16px;color:#111;text-align:center;white-space:nowrap;text-shadow:0 0 3px #fff,0 0 6px #fff;pointer-events:none;margin-top:2px;max-width:80px;overflow:hidden;text-overflow:ellipsis;}
+.em-label{font-family:'Fraunces',serif;font-weight:300;font-size:11px;color:#111;text-align:center;white-space:nowrap;text-shadow:0 0 3px #fff,0 0 6px #fff;pointer-events:none;margin-top:2px;max-width:80px;overflow:hidden;text-overflow:ellipsis;}
 .leaflet-popup-content-wrapper{border-radius:6px;box-shadow:0 4px 20px rgba(0,0,0,0.14);border:1px solid var(--border);}
 .leaflet-popup-content{margin:14px 16px;min-width:180px;max-width:270px;}
 .pop-img{text-align:center;padding:10px;background:var(--bg);border-radius:4px;margin-bottom:10px;}
@@ -73,7 +73,7 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png
 
 // Icon size in px per zoom level — hand-tuned
 const SIZE_BY_ZOOM={
-  6:10, 7:16, 8:26, 9:40, 10:58, 11:80, 12:110, 13:150
+  6:8, 7:12, 8:18, 9:26, 10:36, 11:50, 12:68, 13:90
 };
 function iconSize(z){return SIZE_BY_ZOOM[Math.min(13,Math.max(6,Math.round(z)))]||26;}
 const LABEL_MIN_ZOOM=10;
@@ -108,7 +108,7 @@ function buildIcon(m,z){
   const urls=imageUrls(m);
   const name=m.name_en||m.id;
   const showLabel=z>=LABEL_MIN_ZOOM;
-  const labelH=showLabel?14:0;
+  const labelH=showLabel?18:0;
 
   return L.divIcon({
     className:'',
