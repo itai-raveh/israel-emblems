@@ -209,15 +209,26 @@ function createMarker(m){
   const urls=allImageUrls(m);
   const name=m.name_en||m.id;
 
-  // Icon anchor at bottom-center of image so emblem sits on the map point
+  const PAD=8;
+  const LABEL_H=16;
+  const TOTAL_W=BASE_SIZE+PAD*2;
+  const TOTAL_H=BASE_SIZE+PAD*2+LABEL_H;
+
+  // Anchor at center of image so emblem overlays the city name on the map
   const icon=L.divIcon({
     className:'',
-    iconSize:[BASE_SIZE, BASE_SIZE+16], // extra height for label
-    iconAnchor:[BASE_SIZE/2, BASE_SIZE], // anchor = bottom center of image
-    html:`<div class="emblem-wrap" data-id="${m.id}" style="width:${BASE_SIZE}px;">
-      <div class="emblem-img-wrap" style="width:${BASE_SIZE}px;height:${BASE_SIZE}px;">
+    iconSize:[TOTAL_W, TOTAL_H],
+    iconAnchor:[TOTAL_W/2, (BASE_SIZE+PAD*2)/2], // center of image area
+    html:`<div class="emblem-wrap" data-id="${m.id}" style="width:${TOTAL_W}px;">
+      <div class="emblem-img-wrap" style="
+        width:${TOTAL_W}px;
+        height:${BASE_SIZE+PAD*2}px;
+        background:radial-gradient(ellipse at center, rgba(255,255,255,0.88) 50%, rgba(255,255,255,0) 100%);
+        padding:${PAD}px;
+        border-radius:50%;
+      ">
         ${hasImg
-          ?imgWithFallbacks(urls,name,'width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 1px 4px rgba(0,0,0,0.25));')
+          ?imgWithFallbacks(urls,name,'width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 1px 3px rgba(0,0,0,0.2));')
           :`<span class="emblem-no-img">${name.slice(0,6)}</span>`
         }
       </div>
@@ -262,7 +273,7 @@ function updateMarkerScales(){
   const scale=Math.pow(2,map.getZoom()-BASE_ZOOM);
   document.querySelectorAll('.emblem-img-wrap').forEach(el=>{
     el.style.transform=`scale(${scale})`;
-    el.style.transformOrigin='bottom center';
+    el.style.transformOrigin='center center';
   });
   updateLabelVisibility();
 }
@@ -538,16 +549,6 @@ function createMarker(m){
 
 // Scale markers via CSS — no icon recreation, no flicker
 const BASE_ZOOM=8;
-function updateMarkerScales(){
-  const scale=Math.pow(2, map.getZoom()-BASE_ZOOM);
-  document.querySelectorAll('.emblem-marker').forEach(el=>{
-    el.style.transform=`scale(${scale})`;
-    el.style.transformOrigin='center center';
-  });
-}
-map.on('zoom',updateMarkerScales);
-
-// Filter state
 const state={
   population:'all', // all | israeli | palestinian
   status:{found:true, missing:true},
