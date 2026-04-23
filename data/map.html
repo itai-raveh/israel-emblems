@@ -15,6 +15,342 @@
     --muted:#7a736a;
     --border:#ddd8d0;
     --accent:#2d5a3d;
+  }
+  body{font-family:'DM Mono',monospace;background:var(--bg);color:var(--text);height:100vh;display:flex;flex-direction:column;overflow:hidden;}
+
+  .header{display:flex;align-items:center;justify-content:space-between;padding:10px 20px;background:var(--surface);border-bottom:1px solid var(--border);z-index:1000;flex-shrink:0;}
+  .header-title{font-family:'Fraunces',serif;font-weight:300;font-size:18px;letter-spacing:-0.3px;}
+  .header-title em{font-style:italic;color:var(--accent);}
+  .header-back{font-size:11px;color:var(--muted);text-decoration:none;border:1px solid var(--border);padding:4px 10px;border-radius:3px;}
+  .header-back:hover{border-color:var(--accent);color:var(--accent);}
+
+  .controls{display:flex;align-items:center;gap:8px;padding:8px 16px;background:var(--surface);border-bottom:1px solid var(--border);z-index:1000;flex-shrink:0;flex-wrap:wrap;}
+  .ctrl-btn{font-family:'DM Mono',monospace;font-size:10px;padding:3px 10px;border:1px solid var(--border);border-radius:3px;background:var(--surface);color:var(--muted);cursor:pointer;transition:all .15s;}
+  .ctrl-btn:hover,.ctrl-btn.active{border-color:var(--accent);color:var(--accent);background:#f0f5f1;}
+  .ctrl-btn.active{background:#e8f2eb;}
+  .ctrl-sep{width:1px;height:16px;background:var(--border);}
+  .stats{font-size:10px;color:var(--muted);margin-left:auto;}
+
+  #map{flex:1;z-index:0;}
+
+  /* Hide all map label layers */
+  .leaflet-tile-pane{filter:saturate(0.7) brightness(1.05);}
+
+  /* Emblem marker wrapper — contains image + label */
+  .emblem-wrap{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    cursor:pointer;
+    transition:filter .1s;
+  }
+  .emblem-wrap:hover{filter:brightness(1.1);}
+  .emblem-wrap:hover .emblem-img-wrap{transform:scale(1.12);z-index:9999;}
+
+  .emblem-img-wrap{
+    width:100%;
+    height:100%;
+    display:flex;align-items:center;justify-content:center;
+    transition:transform .12s;
+    transform-origin:bottom center;
+    overflow:visible;
+  }
+  .emblem-img-wrap img{
+    width:100%;height:100%;
+    object-fit:contain;
+    filter:drop-shadow(0 1px 4px rgba(0,0,0,0.25));
+  }
+  .emblem-no-img{
+    font-size:7px;color:var(--muted);
+    background:rgba(255,255,255,0.75);
+    border-radius:2px;padding:1px 3px;
+    white-space:nowrap;
+  }
+
+  /* Name label below emblem */
+  .emblem-label{
+    margin-top:2px;
+    font-family:'Fraunces',serif;
+    font-weight:300;
+    font-size:9px;
+    color:#1a1714;
+    text-align:center;
+    white-space:nowrap;
+    text-shadow:0 0 3px #fff, 0 0 6px #fff, 0 0 2px #fff;
+    pointer-events:none;
+    line-height:1.2;
+    max-width:80px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  /* Hide labels at low zoom — controlled via JS class on body */
+  body.zoom-low .emblem-label{display:none;}
+
+  /* Popup */
+  .leaflet-popup-content-wrapper{border-radius:6px;box-shadow:0 4px 20px rgba(0,0,0,0.15);border:1px solid var(--border);}
+  .leaflet-popup-content{margin:14px 16px;min-width:180px;max-width:260px;}
+  .pop-img{text-align:center;padding:10px;background:var(--bg);border-radius:4px;margin-bottom:10px;}
+  .pop-img img{max-height:100px;max-width:140px;object-fit:contain;}
+  .pop-name{font-family:'Fraunces',serif;font-weight:300;font-size:15px;margin-bottom:2px;}
+  .pop-name-he{font-size:10px;color:var(--muted);direction:rtl;text-align:right;margin-bottom:8px;}
+  .pop-meta{font-size:10px;color:var(--muted);margin-bottom:6px;}
+  .pop-badge{display:inline-block;font-size:9px;padding:1px 5px;border-radius:2px;background:#eee;color:#666;margin-right:3px;margin-bottom:3px;}
+  .pop-section-title{font-size:9px;color:var(--muted);margin-top:10px;margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px;}
+  .pop-tags{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:8px;}
+  .pop-tag{font-size:9px;padding:1px 5px;border-radius:3px;background:#f0f0f0;color:#555;}
+  .pop-notes{font-size:10px;line-height:1.6;direction:rtl;text-align:right;color:var(--text);}
+  .pop-notes div{margin-bottom:2px;}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <span class="header-title">Israeli Municipal <em>Emblems</em> — Map</span>
+  <a class="header-back" href="index.html">← Back to index</a>
+</div>
+
+<div class="controls">
+  <button class="ctrl-btn active" data-filter="all">All</button>
+  <button class="ctrl-btn" data-filter="israeli">Israeli</button>
+  <button class="ctrl-btn" data-filter="palestinian">Palestinian</button>
+  <div class="ctrl-sep"></div>
+  <button class="ctrl-btn active" data-filter="found">Found</button>
+  <button class="ctrl-btn active" data-filter="missing">Missing</button>
+  <div class="ctrl-sep"></div>
+  <button class="ctrl-btn" data-filter="city">Cities</button>
+  <button class="ctrl-btn" data-filter="local">Local</button>
+  <button class="ctrl-btn" data-filter="regional">Regional</button>
+  <span class="stats" id="stats"></span>
+</div>
+
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const GITHUB_USER='itai-raveh';
+const GITHUB_REPO='israel-emblems';
+const BRANCH='main';
+const RAW=`https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/${BRANCH}`;
+const CSV_URL=`${RAW}/data/municipalities.csv`;
+const PS_CSV_URL=`${RAW}/data/palestinian_municipalities.csv`;
+
+// Use "no_labels" tile style to suppress place names
+const map=L.map('map',{zoomSnap:0.5}).setView([31.8,35.0],8);
+
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png',{
+  attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
+  subdomains:'abcd',maxZoom:19
+}).addTo(map);
+
+let allMarkers=[];
+let allData=[];
+
+// Label visibility threshold
+const LABEL_MIN_ZOOM=10;
+
+function updateLabelVisibility(){
+  document.body.classList.toggle('zoom-low', map.getZoom()<LABEL_MIN_ZOOM);
+}
+
+function parseCSV(text){
+  if(text.charCodeAt(0)===0xFEFF)text=text.slice(1);
+  const lines=text.split('\n').filter(l=>l.trim());
+  const headers=lines[0].split(',');
+  return lines.slice(1).map(line=>{
+    const vals=[];let cur='',inQ=false;
+    for(const ch of line){
+      if(ch==='"')inQ=!inQ;
+      else if(ch===','&&!inQ){vals.push(cur);cur='';}
+      else cur+=ch;
+    }
+    vals.push(cur);
+    const obj={};
+    headers.forEach((h,i)=>obj[h.trim()]=(vals[i]||'').trim());
+    return obj;
+  }).filter(r=>r.id&&r.lat&&r.lng);
+}
+
+function allImageUrls(m){
+  const id=m.id;
+  const urls=[];
+  if(m.has_coa==='yes'){
+    urls.push(`${RAW}/emblems/svg/${id}-COA.svg`);
+    for(const ext of ['png','jpg','webp','gif'])
+      urls.push(`${RAW}/emblems/png/${id}-COA.${ext}`);
+    for(const ext of ['png','jpg','svg','gif'])
+      urls.push(`${RAW}/emblems/png/${id}-COA-obsolete.${ext}`);
+  }
+  if(m.has_logo==='yes'){
+    urls.push(`${RAW}/emblems/svg/${id}-logo.svg`);
+    for(const ext of ['png','jpg','webp','gif'])
+      urls.push(`${RAW}/emblems/png/${id}-logo.${ext}`);
+  }
+  return urls;
+}
+
+function imgWithFallbacks(urls,alt,style){
+  if(!urls.length)return '';
+  const chain=urls.slice(1).reduceRight((inner,url)=>{
+    return`this.src='${url}';this.onerror=function(){${inner}};`;
+  },`this.style.display='none';`);
+  return`<img src="${urls[0]}" onerror="${chain.replace(/"/g,"'")}" loading="lazy" alt="${alt}" style="${style}">`;
+}
+
+// Base icon size — 44px * 1.4 = ~62px
+const BASE_SIZE=62;
+const BASE_ZOOM=8;
+
+function createMarker(m){
+  const lat=parseFloat(m.lat);
+  const lng=parseFloat(m.lng);
+  if(isNaN(lat)||isNaN(lng))return null;
+
+  const hasImg=m.has_coa==='yes'||m.has_logo==='yes';
+  const urls=allImageUrls(m);
+  const name=m.name_en||m.id;
+
+  // Icon anchor at bottom-center of image so emblem sits on the map point
+  const icon=L.divIcon({
+    className:'',
+    iconSize:[BASE_SIZE, BASE_SIZE+16], // extra height for label
+    iconAnchor:[BASE_SIZE/2, BASE_SIZE], // anchor = bottom center of image
+    html:`<div class="emblem-wrap" data-id="${m.id}" style="width:${BASE_SIZE}px;">
+      <div class="emblem-img-wrap" style="width:${BASE_SIZE}px;height:${BASE_SIZE}px;">
+        ${hasImg
+          ?imgWithFallbacks(urls,name,'width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 1px 4px rgba(0,0,0,0.25));')
+          :`<span class="emblem-no-img">${name.slice(0,6)}</span>`
+        }
+      </div>
+      <div class="emblem-label">${name}</div>
+    </div>`
+  });
+
+  const marker=L.marker([lat,lng],{icon,zIndexOffset:hasImg?100:0});
+  marker._mData=m;
+
+  // Build popup with notes and tags
+  const tags=[m['תגיות_1'],m['תגיות_2'],m['תגיות_3'],m['תגיות_4'],m['תגיות_5'],
+              m['תגיות_6'],m['תגיות_7'],m['תגיות_8'],m['תגיות_9'],m['תגיות_10']].filter(Boolean);
+  const notes=[m.note_1,m.note_2,m.note_3,m.note_4,m.note_5,m.note_6,m.note_7,m.note_8].filter(Boolean);
+
+  const popImg=hasImg
+    ?`<div class="pop-img">${imgWithFallbacks(urls,name,'max-height:100px;max-width:140px;object-fit:contain;')}</div>`
+    :'';
+  const tagsHtml=tags.length
+    ?`<div class="pop-section-title">Visual elements</div><div class="pop-tags">${tags.map(t=>`<span class="pop-tag">${t}</span>`).join('')}</div>`
+    :'';
+  const notesHtml=notes.length
+    ?`<div class="pop-section-title">About this emblem</div><div class="pop-notes">${notes.map(n=>`<div>· ${n}</div>`).join('')}</div>`
+    :'';
+
+  marker.bindPopup(`
+    ${popImg}
+    <div class="pop-name">${name}</div>
+    <div class="pop-name-he">${m.name_he||''}${m.name_ar?` · ${m.name_ar}`:''}</div>
+    <div class="pop-meta">${[m.district,m.type,m.culture].filter(Boolean).join(' · ')}</div>
+    ${m['שנת_אימוץ']?`<span class="pop-badge">${m['שנת_אימוץ']}</span>`:''}
+    ${m['מעצב']?`<span class="pop-badge">${m['מעצב']}</span>`:''}
+    ${tagsHtml}
+    ${notesHtml}
+  `,{maxWidth:280});
+
+  return marker;
+}
+
+// Scale markers via CSS transform — no icon recreation, no flicker
+function updateMarkerScales(){
+  const scale=Math.pow(2,map.getZoom()-BASE_ZOOM);
+  document.querySelectorAll('.emblem-img-wrap').forEach(el=>{
+    el.style.transform=`scale(${scale})`;
+    el.style.transformOrigin='bottom center';
+  });
+  updateLabelVisibility();
+}
+map.on('zoom',updateMarkerScales);
+
+// Filter state
+const state={population:'all',status:{found:true,missing:true},type:{city:false,local:false,regional:false}};
+
+function applyFilters(){
+  let visible=0;
+  allMarkers.forEach(({marker,m})=>{
+    let show=true;
+    const isPs=m.culture==='palestinian';
+    if(state.population==='israeli'&&isPs)show=false;
+    if(state.population==='palestinian'&&!isPs)show=false;
+    const missing=m.has_coa!=='yes'&&m.has_logo!=='yes';
+    if(missing&&!state.status.missing)show=false;
+    if(!missing&&!state.status.found)show=false;
+    const anyType=state.type.city||state.type.local||state.type.regional;
+    if(anyType){
+      if(m.type==='city'&&!state.type.city)show=false;
+      if(m.type==='local'&&!state.type.local)show=false;
+      if(m.type==='regional'&&!state.type.regional)show=false;
+    }
+    if(show){marker.addTo(map);visible++;}
+    else{marker.remove();}
+  });
+  document.getElementById('stats').textContent=`${visible} shown`;
+}
+
+document.querySelectorAll('.ctrl-btn[data-filter]').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const f=btn.dataset.filter;
+    if(['all','israeli','palestinian'].includes(f)){
+      document.querySelectorAll('[data-filter="all"],[data-filter="israeli"],[data-filter="palestinian"]').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      state.population=f;
+    } else if(['found','missing'].includes(f)){
+      btn.classList.toggle('active');
+      state.status[f]=btn.classList.contains('active');
+    } else if(['city','local','regional'].includes(f)){
+      btn.classList.toggle('active');
+      state.type[f]=btn.classList.contains('active');
+    }
+    applyFilters();
+  });
+});
+
+async function main(){
+  const[csvText,psCsvText]=await Promise.all([
+    fetch(CSV_URL).then(r=>r.text()),
+    fetch(PS_CSV_URL).then(r=>r.ok?r.text():'').catch(()=>''),
+  ]);
+  const israeli=parseCSV(csvText);
+  const palestinian=psCsvText?parseCSV(psCsvText):[];
+  allData=[...israeli,...palestinian];
+
+  allData.forEach(m=>{
+    const marker=createMarker(m);
+    if(!marker)return;
+    marker.addTo(map);
+    allMarkers.push({marker,m});
+  });
+
+  document.getElementById('stats').textContent=`${allMarkers.length} shown`;
+  updateMarkerScales();
+  updateLabelVisibility();
+}
+
+main();
+</script>
+</body>
+</html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Israeli Municipal Emblems — Map</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  :root{
+    --bg:#f5f2ed;
+    --surface:#fffef9;
+    --text:#1a1714;
+    --muted:#7a736a;
+    --border:#ddd8d0;
+    --accent:#2d5a3d;
     --accent2:#8b2020;
   }
   body{font-family:'DM Mono',monospace;background:var(--bg);color:var(--text);height:100vh;display:flex;flex-direction:column;overflow:hidden;}
