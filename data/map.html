@@ -8,10 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
-:root{
-  --bg:#f5f2ed;--surface:#fffef9;--text:#1a1714;
-  --muted:#7a736a;--border:#ddd8d0;--accent:#2d5a3d;
-}
+:root{--bg:#f5f2ed;--surface:#fffef9;--text:#1a1714;--muted:#7a736a;--border:#ddd8d0;--accent:#2d5a3d;}
 body{font-family:'DM Mono',monospace;background:var(--bg);color:var(--text);height:100vh;display:flex;flex-direction:column;overflow:hidden;}
 .header{display:flex;align-items:center;justify-content:space-between;padding:10px 20px;background:var(--surface);border-bottom:1px solid var(--border);z-index:1000;flex-shrink:0;}
 .header-title{font-family:'Fraunces',serif;font-weight:300;font-size:18px;}
@@ -24,24 +21,11 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:var(--text);heig
 .ctrl-sep{width:1px;height:16px;background:var(--border);}
 .stats{font-size:10px;color:var(--muted);margin-left:auto;}
 #map{flex:1;z-index:0;}
-
-/* Marker */
 .em{display:flex;flex-direction:column;align-items:center;cursor:pointer;}
-.em:hover .em-img{filter:brightness(1.08);}
-.em-img{
-  display:flex;align-items:center;justify-content:center;
-  border-radius:50%;
-  flex-shrink:0;
-}
+.em:hover .em-img{opacity:0.85;}
+.em-img{display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .em-img img{object-fit:contain;display:block;}
-.em-label{
-  font-family:'Fraunces',serif;font-weight:300;
-  color:#111;text-align:center;white-space:nowrap;
-  text-shadow:0 0 4px #fff,0 0 8px #fff,0 0 3px #fff;
-  pointer-events:none;
-}
-
-/* Popup */
+.em-label{font-family:'Fraunces',serif;font-weight:300;font-size:16px;color:#111;text-align:center;white-space:nowrap;text-shadow:0 0 3px #fff,0 0 6px #fff;pointer-events:none;margin-top:2px;max-width:80px;overflow:hidden;text-overflow:ellipsis;}
 .leaflet-popup-content-wrapper{border-radius:6px;box-shadow:0 4px 20px rgba(0,0,0,0.14);border:1px solid var(--border);}
 .leaflet-popup-content{margin:14px 16px;min-width:180px;max-width:270px;}
 .pop-img{text-align:center;padding:10px;background:var(--bg);border-radius:4px;margin-bottom:10px;}
@@ -58,12 +42,10 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:var(--text);heig
 </style>
 </head>
 <body>
-
 <div class="header">
   <span class="header-title">Israeli Municipal <em>Emblems</em> — Map</span>
   <a class="header-back" href="index.html">← Index</a>
 </div>
-
 <div class="controls">
   <button class="ctrl-btn active" data-f="all">All</button>
   <button class="ctrl-btn" data-f="israeli">Israeli</button>
@@ -77,44 +59,28 @@ body{font-family:'DM Mono',monospace;background:var(--bg);color:var(--text);heig
   <button class="ctrl-btn" data-f="regional">Regional</button>
   <span class="stats" id="stats">Loading…</span>
 </div>
-
 <div id="map"></div>
-
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
 const RAW='https://raw.githubusercontent.com/itai-raveh/israel-emblems/main';
 const CSV_URL=RAW+'/data/municipalities.csv';
 const PS_CSV_URL=RAW+'/data/palestinian_municipalities.csv';
 
-// ── Map ──────────────────────────────────────────────────────────────
 const map=L.map('map',{zoomSnap:1,zoomDelta:1}).setView([31.8,35.0],8);
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png',{
   attribution:'© OpenStreetMap © CARTO',subdomains:'abcd',maxZoom:19
 }).addTo(map);
 
-// ── Marker sizing ─────────────────────────────────────────────────────
-// BASE_SIZE at BASE_ZOOM. Each zoom level doubles/halves it.
-const BASE_SIZE = 100;  // px at zoom 8
-const BASE_ZOOM = 8;
-const GLOW      = 0;    // px padding around image (radial gradient)
-const GLOW_OP   = 0.54; // glow opacity
-const GLOW_SPR  = 17;   // glow spread %
-const SHADOW    = 5;    // drop-shadow px
-const LABEL_SZ  = 14;   // label font-size px at base zoom
-const LABEL_GAP = 2;    // margin-top between image and label px
-const LABEL_MIN_ZOOM = 10; // hide labels below this zoom
+// Icon size in px per zoom level — hand-tuned
+const SIZE_BY_ZOOM={
+  6:10, 7:16, 8:26, 9:40, 10:58, 11:80, 12:110, 13:150
+};
+function iconSize(z){return SIZE_BY_ZOOM[Math.min(13,Math.max(6,Math.round(z)))]||26;}
+const LABEL_MIN_ZOOM=10;
+const SHADOW=5;
 
-function iconSizeAtZoom(z){
-  return Math.round(BASE_SIZE * Math.pow(2, z - BASE_ZOOM));
-}
-
-function labelSizeAtZoom(z){
-  return Math.round(LABEL_SZ * Math.pow(2, z - BASE_ZOOM));
-}
-
-// ── Image URLs ────────────────────────────────────────────────────────
 function imageUrls(m){
-  const id=m.id, u=[];
+  const id=m.id,u=[];
   if(m.has_coa==='yes'){
     u.push(`${RAW}/emblems/svg/${id}-COA.svg`);
     for(const e of ['png','jpg','webp','gif'])u.push(`${RAW}/emblems/png/${id}-COA.${e}`);
@@ -127,54 +93,40 @@ function imageUrls(m){
   return u;
 }
 
-function imgTag(urls, sz, style){
+function imgTag(urls,sz){
   if(!urls.length)return '';
   const chain=urls.slice(1).reduceRight(
     (inner,url)=>`this.src='${url}';this.onerror=function(){${inner}};`,
     `this.style.display='none';`
   );
-  return`<img src="${urls[0]}" onerror="${chain}" loading="lazy" width="${sz}" height="${sz}" style="${style}">`;
+  return`<img src="${urls[0]}" onerror="${chain}" loading="lazy" width="${sz}" height="${sz}" style="width:${sz}px;height:${sz}px;object-fit:contain;filter:drop-shadow(0 1px ${SHADOW}px rgba(0,0,0,0.25));display:block;">`;
 }
 
-// ── Build icon HTML at a given zoom ───────────────────────────────────
-function buildIconHtml(m, z){
-  const sz  = iconSizeAtZoom(z);
-  const lsz = labelSizeAtZoom(z);
-  const lgap= Math.round(LABEL_GAP * Math.pow(2, z - BASE_ZOOM));
-  const W   = sz + GLOW*2;
-  const showLabel = z >= LABEL_MIN_ZOOM;
-  const hasImg = m.has_coa==='yes'||m.has_logo==='yes';
-  const urls = imageUrls(m);
-  const name = m.name_en||m.id;
+function buildIcon(m,z){
+  const sz=iconSize(z);
+  const hasImg=m.has_coa==='yes'||m.has_logo==='yes';
+  const urls=imageUrls(m);
+  const name=m.name_en||m.id;
+  const showLabel=z>=LABEL_MIN_ZOOM;
+  const labelH=showLabel?14:0;
 
-  const glowBg = GLOW > 0
-    ? `radial-gradient(ellipse at center,rgba(255,255,255,${GLOW_OP}) ${GLOW_SPR}%,rgba(255,255,255,0) 100%)`
-    : 'transparent';
-
-  const imgStyle = `width:${sz}px;height:${sz}px;object-fit:contain;filter:drop-shadow(0 1px ${SHADOW}px rgba(0,0,0,0.22));display:block;`;
-
-  return `<div class="em" style="width:${W}px;">
-    <div class="em-img" style="width:${W}px;height:${W}px;padding:${GLOW}px;background:${glowBg};border-radius:50%;">
-      ${hasImg ? imgTag(urls, sz, imgStyle) : `<span style="font-size:${Math.max(8,sz/8)}px;color:#aaa;">${name.slice(0,5)}</span>`}
-    </div>
-    ${showLabel ? `<div class="em-label" style="font-size:${lsz}px;margin-top:${lgap}px;">${name}</div>` : ''}
-  </div>`;
-}
-
-function buildIcon(m, z){
-  const sz = iconSizeAtZoom(z);
-  const W  = sz + GLOW*2;
-  const lh = z >= LABEL_MIN_ZOOM ? labelSizeAtZoom(z)+LABEL_GAP*Math.pow(2,z-BASE_ZOOM)+2 : 0;
   return L.divIcon({
     className:'',
-    iconSize:[W, W+lh],
-    iconAnchor:[W/2, W/2],   // anchor = center of image
-    popupAnchor:[0, -(W/2)],
-    html: buildIconHtml(m, z)
+    iconSize:[sz,sz+labelH],
+    iconAnchor:[sz/2,sz/2],
+    popupAnchor:[0,-(sz/2+4)],
+    html:`<div class="em" style="width:${sz}px;">
+      <div class="em-img" style="width:${sz}px;height:${sz}px;">
+        ${hasImg
+          ?imgTag(urls,sz)
+          :`<span style="font-size:${Math.max(6,Math.round(sz/6))}px;color:#bbb;line-height:${sz}px;display:block;text-align:center;">${name.slice(0,3)}</span>`
+        }
+      </div>
+      ${showLabel?`<div class="em-label">${name}</div>`:''}
+    </div>`
   });
 }
 
-// ── CSV parser ────────────────────────────────────────────────────────
 function parseCSV(text){
   if(text.charCodeAt(0)===0xFEFF)text=text.slice(1);
   const lines=text.split('\n').filter(l=>l.trim());
@@ -192,18 +144,15 @@ function parseCSV(text){
   }).filter(r=>r.id&&r.lat&&r.lng);
 }
 
-// ── Popup ─────────────────────────────────────────────────────────────
 function buildPopup(m){
   const hasImg=m.has_coa==='yes'||m.has_logo==='yes';
   const urls=imageUrls(m);
   const name=m.name_en||m.id;
   const tags=[1,2,3,4,5,6,7,8,9,10].map(i=>m[`תגיות_${i}`]).filter(Boolean);
   const notes=[1,2,3,4,5,6,7,8].map(i=>m[`note_${i}`]).filter(Boolean);
-
-  const popImg=hasImg?`<div class="pop-img">${imgTag(urls,100,'max-height:100px;max-width:140px;object-fit:contain;')}</div>`:'';
+  const popImg=hasImg?`<div class="pop-img">${imgTag(urls,100)}</div>`:'';
   const tagsHtml=tags.length?`<div class="pop-sec">Visual elements</div><div class="pop-tags">${tags.map(t=>`<span class="pop-tag">${t}</span>`).join('')}</div>`:'';
   const notesHtml=notes.length?`<div class="pop-sec">About this emblem</div><div class="pop-notes">${notes.map(n=>`<div>${n}</div>`).join('')}</div>`:'';
-
   return`${popImg}
     <div class="pop-name">${name}</div>
     <div class="pop-he">${m.name_he||''}${m.name_ar?' · '+m.name_ar:''}</div>
@@ -213,7 +162,6 @@ function buildPopup(m){
     ${tagsHtml}${notesHtml}`;
 }
 
-// ── State ─────────────────────────────────────────────────────────────
 let allMarkers=[];
 const state={pop:'all',found:true,missing:true,city:false,local:false,regional:false};
 
@@ -237,25 +185,21 @@ function applyFilters(){
   let n=0;
   allMarkers.forEach(({marker,m})=>{
     const show=isVisible(m);
-    show ? marker.addTo(map) : marker.remove();
+    show?marker.addTo(map):marker.remove();
     if(show)n++;
   });
   document.getElementById('stats').textContent=`${n} shown`;
 }
 
-// ── Zoom: recreate icons with debounce ────────────────────────────────
 let zoomTimer=null;
 map.on('zoomend',()=>{
   clearTimeout(zoomTimer);
   zoomTimer=setTimeout(()=>{
     const z=map.getZoom();
-    allMarkers.forEach(({marker,m})=>{
-      marker.setIcon(buildIcon(m,z));
-    });
+    allMarkers.forEach(({marker,m})=>marker.setIcon(buildIcon(m,z)));
   },40);
 });
 
-// ── Controls ──────────────────────────────────────────────────────────
 document.querySelectorAll('.ctrl-btn[data-f]').forEach(btn=>{
   btn.addEventListener('click',()=>{
     const f=btn.dataset.f;
@@ -271,7 +215,6 @@ document.querySelectorAll('.ctrl-btn[data-f]').forEach(btn=>{
   });
 });
 
-// ── Load ──────────────────────────────────────────────────────────────
 async function main(){
   const[csvText,psCsvText]=await Promise.all([
     fetch(CSV_URL).then(r=>r.text()),
@@ -279,7 +222,6 @@ async function main(){
   ]);
   const data=[...parseCSV(csvText),...(psCsvText?parseCSV(psCsvText):[])];
   const z=map.getZoom();
-
   data.forEach(m=>{
     const lat=parseFloat(m.lat),lng=parseFloat(m.lng);
     if(isNaN(lat)||isNaN(lng))return;
@@ -291,7 +233,6 @@ async function main(){
     marker.addTo(map);
     allMarkers.push({marker,m});
   });
-
   document.getElementById('stats').textContent=`${allMarkers.length} shown`;
 }
 
